@@ -5,12 +5,11 @@
 	"tasks": [
 		{
 			"label": "build",
-			"command": "dotnet",
+			"command": "msbuild",
 			"type": "shell",
 			"args": [
-				"build",
-				"/property:GenerateFullPaths=true",
-				"/consoleloggerparameters:NoSummary"
+				"'-p:Configuration=Debug;Platform=x64'",
+				"-t:Clean,Build",
 			],
 			"group": {
 				"kind": "build",

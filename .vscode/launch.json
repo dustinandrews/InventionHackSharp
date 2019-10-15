@@ -9,7 +9,7 @@
 			"type": "coreclr",
 			"request": "launch",
 			"preLaunchTask": "build",
-			"program": "${workspaceFolder}/bin/Debug/console/net4.6.1/console.exe",
+			"program": "${workspaceFolder}/bin/Debug/InventionUiWpf/InventionUiWpf.exe",
 			"args": [],
 			"cwd": "${workspaceFolder}",
 			"console": "internalConsole",
