@@ -10,7 +10,7 @@ namespace Portable
 	{
 		public static void Install(Inv.Application application)
 		{
-			application.Title = "My Project";
+			application.Title = "MegaDungeon";
 			var surface = application.Window.NewSurface();
 			var h = application.Window.Height;
 			var w = application.Window.Width;
@@ -26,28 +26,46 @@ namespace Portable
 
 		static void InitializeSurface(Surface surface)
 		{
-			var hcells = 10;
-			var wcells = 20;
+			var vericalCellCount = 20;
+			var horizontalCellCount = 50;
 			surface.Background.Colour = Colour.WhiteSmoke;
 			var stack = surface.NewStack(Orientation.Vertical);
 			surface.Content = stack;
 			stack.Background.Colour = Colour.Green;
 			stack.Size.Set(surface.Window.Width, surface.Window.Height);
 
-			Label[,] labels = new Label[hcells, wcells];
+			Label[,] labels = new Label[horizontalCellCount, vericalCellCount];
 
 
-			var h = stack.Window.Height / hcells;
-			var w = stack.Window.Width / wcells;
+			var h = stack.Window.Height / vericalCellCount;
+			var w = stack.Window.Width / horizontalCellCount;
 
 
-			CreateCells(surface, hcells, wcells, stack, w, h, labels);
+			CreateCells(surface, vericalCellCount, horizontalCellCount, stack, w, h, labels);
+			var engine = new MD.Engine(horizontalCellCount,vericalCellCount);
+			for(int x = 0; x < horizontalCellCount; x++)
+			{
+				for(int y = 0; y < vericalCellCount; y++)
+				{
+					if(engine.Floor[x,y] == 1)
+					{
+						labels[x,y].Background.Colour = Colour.GraySmoke;
+					}
+					else
+					{
+						labels[x,y].Background.Colour = Colour.Black;
+						// labels[x,y].Font.Colour = Colour.WhiteSmoke;
+					}
+				}
+
+			}
+
 		}
 
 		static void CreateCells(Surface surface, int hcells, int wcells, Stack stack, int w, int h, Label[,] labels)
 		{
-			var colorStep = 360.0 / (hcells * wcells);
-			var hue = 0.0;
+			// var colorStep = 360.0 / (hcells * wcells);
+			// var hue = 0.0;
 			for (int i = 0; i < hcells; i++)
 			{
 				var hstack = surface.NewStack(Orientation.Horizontal);
@@ -58,14 +76,14 @@ namespace Portable
 				{
 					var label = surface.NewLabel();
 					label.Size.Set(w, h);
-					label.Text = $"{i},{j}";
-					label.Font.Size = 9;
-					label.Border.Colour = Colour.Black;
-					label.Border.Set(1);
-					label.Background.Colour = Colour.FromHSV(hue, 0.5, 0.5);
-					hue += colorStep;
-					labels[i, j] = label;
+					labels[j, i] = label;
 					hstack.AddPanel(label);
+					// label.Text = $"{i},{j}";
+					// label.Font.Size = 9;
+					// label.Border.Colour = Colour.Black;
+					// label.Border.Set(1);
+					// label.Background.Colour = Colour.FromHSV(hue, 0.5, 0.5);
+					// hue += colorStep;
 				}
 			}
 		}

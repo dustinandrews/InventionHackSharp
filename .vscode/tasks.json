@@ -5,11 +5,10 @@
 	"tasks": [
 		{
 			"label": "build",
-			"command": "msbuild",
+			"command": "dotnet",
 			"type": "shell",
 			"args": [
-				"'-p:Configuration=Debug;Platform=x64'",
-				"-t:Clean,Build",
+				"build"
 			],
 			"group": {
 				"kind": "build",

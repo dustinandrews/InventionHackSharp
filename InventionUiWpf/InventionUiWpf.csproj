@@ -1,12 +1,15 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk.WindowsDesktop">
 
-  <PropertyGroup>
-    <OutputType>WinExe</OutputType>
-    <TargetFrameworks>net461</TargetFrameworks>
-    <UseWPF>true</UseWPF>
-  </PropertyGroup>
-  
-    <ItemGroup>
+	<PropertyGroup>
+		<OutputType>WinExe</OutputType>
+		<TargetFrameworks>net461</TargetFrameworks>
+		<UseWPF>true</UseWPF>
+		<OutputPath>$(SolutionDir)\bin\$(Configuration)\$(AssemblyName)\</OutputPath>
+		<PlatformTarget>x64</PlatformTarget>
+		<DebugType>portable</DebugType>
+	</PropertyGroup>
+
+	<ItemGroup>
 		<Reference Include="Inv.Library">
 		  <HintPath>..\lib\Inv.Library.dll</HintPath>
 		</Reference>
@@ -23,9 +26,10 @@
 		  <HintPath>..\lib\Newtonsoft.Json.dll</HintPath>
 		</Reference>
 	</ItemGroup>
-  
-    <ItemGroup>
-      <ProjectReference Include="..\Portable\Portable.csproj" />
-    </ItemGroup>
+
+	<ItemGroup>
+		<ProjectReference Include="..\Portable\Portable.csproj" />
+		<ProjectReference Include="..\Engine\Engine.csproj" />
+	</ItemGroup>
 
 </Project>

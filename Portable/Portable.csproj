@@ -1,16 +1,20 @@
 <Project Sdk="Microsoft.NET.Sdk">
-  <PropertyGroup>
-    <TargetFrameworks>net461</TargetFrameworks>
-  </PropertyGroup>
-  <ItemGroup>
-    <Reference Include="Inv.Library">
-      <HintPath>..\lib\Inv.Library.dll</HintPath>
-    </Reference>
-    <Reference Include="Inv.Platform">
-      <HintPath>..\lib\Inv.Platform.dll</HintPath>
-    </Reference>
-    <Reference Include="Newtonsoft.Json">
-      <HintPath>..\lib\Newtonsoft.Json.dll</HintPath>
-    </Reference>
-  </ItemGroup>
+	<PropertyGroup>
+		<TargetFrameworks>net461</TargetFrameworks>
+		<OutputPath>$(SolutionDir)\bin\$(Configuration)\$(AssemblyName)\</OutputPath>
+	</PropertyGroup>
+	<ItemGroup>
+		<Reference Include="Inv.Library">
+			<HintPath>..\lib\Inv.Library.dll</HintPath>
+		</Reference>
+		<Reference Include="Inv.Platform">
+			<HintPath>..\lib\Inv.Platform.dll</HintPath>
+		</Reference>
+		<Reference Include="Newtonsoft.Json">
+			<HintPath>..\lib\Newtonsoft.Json.dll</HintPath>
+		</Reference>
+	</ItemGroup>
+	<ItemGroup>
+		<ProjectReference Include="..\Engine\Engine.csproj" />
+	</ItemGroup>
 </Project>

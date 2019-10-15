@@ -5,11 +5,11 @@
 	"version": "0.2.0",
 	"configurations": [
 		{
-			"name": ".NET Core Launch (console)",
-			"type": "coreclr",
+			"name": ".NET Launch (console)",
+			"type": "clr",
 			"request": "launch",
 			"preLaunchTask": "build",
-			"program": "${workspaceFolder}/bin/Debug/InventionUiWpf/InventionUiWpf.exe",
+			"program": "${workspaceFolder}/bin/Debug/InventionUiWpf/net461/InventionUiWpf.exe",
 			"args": [],
 			"cwd": "${workspaceFolder}",
 			"console": "internalConsole",

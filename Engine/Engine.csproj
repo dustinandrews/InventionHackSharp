@@ -1,16 +1,16 @@
 <Project Sdk="Microsoft.NET.Sdk">
 
-  <PropertyGroup>
-        <TargetFramework>net4.6.1</TargetFramework>
-		<OutputPath>$(SolutionDir)\bin\$(Configuration)\$(AssemblyName)\</OutputPath>
-  </PropertyGroup>
+	<PropertyGroup>
+			<TargetFramework>net461</TargetFramework>
+			<OutputPath>$(SolutionDir)\bin\$(Configuration)\$(AssemblyName)\</OutputPath>
+	</PropertyGroup>
 
-  <ItemGroup>
-    <PackageReference Include="rogueSharp" Version="4.2.0" />
-  </ItemGroup>
+	<ItemGroup>
+		<PackageReference Include="rogueSharp" Version="4.2.0" />
+	</ItemGroup>
 
-  <ItemGroup>
-    <ProjectReference Include="..\EntityComponentSystemCSharp\EntityComponentSystemCSharp.csproj" />
-  </ItemGroup>
+	<ItemGroup>
+		<ProjectReference Include="..\EntityComponentSystemCSharp\EntityComponentSystemCSharp.csproj" />
+	</ItemGroup>
 
 </Project>
