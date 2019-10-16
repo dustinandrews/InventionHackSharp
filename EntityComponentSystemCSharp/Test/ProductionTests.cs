@@ -1,10 +1,10 @@
 using System;
 using NUnit.Framework;
-using CommerceSim.Components;
-using CommerceSim.Systems;
+using EntityComponentSystemCSharp.Components;
+using EntityComponentSystemCSharp.Systems;
 using System.Linq;
 
-namespace CommerceSim
+namespace EntityComponentSystemCSharp
 {
 	public class ProductionTests
 	{

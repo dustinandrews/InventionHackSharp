@@ -1,4 +1,4 @@
-namespace CommerceSim.Systems
+namespace EntityComponentSystemCSharp.Systems
 {
 	[System.Serializable]
 public class MissingComponentException : System.Exception

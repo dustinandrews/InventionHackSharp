@@ -1,4 +1,4 @@
-namespace CommerceSim
+namespace EntityComponentSystemCSharp
 {
     [System.Serializable]
     public class NotComponentException : System.Exception

@@ -1,12 +1,23 @@
 using System;
 using System.Collections.Generic;
-using static CommerceSim.EntityManager;
+using static EntityComponentSystemCSharp.EntityManager;
 
-namespace CommerceSim.Components
+namespace EntityComponentSystemCSharp.Components
 {
 	public interface IComponent
 	{
 
+	}
+
+	public class ActorComponent : IComponent
+	{
+
+	}
+
+	public class LocationComponent : IComponent
+	{
+		public int X = -1;
+		public int Y = -1;
 	}
 
 	public class DemandComponent : IComponent

@@ -1,8 +1,8 @@
 using System.Collections.Generic;
-using CommerceSim.Components;
-using static CommerceSim.EntityManager;
+using EntityComponentSystemCSharp.Components;
+using static EntityComponentSystemCSharp.EntityManager;
 
-namespace CommerceSim
+namespace EntityComponentSystemCSharp
 {
 	public static class EntityExtensions
 	{

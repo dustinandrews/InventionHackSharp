@@ -1,10 +1,10 @@
 using System;
 using System.Collections.Generic;
-using CommerceSim;
-using CommerceSim.Components;
-using static CommerceSim.EntityManager;
+using EntityComponentSystemCSharp;
+using EntityComponentSystemCSharp.Components;
+using static EntityComponentSystemCSharp.EntityManager;
 
-namespace CommerceSim.Systems
+namespace EntityComponentSystemCSharp.Systems
 {
 	public interface ISystem
 	{

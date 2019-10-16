@@ -1,4 +1,4 @@
-namespace CommerceSim
+namespace EntityComponentSystemCSharp
 {
     [System.Serializable]
         public class DuplicateComponentException : System.Exception

@@ -1,10 +1,10 @@
 using System;
 using System.Linq;
 using System.Collections.Generic;
-using CommerceSim.Components;
+using EntityComponentSystemCSharp.Components;
 using System.Text;
 
-namespace CommerceSim
+namespace EntityComponentSystemCSharp
 {
 	public partial class EntityManager
 	{

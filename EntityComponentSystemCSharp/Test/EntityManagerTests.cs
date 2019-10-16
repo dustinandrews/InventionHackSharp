@@ -1,8 +1,8 @@
 using System.Linq;
 using NUnit.Framework;
-using CommerceSim.Components;
+using EntityComponentSystemCSharp.Components;
 
-namespace CommerceSim
+namespace EntityComponentSystemCSharp
 {
 	[TestFixture]
 	public class EntityManagerTests
