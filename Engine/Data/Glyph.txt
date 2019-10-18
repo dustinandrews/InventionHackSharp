@@ -1,0 +1,382 @@
+0, giant ant, a
+1, killer bee, a
+2, soldier ant, a
+3, fire ant, a
+4, giant beetle, a
+5, queen bee, a
+6, acid blob, b
+7, quivering blob, b
+8, gelatinous cube, b
+9, chickatrice, c
+10, cockatrice, c
+11, pyrolisk, p
+12, jackal, j
+13, fox, d
+14, coyote, d
+15, werejackal, @
+16, little dog, d
+17, dog, d
+18, large dog, d
+19, dingo, d
+20, wolf, d
+21, werewolf, @
+22, warg, d
+23, winter wolf cub, d
+24, winter wolf, d
+25, hell hound pup, d
+26, hell hound, d
+27, gas spore, e
+28, floating eye, e
+29, freezing sphere, e
+30, flaming sphere, e
+31, shocking sphere, e
+32, kitten, _NA_
+33, housecat, _NA_
+34, jaguar, _NA_
+35, lynx, _NA_
+36, panther, _NA_
+37, large cat, _NA_
+38, tiger, _NA_
+39, gremlin, g
+40, gargoyle, _NA_
+41, winged gargoyle, _NA_
+42, hobbit, _NA_
+43, dwarf, _NA_
+44, bugbear, _NA_
+45, dwarf lord, _NA_
+46, dwarf king, _NA_
+47, mind flayer, _NA_
+48, master mind flayer, _NA_
+49, manes, _NA_
+50, homunculus, _NA_
+51, imp, i
+52, lemure, _NA_
+53, quasit, _NA_
+54, tengu, _NA_
+55, blue jelly, j
+56, spotted jelly, j
+57, ochre jelly, j
+58, kobold, k
+59, large kobold, k
+60, kobold lord, _NA_
+61, kobold shaman, _NA_
+62, leprechaun, l
+63, small mimic, m
+64, large mimic, m
+65, giant mimic, m
+66, wood nymph, n
+67, water nymph, n
+68, mountain nymph, n
+69, goblin, _NA_
+70, hobgoblin, _NA_
+71, orc, o
+72, hill orc, o
+73, Mordor orc, o
+74, Uruk-hai, _NA_
+75, orc shaman, _NA_
+76, orc-captain, _NA_
+77, rock piercer, p
+78, iron piercer, p
+79, glass piercer, p
+80, rothe, _NA_
+81, mumak, _NA_
+82, leocrotta, _NA_
+83, wumpus, _NA_
+84, titanothere, _NA_
+85, baluchitherium, _NA_
+86, mastodon, _NA_
+87, sewer rat, _NA_
+88, giant rat, _NA_
+89, rabid rat, _NA_
+90, wererat, _NA_
+91, rock mole, _NA_
+92, woodchuck, _NA_
+93, cave spider, s
+94, centipede, _NA_
+95, giant spider, s
+96, scorpion, _NA_
+97, lurker above, _NA_
+98, trapper, t
+99, white unicorn, u
+100, gray unicorn, u
+101, black unicorn, u
+102, pony, _NA_
+103, horse, _NA_
+104, warhorse, _NA_
+105, fog cloud, _NA_
+106, dust vortex, v
+107, ice vortex, v
+108, energy vortex, v
+109, steam vortex, v
+110, fire vortex, v
+111, baby long worm, w
+112, baby purple worm, w
+113, long worm, w
+114, purple worm, w
+115, grid bug, _NA_
+116, xan, x
+117, yellow light, y
+118, black light, y
+119, zruty, z
+120, couatl, _NA_
+121, Aleax, _NA_
+122, Angel, A
+123, ki-rin, _NA_
+124, Archon, _NA_
+125, bat, B
+126, giant bat, B
+127, raven, _NA_
+128, vampire bat, B
+129, plains centaur, C
+130, forest centaur, C
+131, mountain centaur, C
+132, baby gray dragon, D
+133, baby silver dragon, D
+134, baby red dragon, D
+135, baby white dragon, D
+136, baby orange dragon, D
+137, baby black dragon, D
+138, baby blue dragon, D
+139, baby green dragon, D
+140, baby yellow dragon, D
+141, gray dragon, D
+142, silver dragon, D
+143, red dragon, D
+144, white dragon, D
+145, orange dragon, D
+146, black dragon, D
+147, blue dragon, D
+148, green dragon, D
+149, yellow dragon, D
+150, stalker, _NA_
+151, air elemental, E
+152, fire elemental, E
+153, earth elemental, E
+154, water elemental, E
+155, lichen, _NA_
+156, brown mold, _NA_
+157, yellow mold, _NA_
+158, green mold, _NA_
+159, red mold, _NA_
+160, shrieker, _NA_
+161, violet fungus, F
+162, gnome, G
+163, gnome lord, _NA_
+164, gnomish wizard, _NA_
+165, gnome king, _NA_
+166, giant, H
+167, stone giant, H
+168, hill giant, H
+169, fire giant, H
+170, frost giant, H
+171, storm giant, H
+172, ettin, _NA_
+173, titan, _NA_
+174, minotaur, _NA_
+175, jabberwock, J
+176, Keystone Kop, K
+177, Kop Sergeant, _NA_
+178, Kop Lieutenant, _NA_
+179, Kop Kaptain, _NA_
+180, lich, L
+181, demilich, _NA_
+182, master lich, L
+183, arch-lich, _NA_
+184, kobold mummy, M
+185, gnome mummy, M
+186, orc mummy, M
+187, dwarf mummy, M
+188, elf mummy, M
+189, human mummy, M
+190, ettin mummy, M
+191, giant mummy, M
+192, red naga hatchling, _NA_
+193, black naga hatchling, _NA_
+194, golden naga hatchling, _NA_
+195, guardian naga hatchling, _NA_
+196, red naga, N
+197, black naga, N
+198, golden naga, N
+199, guardian naga, N
+200, ogre, O
+201, ogre lord, _NA_
+202, ogre king, _NA_
+203, gray ooze, _NA_
+204, brown pudding, P
+205, black pudding, P
+206, green slime, _NA_
+207, quantum mechanic, _NA_
+208, rust monster, _NA_
+209, disenchanter, _NA_
+210, garter snake, S
+211, snake, S
+212, water moccasin, _NA_
+213, pit viper, _NA_
+214, python, _NA_
+215, cobra, _NA_
+216, troll, T
+217, ice troll, T
+218, rock troll, T
+219, water troll, T
+220, Olog-hai, _NA_
+221, umber hulk, _NA_
+222, vampire, V
+223, vampire lord, _NA_
+224, Vlad the Impaler, _NA_
+225, barrow wight, _NA_
+226, wraith, W
+227, Nazgul, _NA_
+228, xorn, X
+229, monkey, _NA_
+230, ape, _NA_
+231, owlbear, _NA_
+232, yeti, Y
+233, carnivorous ape, _NA_
+234, sasquatch, _NA_
+235, kobold zombie, Z
+236, gnome zombie, Z
+237, orc zombie, Z
+238, dwarf zombie, Z
+239, elf zombie, Z
+240, human zombie, Z
+241, ettin zombie, Z
+242, giant zombie, Z
+243, ghoul, _NA_
+244, skeleton, _NA_
+245, straw golem, _NA_
+246, paper golem, _NA_
+247, rope golem, _NA_
+248, gold golem, _NA_
+249, leather golem, _NA_
+250, wood golem, _NA_
+251, flesh golem, _NA_
+252, clay golem, _NA_
+253, stone golem, _NA_
+254, glass golem, _NA_
+255, iron golem, _NA_
+256, human, _NA_
+257, wererat, _NA_
+258, werejackal, _NA_
+259, werewolf, _NA_
+260, elf, _NA_
+261, Woodland-elf, _NA_
+262, Green-elf, _NA_
+263, Grey-elf, _NA_
+264, elf-lord, _NA_
+265, Elvenking, _NA_
+266, doppelganger, _NA_
+267, nurse, _NA_
+268, shopkeeper, _NA_
+269, guard, _NA_
+270, prisoner, _NA_
+271, Oracle, _NA_
+272, aligned priest, _NA_
+273, high priest, _NA_
+274, soldier, _NA_
+275, sergeant, _NA_
+276, lieutenant, _NA_
+277, captain, _NA_
+278, watchman, _NA_
+279, watch captain, _NA_
+280, Medusa, _NA_
+281, Wizard of Yendor, _NA_
+282, Croesus, _NA_
+283, ghost, _NA_
+284, shade, _NA_
+285, water demon, _NA_
+286, horned devil, _NA_
+287, succubus, _NA_
+288, incubus, _NA_
+289, erinys, _NA_
+290, barbed devil, _NA_
+291, marilith, _NA_
+292, vrock, _NA_
+293, hezrou, _NA_
+294, bone devil, _NA_
+295, ice devil, _NA_
+296, nalfeshnee, _NA_
+297, pit fiend, _NA_
+298, balrog, _NA_
+299, Juiblex, _NA_
+300, Yeenoghu, _NA_
+301, Orcus, _NA_
+302, Geryon, _NA_
+303, Dispater, _NA_
+304, Baalzebub, _NA_
+305, Asmodeus, _NA_
+306, Demogorgon, _NA_
+307, Death, _NA_
+308, Pestilence, _NA_
+309, Famine, _NA_
+310, mail daemon, _NA_
+311, djinni, _NA_
+312, sandestin, _NA_
+313, jellyfish, _NA_
+314, piranha, _NA_
+315, shark, _NA_
+316, giant eel, _NA_
+317, electric eel, _NA_
+318, kraken, _NA_
+319, newt, _NA_
+320, gecko, _NA_
+321, iguana, _NA_
+322, baby crocodile, _NA_
+323, lizard, _NA_
+324, chameleon, _NA_
+325, crocodile, _NA_
+326, salamander, _NA_
+327, long worm tail, _NA_
+328, archeologist, _NA_
+329, barbarian, _NA_
+330, caveman, _NA_
+331, cavewoman, _NA_
+332, healer, _NA_
+333, knight, _NA_
+334, monk, _NA_
+335, priest, _NA_
+336, priestess, _NA_
+337, ranger, _NA_
+338, rogue, _NA_
+339, samurai, _NA_
+340, tourist, _NA_
+341, valkyrie, _NA_
+342, wizard, _NA_
+343, Lord Carnarvon, _NA_
+344, Pelias, _NA_
+345, Shaman Karnov, _NA_
+346, Hippocrates, _NA_
+347, King Arthur, _NA_
+348, Grand Master, _NA_
+349, Arch Priest, _NA_
+350, Orion, _NA_
+351, Master of Thieves, _NA_
+352, Lord Sato, _NA_
+353, Twoflower, _NA_
+354, Norn, _NA_
+355, Neferet the Green, _NA_
+356, Minion of Huhetotl, _NA_
+357, Thoth Amon, _NA_
+358, Chromatic Dragon, D
+359, Cyclops, _NA_
+360, Ixoth, _NA_
+361, Master Kaen, _NA_
+362, Nalzok, _NA_
+363, Scorpius, _NA_
+364, Master Assassin, _NA_
+365, Ashikaga Takauji, _NA_
+366, Lord Surtur, _NA_
+367, Dark One, _NA_
+368, student, _NA_
+369, chieftain, _NA_
+370, neanderthal, _NA_
+371, attendant, _NA_
+372, page, _NA_
+373, abbot, _NA_
+374, acolyte, _NA_
+375, hunter, _NA_
+376, thug, _NA_
+377, ninja, _NA_
+378, roshi, _NA_
+379, guide, _NA_
+380, warrior, _NA_
+381, apprentice, _NA_
