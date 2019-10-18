@@ -14,15 +14,14 @@ namespace EntityComponentSystemCSharp.Components
 		public RogueSharp.IMap map;
 	}
 
-	public class DestinationComponent : IComponent
+	public class DestinationComponent : PointWrapper, IComponent
 	{
-		public int X;
-		public int Y;
+
 	}
 
 	public class PlayerComponent : IComponent
 	{
-		
+
 	}
 
 	public class ActorComponent : IComponent
@@ -30,20 +29,11 @@ namespace EntityComponentSystemCSharp.Components
 
 	}
 
-	public class LocationComponent : IComponent
+	public class LocationComponent : PointWrapper, IComponent
 	{
-		public int X = -1;
-		public int Y = -1;
-
 		public LocationComponent Clone()
 		{
 			return new LocationComponent(){X = this.X, Y = this.Y};
-		}
-
-		public override bool Equals(object obj)
-		{
-			var c2 = obj as LocationComponent;
-			return c2 != null && c2.X == X && c2.Y == Y;
 		}
 	}
 

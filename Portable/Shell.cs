@@ -6,7 +6,7 @@ using Inv;
 
 namespace Portable
 {
-	public static partial class Shell
+	public static class Shell
 	{
 		static TimeSpan frameTime = TimeSpan.FromMilliseconds(8);
 		public static void Install(Inv.Application application)

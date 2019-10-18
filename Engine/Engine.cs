@@ -64,14 +64,18 @@ namespace MD
 				_floor[cell.X, cell.Y] = glyph;
 			}
 
-			InitializeActors();
+			InitializePlayer();
 
 			UpdateViews();
 
+			// Add systems that should run every turn here.
 			_turnSystems.Add(new MovementSystem(entityManager));
 		}
 
-		public void InitializeActors()
+		/// <summary>
+		/// Add the player to the map.
+		/// </summary>
+		public void InitializePlayer()
 		{
 			var actor = entityManager.CreateEntity();
 			actor.AddComponent<ActorComponent>();
@@ -104,11 +108,16 @@ namespace MD
 				}
 			}
 
+			// Run all the game systems.
 			foreach(var system in _turnSystems)
 			{
 				system.Run();
 			}
 		}
+
+		/// <summary>
+		/// Copy the private _floor to the public _floor_view
+		/// </summary>
 		private void UpdateViews()
 		{
 			if(_floor_view == null)

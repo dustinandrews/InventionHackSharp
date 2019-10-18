@@ -8,8 +8,6 @@ using MD;
 
 namespace Portable
 {
-	public static partial class Shell
-	{
 		public class MegaDungeonUI
 	{
 		int _horizontalCellCount;
@@ -19,7 +17,7 @@ namespace Portable
 
 		IEnumerator<object> enumerator = null;
 		bool IsInit = false;
-		bool IsDirty = true;
+		bool IsMapChanged = true;
 		Stack _root_stack;
 		MD.Engine _engine;
 
@@ -27,6 +25,15 @@ namespace Portable
 
 		Dictionary<Entity, LocationComponent> _lastLocation = new Dictionary<Entity, LocationComponent>();
 
+		/// <summary>
+		/// Mapping from UI implementation to game.
+		/// </summary>
+		/// <remarks>
+		/// Enforce a strong firewall between the game the UI implmentation.
+		/// </remarks>
+		/// <typeparam name="Key"></typeparam>
+		/// <typeparam name="MD.PlayerInput"></typeparam>
+		/// <returns></returns>
 		public Dictionary<Inv.Key, MD.PlayerInput> keyMap = new Dictionary<Key, MD.PlayerInput>()
 		{
 			{Inv.Key.n1, MD.PlayerInput.DOWNLEFT},
@@ -46,13 +53,22 @@ namespace Portable
 
 			public PlayerInput LastInput { get => _lastInput; set => _lastInput = value; }
 
-			public MegaDungeonUI(Surface surface, int horizontalCellCount, int vericalCellCount)
+		public MegaDungeonUI(Surface surface, int horizontalCellCount, int vericalCellCount)
 		{
 			_horizontalCellCount = horizontalCellCount;
 			_verticalCellCount = vericalCellCount;
 			_surface = surface;
 		}
 
+		/// <summary>
+		/// Populate the map surface with the map elements
+		/// </summary>
+		/// <remarks>
+		/// This implementation creates a grid of labels. For small maps this works fine
+		/// and is easy to manipulate. Larger maps will suffer performance problems and the
+		/// map should be implmented as an image.
+		/// </remarks>
+		/// <param name="surface"></param>
 		public void InitializeSurface(Surface surface)
 		{
 			surface.Background.Colour = Colour.WhiteSmoke;
@@ -63,47 +79,33 @@ namespace Portable
 			_labels = new Label[_horizontalCellCount, _verticalCellCount];
 		}
 
+		/// <summary>
+		/// Update one atomic unit of the UI.
+		/// </summary>
+		/// <remarks>
+		/// This method is the pump for the game. It should be fast enough to always return in less than
+		/// one frame (1/60th sec.)
+		/// </remarks>
 		public void Update()
 		{
 			if(!IsInit)
 			{
-				if(enumerator == null)
-				{
-					enumerator = CreateCells().GetEnumerator();
-				}
-				IsInit = !enumerator.MoveNext();
-				if(IsInit)
-				{
-					enumerator = null;
-				}
+				Init();
 			}
-			else if(IsDirty)
+			else if(IsMapChanged)
 			{
+				// The map needs to be repainted
 				if(enumerator == null)
 				{
-					enumerator = ColorLevel().GetEnumerator();
+					enumerator = PaintMapLayer().GetEnumerator();
 				}
-				IsDirty = enumerator.MoveNext();
+
+				IsMapChanged = enumerator.MoveNext();
 			}
 
 			if(_engine != null)
 			{
-				foreach(var actor in _engine.EntityManager.GetAllEntitiesWithComponent<LocationComponent>())
-				{
-					var location = _engine.EntityManager.GetComponent<LocationComponent>(actor);
-					if(!_lastLocation.ContainsKey(actor))
-					{
-						_lastLocation.Add(actor, location.Clone());
-					}
-					var last = _lastLocation[actor];
-					if(last != location)
-					{
-						_labels[last.X, last.Y].Background.Colour = Colour.Black;
-						_labels[location.X, location.Y].Background.Colour = Colour.Yellow;
-					}
-					last.X = location.X;
-					last.Y = location.Y;
-				}
+				GetMapUpdatesFromEngine();
 			}
 
 			if(_lastInput != MD.PlayerInput.NONE)
@@ -155,7 +157,15 @@ namespace Portable
 			Console.WriteLine($"Created in {ms} milliseconds.");
 		}
 
-		public IEnumerable<Label> ColorLevel()
+		/// <summary>
+		/// Iterating the enumerator paints a single cell.
+		/// </summary>
+		/// <remarks>
+		/// The caller can finely control how many cells to update in each call by
+		/// getting the enumerator and calling GetNext();
+		/// </remarks>
+		/// <returns></returns>
+		public IEnumerable<Label> PaintMapLayer()
 		{
 			var clStart = DateTime.UtcNow;
 			_engine = new MD.Engine(_horizontalCellCount,_verticalCellCount);
@@ -178,6 +188,39 @@ namespace Portable
 			 ms = (end-clStart).TotalMilliseconds;
 			Console.WriteLine($"Colored in {ms} milliseconds.");
 		}
-	}
+
+		void Init()
+		{
+				if(enumerator == null)
+				{
+					enumerator = CreateCells().GetEnumerator();
+				}
+				IsInit = !enumerator.MoveNext();
+				if(IsInit)
+				{
+					enumerator = null;
+				}
+		}
+
+			void GetMapUpdatesFromEngine()
+			{
+				foreach(var actor in _engine.EntityManager.GetAllEntitiesWithComponent<LocationComponent>())
+				{
+					var location = _engine.EntityManager.GetComponent<LocationComponent>(actor);
+					if(!_lastLocation.ContainsKey(actor))
+					{
+						_lastLocation.Add(actor, location.Clone());
+						_labels[location.X, location.Y].Background.Colour = Colour.Yellow;
+					}
+					var last = _lastLocation[actor];
+					if(last != location)
+					{
+						_labels[last.X, last.Y].Background.Colour = Colour.Black;
+						_labels[location.X, location.Y].Background.Colour = Colour.Yellow;
+					}
+					last.X = location.X;
+					last.Y = location.Y;
+				}
+			}
 	}
 }
