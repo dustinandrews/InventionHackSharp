@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using EntityComponentSystemCSharp;
 using EntityComponentSystemCSharp.Components;
 using static EntityComponentSystemCSharp.EntityManager;
+using RogueSharp;
 
 namespace EntityComponentSystemCSharp.Systems
 {
@@ -20,6 +21,37 @@ namespace EntityComponentSystemCSharp.Systems
 		}
 		public abstract void Run();
 
+	}
+
+	public class MovementSystem : SystemBase, ISystem
+	{
+		public MovementSystem(EntityManager em) : base(em)
+		{
+		}
+
+		public override void Run()
+		{
+			foreach(var entity in _em.GetAllEntitiesWithComponent<DestinationComponent>())
+			{
+				var current = entity.GetComponent<LocationComponent>();
+				var desired = entity.GetComponent<DestinationComponent>();
+				var map = entity.GetComponent<MapComponent>();
+				if(map != null && desired != null)
+				{
+					
+					var start = map.map.GetCell(current.X, current.Y);
+					var dest = map.map.GetCell(desired.X, desired.Y);
+					var pathfinder = new RogueSharp.PathFinder(map.map);
+					var path = pathfinder.TryFindShortestPath(start, dest);
+					if(path != null)
+					{
+						var next = path.StepForward();
+						current.X = next.X;
+						current.Y = next.Y;
+					}
+				}
+			}
+		}
 	}
 
 	public class ProductionSystem : SystemBase, ISystem

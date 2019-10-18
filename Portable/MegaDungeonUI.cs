@@ -1,8 +1,10 @@
 using System;
+using System.Linq;
 using System.Collections.Generic;
 using EntityComponentSystemCSharp.Components;
+using static EntityComponentSystemCSharp.EntityManager;
 using Inv;
-
+using MD;
 
 namespace Portable
 {
@@ -21,7 +23,30 @@ namespace Portable
 		Stack _root_stack;
 		MD.Engine _engine;
 
-		public MegaDungeonUI(Surface surface, int horizontalCellCount, int vericalCellCount)
+		MD.PlayerInput _lastInput = MD.PlayerInput.NONE;
+
+		Dictionary<Entity, LocationComponent> _lastLocation = new Dictionary<Entity, LocationComponent>();
+
+		public Dictionary<Inv.Key, MD.PlayerInput> keyMap = new Dictionary<Key, MD.PlayerInput>()
+		{
+			{Inv.Key.n1, MD.PlayerInput.DOWNLEFT},
+			{Inv.Key.n2, MD.PlayerInput.DOWN},
+			{Inv.Key.n3, MD.PlayerInput.DOWNRIGHT},
+			{Inv.Key.n4, MD.PlayerInput.LEFT},
+			{Inv.Key.n5, MD.PlayerInput.NONE},
+			{Inv.Key.n6, MD.PlayerInput.RIGHT},
+			{Inv.Key.n7, MD.PlayerInput.UPLEFT},
+			{Inv.Key.n8, MD.PlayerInput.UP},
+			{Inv.Key.n9, MD.PlayerInput.UPRIGHT},
+			{Inv.Key.Up, MD.PlayerInput.UP},
+			{Inv.Key.Down, MD.PlayerInput.DOWN},
+			{Inv.Key.Left, MD.PlayerInput.LEFT},
+			{Inv.Key.Right, MD.PlayerInput.RIGHT},
+		};
+
+			public PlayerInput LastInput { get => _lastInput; set => _lastInput = value; }
+
+			public MegaDungeonUI(Surface surface, int horizontalCellCount, int vericalCellCount)
 		{
 			_horizontalCellCount = horizontalCellCount;
 			_verticalCellCount = vericalCellCount;
@@ -33,7 +58,7 @@ namespace Portable
 			surface.Background.Colour = Colour.WhiteSmoke;
 			_root_stack = surface.NewStack(Orientation.Vertical);
 			surface.Content = _root_stack;
-			_root_stack.Background.Colour = Colour.Green;
+			_root_stack.Background.Colour = Colour.DarkGray;
 			_root_stack.Size.Set(surface.Window.Width, surface.Window.Height);
 			_labels = new Label[_horizontalCellCount, _verticalCellCount];
 		}
@@ -66,8 +91,33 @@ namespace Portable
 				foreach(var actor in _engine.EntityManager.GetAllEntitiesWithComponent<LocationComponent>())
 				{
 					var location = _engine.EntityManager.GetComponent<LocationComponent>(actor);
-					_labels[location.X, location.Y].Background.Colour = Colour.Yellow;
+					if(!_lastLocation.ContainsKey(actor))
+					{
+						_lastLocation.Add(actor, location.Clone());
+					}
+					var last = _lastLocation[actor];
+					if(last != location)
+					{
+						_labels[last.X, last.Y].Background.Colour = Colour.Black;
+						_labels[location.X, location.Y].Background.Colour = Colour.Yellow;
+					}
+					last.X = location.X;
+					last.Y = location.Y;
 				}
+			}
+
+			if(_lastInput != MD.PlayerInput.NONE)
+			{
+				_engine.DoTurn(_lastInput);
+				_lastInput = MD.PlayerInput.NONE;
+			}
+		}
+
+		public void AcceptInput(Inv.Keystroke keystroke)
+		{
+			if(keyMap.ContainsKey(keystroke.Key))
+			{
+				_lastInput = keyMap[keystroke.Key];
 			}
 		}
 
