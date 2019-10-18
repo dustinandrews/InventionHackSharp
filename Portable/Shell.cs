@@ -38,6 +38,7 @@ namespace Portable
 			{
 				Surface_KeystrokeEvent(keyStroke, ui);
 			};
+			Console.WriteLine("Boot completed.");
 		}
 
 		static void Surface_KeystrokeEvent(Keystroke keystroke, MegaDungeonUI ui)

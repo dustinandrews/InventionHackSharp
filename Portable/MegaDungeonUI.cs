@@ -2,6 +2,7 @@ using System;
 using System.Linq;
 using System.Collections.Generic;
 using EntityComponentSystemCSharp.Components;
+using EntityComponentSystemCSharp;
 using static EntityComponentSystemCSharp.EntityManager;
 using Inv;
 using MD;
@@ -141,14 +142,9 @@ namespace Portable
 					var label = _surface.NewLabel();
 					label.Size.Set(w, h);
 					label.Background.Colour = Colour.Black;
+					label.Font.Colour = Colour.White;
 					_labels[j, i] = label;
 					hstack.AddPanel(label);
-					// label.Text = $"{i},{j}";
-					// label.Font.Size = 9;
-					// label.Border.Colour = Colour.Yellow;
-					// label.Border.Set(1);
-					// label.Background.Colour = Colour.FromHSV(hue, 0.5, 0.5);
-					// hue += colorStep;
 					yield return label;
 				}
 			}
@@ -206,18 +202,22 @@ namespace Portable
 			{
 				foreach(var actor in _engine.EntityManager.GetAllEntitiesWithComponent<LocationComponent>())
 				{
-					var location = _engine.EntityManager.GetComponent<LocationComponent>(actor);
+
+					var location = actor.GetComponent<LocationComponent>();
+					var glyph = actor.GetComponent<GlyphComponent>();
+
 					if(!_lastLocation.ContainsKey(actor))
 					{
 						_lastLocation.Add(actor, location.Clone());
-						_labels[location.X, location.Y].Background.Colour = Colour.Yellow;
+						_labels[location.X, location.Y].Text = glyph.glyph;
 					}
 					var last = _lastLocation[actor];
 					if(last != location)
 					{
-						_labels[last.X, last.Y].Background.Colour = Colour.Black;
-						_labels[location.X, location.Y].Background.Colour = Colour.Yellow;
+						_labels[last.X, last.Y].Text = "";
+						_labels[location.X, location.Y].Text = glyph.glyph;
 					}
+
 					last.X = location.X;
 					last.Y = location.Y;
 				}

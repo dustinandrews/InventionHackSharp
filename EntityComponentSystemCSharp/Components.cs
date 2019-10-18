@@ -29,6 +29,11 @@ namespace EntityComponentSystemCSharp.Components
 
 	}
 
+	public class GlyphComponent : IComponent
+	{
+		public string glyph = "";
+	}
+
 	public class LocationComponent : PointWrapper, IComponent
 	{
 		public LocationComponent Clone()

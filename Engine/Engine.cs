@@ -85,6 +85,7 @@ namespace MD
 			actor.AddComponent(new LocationComponent(){X = cell.X, Y = cell.Y});
 			var mapComponent = new MapComponent(){map = _map};
 			actor.AddComponent(mapComponent);
+			actor.AddComponent(new GlyphComponent{glyph = "@"});
 		}
 
 		public void DoTurn(PlayerInput playerInput)
