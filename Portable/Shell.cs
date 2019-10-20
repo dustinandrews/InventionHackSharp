@@ -16,7 +16,7 @@ namespace Portable
 			var h = application.Window.Height;
 			var w = application.Window.Width;
 			var start = DateTime.UtcNow;
-			var ui = new MegaDungeonUI(surface, 35, 40);
+			var ui = new MegaDungeonUI(surface, 80, 60);
 			//ui.InitializeSurface(surface);
 			ui.Graphics();
 			var end = DateTime.UtcNow;

@@ -14,6 +14,17 @@ namespace Portable
 		int _tileSize;
 		TileData _tileData;
 
+		Dictionary<int, Inv.Image> _tileCache = new Dictionary<int, Inv.Image>();
+
+		public Inv.Image GetInvImage(int index)
+		{
+			if(!_tileCache.ContainsKey(index))
+			{
+				var invImage = new Inv.Image(GetTileBmpBytes(index), "bmp");
+				_tileCache.Add(index, invImage);
+			}
+			return _tileCache[index];
+		}
 		public Tiles(string tileImageFile, string tileDataJson)
 		{
 			_tileset = Image.Load(tileImageFile);

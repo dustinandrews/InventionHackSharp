@@ -59,6 +59,7 @@ namespace Portable
 			_horizontalCellCount = horizontalCellCount;
 			_verticalCellCount = vericalCellCount;
 			_surface = surface;
+			_engine = new MD.Engine(_horizontalCellCount,_verticalCellCount);
 		}
 
 		/// <summary>
@@ -126,36 +127,27 @@ namespace Portable
 
 		public void Graphics()
 		{
-			int tileIndex = 40;
 			var tiles = new Tiles("absurd64.bmp", "tiledata.json");
-			var bytes = tiles.GetTileBmpBytes(tileIndex);
-			var image = new Image(bytes, "bmp");
-			var canvas = _surface.NewCanvas();
-			canvas.Size.Set(2560, 1920);
-			canvas.Background.Colour = Colour.BurlyWood;
+			var cloth = new Cloth();
+			cloth.Dimension = new Inv.Dimension(_horizontalCellCount, _verticalCellCount); // 35 x 40
+			cloth.CellSize = _surface.Window.Width / _horizontalCellCount;
 
-			var rect = new Rect(0,0, 64, 64);
-			_surface.Content = canvas;
+			cloth.DrawEvent += (DC, Patch) =>
+			{
+				var glyph = _engine.Floor[Patch.X, Patch.Y];
+				var bytes = tiles.GetTileBmpBytes(glyph);
+				var image = tiles.GetInvImage(glyph);
+				DC.DrawImage(image, Patch.Rect);
 
-			var name = tiles.GetTileName(tileIndex);
-			canvas.DrawEvent += (drawContract) =>
-			{
-				drawContract.DrawImage(image, rect);
-				drawContract.DrawText(
-					name,
-					"Courier",
-					10,
-					FontWeight.Regular,
-					Colour.Black,
-					new Inv.Point(0,64),
-					HorizontalPosition.Left,
-					VerticalPosition.Top);
+				// if (_engine.Floor[Patch.X, Patch.Y] == 0)
+				// 	DC.DrawRectangle(Inv.Colour.DarkSlateGray, null, 0, Patch.Rect);
+				// else
+				// 	DC.DrawRectangle(Inv.Colour.LightGray, null, 0, Patch.Rect);
 			};
-			_surface.ComposeEvent += () => 
-			{
-				canvas.Draw();
-			};
+			_surface.Content = cloth;
+			cloth.Draw();
 		}
+		
 		IEnumerable<Label> CreateCells()
 		{
 			var h = _root_stack.Window.Height / _verticalCellCount;
@@ -197,7 +189,7 @@ namespace Portable
 		public IEnumerable<Label> PaintMapLayer()
 		{
 			var clStart = DateTime.UtcNow;
-			_engine = new MD.Engine(_horizontalCellCount,_verticalCellCount);
+
 			var clsEnd = DateTime.UtcNow;
 			var ms = (clsEnd - clStart).TotalMilliseconds;
 			Console.WriteLine($"Engine init took {ms} milliseconds");
