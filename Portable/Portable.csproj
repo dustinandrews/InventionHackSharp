@@ -4,6 +4,7 @@
 		<OutputPath>$(SolutionDir)\bin\$(Configuration)\$(AssemblyName)\</OutputPath>
 	</PropertyGroup>
 	<ItemGroup>
+		<Reference Include="netstandard" />
 		<Reference Include="Inv.Library">
 			<HintPath>..\lib\Inv.Library.dll</HintPath>
 		</Reference>
@@ -16,5 +17,8 @@
 	</ItemGroup>
 	<ItemGroup>
 		<ProjectReference Include="..\Engine\Engine.csproj" />
+	</ItemGroup>
+	<ItemGroup>
+	  <PackageReference Include="SixLabors.ImageSharp" Version="1.0.0-beta0007" />
 	</ItemGroup>
 </Project>

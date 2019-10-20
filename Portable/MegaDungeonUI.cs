@@ -9,7 +9,7 @@ using MD;
 
 namespace Portable
 {
-		public class MegaDungeonUI
+	public class MegaDungeonUI
 	{
 		int _horizontalCellCount;
 		int _verticalCellCount;
@@ -124,6 +124,38 @@ namespace Portable
 			}
 		}
 
+		public void Graphics()
+		{
+			int tileIndex = 40;
+			var tiles = new Tiles("absurd64.bmp", "tiledata.json");
+			var bytes = tiles.GetTileBmpBytes(tileIndex);
+			var image = new Image(bytes, "bmp");
+			var canvas = _surface.NewCanvas();
+			canvas.Size.Set(2560, 1920);
+			canvas.Background.Colour = Colour.BurlyWood;
+
+			var rect = new Rect(0,0, 64, 64);
+			_surface.Content = canvas;
+
+			var name = tiles.GetTileName(tileIndex);
+			canvas.DrawEvent += (drawContract) =>
+			{
+				drawContract.DrawImage(image, rect);
+				drawContract.DrawText(
+					name,
+					"Courier",
+					10,
+					FontWeight.Regular,
+					Colour.Black,
+					new Inv.Point(0,64),
+					HorizontalPosition.Left,
+					VerticalPosition.Top);
+			};
+			_surface.ComposeEvent += () => 
+			{
+				canvas.Draw();
+			};
+		}
 		IEnumerable<Label> CreateCells()
 		{
 			var h = _root_stack.Window.Height / _verticalCellCount;
@@ -143,6 +175,7 @@ namespace Portable
 					label.Size.Set(w, h);
 					label.Background.Colour = Colour.Black;
 					label.Font.Colour = Colour.White;
+					label.Justify.Center();
 					_labels[j, i] = label;
 					hstack.AddPanel(label);
 					yield return label;

@@ -17,7 +17,8 @@ namespace Portable
 			var w = application.Window.Width;
 			var start = DateTime.UtcNow;
 			var ui = new MegaDungeonUI(surface, 35, 40);
-			ui.InitializeSurface(surface);
+			//ui.InitializeSurface(surface);
+			ui.Graphics();
 			var end = DateTime.UtcNow;
 			var ms = (end - start).TotalMilliseconds;
 			Console.WriteLine($"Initialized in {ms} milliseconds");
@@ -52,20 +53,16 @@ namespace Portable
 		}
 
 		// Fires up to 60 times a second.
-		static bool toggle = true;
+
 		static void Surface_ComposeEvent(MegaDungeonUI ui)
 		{
-			if(toggle)
-			{
-				var start = DateTime.UtcNow;
-				var end = start + frameTime;
-				var now = DateTime.UtcNow;
-				do{
-					ui.Update();
-					now = DateTime.UtcNow;
-				}while(now < end);
-			}
-			// toggle = !toggle;
+			// var start = DateTime.UtcNow;
+			// var end = start + frameTime;
+			// var now = DateTime.UtcNow;
+			// do{
+			// 	ui.Update();
+			// 	now = DateTime.UtcNow;
+			// }while(now < end);
 		}
 	}
 }

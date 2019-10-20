@@ -1,0 +1,4226 @@
+{
+    "tile_size": 64,
+    "data":
+    {
+        "0": {
+            "name": "giant ant",
+            "type": "monster"
+        },
+        "1": {
+            "name": "killer bee",
+            "type": "monster"
+        },
+        "2": {
+            "name": "soldier ant",
+            "type": "monster"
+        },
+        "3": {
+            "name": "fire ant",
+            "type": "monster"
+        },
+        "4": {
+            "name": "giant beetle",
+            "type": "monster"
+        },
+        "5": {
+            "name": "queen bee",
+            "type": "monster"
+        },
+        "6": {
+            "name": "acid blob",
+            "type": "monster"
+        },
+        "7": {
+            "name": "quivering blob",
+            "type": "monster"
+        },
+        "8": {
+            "name": "gelatinous cube",
+            "type": "monster"
+        },
+        "9": {
+            "name": "chickatrice",
+            "type": "monster"
+        },
+        "10": {
+            "name": "cockatrice",
+            "type": "monster"
+        },
+        "11": {
+            "name": "pyrolisk",
+            "type": "monster"
+        },
+        "12": {
+            "name": "jackal",
+            "type": "monster"
+        },
+        "13": {
+            "name": "fox",
+            "type": "monster"
+        },
+        "14": {
+            "name": "coyote",
+            "type": "monster"
+        },
+        "15": {
+            "name": "werejackal",
+            "type": "monster"
+        },
+        "16": {
+            "name": "little dog",
+            "type": "monster"
+        },
+        "17": {
+            "name": "dog",
+            "type": "monster"
+        },
+        "18": {
+            "name": "large dog",
+            "type": "monster"
+        },
+        "19": {
+            "name": "dingo",
+            "type": "monster"
+        },
+        "20": {
+            "name": "wolf",
+            "type": "monster"
+        },
+        "21": {
+            "name": "werewolf",
+            "type": "monster"
+        },
+        "22": {
+            "name": "warg",
+            "type": "monster"
+        },
+        "23": {
+            "name": "winter wolf cub",
+            "type": "monster"
+        },
+        "24": {
+            "name": "winter wolf",
+            "type": "monster"
+        },
+        "25": {
+            "name": "hell hound pup",
+            "type": "monster"
+        },
+        "26": {
+            "name": "hell hound",
+            "type": "monster"
+        },
+        "27": {
+            "name": "unused",
+            "type": "monster"
+        },
+        "28": {
+            "name": "gas spore",
+            "type": "monster"
+        },
+        "29": {
+            "name": "floating eye",
+            "type": "monster"
+        },
+        "30": {
+            "name": "freezing sphere",
+            "type": "monster"
+        },
+        "31": {
+            "name": "flaming sphere",
+            "type": "monster"
+        },
+        "32": {
+            "name": "shocking sphere",
+            "type": "monster"
+        },
+        "33": {
+            "name": "unused",
+            "type": "monster"
+        },
+        "34": {
+            "name": "kitten",
+            "type": "monster"
+        },
+        "35": {
+            "name": "housecat",
+            "type": "monster"
+        },
+        "36": {
+            "name": "jaguar",
+            "type": "monster"
+        },
+        "37": {
+            "name": "lynx",
+            "type": "monster"
+        },
+        "38": {
+            "name": "panther",
+            "type": "monster"
+        },
+        "39": {
+            "name": "large cat",
+            "type": "monster"
+        },
+        "40": {
+            "name": "tiger",
+            "type": "monster"
+        },
+        "41": {
+            "name": "gremlin",
+            "type": "monster"
+        },
+        "42": {
+            "name": "gargoyle",
+            "type": "monster"
+        },
+        "43": {
+            "name": "winged gargoyle",
+            "type": "monster"
+        },
+        "44": {
+            "name": "hobbit",
+            "type": "monster"
+        },
+        "45": {
+            "name": "dwarf",
+            "type": "monster"
+        },
+        "46": {
+            "name": "bugbear",
+            "type": "monster"
+        },
+        "47": {
+            "name": "dwarf lord",
+            "type": "monster"
+        },
+        "48": {
+            "name": "dwarf king",
+            "type": "monster"
+        },
+        "49": {
+            "name": "mind flayer",
+            "type": "monster"
+        },
+        "50": {
+            "name": "master mind flayer",
+            "type": "monster"
+        },
+        "51": {
+            "name": "manes",
+            "type": "monster"
+        },
+        "52": {
+            "name": "homunculus",
+            "type": "monster"
+        },
+        "53": {
+            "name": "imp",
+            "type": "monster"
+        },
+        "54": {
+            "name": "lemure",
+            "type": "monster"
+        },
+        "55": {
+            "name": "quasit",
+            "type": "monster"
+        },
+        "56": {
+            "name": "tengu",
+            "type": "monster"
+        },
+        "57": {
+            "name": "blue jelly",
+            "type": "monster"
+        },
+        "58": {
+            "name": "spotted jelly",
+            "type": "monster"
+        },
+        "59": {
+            "name": "ochre jelly",
+            "type": "monster"
+        },
+        "60": {
+            "name": "kobold",
+            "type": "monster"
+        },
+        "61": {
+            "name": "large kobold",
+            "type": "monster"
+        },
+        "62": {
+            "name": "kobold lord",
+            "type": "monster"
+        },
+        "63": {
+            "name": "kobold shaman",
+            "type": "monster"
+        },
+        "64": {
+            "name": "leprechaun",
+            "type": "monster"
+        },
+        "65": {
+            "name": "small mimic",
+            "type": "monster"
+        },
+        "66": {
+            "name": "large mimic",
+            "type": "monster"
+        },
+        "67": {
+            "name": "giant mimic",
+            "type": "monster"
+        },
+        "68": {
+            "name": "wood nymph",
+            "type": "monster"
+        },
+        "69": {
+            "name": "water nymph",
+            "type": "monster"
+        },
+        "70": {
+            "name": "mountain nymph",
+            "type": "monster"
+        },
+        "71": {
+            "name": "goblin",
+            "type": "monster"
+        },
+        "72": {
+            "name": "hobgoblin",
+            "type": "monster"
+        },
+        "73": {
+            "name": "orc",
+            "type": "monster"
+        },
+        "74": {
+            "name": "hill orc",
+            "type": "monster"
+        },
+        "75": {
+            "name": "Mordor orc",
+            "type": "monster"
+        },
+        "76": {
+            "name": "Uruk-hai",
+            "type": "monster"
+        },
+        "77": {
+            "name": "orc shaman",
+            "type": "monster"
+        },
+        "78": {
+            "name": "orc-captain",
+            "type": "monster"
+        },
+        "79": {
+            "name": "rock piercer",
+            "type": "monster"
+        },
+        "80": {
+            "name": "iron piercer",
+            "type": "monster"
+        },
+        "81": {
+            "name": "glass piercer",
+            "type": "monster"
+        },
+        "82": {
+            "name": "rothe",
+            "type": "monster"
+        },
+        "83": {
+            "name": "mumak",
+            "type": "monster"
+        },
+        "84": {
+            "name": "leocrotta",
+            "type": "monster"
+        },
+        "85": {
+            "name": "wumpus",
+            "type": "monster"
+        },
+        "86": {
+            "name": "titanothere",
+            "type": "monster"
+        },
+        "87": {
+            "name": "baluchitherium",
+            "type": "monster"
+        },
+        "88": {
+            "name": "mastodon",
+            "type": "monster"
+        },
+        "89": {
+            "name": "sewer rat",
+            "type": "monster"
+        },
+        "90": {
+            "name": "giant rat",
+            "type": "monster"
+        },
+        "91": {
+            "name": "rabid rat",
+            "type": "monster"
+        },
+        "92": {
+            "name": "wererat",
+            "type": "monster"
+        },
+        "93": {
+            "name": "rock mole",
+            "type": "monster"
+        },
+        "94": {
+            "name": "woodchuck",
+            "type": "monster"
+        },
+        "95": {
+            "name": "cave spider",
+            "type": "monster"
+        },
+        "96": {
+            "name": "centipede",
+            "type": "monster"
+        },
+        "97": {
+            "name": "giant spider",
+            "type": "monster"
+        },
+        "98": {
+            "name": "scorpion",
+            "type": "monster"
+        },
+        "99": {
+            "name": "lurker above",
+            "type": "monster"
+        },
+        "100": {
+            "name": "trapper",
+            "type": "monster"
+        },
+        "101": {
+            "name": "white unicorn",
+            "type": "monster"
+        },
+        "102": {
+            "name": "gray unicorn",
+            "type": "monster"
+        },
+        "103": {
+            "name": "black unicorn",
+            "type": "monster"
+        },
+        "104": {
+            "name": "pony",
+            "type": "monster"
+        },
+        "105": {
+            "name": "horse",
+            "type": "monster"
+        },
+        "106": {
+            "name": "warhorse",
+            "type": "monster"
+        },
+        "107": {
+            "name": "fog cloud",
+            "type": "monster"
+        },
+        "108": {
+            "name": "dust vortex",
+            "type": "monster"
+        },
+        "109": {
+            "name": "ice vortex",
+            "type": "monster"
+        },
+        "110": {
+            "name": "energy vortex",
+            "type": "monster"
+        },
+        "111": {
+            "name": "steam vortex",
+            "type": "monster"
+        },
+        "112": {
+            "name": "fire vortex",
+            "type": "monster"
+        },
+        "113": {
+            "name": "baby long worm",
+            "type": "monster"
+        },
+        "114": {
+            "name": "baby purple worm",
+            "type": "monster"
+        },
+        "115": {
+            "name": "long worm",
+            "type": "monster"
+        },
+        "116": {
+            "name": "purple worm",
+            "type": "monster"
+        },
+        "117": {
+            "name": "grid bug",
+            "type": "monster"
+        },
+        "118": {
+            "name": "xan",
+            "type": "monster"
+        },
+        "119": {
+            "name": "yellow light",
+            "type": "monster"
+        },
+        "120": {
+            "name": "black light",
+            "type": "monster"
+        },
+        "121": {
+            "name": "zruty",
+            "type": "monster"
+        },
+        "122": {
+            "name": "couatl",
+            "type": "monster"
+        },
+        "123": {
+            "name": "Aleax",
+            "type": "monster"
+        },
+        "124": {
+            "name": "Angel",
+            "type": "monster"
+        },
+        "125": {
+            "name": "ki-rin",
+            "type": "monster"
+        },
+        "126": {
+            "name": "Archon",
+            "type": "monster"
+        },
+        "127": {
+            "name": "bat",
+            "type": "monster"
+        },
+        "128": {
+            "name": "giant bat",
+            "type": "monster"
+        },
+        "129": {
+            "name": "raven",
+            "type": "monster"
+        },
+        "130": {
+            "name": "vampire bat",
+            "type": "monster"
+        },
+        "131": {
+            "name": "plains centaur",
+            "type": "monster"
+        },
+        "132": {
+            "name": "forest centaur",
+            "type": "monster"
+        },
+        "133": {
+            "name": "mountain centaur",
+            "type": "monster"
+        },
+        "134": {
+            "name": "baby gray dragon",
+            "type": "monster"
+        },
+        "135": {
+            "name": "baby silver dragon",
+            "type": "monster"
+        },
+        "136": {
+            "name": "unused",
+            "type": "monster"
+        },
+        "137": {
+            "name": "baby red dragon",
+            "type": "monster"
+        },
+        "138": {
+            "name": "baby white dragon",
+            "type": "monster"
+        },
+        "139": {
+            "name": "baby orange dragon",
+            "type": "monster"
+        },
+        "140": {
+            "name": "baby black dragon",
+            "type": "monster"
+        },
+        "141": {
+            "name": "baby blue dragon",
+            "type": "monster"
+        },
+        "142": {
+            "name": "baby green dragon",
+            "type": "monster"
+        },
+        "143": {
+            "name": "baby yellow dragon",
+            "type": "monster"
+        },
+        "144": {
+            "name": "gray dragon",
+            "type": "monster"
+        },
+        "145": {
+            "name": "silver dragon",
+            "type": "monster"
+        },
+        "146": {
+            "name": "unused",
+            "type": "monster"
+        },
+        "147": {
+            "name": "red dragon",
+            "type": "monster"
+        },
+        "148": {
+            "name": "white dragon",
+            "type": "monster"
+        },
+        "149": {
+            "name": "orange dragon",
+            "type": "monster"
+        },
+        "150": {
+            "name": "black dragon",
+            "type": "monster"
+        },
+        "151": {
+            "name": "blue dragon",
+            "type": "monster"
+        },
+        "152": {
+            "name": "green dragon",
+            "type": "monster"
+        },
+        "153": {
+            "name": "yellow dragon",
+            "type": "monster"
+        },
+        "154": {
+            "name": "stalker",
+            "type": "monster"
+        },
+        "155": {
+            "name": "air elemental",
+            "type": "monster"
+        },
+        "156": {
+            "name": "fire elemental",
+            "type": "monster"
+        },
+        "157": {
+            "name": "earth elemental",
+            "type": "monster"
+        },
+        "158": {
+            "name": "water elemental",
+            "type": "monster"
+        },
+        "159": {
+            "name": "lichen",
+            "type": "monster"
+        },
+        "160": {
+            "name": "brown mold",
+            "type": "monster"
+        },
+        "161": {
+            "name": "yellow mold",
+            "type": "monster"
+        },
+        "162": {
+            "name": "green mold",
+            "type": "monster"
+        },
+        "163": {
+            "name": "red mold",
+            "type": "monster"
+        },
+        "164": {
+            "name": "shrieker",
+            "type": "monster"
+        },
+        "165": {
+            "name": "violet fungus",
+            "type": "monster"
+        },
+        "166": {
+            "name": "gnome",
+            "type": "monster"
+        },
+        "167": {
+            "name": "gnome lord",
+            "type": "monster"
+        },
+        "168": {
+            "name": "gnomish wizard",
+            "type": "monster"
+        },
+        "169": {
+            "name": "gnome king",
+            "type": "monster"
+        },
+        "170": {
+            "name": "giant",
+            "type": "monster"
+        },
+        "171": {
+            "name": "stone giant",
+            "type": "monster"
+        },
+        "172": {
+            "name": "hill giant",
+            "type": "monster"
+        },
+        "173": {
+            "name": "fire giant",
+            "type": "monster"
+        },
+        "174": {
+            "name": "frost giant",
+            "type": "monster"
+        },
+        "175": {
+            "name": "storm giant",
+            "type": "monster"
+        },
+        "176": {
+            "name": "ettin",
+            "type": "monster"
+        },
+        "177": {
+            "name": "titan",
+            "type": "monster"
+        },
+        "178": {
+            "name": "minotaur",
+            "type": "monster"
+        },
+        "179": {
+            "name": "jabberwock",
+            "type": "monster"
+        },
+        "180": {
+            "name": "unused",
+            "type": "monster"
+        },
+        "181": {
+            "name": "Keystone Kop",
+            "type": "monster"
+        },
+        "182": {
+            "name": "Kop Sergeant",
+            "type": "monster"
+        },
+        "183": {
+            "name": "Kop Lieutenant",
+            "type": "monster"
+        },
+        "184": {
+            "name": "Kop Kaptain",
+            "type": "monster"
+        },
+        "185": {
+            "name": "lich",
+            "type": "monster"
+        },
+        "186": {
+            "name": "demilich",
+            "type": "monster"
+        },
+        "187": {
+            "name": "master lich",
+            "type": "monster"
+        },
+        "188": {
+            "name": "arch-lich",
+            "type": "monster"
+        },
+        "189": {
+            "name": "kobold mummy",
+            "type": "monster"
+        },
+        "190": {
+            "name": "gnome mummy",
+            "type": "monster"
+        },
+        "191": {
+            "name": "orc mummy",
+            "type": "monster"
+        },
+        "192": {
+            "name": "dwarf mummy",
+            "type": "monster"
+        },
+        "193": {
+            "name": "elf mummy",
+            "type": "monster"
+        },
+        "194": {
+            "name": "human mummy",
+            "type": "monster"
+        },
+        "195": {
+            "name": "ettin mummy",
+            "type": "monster"
+        },
+        "196": {
+            "name": "giant mummy",
+            "type": "monster"
+        },
+        "197": {
+            "name": "red naga hatchling",
+            "type": "monster"
+        },
+        "198": {
+            "name": "black naga hatchling",
+            "type": "monster"
+        },
+        "199": {
+            "name": "golden naga hatchling",
+            "type": "monster"
+        },
+        "200": {
+            "name": "guardian naga hatchling",
+            "type": "monster"
+        },
+        "201": {
+            "name": "red naga",
+            "type": "monster"
+        },
+        "202": {
+            "name": "black naga",
+            "type": "monster"
+        },
+        "203": {
+            "name": "golden naga",
+            "type": "monster"
+        },
+        "204": {
+            "name": "guardian naga",
+            "type": "monster"
+        },
+        "205": {
+            "name": "ogre",
+            "type": "monster"
+        },
+        "206": {
+            "name": "ogre lord",
+            "type": "monster"
+        },
+        "207": {
+            "name": "ogre king",
+            "type": "monster"
+        },
+        "208": {
+            "name": "gray ooze",
+            "type": "monster"
+        },
+        "209": {
+            "name": "brown pudding",
+            "type": "monster"
+        },
+        "210": {
+            "name": "black pudding",
+            "type": "monster"
+        },
+        "211": {
+            "name": "green slime",
+            "type": "monster"
+        },
+        "212": {
+            "name": "quantum mechanic",
+            "type": "monster"
+        },
+        "213": {
+            "name": "rust monster",
+            "type": "monster"
+        },
+        "214": {
+            "name": "disenchanter",
+            "type": "monster"
+        },
+        "215": {
+            "name": "garter snake",
+            "type": "monster"
+        },
+        "216": {
+            "name": "snake",
+            "type": "monster"
+        },
+        "217": {
+            "name": "water moccasin",
+            "type": "monster"
+        },
+        "218": {
+            "name": "pit viper",
+            "type": "monster"
+        },
+        "219": {
+            "name": "python",
+            "type": "monster"
+        },
+        "220": {
+            "name": "cobra",
+            "type": "monster"
+        },
+        "221": {
+            "name": "troll",
+            "type": "monster"
+        },
+        "222": {
+            "name": "ice troll",
+            "type": "monster"
+        },
+        "223": {
+            "name": "rock troll",
+            "type": "monster"
+        },
+        "224": {
+            "name": "water troll",
+            "type": "monster"
+        },
+        "225": {
+            "name": "Olog-hai",
+            "type": "monster"
+        },
+        "226": {
+            "name": "umber hulk",
+            "type": "monster"
+        },
+        "227": {
+            "name": "vampire",
+            "type": "monster"
+        },
+        "228": {
+            "name": "vampire lord",
+            "type": "monster"
+        },
+        "229": {
+            "name": "unused",
+            "type": "monster"
+        },
+        "230": {
+            "name": "Vlad the Impaler",
+            "type": "monster"
+        },
+        "231": {
+            "name": "barrow wight",
+            "type": "monster"
+        },
+        "232": {
+            "name": "wraith",
+            "type": "monster"
+        },
+        "233": {
+            "name": "Nazgul",
+            "type": "monster"
+        },
+        "234": {
+            "name": "xorn",
+            "type": "monster"
+        },
+        "235": {
+            "name": "monkey",
+            "type": "monster"
+        },
+        "236": {
+            "name": "ape",
+            "type": "monster"
+        },
+        "237": {
+            "name": "owlbear",
+            "type": "monster"
+        },
+        "238": {
+            "name": "yeti",
+            "type": "monster"
+        },
+        "239": {
+            "name": "carnivorous ape",
+            "type": "monster"
+        },
+        "240": {
+            "name": "sasquatch",
+            "type": "monster"
+        },
+        "241": {
+            "name": "kobold zombie",
+            "type": "monster"
+        },
+        "242": {
+            "name": "gnome zombie",
+            "type": "monster"
+        },
+        "243": {
+            "name": "orc zombie",
+            "type": "monster"
+        },
+        "244": {
+            "name": "dwarf zombie",
+            "type": "monster"
+        },
+        "245": {
+            "name": "elf zombie",
+            "type": "monster"
+        },
+        "246": {
+            "name": "human zombie",
+            "type": "monster"
+        },
+        "247": {
+            "name": "ettin zombie",
+            "type": "monster"
+        },
+        "248": {
+            "name": "giant zombie",
+            "type": "monster"
+        },
+        "249": {
+            "name": "ghoul",
+            "type": "monster"
+        },
+        "250": {
+            "name": "skeleton",
+            "type": "monster"
+        },
+        "251": {
+            "name": "straw golem",
+            "type": "monster"
+        },
+        "252": {
+            "name": "paper golem",
+            "type": "monster"
+        },
+        "253": {
+            "name": "rope golem",
+            "type": "monster"
+        },
+        "254": {
+            "name": "gold golem",
+            "type": "monster"
+        },
+        "255": {
+            "name": "leather golem",
+            "type": "monster"
+        },
+        "256": {
+            "name": "wood golem",
+            "type": "monster"
+        },
+        "257": {
+            "name": "flesh golem",
+            "type": "monster"
+        },
+        "258": {
+            "name": "clay golem",
+            "type": "monster"
+        },
+        "259": {
+            "name": "stone golem",
+            "type": "monster"
+        },
+        "260": {
+            "name": "glass golem",
+            "type": "monster"
+        },
+        "261": {
+            "name": "iron golem",
+            "type": "monster"
+        },
+        "262": {
+            "name": "human",
+            "type": "monster"
+        },
+        "263": {
+            "name": "wererat",
+            "type": "monster"
+        },
+        "264": {
+            "name": "werejackal",
+            "type": "monster"
+        },
+        "265": {
+            "name": "werewolf",
+            "type": "monster"
+        },
+        "266": {
+            "name": "elf",
+            "type": "monster"
+        },
+        "267": {
+            "name": "Woodland-elf",
+            "type": "monster"
+        },
+        "268": {
+            "name": "Green-elf",
+            "type": "monster"
+        },
+        "269": {
+            "name": "Grey-elf",
+            "type": "monster"
+        },
+        "270": {
+            "name": "elf-lord",
+            "type": "monster"
+        },
+        "271": {
+            "name": "Elvenking",
+            "type": "monster"
+        },
+        "272": {
+            "name": "doppelganger",
+            "type": "monster"
+        },
+        "273": {
+            "name": "nurse",
+            "type": "monster"
+        },
+        "274": {
+            "name": "shopkeeper",
+            "type": "monster"
+        },
+        "275": {
+            "name": "guard",
+            "type": "monster"
+        },
+        "276": {
+            "name": "prisoner",
+            "type": "monster"
+        },
+        "277": {
+            "name": "Oracle",
+            "type": "monster"
+        },
+        "278": {
+            "name": "aligned priest",
+            "type": "monster"
+        },
+        "279": {
+            "name": "high priest",
+            "type": "monster"
+        },
+        "280": {
+            "name": "soldier",
+            "type": "monster"
+        },
+        "281": {
+            "name": "sergeant",
+            "type": "monster"
+        },
+        "282": {
+            "name": "lieutenant",
+            "type": "monster"
+        },
+        "283": {
+            "name": "captain",
+            "type": "monster"
+        },
+        "284": {
+            "name": "watchman",
+            "type": "monster"
+        },
+        "285": {
+            "name": "watch captain",
+            "type": "monster"
+        },
+        "286": {
+            "name": "Medusa",
+            "type": "monster"
+        },
+        "287": {
+            "name": "Wizard of Yendor",
+            "type": "monster"
+        },
+        "288": {
+            "name": "Croesus",
+            "type": "monster"
+        },
+        "289": {
+            "name": "unused",
+            "type": "monster"
+        },
+        "290": {
+            "name": "ghost",
+            "type": "monster"
+        },
+        "291": {
+            "name": "shade",
+            "type": "monster"
+        },
+        "292": {
+            "name": "water demon",
+            "type": "monster"
+        },
+        "293": {
+            "name": "horned devil",
+            "type": "monster"
+        },
+        "294": {
+            "name": "succubus",
+            "type": "monster"
+        },
+        "295": {
+            "name": "incubus",
+            "type": "monster"
+        },
+        "296": {
+            "name": "erinys",
+            "type": "monster"
+        },
+        "297": {
+            "name": "barbed devil",
+            "type": "monster"
+        },
+        "298": {
+            "name": "marilith",
+            "type": "monster"
+        },
+        "299": {
+            "name": "vrock",
+            "type": "monster"
+        },
+        "300": {
+            "name": "hezrou",
+            "type": "monster"
+        },
+        "301": {
+            "name": "bone devil",
+            "type": "monster"
+        },
+        "302": {
+            "name": "ice devil",
+            "type": "monster"
+        },
+        "303": {
+            "name": "nalfeshnee",
+            "type": "monster"
+        },
+        "304": {
+            "name": "pit fiend",
+            "type": "monster"
+        },
+        "305": {
+            "name": "balrog",
+            "type": "monster"
+        },
+        "306": {
+            "name": "Juiblex",
+            "type": "monster"
+        },
+        "307": {
+            "name": "Yeenoghu",
+            "type": "monster"
+        },
+        "308": {
+            "name": "Orcus",
+            "type": "monster"
+        },
+        "309": {
+            "name": "Geryon",
+            "type": "monster"
+        },
+        "310": {
+            "name": "Dispater",
+            "type": "monster"
+        },
+        "311": {
+            "name": "Baalzebub",
+            "type": "monster"
+        },
+        "312": {
+            "name": "Asmodeus",
+            "type": "monster"
+        },
+        "313": {
+            "name": "Demogorgon",
+            "type": "monster"
+        },
+        "314": {
+            "name": "Death",
+            "type": "monster"
+        },
+        "315": {
+            "name": "Pestilence",
+            "type": "monster"
+        },
+        "316": {
+            "name": "Famine",
+            "type": "monster"
+        },
+        "317": {
+            "name": "mail daemon",
+            "type": "monster"
+        },
+        "318": {
+            "name": "djinni",
+            "type": "monster"
+        },
+        "319": {
+            "name": "sandestin",
+            "type": "monster"
+        },
+        "320": {
+            "name": "jellyfish",
+            "type": "monster"
+        },
+        "321": {
+            "name": "piranha",
+            "type": "monster"
+        },
+        "322": {
+            "name": "shark",
+            "type": "monster"
+        },
+        "323": {
+            "name": "giant eel",
+            "type": "monster"
+        },
+        "324": {
+            "name": "electric eel",
+            "type": "monster"
+        },
+        "325": {
+            "name": "kraken",
+            "type": "monster"
+        },
+        "326": {
+            "name": "newt",
+            "type": "monster"
+        },
+        "327": {
+            "name": "gecko",
+            "type": "monster"
+        },
+        "328": {
+            "name": "iguana",
+            "type": "monster"
+        },
+        "329": {
+            "name": "baby crocodile",
+            "type": "monster"
+        },
+        "330": {
+            "name": "lizard",
+            "type": "monster"
+        },
+        "331": {
+            "name": "chameleon",
+            "type": "monster"
+        },
+        "332": {
+            "name": "crocodile",
+            "type": "monster"
+        },
+        "333": {
+            "name": "salamander",
+            "type": "monster"
+        },
+        "334": {
+            "name": "long worm tail",
+            "type": "monster"
+        },
+        "335": {
+            "name": "archeologist",
+            "type": "monster"
+        },
+        "336": {
+            "name": "barbarian",
+            "type": "monster"
+        },
+        "337": {
+            "name": "caveman",
+            "type": "monster"
+        },
+        "338": {
+            "name": "cavewoman",
+            "type": "monster"
+        },
+        "339": {
+            "name": "healer",
+            "type": "monster"
+        },
+        "340": {
+            "name": "knight",
+            "type": "monster"
+        },
+        "341": {
+            "name": "monk",
+            "type": "monster"
+        },
+        "342": {
+            "name": "priest",
+            "type": "monster"
+        },
+        "343": {
+            "name": "priestess",
+            "type": "monster"
+        },
+        "344": {
+            "name": "ranger",
+            "type": "monster"
+        },
+        "345": {
+            "name": "rogue",
+            "type": "monster"
+        },
+        "346": {
+            "name": "samurai",
+            "type": "monster"
+        },
+        "347": {
+            "name": "tourist",
+            "type": "monster"
+        },
+        "348": {
+            "name": "valkyrie",
+            "type": "monster"
+        },
+        "349": {
+            "name": "wizard",
+            "type": "monster"
+        },
+        "350": {
+            "name": "Lord Carnarvon",
+            "type": "monster"
+        },
+        "351": {
+            "name": "Pelias",
+            "type": "monster"
+        },
+        "352": {
+            "name": "Shaman Karnov",
+            "type": "monster"
+        },
+        "353": {
+            "name": "unused",
+            "type": "monster"
+        },
+        "354": {
+            "name": "unused",
+            "type": "monster"
+        },
+        "355": {
+            "name": "Hippocrates",
+            "type": "monster"
+        },
+        "356": {
+            "name": "King Arthur",
+            "type": "monster"
+        },
+        "357": {
+            "name": "Grand Master",
+            "type": "monster"
+        },
+        "358": {
+            "name": "Arch Priest",
+            "type": "monster"
+        },
+        "359": {
+            "name": "Orion",
+            "type": "monster"
+        },
+        "360": {
+            "name": "Master of Thieves",
+            "type": "monster"
+        },
+        "361": {
+            "name": "Lord Sato",
+            "type": "monster"
+        },
+        "362": {
+            "name": "Twoflower",
+            "type": "monster"
+        },
+        "363": {
+            "name": "Norn",
+            "type": "monster"
+        },
+        "364": {
+            "name": "Neferet the Green",
+            "type": "monster"
+        },
+        "365": {
+            "name": "Minion of Huhetotl",
+            "type": "monster"
+        },
+        "366": {
+            "name": "Thoth Amon",
+            "type": "monster"
+        },
+        "367": {
+            "name": "Chromatic Dragon",
+            "type": "monster"
+        },
+        "368": {
+            "name": "unused",
+            "type": "monster"
+        },
+        "369": {
+            "name": "Cyclops",
+            "type": "monster"
+        },
+        "370": {
+            "name": "Ixoth",
+            "type": "monster"
+        },
+        "371": {
+            "name": "Master Kaen",
+            "type": "monster"
+        },
+        "372": {
+            "name": "Nalzok",
+            "type": "monster"
+        },
+        "373": {
+            "name": "Scorpius",
+            "type": "monster"
+        },
+        "374": {
+            "name": "Master Assassin",
+            "type": "monster"
+        },
+        "375": {
+            "name": "Ashikaga Takauji",
+            "type": "monster"
+        },
+        "376": {
+            "name": "Lord Surtur",
+            "type": "monster"
+        },
+        "377": {
+            "name": "Dark One",
+            "type": "monster"
+        },
+        "378": {
+            "name": "student",
+            "type": "monster"
+        },
+        "379": {
+            "name": "chieftain",
+            "type": "monster"
+        },
+        "380": {
+            "name": "neanderthal",
+            "type": "monster"
+        },
+        "381": {
+            "name": "unused",
+            "type": "monster"
+        },
+        "382": {
+            "name": "attendant",
+            "type": "monster"
+        },
+        "383": {
+            "name": "page",
+            "type": "monster"
+        },
+        "384": {
+            "name": "abbot",
+            "type": "monster"
+        },
+        "385": {
+            "name": "acolyte",
+            "type": "monster"
+        },
+        "386": {
+            "name": "hunter",
+            "type": "monster"
+        },
+        "387": {
+            "name": "thug",
+            "type": "monster"
+        },
+        "388": {
+            "name": "ninja",
+            "type": "monster"
+        },
+        "389": {
+            "name": "roshi",
+            "type": "monster"
+        },
+        "390": {
+            "name": "guide",
+            "type": "monster"
+        },
+        "391": {
+            "name": "warrior",
+            "type": "monster"
+        },
+        "392": {
+            "name": "apprentice",
+            "type": "monster"
+        },
+        "393": {
+            "name": "invisible monster",
+            "type": "invisible monster"
+        },
+        "394": {
+            "name": "strange object",
+            "type": "object"
+        },
+        "395": {
+            "name": "arrow",
+            "type": "object"
+        },
+        "396": {
+            "name": "elven arrow",
+            "type": "object"
+        },
+        "397": {
+            "name": "orcish arrow",
+            "type": "object"
+        },
+        "398": {
+            "name": "silver arrow",
+            "type": "object"
+        },
+        "399": {
+            "name": "ya",
+            "type": "object"
+        },
+        "400": {
+            "name": "crossbow bolt",
+            "type": "object"
+        },
+        "401": {
+            "name": "dart",
+            "type": "object"
+        },
+        "402": {
+            "name": "shuriken",
+            "type": "object"
+        },
+        "403": {
+            "name": "boomerang",
+            "type": "object"
+        },
+        "404": {
+            "name": "spear",
+            "type": "object"
+        },
+        "405": {
+            "name": "elven spear",
+            "type": "object"
+        },
+        "406": {
+            "name": "orcish spear",
+            "type": "object"
+        },
+        "407": {
+            "name": "dwarvish spear",
+            "type": "object"
+        },
+        "408": {
+            "name": "silver spear",
+            "type": "object"
+        },
+        "409": {
+            "name": "javelin",
+            "type": "object"
+        },
+        "410": {
+            "name": "trident",
+            "type": "object"
+        },
+        "411": {
+            "name": "dagger",
+            "type": "object"
+        },
+        "412": {
+            "name": "elven dagger",
+            "type": "object"
+        },
+        "413": {
+            "name": "orcish dagger",
+            "type": "object"
+        },
+        "414": {
+            "name": "silver dagger",
+            "type": "object"
+        },
+        "415": {
+            "name": "athame",
+            "type": "object"
+        },
+        "416": {
+            "name": "scalpel",
+            "type": "object"
+        },
+        "417": {
+            "name": "knife",
+            "type": "object"
+        },
+        "418": {
+            "name": "stiletto",
+            "type": "object"
+        },
+        "419": {
+            "name": "worm tooth",
+            "type": "object"
+        },
+        "420": {
+            "name": "crysknife",
+            "type": "object"
+        },
+        "421": {
+            "name": "axe",
+            "type": "object"
+        },
+        "422": {
+            "name": "battle-axe",
+            "type": "object"
+        },
+        "423": {
+            "name": "short sword",
+            "type": "object"
+        },
+        "424": {
+            "name": "elven short sword",
+            "type": "object"
+        },
+        "425": {
+            "name": "orcish short sword",
+            "type": "object"
+        },
+        "426": {
+            "name": "dwarvish short sword",
+            "type": "object"
+        },
+        "427": {
+            "name": "scimitar",
+            "type": "object"
+        },
+        "428": {
+            "name": "silver saber",
+            "type": "object"
+        },
+        "429": {
+            "name": "broadsword",
+            "type": "object"
+        },
+        "430": {
+            "name": "elven broadsword",
+            "type": "object"
+        },
+        "431": {
+            "name": "long sword",
+            "type": "object"
+        },
+        "432": {
+            "name": "two-handed sword",
+            "type": "object"
+        },
+        "433": {
+            "name": "katana",
+            "type": "object"
+        },
+        "434": {
+            "name": "tsurugi",
+            "type": "object"
+        },
+        "435": {
+            "name": "runesword",
+            "type": "object"
+        },
+        "436": {
+            "name": "partisan",
+            "type": "object"
+        },
+        "437": {
+            "name": "ranseur",
+            "type": "object"
+        },
+        "438": {
+            "name": "spetum",
+            "type": "object"
+        },
+        "439": {
+            "name": "glaive",
+            "type": "object"
+        },
+        "440": {
+            "name": "lance",
+            "type": "object"
+        },
+        "441": {
+            "name": "halberd",
+            "type": "object"
+        },
+        "442": {
+            "name": "bardiche",
+            "type": "object"
+        },
+        "443": {
+            "name": "voulge",
+            "type": "object"
+        },
+        "444": {
+            "name": "dwarvish mattock",
+            "type": "object"
+        },
+        "445": {
+            "name": "fauchard",
+            "type": "object"
+        },
+        "446": {
+            "name": "guisarme",
+            "type": "object"
+        },
+        "447": {
+            "name": "bill-guisarme",
+            "type": "object"
+        },
+        "448": {
+            "name": "lucern hammer",
+            "type": "object"
+        },
+        "449": {
+            "name": "bec de corbin",
+            "type": "object"
+        },
+        "450": {
+            "name": "mace",
+            "type": "object"
+        },
+        "451": {
+            "name": "morning star",
+            "type": "object"
+        },
+        "452": {
+            "name": "war hammer",
+            "type": "object"
+        },
+        "453": {
+            "name": "club",
+            "type": "object"
+        },
+        "454": {
+            "name": "rubber hose",
+            "type": "object"
+        },
+        "455": {
+            "name": "quarterstaff",
+            "type": "object"
+        },
+        "456": {
+            "name": "aklys",
+            "type": "object"
+        },
+        "457": {
+            "name": "flail",
+            "type": "object"
+        },
+        "458": {
+            "name": "bullwhip",
+            "type": "object"
+        },
+        "459": {
+            "name": "bow",
+            "type": "object"
+        },
+        "460": {
+            "name": "elven bow",
+            "type": "object"
+        },
+        "461": {
+            "name": "orcish bow",
+            "type": "object"
+        },
+        "462": {
+            "name": "yumi",
+            "type": "object"
+        },
+        "463": {
+            "name": "sling",
+            "type": "object"
+        },
+        "464": {
+            "name": "crossbow",
+            "type": "object"
+        },
+        "465": {
+            "name": "elven leather helm",
+            "type": "object"
+        },
+        "466": {
+            "name": "orcish helm",
+            "type": "object"
+        },
+        "467": {
+            "name": "dwarvish iron helm",
+            "type": "object"
+        },
+        "468": {
+            "name": "fedora",
+            "type": "object"
+        },
+        "469": {
+            "name": "cornuthaum",
+            "type": "object"
+        },
+        "470": {
+            "name": "dunce cap",
+            "type": "object"
+        },
+        "471": {
+            "name": "dented pot",
+            "type": "object"
+        },
+        "472": {
+            "name": "helmet",
+            "type": "object"
+        },
+        "473": {
+            "name": "helm of brilliance",
+            "type": "object"
+        },
+        "474": {
+            "name": "helm of opposite alignment",
+            "type": "object"
+        },
+        "475": {
+            "name": "helm of telepathy",
+            "type": "object"
+        },
+        "476": {
+            "name": "gray dragon scale mail",
+            "type": "object"
+        },
+        "477": {
+            "name": "silver dragon scale mail",
+            "type": "object"
+        },
+        "479": {
+            "name": "red dragon scale mail",
+            "type": "object"
+        },
+        "480": {
+            "name": "white dragon scale mail",
+            "type": "object"
+        },
+        "481": {
+            "name": "orange dragon scale mail",
+            "type": "object"
+        },
+        "482": {
+            "name": "black dragon scale mail",
+            "type": "object"
+        },
+        "483": {
+            "name": "blue dragon scale mail",
+            "type": "object"
+        },
+        "484": {
+            "name": "green dragon scale mail",
+            "type": "object"
+        },
+        "485": {
+            "name": "yellow dragon scale mail",
+            "type": "object"
+        },
+        "486": {
+            "name": "gray dragon scales",
+            "type": "object"
+        },
+        "487": {
+            "name": "silver dragon scales",
+            "type": "object"
+        },
+        "489": {
+            "name": "red dragon scales",
+            "type": "object"
+        },
+        "490": {
+            "name": "white dragon scales",
+            "type": "object"
+        },
+        "491": {
+            "name": "orange dragon scales",
+            "type": "object"
+        },
+        "492": {
+            "name": "black dragon scales",
+            "type": "object"
+        },
+        "493": {
+            "name": "blue dragon scales",
+            "type": "object"
+        },
+        "494": {
+            "name": "green dragon scales",
+            "type": "object"
+        },
+        "495": {
+            "name": "yellow dragon scales",
+            "type": "object"
+        },
+        "496": {
+            "name": "plate mail",
+            "type": "object"
+        },
+        "497": {
+            "name": "crystal plate mail",
+            "type": "object"
+        },
+        "498": {
+            "name": "bronze plate mail",
+            "type": "object"
+        },
+        "499": {
+            "name": "splint mail",
+            "type": "object"
+        },
+        "500": {
+            "name": "banded mail",
+            "type": "object"
+        },
+        "501": {
+            "name": "dwarvish mithril-coat",
+            "type": "object"
+        },
+        "502": {
+            "name": "elven mithril-coat",
+            "type": "object"
+        },
+        "503": {
+            "name": "chain mail",
+            "type": "object"
+        },
+        "504": {
+            "name": "orcish chain mail",
+            "type": "object"
+        },
+        "505": {
+            "name": "scale mail",
+            "type": "object"
+        },
+        "506": {
+            "name": "studded leather armor",
+            "type": "object"
+        },
+        "507": {
+            "name": "ring mail",
+            "type": "object"
+        },
+        "508": {
+            "name": "orcish ring mail",
+            "type": "object"
+        },
+        "509": {
+            "name": "leather armor",
+            "type": "object"
+        },
+        "510": {
+            "name": "leather jacket",
+            "type": "object"
+        },
+        "511": {
+            "name": "Hawaiian shirt",
+            "type": "object"
+        },
+        "512": {
+            "name": "T-shirt",
+            "type": "object"
+        },
+        "513": {
+            "name": "mummy wrapping",
+            "type": "object"
+        },
+        "514": {
+            "name": "elven cloak",
+            "type": "object"
+        },
+        "515": {
+            "name": "orcish cloak",
+            "type": "object"
+        },
+        "516": {
+            "name": "dwarvish cloak",
+            "type": "object"
+        },
+        "517": {
+            "name": "oilskin cloak",
+            "type": "object"
+        },
+        "518": {
+            "name": "robe",
+            "type": "object"
+        },
+        "519": {
+            "name": "alchemy smock",
+            "type": "object"
+        },
+        "520": {
+            "name": "leather cloak",
+            "type": "object"
+        },
+        "521": {
+            "name": "cloak of protection",
+            "type": "object"
+        },
+        "522": {
+            "name": "cloak of invisibility",
+            "type": "object"
+        },
+        "523": {
+            "name": "cloak of magic resistance",
+            "type": "object"
+        },
+        "524": {
+            "name": "cloak of displacement",
+            "type": "object"
+        },
+        "525": {
+            "name": "small shield",
+            "type": "object"
+        },
+        "526": {
+            "name": "elven shield",
+            "type": "object"
+        },
+        "527": {
+            "name": "Uruk-hai shield",
+            "type": "object"
+        },
+        "528": {
+            "name": "orcish shield",
+            "type": "object"
+        },
+        "529": {
+            "name": "large shield",
+            "type": "object"
+        },
+        "530": {
+            "name": "dwarvish roundshield",
+            "type": "object"
+        },
+        "531": {
+            "name": "shield of reflection",
+            "type": "object"
+        },
+        "532": {
+            "name": "leather gloves",
+            "type": "object"
+        },
+        "533": {
+            "name": "gauntlets of fumbling",
+            "type": "object"
+        },
+        "534": {
+            "name": "gauntlets of power",
+            "type": "object"
+        },
+        "535": {
+            "name": "gauntlets of dexterity",
+            "type": "object"
+        },
+        "536": {
+            "name": "low boots",
+            "type": "object"
+        },
+        "537": {
+            "name": "iron shoes",
+            "type": "object"
+        },
+        "538": {
+            "name": "high boots",
+            "type": "object"
+        },
+        "539": {
+            "name": "speed boots",
+            "type": "object"
+        },
+        "540": {
+            "name": "water walking boots",
+            "type": "object"
+        },
+        "541": {
+            "name": "jumping boots",
+            "type": "object"
+        },
+        "542": {
+            "name": "elven boots",
+            "type": "object"
+        },
+        "543": {
+            "name": "kicking boots",
+            "type": "object"
+        },
+        "544": {
+            "name": "fumble boots",
+            "type": "object"
+        },
+        "545": {
+            "name": "levitation boots",
+            "type": "object"
+        },
+        "546": {
+            "name": "adornment",
+            "type": "object"
+        },
+        "547": {
+            "name": "gain strength",
+            "type": "object"
+        },
+        "548": {
+            "name": "gain constitution",
+            "type": "object"
+        },
+        "549": {
+            "name": "increase accuracy",
+            "type": "object"
+        },
+        "550": {
+            "name": "increase damage",
+            "type": "object"
+        },
+        "551": {
+            "name": "protection",
+            "type": "object"
+        },
+        "552": {
+            "name": "regeneration",
+            "type": "object"
+        },
+        "553": {
+            "name": "searching",
+            "type": "object"
+        },
+        "554": {
+            "name": "stealth",
+            "type": "object"
+        },
+        "555": {
+            "name": "sustain ability",
+            "type": "object"
+        },
+        "556": {
+            "name": "levitation",
+            "type": "object"
+        },
+        "557": {
+            "name": "hunger",
+            "type": "object"
+        },
+        "558": {
+            "name": "aggravate monster",
+            "type": "object"
+        },
+        "559": {
+            "name": "conflict",
+            "type": "object"
+        },
+        "560": {
+            "name": "warning",
+            "type": "object"
+        },
+        "561": {
+            "name": "poison resistance",
+            "type": "object"
+        },
+        "562": {
+            "name": "fire resistance",
+            "type": "object"
+        },
+        "563": {
+            "name": "cold resistance",
+            "type": "object"
+        },
+        "564": {
+            "name": "shock resistance",
+            "type": "object"
+        },
+        "565": {
+            "name": "free action",
+            "type": "object"
+        },
+        "566": {
+            "name": "slow digestion",
+            "type": "object"
+        },
+        "567": {
+            "name": "teleportation",
+            "type": "object"
+        },
+        "568": {
+            "name": "teleport control",
+            "type": "object"
+        },
+        "569": {
+            "name": "polymorph",
+            "type": "object"
+        },
+        "570": {
+            "name": "polymorph control",
+            "type": "object"
+        },
+        "571": {
+            "name": "invisibility",
+            "type": "object"
+        },
+        "572": {
+            "name": "see invisible",
+            "type": "object"
+        },
+        "573": {
+            "name": "protection from shape changers",
+            "type": "object"
+        },
+        "574": {
+            "name": "amulet of ESP",
+            "type": "object"
+        },
+        "575": {
+            "name": "amulet of life saving",
+            "type": "object"
+        },
+        "576": {
+            "name": "amulet of strangulation",
+            "type": "object"
+        },
+        "577": {
+            "name": "amulet of restful sleep",
+            "type": "object"
+        },
+        "578": {
+            "name": "amulet versus poison",
+            "type": "object"
+        },
+        "579": {
+            "name": "amulet of change",
+            "type": "object"
+        },
+        "580": {
+            "name": "amulet of unchanging",
+            "type": "object"
+        },
+        "581": {
+            "name": "amulet of reflection",
+            "type": "object"
+        },
+        "582": {
+            "name": "amulet of magical breathing",
+            "type": "object"
+        },
+        "583": {
+            "name": "cheap plastic imitation of the Amulet of Yendor",
+            "type": "object"
+        },
+        "584": {
+            "name": "Amulet of Yendor",
+            "type": "object"
+        },
+        "585": {
+            "name": "large box",
+            "type": "object"
+        },
+        "586": {
+            "name": "chest",
+            "type": "object"
+        },
+        "587": {
+            "name": "ice box",
+            "type": "object"
+        },
+        "588": {
+            "name": "sack",
+            "type": "object"
+        },
+        "589": {
+            "name": "oilskin sack",
+            "type": "object"
+        },
+        "590": {
+            "name": "bag of holding",
+            "type": "object"
+        },
+        "591": {
+            "name": "bag of tricks",
+            "type": "object"
+        },
+        "592": {
+            "name": "skeleton key",
+            "type": "object"
+        },
+        "593": {
+            "name": "lock pick",
+            "type": "object"
+        },
+        "594": {
+            "name": "credit card",
+            "type": "object"
+        },
+        "595": {
+            "name": "tallow candle",
+            "type": "object"
+        },
+        "596": {
+            "name": "wax candle",
+            "type": "object"
+        },
+        "597": {
+            "name": "brass lantern",
+            "type": "object"
+        },
+        "598": {
+            "name": "oil lamp",
+            "type": "object"
+        },
+        "599": {
+            "name": "magic lamp",
+            "type": "object"
+        },
+        "600": {
+            "name": "expensive camera",
+            "type": "object"
+        },
+        "601": {
+            "name": "mirror",
+            "type": "object"
+        },
+        "602": {
+            "name": "crystal ball",
+            "type": "object"
+        },
+        "603": {
+            "name": "lenses",
+            "type": "object"
+        },
+        "604": {
+            "name": "blindfold",
+            "type": "object"
+        },
+        "605": {
+            "name": "towel",
+            "type": "object"
+        },
+        "606": {
+            "name": "saddle",
+            "type": "object"
+        },
+        "607": {
+            "name": "leash",
+            "type": "object"
+        },
+        "608": {
+            "name": "stethoscope",
+            "type": "object"
+        },
+        "609": {
+            "name": "tinning kit",
+            "type": "object"
+        },
+        "610": {
+            "name": "tin opener",
+            "type": "object"
+        },
+        "611": {
+            "name": "can of grease",
+            "type": "object"
+        },
+        "612": {
+            "name": "figurine",
+            "type": "object"
+        },
+        "613": {
+            "name": "magic marker",
+            "type": "object"
+        },
+        "614": {
+            "name": "land mine",
+            "type": "object"
+        },
+        "615": {
+            "name": "beartrap",
+            "type": "object"
+        },
+        "616": {
+            "name": "tin whistle",
+            "type": "object"
+        },
+        "617": {
+            "name": "magic whistle",
+            "type": "object"
+        },
+        "618": {
+            "name": "wooden flute",
+            "type": "object"
+        },
+        "619": {
+            "name": "magic flute",
+            "type": "object"
+        },
+        "620": {
+            "name": "tooled horn",
+            "type": "object"
+        },
+        "621": {
+            "name": "frost horn",
+            "type": "object"
+        },
+        "622": {
+            "name": "fire horn",
+            "type": "object"
+        },
+        "623": {
+            "name": "horn of plenty",
+            "type": "object"
+        },
+        "624": {
+            "name": "wooden harp",
+            "type": "object"
+        },
+        "625": {
+            "name": "magic harp",
+            "type": "object"
+        },
+        "626": {
+            "name": "bell",
+            "type": "object"
+        },
+        "627": {
+            "name": "bugle",
+            "type": "object"
+        },
+        "628": {
+            "name": "leather drum",
+            "type": "object"
+        },
+        "629": {
+            "name": "drum of earthquake",
+            "type": "object"
+        },
+        "630": {
+            "name": "pick-axe",
+            "type": "object"
+        },
+        "631": {
+            "name": "grappling hook",
+            "type": "object"
+        },
+        "632": {
+            "name": "unicorn horn",
+            "type": "object"
+        },
+        "633": {
+            "name": "Candelabrum of Invocation",
+            "type": "object"
+        },
+        "634": {
+            "name": "Bell of Opening",
+            "type": "object"
+        },
+        "635": {
+            "name": "tripe ration",
+            "type": "object"
+        },
+        "636": {
+            "name": "corpse",
+            "type": "object"
+        },
+        "637": {
+            "name": "egg",
+            "type": "object"
+        },
+        "638": {
+            "name": "meatball",
+            "type": "object"
+        },
+        "639": {
+            "name": "meat stick",
+            "type": "object"
+        },
+        "640": {
+            "name": "huge chunk of meat",
+            "type": "object"
+        },
+        "641": {
+            "name": "meat ring",
+            "type": "object"
+        },
+        "642": {
+            "name": "kelp frond",
+            "type": "object"
+        },
+        "643": {
+            "name": "eucalyptus leaf",
+            "type": "object"
+        },
+        "644": {
+            "name": "apple",
+            "type": "object"
+        },
+        "645": {
+            "name": "orange",
+            "type": "object"
+        },
+        "646": {
+            "name": "pear",
+            "type": "object"
+        },
+        "647": {
+            "name": "melon",
+            "type": "object"
+        },
+        "648": {
+            "name": "banana",
+            "type": "object"
+        },
+        "649": {
+            "name": "carrot",
+            "type": "object"
+        },
+        "650": {
+            "name": "sprig of wolfsbane",
+            "type": "object"
+        },
+        "651": {
+            "name": "clove of garlic",
+            "type": "object"
+        },
+        "652": {
+            "name": "slime mold",
+            "type": "object"
+        },
+        "653": {
+            "name": "lump of royal jelly",
+            "type": "object"
+        },
+        "654": {
+            "name": "cream pie",
+            "type": "object"
+        },
+        "655": {
+            "name": "candy bar",
+            "type": "object"
+        },
+        "656": {
+            "name": "fortune cookie",
+            "type": "object"
+        },
+        "657": {
+            "name": "pancake",
+            "type": "object"
+        },
+        "658": {
+            "name": "lembas wafer",
+            "type": "object"
+        },
+        "659": {
+            "name": "cram ration",
+            "type": "object"
+        },
+        "660": {
+            "name": "food ration",
+            "type": "object"
+        },
+        "661": {
+            "name": "K-ration",
+            "type": "object"
+        },
+        "662": {
+            "name": "C-ration",
+            "type": "object"
+        },
+        "663": {
+            "name": "tin",
+            "type": "object"
+        },
+        "664": {
+            "name": "gain ability",
+            "type": "object"
+        },
+        "665": {
+            "name": "restore ability",
+            "type": "object"
+        },
+        "666": {
+            "name": "confusion",
+            "type": "object"
+        },
+        "667": {
+            "name": "blindness",
+            "type": "object"
+        },
+        "668": {
+            "name": "paralysis",
+            "type": "object"
+        },
+        "669": {
+            "name": "speed",
+            "type": "object"
+        },
+        "670": {
+            "name": "levitation",
+            "type": "object"
+        },
+        "671": {
+            "name": "hallucination",
+            "type": "object"
+        },
+        "672": {
+            "name": "invisibility",
+            "type": "object"
+        },
+        "673": {
+            "name": "see invisible",
+            "type": "object"
+        },
+        "674": {
+            "name": "healing",
+            "type": "object"
+        },
+        "675": {
+            "name": "extra healing",
+            "type": "object"
+        },
+        "676": {
+            "name": "gain level",
+            "type": "object"
+        },
+        "677": {
+            "name": "enlightenment",
+            "type": "object"
+        },
+        "678": {
+            "name": "monster detection",
+            "type": "object"
+        },
+        "679": {
+            "name": "object detection",
+            "type": "object"
+        },
+        "680": {
+            "name": "gain energy",
+            "type": "object"
+        },
+        "681": {
+            "name": "sleeping",
+            "type": "object"
+        },
+        "682": {
+            "name": "full healing",
+            "type": "object"
+        },
+        "683": {
+            "name": "polymorph",
+            "type": "object"
+        },
+        "684": {
+            "name": "booze",
+            "type": "object"
+        },
+        "685": {
+            "name": "sickness",
+            "type": "object"
+        },
+        "686": {
+            "name": "fruit juice",
+            "type": "object"
+        },
+        "687": {
+            "name": "acid",
+            "type": "object"
+        },
+        "688": {
+            "name": "oil",
+            "type": "object"
+        },
+        "689": {
+            "name": "water",
+            "type": "object"
+        },
+        "690": {
+            "name": "enchant armor",
+            "type": "object"
+        },
+        "691": {
+            "name": "destroy armor",
+            "type": "object"
+        },
+        "692": {
+            "name": "confuse monster",
+            "type": "object"
+        },
+        "693": {
+            "name": "scare monster",
+            "type": "object"
+        },
+        "694": {
+            "name": "remove curse",
+            "type": "object"
+        },
+        "695": {
+            "name": "enchant weapon",
+            "type": "object"
+        },
+        "696": {
+            "name": "create monster",
+            "type": "object"
+        },
+        "697": {
+            "name": "taming",
+            "type": "object"
+        },
+        "698": {
+            "name": "genocide",
+            "type": "object"
+        },
+        "699": {
+            "name": "light",
+            "type": "object"
+        },
+        "700": {
+            "name": "teleportation",
+            "type": "object"
+        },
+        "701": {
+            "name": "gold detection",
+            "type": "object"
+        },
+        "702": {
+            "name": "food detection",
+            "type": "object"
+        },
+        "703": {
+            "name": "identify",
+            "type": "object"
+        },
+        "704": {
+            "name": "magic mapping",
+            "type": "object"
+        },
+        "705": {
+            "name": "amnesia",
+            "type": "object"
+        },
+        "706": {
+            "name": "fire",
+            "type": "object"
+        },
+        "707": {
+            "name": "earth",
+            "type": "object"
+        },
+        "708": {
+            "name": "punishment",
+            "type": "object"
+        },
+        "709": {
+            "name": "charging",
+            "type": "object"
+        },
+        "710": {
+            "name": "stinking cloud",
+            "type": "object"
+        },
+        "711": {
+            "name": "FOOBIE BLETCH",
+            "type": "object"
+        },
+        "712": {
+            "name": "TEMOV",
+            "type": "object"
+        },
+        "713": {
+            "name": "GARVEN DEH",
+            "type": "object"
+        },
+        "714": {
+            "name": "READ ME",
+            "type": "object"
+        },
+        "715": {
+            "name": "mail",
+            "type": "object"
+        },
+        "716": {
+            "name": "blank paper",
+            "type": "object"
+        },
+        "717": {
+            "name": "dig",
+            "type": "object"
+        },
+        "718": {
+            "name": "magic missile",
+            "type": "object"
+        },
+        "719": {
+            "name": "fireball",
+            "type": "object"
+        },
+        "720": {
+            "name": "cone of cold",
+            "type": "object"
+        },
+        "721": {
+            "name": "sleep",
+            "type": "object"
+        },
+        "722": {
+            "name": "finger of death",
+            "type": "object"
+        },
+        "723": {
+            "name": "light",
+            "type": "object"
+        },
+        "724": {
+            "name": "detect monsters",
+            "type": "object"
+        },
+        "725": {
+            "name": "healing",
+            "type": "object"
+        },
+        "726": {
+            "name": "knock",
+            "type": "object"
+        },
+        "727": {
+            "name": "force bolt",
+            "type": "object"
+        },
+        "728": {
+            "name": "confuse monster",
+            "type": "object"
+        },
+        "729": {
+            "name": "cure blindness",
+            "type": "object"
+        },
+        "730": {
+            "name": "drain life",
+            "type": "object"
+        },
+        "731": {
+            "name": "slow monster",
+            "type": "object"
+        },
+        "732": {
+            "name": "wizard lock",
+            "type": "object"
+        },
+        "733": {
+            "name": "create monster",
+            "type": "object"
+        },
+        "734": {
+            "name": "detect food",
+            "type": "object"
+        },
+        "735": {
+            "name": "cause fear",
+            "type": "object"
+        },
+        "736": {
+            "name": "clairvoyance",
+            "type": "object"
+        },
+        "737": {
+            "name": "cure sickness",
+            "type": "object"
+        },
+        "738": {
+            "name": "charm monster",
+            "type": "object"
+        },
+        "739": {
+            "name": "haste self",
+            "type": "object"
+        },
+        "740": {
+            "name": "detect unseen",
+            "type": "object"
+        },
+        "741": {
+            "name": "levitation",
+            "type": "object"
+        },
+        "742": {
+            "name": "extra healing",
+            "type": "object"
+        },
+        "743": {
+            "name": "restore ability",
+            "type": "object"
+        },
+        "744": {
+            "name": "invisibility",
+            "type": "object"
+        },
+        "745": {
+            "name": "detect treasure",
+            "type": "object"
+        },
+        "746": {
+            "name": "remove curse",
+            "type": "object"
+        },
+        "747": {
+            "name": "magic mapping",
+            "type": "object"
+        },
+        "748": {
+            "name": "identify",
+            "type": "object"
+        },
+        "749": {
+            "name": "turn undead",
+            "type": "object"
+        },
+        "750": {
+            "name": "polymorph",
+            "type": "object"
+        },
+        "751": {
+            "name": "teleport away",
+            "type": "object"
+        },
+        "752": {
+            "name": "create familiar",
+            "type": "object"
+        },
+        "753": {
+            "name": "cancellation",
+            "type": "object"
+        },
+        "754": {
+            "name": "protection",
+            "type": "object"
+        },
+        "755": {
+            "name": "jumping",
+            "type": "object"
+        },
+        "756": {
+            "name": "stone to flesh",
+            "type": "object"
+        },
+        "757": {
+            "name": "blank paper",
+            "type": "object"
+        },
+        "758": {
+            "name": "Book of the Dead",
+            "type": "object"
+        },
+        "759": {
+            "name": "light",
+            "type": "object"
+        },
+        "760": {
+            "name": "secret door detection",
+            "type": "object"
+        },
+        "761": {
+            "name": "enlightenment",
+            "type": "object"
+        },
+        "762": {
+            "name": "create monster",
+            "type": "object"
+        },
+        "763": {
+            "name": "wishing",
+            "type": "object"
+        },
+        "764": {
+            "name": "nothing",
+            "type": "object"
+        },
+        "765": {
+            "name": "striking",
+            "type": "object"
+        },
+        "766": {
+            "name": "make invisible",
+            "type": "object"
+        },
+        "767": {
+            "name": "slow monster",
+            "type": "object"
+        },
+        "768": {
+            "name": "speed monster",
+            "type": "object"
+        },
+        "769": {
+            "name": "undead turning",
+            "type": "object"
+        },
+        "770": {
+            "name": "polymorph",
+            "type": "object"
+        },
+        "771": {
+            "name": "cancellation",
+            "type": "object"
+        },
+        "772": {
+            "name": "teleportation",
+            "type": "object"
+        },
+        "773": {
+            "name": "opening",
+            "type": "object"
+        },
+        "774": {
+            "name": "locking",
+            "type": "object"
+        },
+        "775": {
+            "name": "probing",
+            "type": "object"
+        },
+        "776": {
+            "name": "digging",
+            "type": "object"
+        },
+        "777": {
+            "name": "magic missile",
+            "type": "object"
+        },
+        "778": {
+            "name": "fire",
+            "type": "object"
+        },
+        "779": {
+            "name": "cold",
+            "type": "object"
+        },
+        "780": {
+            "name": "sleep",
+            "type": "object"
+        },
+        "781": {
+            "name": "death",
+            "type": "object"
+        },
+        "782": {
+            "name": "lightning",
+            "type": "object"
+        },
+        "783": {
+            "name": "forked",
+            "type": "object"
+        },
+        "784": {
+            "name": "spiked",
+            "type": "object"
+        },
+        "785": {
+            "name": "jeweled",
+            "type": "object"
+        },
+        "786": {
+            "name": "gold piece",
+            "type": "object"
+        },
+        "787": {
+            "name": "dilithium crystal",
+            "type": "object"
+        },
+        "788": {
+            "name": "diamond",
+            "type": "object"
+        },
+        "789": {
+            "name": "ruby",
+            "type": "object"
+        },
+        "790": {
+            "name": "jacinth",
+            "type": "object"
+        },
+        "791": {
+            "name": "sapphire",
+            "type": "object"
+        },
+        "792": {
+            "name": "black opal",
+            "type": "object"
+        },
+        "793": {
+            "name": "emerald",
+            "type": "object"
+        },
+        "794": {
+            "name": "turquoise",
+            "type": "object"
+        },
+        "795": {
+            "name": "citrine",
+            "type": "object"
+        },
+        "796": {
+            "name": "aquamarine",
+            "type": "object"
+        },
+        "797": {
+            "name": "amber",
+            "type": "object"
+        },
+        "798": {
+            "name": "topaz",
+            "type": "object"
+        },
+        "799": {
+            "name": "jet",
+            "type": "object"
+        },
+        "800": {
+            "name": "opal",
+            "type": "object"
+        },
+        "801": {
+            "name": "chrysoberyl",
+            "type": "object"
+        },
+        "802": {
+            "name": "garnet",
+            "type": "object"
+        },
+        "803": {
+            "name": "amethyst",
+            "type": "object"
+        },
+        "804": {
+            "name": "jasper",
+            "type": "object"
+        },
+        "805": {
+            "name": "fluorite",
+            "type": "object"
+        },
+        "806": {
+            "name": "obsidian",
+            "type": "object"
+        },
+        "807": {
+            "name": "agate",
+            "type": "object"
+        },
+        "808": {
+            "name": "jade",
+            "type": "object"
+        },
+        "809": {
+            "name": "worthless piece of white glass",
+            "type": "object"
+        },
+        "810": {
+            "name": "worthless piece of blue glass",
+            "type": "object"
+        },
+        "811": {
+            "name": "worthless piece of red glass",
+            "type": "object"
+        },
+        "812": {
+            "name": "worthless piece of yellowish brown glass",
+            "type": "object"
+        },
+        "813": {
+            "name": "worthless piece of orange glass",
+            "type": "object"
+        },
+        "814": {
+            "name": "worthless piece of yellow glass",
+            "type": "object"
+        },
+        "815": {
+            "name": "worthless piece of black glass",
+            "type": "object"
+        },
+        "816": {
+            "name": "worthless piece of green glass",
+            "type": "object"
+        },
+        "817": {
+            "name": "worthless piece of violet glass",
+            "type": "object"
+        },
+        "818": {
+            "name": "luckstone",
+            "type": "object"
+        },
+        "819": {
+            "name": "loadstone",
+            "type": "object"
+        },
+        "820": {
+            "name": "touchstone",
+            "type": "object"
+        },
+        "821": {
+            "name": "flint",
+            "type": "object"
+        },
+        "822": {
+            "name": "rock",
+            "type": "object"
+        },
+        "823": {
+            "name": "boulder",
+            "type": "object"
+        },
+        "824": {
+            "name": "statue",
+            "type": "object"
+        },
+        "825": {
+            "name": "heavy iron ball",
+            "type": "object"
+        },
+        "826": {
+            "name": "iron chain",
+            "type": "object"
+        },
+        "827": {
+            "name": "blinding venom",
+            "type": "object"
+        },
+        "828": {
+            "name": "acid venom",
+            "type": "object"
+        },
+        "829": {
+            "name": "dark part of a room",
+            "type": "room"
+        },
+        "830": {
+            "name": "wall",
+            "type": "room"
+        },
+        "831": {
+            "name": "wall",
+            "type": "room"
+        },
+        "832": {
+            "name": "wall",
+            "type": "room"
+        },
+        "833": {
+            "name": "wall",
+            "type": "room"
+        },
+        "834": {
+            "name": "wall",
+            "type": "room"
+        },
+        "835": {
+            "name": "wall",
+            "type": "room"
+        },
+        "836": {
+            "name": "wall",
+            "type": "room"
+        },
+        "837": {
+            "name": "wall",
+            "type": "room"
+        },
+        "838": {
+            "name": "wall",
+            "type": "room"
+        },
+        "839": {
+            "name": "wall",
+            "type": "room"
+        },
+        "840": {
+            "name": "wall",
+            "type": "room"
+        },
+        "841": {
+            "name": "doorway",
+            "type": "room"
+        },
+        "842": {
+            "name": "open door",
+            "type": "room"
+        },
+        "843": {
+            "name": "open door",
+            "type": "room"
+        },
+        "844": {
+            "name": "closed door",
+            "type": "room"
+        },
+        "845": {
+            "name": "closed door",
+            "type": "room"
+        },
+        "846": {
+            "name": "iron bars",
+            "type": "room"
+        },
+        "847": {
+            "name": "tree",
+            "type": "room"
+        },
+        "848": {
+            "name": "floor of a room",
+            "type": "room"
+        },
+        "849": {
+            "name": "corridor",
+            "type": "room"
+        },
+        "850": {
+            "name": "lit corridor",
+            "type": "room"
+        },
+        "851": {
+            "name": "staircase up",
+            "type": "room"
+        },
+        "852": {
+            "name": "staircase down",
+            "type": "room"
+        },
+        "853": {
+            "name": "ladder up",
+            "type": "room"
+        },
+        "854": {
+            "name": "ladder down",
+            "type": "room"
+        },
+        "855": {
+            "name": "altar",
+            "type": "room"
+        },
+        "856": {
+            "name": "grave",
+            "type": "room"
+        },
+        "857": {
+            "name": "opulent throne",
+            "type": "room"
+        },
+        "858": {
+            "name": "sink",
+            "type": "room"
+        },
+        "859": {
+            "name": "fountain",
+            "type": "room"
+        },
+        "860": {
+            "name": "water",
+            "type": "room"
+        },
+        "861": {
+            "name": "ice",
+            "type": "room"
+        },
+        "862": {
+            "name": "molten lava",
+            "type": "room"
+        },
+        "863": {
+            "name": "lowered drawbridge",
+            "type": "room"
+        },
+        "864": {
+            "name": "lowered drawbridge",
+            "type": "room"
+        },
+        "865": {
+            "name": "raised drawbridge",
+            "type": "room"
+        },
+        "866": {
+            "name": "raised drawbridge",
+            "type": "room"
+        },
+        "867": {
+            "name": "air",
+            "type": "room"
+        },
+        "868": {
+            "name": "cloud",
+            "type": "room"
+        },
+        "869": {
+            "name": "water",
+            "type": "room"
+        },
+        "870": {
+            "name": "arrow trap",
+            "type": "room"
+        },
+        "871": {
+            "name": "dart trap",
+            "type": "room"
+        },
+        "872": {
+            "name": "falling rock trap",
+            "type": "room"
+        },
+        "873": {
+            "name": "squeaky board",
+            "type": "room"
+        },
+        "874": {
+            "name": "bear trap",
+            "type": "room"
+        },
+        "875": {
+            "name": "land mine",
+            "type": "room"
+        },
+        "876": {
+            "name": "rolling boulder trap",
+            "type": "room"
+        },
+        "877": {
+            "name": "sleeping gas trap",
+            "type": "room"
+        },
+        "878": {
+            "name": "rust trap",
+            "type": "room"
+        },
+        "879": {
+            "name": "fire trap",
+            "type": "room"
+        },
+        "880": {
+            "name": "pit",
+            "type": "room"
+        },
+        "881": {
+            "name": "spiked pit",
+            "type": "room"
+        },
+        "882": {
+            "name": "hole",
+            "type": "room"
+        },
+        "883": {
+            "name": "trap door",
+            "type": "room"
+        },
+        "884": {
+            "name": "teleportation trap",
+            "type": "room"
+        },
+        "885": {
+            "name": "level teleporter",
+            "type": "room"
+        },
+        "886": {
+            "name": "magic portal",
+            "type": "room"
+        },
+        "887": {
+            "name": "web",
+            "type": "room"
+        },
+        "888": {
+            "name": "statue trap",
+            "type": "room"
+        },
+        "889": {
+            "name": "magic trap",
+            "type": "room"
+        },
+        "890": {
+            "name": "anti-magic field",
+            "type": "room"
+        },
+        "891": {
+            "name": "polymorph trap",
+            "type": "room"
+        },
+        "892": {
+            "name": "Zap |",
+            "type": "room"
+        },
+        "893": {
+            "name": "Zap -",
+            "type": "room"
+        },
+        "894": {
+            "name": "Zap \\",
+            "type": "room"
+        },
+        "895": {
+            "name": "Zap /",
+            "type": "room"
+        },
+        "896": {
+            "name": "dig beam symbol",
+            "type": "room"
+        },
+        "897": {
+            "name": "camera flash symbol",
+            "type": "room"
+        },
+        "898": {
+            "name": "thrown boomerang, )",
+            "type": "room"
+        },
+        "899": {
+            "name": "thrown boomerand, (",
+            "type": "room"
+        },
+        "900": {
+            "name": "magic shield glyph 1",
+            "type": "room"
+        },
+        "901": {
+            "name": "magic shield glyph 2",
+            "type": "room"
+        },
+        "902": {
+            "name": "magic shield glyph 3",
+            "type": "room"
+        },
+        "903": {
+            "name": "magic shield glyph 4",
+            "type": "room"
+        },
+        "904": {
+            "name": "swallow 1",
+            "type": "room"
+        },
+        "905": {
+            "name": "swallow 2",
+            "type": "room"
+        },
+        "906": {
+            "name": "swallow 3",
+            "type": "room"
+        },
+        "907": {
+            "name": "swallow 4",
+            "type": "room"
+        },
+        "908": {
+            "name": "swallow 5",
+            "type": "room"
+        },
+        "909": {
+            "name": "swallow 6",
+            "type": "room"
+        },
+        "910": {
+            "name": "swallow 7",
+            "type": "room"
+        },
+        "911": {
+            "name": "swallow 8",
+            "type": "room"
+        },
+        "912": {
+            "name": "explode 1",
+            "type": "room"
+        },
+        "913": {
+            "name": "explode 2",
+            "type": "room"
+        },
+        "914": {
+            "name": "explode 3",
+            "type": "room"
+        },
+        "915": {
+            "name": "explode 4",
+            "type": "room"
+        },
+        "916": {
+            "name": "explode 5",
+            "type": "room"
+        },
+        "917": {
+            "name": "explode 6",
+            "type": "room"
+        },
+        "918": {
+            "name": "explode 7",
+            "type": "room"
+        },
+        "919": {
+            "name": "explode 8",
+            "type": "room"
+        },
+        "920": {
+            "name": "explode 9",
+            "type": "room"
+        },
+        "921": {
+            "name": "explosion noxious 0",
+            "type": "other"
+        },
+        "922": {
+            "name": "explosion noxious 1",
+            "type": "other"
+        },
+        "923": {
+            "name": "explosion noxious 2",
+            "type": "other"
+        },
+        "924": {
+            "name": "explosion noxious 3",
+            "type": "other"
+        },
+        "925": {
+            "name": "explosion noxious 4",
+            "type": "other"
+        },
+        "926": {
+            "name": "explosion noxious 5",
+            "type": "other"
+        },
+        "927": {
+            "name": "explosion noxious 6",
+            "type": "other"
+        },
+        "928": {
+            "name": "explosion noxious 7",
+            "type": "other"
+        },
+        "929": {
+            "name": "explosion noxious 8",
+            "type": "other"
+        },
+        "930": {
+            "name": "explosion muddy 0",
+            "type": "other"
+        },
+        "931": {
+            "name": "explosion muddy 1",
+            "type": "other"
+        },
+        "932": {
+            "name": "explosion muddy 2",
+            "type": "other"
+        },
+        "933": {
+            "name": "explosion muddy 3",
+            "type": "other"
+        },
+        "934": {
+            "name": "explosion muddy 4",
+            "type": "other"
+        },
+        "935": {
+            "name": "explosion muddy 5",
+            "type": "other"
+        },
+        "936": {
+            "name": "explosion muddy 6",
+            "type": "other"
+        },
+        "937": {
+            "name": "explosion muddy 7",
+            "type": "other"
+        },
+        "938": {
+            "name": "explosion muddy 8",
+            "type": "other"
+        },
+        "939": {
+            "name": "explosion wet 0",
+            "type": "other"
+        },
+        "940": {
+            "name": "explosion wet 1",
+            "type": "other"
+        },
+        "941": {
+            "name": "explosion wet 2",
+            "type": "other"
+        },
+        "942": {
+            "name": "explosion wet 3",
+            "type": "other"
+        },
+        "943": {
+            "name": "explosion wet 4",
+            "type": "other"
+        },
+        "944": {
+            "name": "explosion wet 5",
+            "type": "other"
+        },
+        "945": {
+            "name": "explosion wet 6",
+            "type": "other"
+        },
+        "946": {
+            "name": "explosion wet 7",
+            "type": "other"
+        },
+        "947": {
+            "name": "explosion wet 8",
+            "type": "other"
+        },
+        "948": {
+            "name": "explosion magical 0",
+            "type": "other"
+        },
+        "949": {
+            "name": "explosion magical 1",
+            "type": "other"
+        },
+        "950": {
+            "name": "explosion magical 2",
+            "type": "other"
+        },
+        "951": {
+            "name": "explosion magical 3",
+            "type": "other"
+        },
+        "952": {
+            "name": "explosion magical 4",
+            "type": "other"
+        },
+        "953": {
+            "name": "explosion magical 5",
+            "type": "other"
+        },
+        "954": {
+            "name": "explosion magical 6",
+            "type": "other"
+        },
+        "955": {
+            "name": "explosion magical 7",
+            "type": "other"
+        },
+        "956": {
+            "name": "explosion magical 8",
+            "type": "other"
+        },
+        "957": {
+            "name": "explosion fiery 0",
+            "type": "other"
+        },
+        "958": {
+            "name": "explosion fiery 1",
+            "type": "other"
+        },
+        "959": {
+            "name": "explosion fiery 2",
+            "type": "other"
+        },
+        "960": {
+            "name": "explosion fiery 3",
+            "type": "other"
+        },
+        "961": {
+            "name": "explosion fiery 4",
+            "type": "other"
+        },
+        "962": {
+            "name": "explosion fiery 5",
+            "type": "other"
+        },
+        "963": {
+            "name": "explosion fiery 6",
+            "type": "other"
+        },
+        "964": {
+            "name": "explosion fiery 7",
+            "type": "other"
+        },
+        "965": {
+            "name": "explosion fiery 8",
+            "type": "other"
+        },
+        "966": {
+            "name": "explosion frosty 0",
+            "type": "other"
+        },
+        "967": {
+            "name": "explosion frosty 1",
+            "type": "other"
+        },
+        "968": {
+            "name": "explosion frosty 2",
+            "type": "other"
+        },
+        "969": {
+            "name": "explosion frosty 3",
+            "type": "other"
+        },
+        "970": {
+            "name": "explosion frosty 4",
+            "type": "other"
+        },
+        "971": {
+            "name": "explosion frosty 5",
+            "type": "other"
+        },
+        "972": {
+            "name": "explosion frosty 6",
+            "type": "other"
+        },
+        "973": {
+            "name": "explosion frosty 7",
+            "type": "other"
+        },
+        "974": {
+            "name": "explosion frosty 8",
+            "type": "other"
+        },
+        "975": {
+            "name": "zap 0 0",
+            "type": "other"
+        },
+        "976": {
+            "name": "zap 0 1",
+            "type": "other"
+        },
+        "977": {
+            "name": "zap 0 2",
+            "type": "other"
+        },
+        "978": {
+            "name": "zap 0 3",
+            "type": "other"
+        },
+        "979": {
+            "name": "zap 1 0",
+            "type": "other"
+        },
+        "980": {
+            "name": "zap 1 1",
+            "type": "other"
+        },
+        "981": {
+            "name": "zap 1 2",
+            "type": "other"
+        },
+        "982": {
+            "name": "zap 1 3",
+            "type": "other"
+        },
+        "983": {
+            "name": "zap 2 0",
+            "type": "other"
+        },
+        "984": {
+            "name": "zap 2 1",
+            "type": "other"
+        },
+        "985": {
+            "name": "zap 2 2",
+            "type": "other"
+        },
+        "986": {
+            "name": "zap 2 3",
+            "type": "other"
+        },
+        "987": {
+            "name": "zap 3 0",
+            "type": "other"
+        },
+        "988": {
+            "name": "zap 3 1",
+            "type": "other"
+        },
+        "989": {
+            "name": "zap 3 2",
+            "type": "other"
+        },
+        "990": {
+            "name": "zap 3 3",
+            "type": "other"
+        },
+        "991": {
+            "name": "zap 4 0",
+            "type": "other"
+        },
+        "992": {
+            "name": "zap 4 1",
+            "type": "other"
+        },
+        "993": {
+            "name": "zap 4 2",
+            "type": "other"
+        },
+        "994": {
+            "name": "zap 4 3",
+            "type": "other"
+        },
+        "995": {
+            "name": "zap 5 0",
+            "type": "other"
+        },
+        "996": {
+            "name": "zap 5 1",
+            "type": "other"
+        },
+        "997": {
+            "name": "zap 5 2",
+            "type": "other"
+        },
+        "998": {
+            "name": "zap 5 3",
+            "type": "other"
+        },
+        "999": {
+            "name": "zap 6 0",
+            "type": "other"
+        },
+        "1000": {
+            "name": "zap 6 1",
+            "type": "other"
+        },
+        "1001": {
+            "name": "zap 6 2",
+            "type": "other"
+        },
+        "1002": {
+            "name": "zap 6 3",
+            "type": "other"
+        },
+        "1003": {
+            "name": "zap 7 0",
+            "type": "other"
+        },
+        "1004": {
+            "name": "zap 7 1",
+            "type": "other"
+        },
+        "1005": {
+            "name": "zap 7 2",
+            "type": "other"
+        },
+        "1006": {
+            "name": "zap 7 3",
+            "type": "other"
+        },
+        "1007": {
+            "name": "warning 0",
+            "type": "other"
+        },
+        "1008": {
+            "name": "warning 1",
+            "type": "other"
+        },
+        "1009": {
+            "name": "warning 2",
+            "type": "other"
+        },
+        "1010": {
+            "name": "warning 3",
+            "type": "other"
+        },
+        "1011": {
+            "name": "warning 4",
+            "type": "other"
+        },
+        "1012": {
+            "name": "warning 5",
+            "type": "other"
+        },
+        "1013": {
+            "name": "sub mine walls 0",
+            "type": "other"
+        },
+        "1014": {
+            "name": "sub mine walls 1",
+            "type": "other"
+        },
+        "1015": {
+            "name": "sub mine walls 2",
+            "type": "other"
+        },
+        "1016": {
+            "name": "sub mine walls 3",
+            "type": "other"
+        },
+        "1017": {
+            "name": "sub mine walls 4",
+            "type": "other"
+        },
+        "1018": {
+            "name": "sub mine walls 5",
+            "type": "other"
+        },
+        "1019": {
+            "name": "sub mine walls 6",
+            "type": "other"
+        },
+        "1020": {
+            "name": "sub mine walls 7",
+            "type": "other"
+        },
+        "1021": {
+            "name": "sub mine walls 8",
+            "type": "other"
+        },
+        "1022": {
+            "name": "sub mine walls 9",
+            "type": "other"
+        },
+        "1023": {
+            "name": "sub mine walls 10",
+            "type": "other"
+        },
+        "1024": {
+            "name": "sub gehennom walls 0",
+            "type": "other"
+        },
+        "1025": {
+            "name": "sub gehennom walls 1",
+            "type": "other"
+        },
+        "1026": {
+            "name": "sub gehennom walls 2",
+            "type": "other"
+        },
+        "1027": {
+            "name": "sub gehennom walls 3",
+            "type": "other"
+        },
+        "1028": {
+            "name": "sub gehennom walls 4",
+            "type": "other"
+        },
+        "1029": {
+            "name": "sub gehennom walls 5",
+            "type": "other"
+        },
+        "1030": {
+            "name": "sub gehennom walls 6",
+            "type": "other"
+        },
+        "1031": {
+            "name": "sub gehennom walls 7",
+            "type": "other"
+        },
+        "1032": {
+            "name": "sub gehennom walls 8",
+            "type": "other"
+        },
+        "1033": {
+            "name": "sub gehennom walls 9",
+            "type": "other"
+        },
+        "1034": {
+            "name": "sub gehennom walls 10",
+            "type": "other"
+        },
+        "1035": {
+            "name": "sub knox walls 0",
+            "type": "other"
+        },
+        "1036": {
+            "name": "sub knox walls 1",
+            "type": "other"
+        },
+        "1037": {
+            "name": "sub knox walls 2",
+            "type": "other"
+        },
+        "1038": {
+            "name": "sub knox walls 3",
+            "type": "other"
+        },
+        "1039": {
+            "name": "sub knox walls 4",
+            "type": "other"
+        },
+        "1040": {
+            "name": "sub knox walls 5",
+            "type": "other"
+        },
+        "1041": {
+            "name": "sub knox walls 6",
+            "type": "other"
+        },
+        "1042": {
+            "name": "sub knox walls 7",
+            "type": "other"
+        },
+        "1043": {
+            "name": "sub knox walls 8",
+            "type": "other"
+        },
+        "1044": {
+            "name": "sub knox walls 9",
+            "type": "other"
+        },
+        "1045": {
+            "name": "sub knox walls 10",
+            "type": "other"
+        },
+        "1046": {
+            "name": "sub sokoban walls 0",
+            "type": "other"
+        },
+        "1047": {
+            "name": "sub sokoban walls 1",
+            "type": "other"
+        },
+        "1048": {
+            "name": "sub sokoban walls 2",
+            "type": "other"
+        },
+        "1049": {
+            "name": "sub sokoban walls 3",
+            "type": "other"
+        },
+        "1050": {
+            "name": "sub sokoban walls 4",
+            "type": "other"
+        },
+        "1051": {
+            "name": "sub sokoban walls 5",
+            "type": "other"
+        },
+        "1052": {
+            "name": "sub sokoban walls 6",
+            "type": "other"
+        },
+        "1053": {
+            "name": "sub sokoban walls 7",
+            "type": "other"
+        },
+        "1054": {
+            "name": "sub sokoban walls 8",
+            "type": "other"
+        },
+        "1055": {
+            "name": "sub sokoban walls 9",
+            "type": "other"
+        },
+        "1056": {
+            "name": "sub sokoban walls 10",
+            "type": "other"
+        }
+    }
+}

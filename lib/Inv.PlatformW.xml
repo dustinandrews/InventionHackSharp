@@ -1,0 +1,510 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>Inv.PlatformW</name>
+    </assembly>
+    <members>
+        <member name="T:Inv.WpfDeviceEmulation">
+            <summary>
+            Set of emulated devices.
+            </summary>
+        </member>
+        <member name="P:Inv.WpfDeviceEmulation.Name">
+            <summary>
+            Name of the device.
+            </summary>
+        </member>
+        <member name="P:Inv.WpfDeviceEmulation.Width">
+            <summary>
+            Width of the device in points.
+            </summary>
+        </member>
+        <member name="P:Inv.WpfDeviceEmulation.Height">
+            <summary>
+            Height of the device in points.
+            </summary>
+        </member>
+        <member name="P:Inv.WpfDeviceEmulation.PortraitInset">
+            <summary>
+            Insets to avoid the notch or home screen in portrait orientation.
+            </summary>
+        </member>
+        <member name="P:Inv.WpfDeviceEmulation.LandscapeInset">
+            <summary>
+            Insets to avoid the notch or home screen in landscape orientation.
+            </summary>
+        </member>
+        <member name="F:Inv.WpfDeviceEmulation.iPhone5">
+            <summary>
+            iPhone 5
+            </summary>
+        </member>
+        <member name="F:Inv.WpfDeviceEmulation.iPhone6_7">
+            <summary>
+            iPhone 6 and iPhone 7
+            </summary>
+        </member>
+        <member name="F:Inv.WpfDeviceEmulation.iPhone6_7Plus">
+            <summary>
+            iPhone 6 Plus and iPhone 7 Plus
+            </summary>
+        </member>
+        <member name="F:Inv.WpfDeviceEmulation.iPhoneX">
+            <summary>
+            iPhone X
+            </summary>
+        </member>
+        <member name="F:Inv.WpfDeviceEmulation.iPad_Mini">
+            <summary>
+            iPad and iPad Mini
+            </summary>
+        </member>
+        <member name="F:Inv.WpfDeviceEmulation.iPadPro">
+            <summary>
+            iPad Pro
+            </summary>
+        </member>
+        <member name="F:Inv.WpfDeviceEmulation.ZteZ752C">
+            <summary>
+            Android Phone ZteZ752C
+            </summary>
+        </member>
+        <member name="F:Inv.WpfDeviceEmulation.Nexus5">
+            <summary>
+            Google Nexus 5 Phone
+            </summary>
+        </member>
+        <member name="F:Inv.WpfDeviceEmulation.Nexus7">
+            <summary>
+            Google Nexus 7 Mini Tablet
+            </summary>
+        </member>
+        <member name="F:Inv.WpfDeviceEmulation.Nexus9">
+            <summary>
+            Google Nexus 9 Tablet
+            </summary>
+        </member>
+        <member name="F:Inv.WpfDeviceEmulation.GalaxyAvantSMG386T">
+            <summary>
+            Galaxy Avant SM-G386T
+            </summary>
+        </member>
+        <member name="F:Inv.WpfDeviceEmulation.GalaxyNote4">
+            <summary>
+            Galaxy Note 4
+            </summary>
+        </member>
+        <member name="F:Inv.WpfDeviceEmulation.GalaxyS10">
+            <summary>
+            Galaxy S10
+            </summary>
+        </member>
+        <member name="F:Inv.WpfDeviceEmulation.Surface3">
+            <summary>
+            Microsoft Surface 3
+            </summary>
+        </member>
+        <member name="F:Inv.WpfDeviceEmulation.VaioDuo11">
+            <summary>
+            Vaio Duo 11
+            </summary>
+        </member>
+        <member name="F:Inv.WpfDeviceEmulation.Array">
+            <summary>
+            The full array of emulated devices.
+            </summary>
+        </member>
+        <member name="T:Inv.WpfDeviceInset">
+            <summary>
+            Used to represent the inset to avoid the notch and home button on some phone models.
+            </summary>
+        </member>
+        <member name="P:Inv.WpfDeviceInset.Left">
+            <summary>
+            The left inset in logical points.
+            </summary>
+        </member>
+        <member name="P:Inv.WpfDeviceInset.Top">
+            <summary>
+            The top inset in logical points.
+            </summary>
+        </member>
+        <member name="P:Inv.WpfDeviceInset.Right">
+            <summary>
+            The right inset in logical points.
+            </summary>
+        </member>
+        <member name="P:Inv.WpfDeviceInset.Bottom">
+            <summary>
+            The bottom inset in logical points.
+            </summary>
+        </member>
+        <member name="M:Inv.ToggleButtonAssist.GetHasOnContent(System.Windows.DependencyObject)">
+            <summary>
+            Framework use only.
+            </summary>
+            <param name="element"></param>
+            <returns></returns>
+        </member>
+        <member name="F:Inv.ToggleButtonAssist.OnContentProperty">
+            <summary>
+            Allows on (IsChecked) content to be provided on supporting <see cref="T:System.Windows.Controls.Primitives.ToggleButton"/> styles.
+            </summary>
+        </member>
+        <member name="M:Inv.ToggleButtonAssist.SetOnContent(System.Windows.DependencyObject,System.Object)">
+            <summary>
+            Allows on (IsChecked) content to be provided on supporting <see cref="T:System.Windows.Controls.Primitives.ToggleButton"/> styles.
+            </summary>
+            <param name="element"></param>
+            <param name="value"></param>
+        </member>
+        <member name="M:Inv.ToggleButtonAssist.GetOnContent(System.Windows.DependencyObject)">
+            <summary>
+            Allows on (IsChecked) content to be provided on supporting <see cref="T:System.Windows.Controls.Primitives.ToggleButton"/> styles.
+            </summary>
+        </member>
+        <member name="F:Inv.ToggleButtonAssist.OnContentTemplateProperty">
+            <summary>
+            Allows an on (IsChecked) template to be provided on supporting <see cref="T:System.Windows.Controls.Primitives.ToggleButton"/> styles.
+            </summary>
+        </member>
+        <member name="M:Inv.ToggleButtonAssist.SetOnContentTemplate(System.Windows.DependencyObject,System.Windows.DataTemplate)">
+            <summary>
+            Allows an on (IsChecked) template to be provided on supporting <see cref="T:System.Windows.Controls.Primitives.ToggleButton"/> styles.
+            </summary>
+        </member>
+        <member name="M:Inv.ToggleButtonAssist.GetOnContentTemplate(System.Windows.DependencyObject)">
+            <summary>
+            Allows an on (IsChecked) template to be provided on supporting <see cref="T:System.Windows.Controls.Primitives.ToggleButton"/> styles.
+            </summary>
+        </member>
+        <member name="T:Inv.WpfShell">
+            <summary>
+            The Windows Desktop (WPF) implementation of the portable Invention application.
+            </summary>
+        </member>
+        <member name="P:Inv.WpfShell.PrimaryScreenWidth">
+            <summary>
+            Width in logical pixels of the primary screen.
+            </summary>
+        </member>
+        <member name="P:Inv.WpfShell.PrimaryScreenHeight">
+            <summary>
+            Height in logical pixels of the primary screen.
+            </summary>
+        </member>
+        <member name="M:Inv.WpfShell.CheckRequirements(System.Action)">
+            <summary>
+            Check that .NET 4.5 is installed.
+            </summary>
+            <param name="Action"></param>
+        </member>
+        <member name="M:Inv.WpfShell.RunBridge(System.Action{Inv.WpfBridge})">
+            <summary>
+            Run the application in a window.
+            </summary>
+            <param name="InvAction"></param>
+        </member>
+        <member name="M:Inv.WpfShell.Run(System.Action{Inv.Application})">
+            <summary>
+            Run the application in a window.
+            </summary>
+            <param name="InvAction"></param>
+        </member>
+        <member name="M:Inv.WpfShell.EmbedBridge(System.Windows.Controls.ContentControl)">
+            <summary>
+            Host the application in a WPF content control.
+            </summary>
+            <param name="BridgeAction"></param>
+            <param name="WpfContainer"></param>
+        </member>
+        <member name="P:Inv.WpfOptions.FullScreenMode">
+            <summary>
+            Run the window in full screen.
+            </summary>
+        </member>
+        <member name="P:Inv.WpfOptions.DefaultWindowX">
+            <summary>
+            Optional default X position for the window.
+            </summary>
+        </member>
+        <member name="P:Inv.WpfOptions.DefaultWindowY">
+            <summary>
+            Optional default Y position for the window.
+            </summary>
+        </member>
+        <member name="P:Inv.WpfOptions.DefaultWindowMaximised">
+            <summary>
+            Make the window maximized by default.
+            </summary>
+        </member>
+        <member name="P:Inv.WpfOptions.DefaultWindowWidth">
+            <summary>
+            Default width of the window.
+            </summary>
+        </member>
+        <member name="P:Inv.WpfOptions.DefaultWindowHeight">
+            <summary>
+            Default height of the window.
+            </summary>
+        </member>
+        <member name="P:Inv.WpfOptions.DefaultWindowColour">
+            <summary>
+            Default background colour for the window.
+            </summary>
+        </member>
+        <member name="P:Inv.WpfOptions.DefaultFontName">
+            <summary>
+            Default font name used as the fallback when not explicitly set.
+            </summary>
+        </member>
+        <member name="P:Inv.WpfOptions.PreventDeviceEmulation">
+            <summary>
+            Prevent the device emulation user interface (recommended for release builds).
+            </summary>
+        </member>
+        <member name="P:Inv.WpfOptions.SingletonIdentity">
+            <summary>
+            Optional unique identity string to prevent multiple instances of this program.
+            </summary>
+        </member>
+        <member name="P:Inv.WpfOptions.DeviceEmulation">
+            <summary>
+            Currently active emulated device.
+            </summary>
+        </member>
+        <member name="P:Inv.WpfOptions.DeviceEmulationArray">
+            <summary>
+            The subset of devices that can be emulated in this program.
+            </summary>
+        </member>
+        <member name="P:Inv.WpfOptions.DeviceEmulationRotated">
+            <summary>
+            Rotate the device by default.
+            </summary>
+        </member>
+        <member name="P:Inv.WpfOptions.DeviceEmulationFramed">
+            <summary>
+            Display the device frame by default.
+            </summary>
+        </member>
+        <member name="P:Inv.WpfOptions.MainFolderPath">
+            <summary>
+            Override the main folder path, otherwise uses the entry assembly location.
+            </summary>
+        </member>
+        <member name="P:Inv.WpfOptions.OverrideAssetFolderPath">
+            <summary>
+            Override where the application finds assets, otherwise is in the main folder path \Assets.
+            </summary>
+        </member>
+        <member name="P:Inv.WpfOptions.SuppressAudioDriverWarnings">
+            <summary>
+            Suppress the warning dialog when the audio driver is not installed or not correct for playback.
+            </summary>
+        </member>
+        <member name="P:Inv.WpfOptions.DarkTheme">
+            <summary>
+            Render native controls with light or dark theme (such as scrollbars).
+            </summary>
+        </member>
+        <member name="T:Inv.WpfBridge">
+            <summary>
+            The bridge can be used to break the abstraction and reach into the implementation controls.
+            This is for workarounds where Invention does not adequately handle a native scenario.
+            </summary>
+        </member>
+        <member name="P:Inv.WpfBridge.Application">
+            <summary>
+            The portable application.
+            </summary>
+        </member>
+        <member name="P:Inv.WpfBridge.SystemTray">
+            <summary>
+            Access to the Windows System Tray.
+            </summary>
+        </member>
+        <member name="M:Inv.WpfBridge.GetSurface(Inv.Surface)">
+            <summary>
+            Retrieve the <see cref="T:Inv.WpfSurface"/>
+            </summary>
+            <param name="InvSurface"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Inv.WpfBridge.GetBlock(Inv.Block)">
+            <summary>
+            Retrieve the <see cref="T:Inv.WpfBlock"/>
+            </summary>
+            <param name="InvBlock"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Inv.WpfBridge.GetBoard(Inv.Board)">
+            <summary>
+            Retrieve the <see cref="T:Inv.WpfBoard"/>
+            </summary>
+            <param name="InvBoard"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Inv.WpfBridge.GetBrowser(Inv.Browser)">
+            <summary>
+            Retrieve the <see cref="T:Inv.WpfBrowser"/>
+            </summary>
+            <param name="InvBrowser"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Inv.WpfBridge.GetButton(Inv.Button)">
+            <summary>
+            Retrieve the <see cref="T:Inv.WpfButton"/>
+            </summary>
+            <param name="InvButton"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Inv.WpfBridge.GetCanvas(Inv.Canvas)">
+            <summary>
+            Retrieve the <see cref="T:Inv.WpfCanvas"/>
+            </summary>
+            <param name="InvCanvas"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Inv.WpfBridge.GetDock(Inv.Dock)">
+            <summary>
+            Retrieve the <see cref="T:Inv.WpfDock"/>
+            </summary>
+            <param name="InvDock"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Inv.WpfBridge.GetEdit(Inv.Edit)">
+            <summary>
+            Retrieve the <see cref="T:Inv.WpfEdit"/>
+            </summary>
+            <param name="InvEdit"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Inv.WpfBridge.GetFlow(Inv.Flow)">
+            <summary>
+            Retrieve the <see cref="T:Inv.WpfFlow"/>
+            </summary>
+            <param name="InvFlow"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Inv.WpfBridge.GetFrame(Inv.Frame)">
+            <summary>
+            Retrieve the <see cref="T:Inv.WpfFrame"/>
+            </summary>
+            <param name="InvFrame"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Inv.WpfBridge.GetGraphic(Inv.Graphic)">
+            <summary>
+            Retrieve the <see cref="T:Inv.WpfGraphic"/>
+            </summary>
+            <param name="InvGraphic"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Inv.WpfBridge.GetLabel(Inv.Label)">
+            <summary>
+            Retrieve the <see cref="T:Inv.WpfLabel"/>
+            </summary>
+            <param name="InvLabel"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Inv.WpfBridge.GetMemo(Inv.Memo)">
+            <summary>
+            Retrieve the <see cref="T:Inv.WpfMemo"/>
+            </summary>
+            <param name="InvMemo"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Inv.WpfBridge.GetNative(Inv.Native)">
+            <summary>
+            Retrieve the <see cref="T:Inv.WpfNative"/>
+            </summary>
+            <param name="InvNative"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Inv.WpfBridge.GetOverlay(Inv.Overlay)">
+            <summary>
+            Retrieve the <see cref="T:Inv.WpfOverlay"/>
+            </summary>
+            <param name="InvOverlay"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Inv.WpfBridge.GetScroll(Inv.Scroll)">
+            <summary>
+            Retrieve the <see cref="T:Inv.WpfScroll"/>
+            </summary>
+            <param name="InvScroll"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Inv.WpfBridge.GetStack(Inv.Stack)">
+            <summary>
+            Retrieve the <see cref="T:Inv.WpfStack"/>
+            </summary>
+            <param name="InvStack"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Inv.WpfBridge.GetTable(Inv.Table)">
+            <summary>
+            Retrieve the <see cref="T:Inv.WpfTable"/>
+            </summary>
+            <param name="InvTable"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Inv.WpfBridge.GetVideo(Inv.Video)">
+            <summary>
+            Retrieve the <see cref="T:Inv.WpfVideo"/>
+            </summary>
+            <param name="InvVideo"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Inv.WpfBridge.GetWrap(Inv.Wrap)">
+            <summary>
+            Retrieve the <see cref="T:Inv.WpfWrap"/>
+            </summary>
+            <param name="InvWrap"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Inv.WpfBridge.GetPanel(Inv.Panel)">
+            <summary>
+            Retrieve the <see cref="T:System.Windows.FrameworkElement"/>
+            </summary>
+            <param name="Panel"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Inv.WpfEngine.Restart">
+            <summary>
+            Only called by the Play live editor to restart the engine after it has been reinstalled.
+            </summary>
+        </member>
+        <member name="T:XamlGeneratedNamespace.GeneratedInternalTypeHelper">
+            <summary>
+            GeneratedInternalTypeHelper
+            </summary>
+        </member>
+        <member name="M:XamlGeneratedNamespace.GeneratedInternalTypeHelper.CreateInstance(System.Type,System.Globalization.CultureInfo)">
+            <summary>
+            CreateInstance
+            </summary>
+        </member>
+        <member name="M:XamlGeneratedNamespace.GeneratedInternalTypeHelper.GetPropertyValue(System.Reflection.PropertyInfo,System.Object,System.Globalization.CultureInfo)">
+            <summary>
+            GetPropertyValue
+            </summary>
+        </member>
+        <member name="M:XamlGeneratedNamespace.GeneratedInternalTypeHelper.SetPropertyValue(System.Reflection.PropertyInfo,System.Object,System.Object,System.Globalization.CultureInfo)">
+            <summary>
+            SetPropertyValue
+            </summary>
+        </member>
+        <member name="M:XamlGeneratedNamespace.GeneratedInternalTypeHelper.CreateDelegate(System.Type,System.Object,System.String)">
+            <summary>
+            CreateDelegate
+            </summary>
+        </member>
+        <member name="M:XamlGeneratedNamespace.GeneratedInternalTypeHelper.AddEventHandler(System.Reflection.EventInfo,System.Object,System.Delegate)">
+            <summary>
+            AddEventHandler
+            </summary>
+        </member>
+    </members>
+</doc>
