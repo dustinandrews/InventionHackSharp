@@ -19,6 +19,7 @@ namespace Portable
 		Dictionary<Entity, LocationComponent> _lastLocation = new Dictionary<Entity, LocationComponent>();
 		Dictionary<int, int> _actorLocationMap = new Dictionary<int, int>();
 		Cloth _cloth;
+		Point _player;
 
 		/// <summary>
 		/// Mapping from UI implementation to game.
@@ -145,6 +146,12 @@ namespace Portable
 
 					last.X = location.X;
 					last.Y = location.Y;
+
+					var player = actor.GetComponent<PlayerComponent>();
+					if(player != null)
+					{
+						_player = new Point(location.X, location.Y);
+					}
 				}
 			}
 	}
