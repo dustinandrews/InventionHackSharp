@@ -33,7 +33,7 @@ namespace MegaDungeon
 		Point UPRIGHT = new Point(1, -1);
 		Point RIGHT = new Point(1, 0);
 		Point DOWNRIGHT = new Point(1, 1);
-		Point DOWN = new Point(0, 1); 
+		Point DOWN = new Point(0, 1);
 		Point DOWNLEFT = new Point(-1, 1);
 		Point LEFT = new Point(-1, 0);
 		Point UPLEFT = new Point(-1, -1);
@@ -81,12 +81,12 @@ namespace MegaDungeon
 			_doorways.AddRange(new [] {Filters.DoorWay, Filters.DoorWay2, Filters.DoorWay3, Filters.DoorWay4});
 
 			RandomizeFloor();
-			
+
 			foreach(var cell in _map.GetAllCells())
 			{
 				var sample = GetCellFilterArray(cell);
 				var glyph = DARK;
-				var stotal = sample.Total(); 
+				var stotal = sample.Total();
 
 				if(sample.Total() < 9)
 				{
@@ -121,18 +121,8 @@ namespace MegaDungeon
 					else
 					{
 						glyph = FLOOR;
-						if(stotal == 4)
-						{
-							foreach(var doorway in _doorways)
-							{
-								if(FilterMatch(sample, doorway))
-								{
-									glyph = DOOR;
-									break;
-								}
-							}
-						}
 
+						// Store intial walkable cells in order to place new entities in valid locations.
 						_walkable.Add(cell);
 					}
 				}
