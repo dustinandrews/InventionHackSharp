@@ -160,7 +160,7 @@ namespace MegaDungeon
 			actor.AddComponent(new LocationComponent(){X = cell.X, Y = cell.Y});
 			var mapComponent = new MapComponent(){map = _map};
 			actor.AddComponent(mapComponent);
-			actor.AddComponent(new GlyphComponent{glyph = "@"});
+			actor.AddComponent(new GlyphComponent{glyph = PLAYER});
 		}
 
 		public void DoTurn(PlayerInput playerInput)

@@ -17,6 +17,8 @@ namespace Portable
 		MegaDungeon.PlayerInput _lastInput = MegaDungeon.PlayerInput.NONE;
 		TileManager _tileManager;
 		Dictionary<Entity, LocationComponent> _lastLocation = new Dictionary<Entity, LocationComponent>();
+		Dictionary<int, int> _actorLocationMap = new Dictionary<int, int>();
+		Cloth _cloth;
 
 		/// <summary>
 		/// Mapping from UI implementation to game.
@@ -58,14 +60,14 @@ namespace Portable
 			_horizontalCellCount = horizontalCellCount;
 			_verticalCellCount = vericalCellCount;
 			_surface = surface;
-			var cloth = CreateCloth();
-			_surface.Content = cloth;
-			_engine = new MegaDungeon.Engine(_horizontalCellCount,_verticalCellCount, _tileManager);
-			_surface.ComposeEvent += () =>
+			_cloth = CreateCloth();
+			_surface.Content = _cloth;
+			_cloth.Draw();
+			_surface.ComposeEvent += ()=>
 			{
 				Update();
-				cloth.Draw();
 			};
+			_engine = new MegaDungeon.Engine(_horizontalCellCount,_verticalCellCount, _tileManager);
 		}
 
 		/// <summary>
@@ -81,6 +83,9 @@ namespace Portable
 			{
 				_engine.DoTurn(_lastInput);
 				_lastInput = MegaDungeon.PlayerInput.NONE;
+				GetActorsFromEngine();
+				Update();
+				_cloth.Draw();
 			}
 		}
 
@@ -100,7 +105,16 @@ namespace Portable
 
 			cloth.DrawEvent += (DC, Patch) =>
 			{
-				var glyph = _engine.Floor[Patch.X, Patch.Y];
+				int glyph;
+				if(_actorLocationMap.ContainsKey(Patch.X + (Patch.Y * _horizontalCellCount)))
+				{
+					glyph = _actorLocationMap[Patch.X + (Patch.Y * _horizontalCellCount)];
+				}
+				else
+				{
+					glyph = _engine.Floor[Patch.X, Patch.Y];
+				}
+				
 				var bytes = _tileManager.GetTileBmpBytes(glyph);
 				var image = _tileManager.GetInvImage(glyph);
 				DC.DrawImage(image, Patch.Rect);
@@ -119,10 +133,14 @@ namespace Portable
 					if(!_lastLocation.ContainsKey(actor))
 					{
 						_lastLocation.Add(actor, location.Clone());
+						_actorLocationMap.Add(location.X + (location.Y * _horizontalCellCount), glyph.glyph);
 					}
+
 					var last = _lastLocation[actor];
 					if(last != location)
 					{
+						_actorLocationMap.Remove(last.X + (last.Y * _horizontalCellCount));
+						_actorLocationMap.Add(location.X + (location.Y * _horizontalCellCount), glyph.glyph);
 					}
 
 					last.X = location.X;

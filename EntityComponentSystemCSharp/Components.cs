@@ -31,7 +31,7 @@ namespace EntityComponentSystemCSharp.Components
 
 	public class GlyphComponent : IComponent
 	{
-		public string glyph = "";
+		public int glyph = -1;
 	}
 
 	public class LocationComponent : PointWrapper, IComponent
