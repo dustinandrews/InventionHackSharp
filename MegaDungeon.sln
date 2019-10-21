@@ -5,8 +5,6 @@ VisualStudioVersion = 15.0.26124.0
 MinimumVisualStudioVersion = 15.0.26124.0
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Engine", "Engine\Engine.csproj", "{4667F8DE-9AF0-4D6A-A4F7-EF2FCC2683DD}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Console", "Console\Console.csproj", "{C38FFE08-9592-4C7B-96AB-CEC791D3335F}"
-EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EntityComponentSystemCSharp", "EntityComponentSystemCSharp\EntityComponentSystemCSharp.csproj", "{750ABA5F-14A1-4CA9-826C-F42F78BDE745}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Portable", "Portable\Portable.csproj", "{5C3415F8-C59A-4C93-85FB-C373CBFF34FE}"

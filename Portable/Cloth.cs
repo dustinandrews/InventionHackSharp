@@ -79,6 +79,7 @@ namespace Inv
 				var ModY = GlobalY % CellSizeProperty;
 
 				CellSizeProperty += Z.Delta * (CellSize / 8);
+				
 				if (CellSizeProperty > 256)
 					CellSizeProperty = 256;
 				else if (CellSizeProperty < 4)

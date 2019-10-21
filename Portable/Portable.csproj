@@ -17,6 +17,7 @@
 	</ItemGroup>
 	<ItemGroup>
 		<ProjectReference Include="..\Engine\Engine.csproj" />
+		<ProjectReference Include="..\Contracts\Contracts.csproj" />
 	</ItemGroup>
 	<ItemGroup>
 	  <PackageReference Include="SixLabors.ImageSharp" Version="1.0.0-beta0007" />

@@ -1,4 +1,4 @@
-namespace MD
+namespace MegaDungeon
 {
 	public enum PlayerInput
 	{

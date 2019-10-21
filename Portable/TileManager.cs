@@ -5,10 +5,11 @@ using SixLabors.ImageSharp.Processing;
 using SixLabors.Primitives;
 using Newtonsoft.Json;
 using System.Collections.Generic;
+using MegaDungeon.Contracts;
 
 namespace Portable
 {
-	public class Tiles
+	public class TileManager : ITileManager
 	{
 		Image _tileset;
 		int _tileSize;
@@ -25,10 +26,10 @@ namespace Portable
 			}
 			return _tileCache[index];
 		}
-		public Tiles(string tileImageFile, string tileDataJson)
+		public TileManager(string tileImageFile, string tileDataJson)
 		{
 			_tileset = Image.Load(tileImageFile);
-			_tileData = JsonConvert.DeserializeObject<TileData>(System.IO.File.ReadAllText(tileDataJson));
+			_tileData = JsonConvert.DeserializeObject<TileData>(tileDataJson);
 			_tileSize = _tileData.tile_size;
 		}
 
@@ -55,17 +56,5 @@ namespace Portable
 			}
 			return imgBytes;
 		}
-	}
-
-	public class TileData
-	{
-		public int tile_size;
-		public Dictionary<string,TileDataData> data;
-		
-	}
-	public class TileDataData
-	{
-		public string name;
-		public string type;
 	}
 }

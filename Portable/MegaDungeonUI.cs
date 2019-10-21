@@ -5,7 +5,6 @@ using EntityComponentSystemCSharp.Components;
 using EntityComponentSystemCSharp;
 using static EntityComponentSystemCSharp.EntityManager;
 using Inv;
-using MD;
 
 namespace Portable
 {
@@ -20,9 +19,10 @@ namespace Portable
 		bool IsInit = false;
 		bool IsMapChanged = true;
 		Stack _root_stack;
-		MD.Engine _engine;
+		MegaDungeon.Engine _engine;
 
-		MD.PlayerInput _lastInput = MD.PlayerInput.NONE;
+		MegaDungeon.PlayerInput _lastInput = MegaDungeon.PlayerInput.NONE;
+		TileManager _tileManager;
 
 		Dictionary<Entity, LocationComponent> _lastLocation = new Dictionary<Entity, LocationComponent>();
 
@@ -35,31 +35,32 @@ namespace Portable
 		/// <typeparam name="Key"></typeparam>
 		/// <typeparam name="MD.PlayerInput"></typeparam>
 		/// <returns></returns>
-		public Dictionary<Inv.Key, MD.PlayerInput> keyMap = new Dictionary<Key, MD.PlayerInput>()
+		public Dictionary<Inv.Key,MegaDungeon.PlayerInput> keyMap = new Dictionary<Key,MegaDungeon.PlayerInput>()
 		{
-			{Inv.Key.n1, MD.PlayerInput.DOWNLEFT},
-			{Inv.Key.n2, MD.PlayerInput.DOWN},
-			{Inv.Key.n3, MD.PlayerInput.DOWNRIGHT},
-			{Inv.Key.n4, MD.PlayerInput.LEFT},
-			{Inv.Key.n5, MD.PlayerInput.NONE},
-			{Inv.Key.n6, MD.PlayerInput.RIGHT},
-			{Inv.Key.n7, MD.PlayerInput.UPLEFT},
-			{Inv.Key.n8, MD.PlayerInput.UP},
-			{Inv.Key.n9, MD.PlayerInput.UPRIGHT},
-			{Inv.Key.Up, MD.PlayerInput.UP},
-			{Inv.Key.Down, MD.PlayerInput.DOWN},
-			{Inv.Key.Left, MD.PlayerInput.LEFT},
-			{Inv.Key.Right, MD.PlayerInput.RIGHT},
+			{Inv.Key.n1,MegaDungeon.PlayerInput.DOWNLEFT},
+			{Inv.Key.n2,MegaDungeon.PlayerInput.DOWN},
+			{Inv.Key.n3,MegaDungeon.PlayerInput.DOWNRIGHT},
+			{Inv.Key.n4,MegaDungeon.PlayerInput.LEFT},
+			{Inv.Key.n5,MegaDungeon.PlayerInput.NONE},
+			{Inv.Key.n6,MegaDungeon.PlayerInput.RIGHT},
+			{Inv.Key.n7,MegaDungeon.PlayerInput.UPLEFT},
+			{Inv.Key.n8,MegaDungeon.PlayerInput.UP},
+			{Inv.Key.n9,MegaDungeon.PlayerInput.UPRIGHT},
+			{Inv.Key.Up,MegaDungeon.PlayerInput.UP},
+			{Inv.Key.Down,MegaDungeon.PlayerInput.DOWN},
+			{Inv.Key.Left,MegaDungeon.PlayerInput.LEFT},
+			{Inv.Key.Right,MegaDungeon.PlayerInput.RIGHT},
 		};
 
-			public PlayerInput LastInput { get => _lastInput; set => _lastInput = value; }
+		public MegaDungeon.PlayerInput LastInput { get => _lastInput; set => _lastInput = value; }
 
 		public MegaDungeonUI(Surface surface, int horizontalCellCount, int vericalCellCount)
 		{
+			_tileManager =  new TileManager("absurd64.bmp", System.IO.File.ReadAllText("tiledata.json"));
 			_horizontalCellCount = horizontalCellCount;
 			_verticalCellCount = vericalCellCount;
 			_surface = surface;
-			_engine = new MD.Engine(_horizontalCellCount,_verticalCellCount);
+			_engine = new MegaDungeon.Engine(_horizontalCellCount,_verticalCellCount, _tileManager);
 		}
 
 		/// <summary>
@@ -110,10 +111,10 @@ namespace Portable
 				GetMapUpdatesFromEngine();
 			}
 
-			if(_lastInput != MD.PlayerInput.NONE)
+			if(_lastInput != MegaDungeon.PlayerInput.NONE)
 			{
 				_engine.DoTurn(_lastInput);
-				_lastInput = MD.PlayerInput.NONE;
+				_lastInput = MegaDungeon.PlayerInput.NONE;
 			}
 		}
 
@@ -127,16 +128,15 @@ namespace Portable
 
 		public void Graphics()
 		{
-			var tiles = new Tiles("absurd64.bmp", "tiledata.json");
 			var cloth = new Cloth();
 			cloth.Dimension = new Inv.Dimension(_horizontalCellCount, _verticalCellCount); // 35 x 40
-			cloth.CellSize = _surface.Window.Width / _horizontalCellCount;
+			// cloth.CellSize = _surface.Window.Width / _horizontalCellCount;
 
 			cloth.DrawEvent += (DC, Patch) =>
 			{
 				var glyph = _engine.Floor[Patch.X, Patch.Y];
-				var bytes = tiles.GetTileBmpBytes(glyph);
-				var image = tiles.GetInvImage(glyph);
+				var bytes = _tileManager.GetTileBmpBytes(glyph);
+				var image = _tileManager.GetInvImage(glyph);
 				DC.DrawImage(image, Patch.Rect);
 
 				// if (_engine.Floor[Patch.X, Patch.Y] == 0)
