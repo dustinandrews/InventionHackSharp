@@ -30,7 +30,7 @@ namespace Portable
 		/// <typeparam name="Key"></typeparam>
 		/// <typeparam name="MD.PlayerInput"></typeparam>
 		/// <returns></returns>
-		public Dictionary<Inv.Key,MegaDungeon.PlayerInput> keyMap = new Dictionary<Key,MegaDungeon.PlayerInput>()
+		public Dictionary<Inv.Key, MegaDungeon.PlayerInput> keyMap = new Dictionary<Key, MegaDungeon.PlayerInput>()
 		{
 			{Inv.Key.n1,MegaDungeon.PlayerInput.DOWNLEFT},
 			{Inv.Key.n2,MegaDungeon.PlayerInput.DOWN},
@@ -57,18 +57,20 @@ namespace Portable
 		/// <param name="vericalCellCount"></param>
 		public MegaDungeonUI(Surface surface, int horizontalCellCount, int vericalCellCount)
 		{
-			_tileManager =  new TileManager("absurd64.bmp", System.IO.File.ReadAllText("tiledata.json"));
+			_tileManager = new TileManager("absurd64.bmp", System.IO.File.ReadAllText("tiledata.json"));
 			_horizontalCellCount = horizontalCellCount;
 			_verticalCellCount = vericalCellCount;
 			_surface = surface;
 			_cloth = CreateCloth();
 			_surface.Content = _cloth;
 			_cloth.Draw();
-			_surface.ComposeEvent += ()=>
+			_surface.ComposeEvent += () =>
 			{
 				Update();
 			};
-			_engine = new MegaDungeon.Engine(_horizontalCellCount,_verticalCellCount, _tileManager);
+			
+			_engine = new MegaDungeon.Engine(_horizontalCellCount, _verticalCellCount, _tileManager);
+			GetActorsFromEngine();
 		}
 
 		/// <summary>
@@ -80,19 +82,18 @@ namespace Portable
 		/// </remarks>
 		public void Update()
 		{
-			if(_lastInput != MegaDungeon.PlayerInput.NONE)
+			if (_lastInput != MegaDungeon.PlayerInput.NONE)
 			{
 				_engine.DoTurn(_lastInput);
 				_lastInput = MegaDungeon.PlayerInput.NONE;
 				GetActorsFromEngine();
-				Update();
 				_cloth.Draw();
 			}
 		}
 
 		public void AcceptInput(Inv.Keystroke keystroke)
 		{
-			if(keyMap.ContainsKey(keystroke.Key))
+			if (keyMap.ContainsKey(keystroke.Key))
 			{
 				_lastInput = keyMap[keystroke.Key];
 			}
@@ -101,58 +102,56 @@ namespace Portable
 		internal Cloth CreateCloth()
 		{
 			var cloth = new Cloth();
-			cloth.Dimension = new Inv.Dimension(_horizontalCellCount, _verticalCellCount); // 35 x 40
+			cloth.Dimension = new Inv.Dimension(_horizontalCellCount, _verticalCellCount);
 			cloth.CellSize = _surface.Window.Width / _horizontalCellCount;
-
-			cloth.DrawEvent += (DC, Patch) =>
-			{
-				int glyph;
-				if(_actorLocationMap.ContainsKey(Patch.X + (Patch.Y * _horizontalCellCount)))
-				{
-					glyph = _actorLocationMap[Patch.X + (Patch.Y * _horizontalCellCount)];
-				}
-				else
-				{
-					glyph = _engine.Floor[Patch.X, Patch.Y];
-				}
-				
-				var bytes = _tileManager.GetTileBmpBytes(glyph);
-				var image = _tileManager.GetInvImage(glyph);
-				DC.DrawImage(image, Patch.Rect);
-			};
+			cloth.DrawEvent += (DC, patch) => Cloth_DrawEvent(DC, patch);
 			return cloth;
 		}
 
-			void GetActorsFromEngine()
+		void Cloth_DrawEvent(DrawContract DC, Patch patch)
+		{
+			int glyph = _engine.Floor[patch.X, patch.Y];
+			var image = _tileManager.GetInvImage(glyph);
+			DC.DrawImage(image, patch.Rect);
+
+			if(_actorLocationMap.ContainsKey(patch.X + (patch.Y * _horizontalCellCount)))
 			{
-				foreach(var actor in _engine.EntityManager.GetAllEntitiesWithComponent<LocationComponent>())
+				glyph = _actorLocationMap[patch.X + (patch.Y * _horizontalCellCount)];
+				var actorImage = _tileManager.GetInvImage(glyph);
+				DC.DrawImage(actorImage, patch.Rect);
+			}
+		}
+
+		void GetActorsFromEngine()
+		{
+			foreach (var actor in _engine.EntityManager.GetAllEntitiesWithComponent<LocationComponent>())
+			{
+
+				var location = actor.GetComponent<LocationComponent>();
+				var glyph = actor.GetComponent<GlyphComponent>();
+
+				if (!_lastLocation.ContainsKey(actor))
 				{
+					_lastLocation.Add(actor, location.Clone());
+					_actorLocationMap.Add(location.X + (location.Y * _horizontalCellCount), glyph.glyph);
+				}
 
-					var location = actor.GetComponent<LocationComponent>();
-					var glyph = actor.GetComponent<GlyphComponent>();
+				var last = _lastLocation[actor];
+				if (last != location)
+				{
+					_actorLocationMap.Remove(last.X + (last.Y * _horizontalCellCount));
+					_actorLocationMap.Add(location.X + (location.Y * _horizontalCellCount), glyph.glyph);
+				}
 
-					if(!_lastLocation.ContainsKey(actor))
-					{
-						_lastLocation.Add(actor, location.Clone());
-						_actorLocationMap.Add(location.X + (location.Y * _horizontalCellCount), glyph.glyph);
-					}
+				last.X = location.X;
+				last.Y = location.Y;
 
-					var last = _lastLocation[actor];
-					if(last != location)
-					{
-						_actorLocationMap.Remove(last.X + (last.Y * _horizontalCellCount));
-						_actorLocationMap.Add(location.X + (location.Y * _horizontalCellCount), glyph.glyph);
-					}
-
-					last.X = location.X;
-					last.Y = location.Y;
-
-					var player = actor.GetComponent<PlayerComponent>();
-					if(player != null)
-					{
-						_player = new Point(location.X, location.Y);
-					}
+				var player = actor.GetComponent<PlayerComponent>();
+				if (player != null)
+				{
+					_player = new Point(location.X, location.Y);
 				}
 			}
+		}
 	}
 }
