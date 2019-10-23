@@ -19,7 +19,7 @@ namespace Portable
 		Dictionary<Entity, LocationComponent> _lastLocation = new Dictionary<Entity, LocationComponent>();
 		Dictionary<int, int> _actorLocationMap = new Dictionary<int, int>();
 		Cloth _cloth;
-		Point _player;
+		Entity _player;
 
 		/// <summary>
 		/// Mapping from UI implementation to game.
@@ -70,6 +70,7 @@ namespace Portable
 			};
 			
 			_engine = new MegaDungeon.Engine(_horizontalCellCount, _verticalCellCount, _tileManager);
+			_player = _engine.EntityManager.GetAllEntitiesWithComponent<PlayerComponent>().First();
 			GetActorsFromEngine();
 		}
 
@@ -87,6 +88,8 @@ namespace Portable
 				_engine.DoTurn(_lastInput);
 				_lastInput = MegaDungeon.PlayerInput.NONE;
 				GetActorsFromEngine();
+				var playerLocation = _lastLocation[_player];
+				_cloth.PanToXY(playerLocation.X, playerLocation.Y);
 				_cloth.Draw();
 			}
 		}
@@ -145,12 +148,6 @@ namespace Portable
 
 				last.X = location.X;
 				last.Y = location.Y;
-
-				var player = actor.GetComponent<PlayerComponent>();
-				if (player != null)
-				{
-					_player = new Point(location.X, location.Y);
-				}
 			}
 		}
 	}

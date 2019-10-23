@@ -154,6 +154,12 @@ namespace Inv
 			};
 		}
 
+		public void PanToXY(int X, int Y)
+		{
+			PanningX = X * CellSize;
+			PanningY = Y * CellSize;
+		}
+
 		public Inv.Dimension Dimension { get; set; }
 		public int CellSize { get => CellSizeProperty; set => CellSizeProperty = value; }
 
