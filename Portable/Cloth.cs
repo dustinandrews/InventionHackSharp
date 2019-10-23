@@ -77,7 +77,8 @@ namespace Inv
 				var OldY = GlobalY / CellSizeProperty;
 				var ModX = GlobalX % CellSizeProperty;
 				var ModY = GlobalY % CellSizeProperty;
-				CellSizeProperty += Z.Delta * (CellSize / 8);
+				var smoothing = Math.Max(1, CellSize / 8);
+				CellSizeProperty += Z.Delta * smoothing;
 				if (CellSizeProperty > 256)
 					CellSizeProperty = 256;
 				else if (CellSizeProperty < 4)
@@ -156,8 +157,8 @@ namespace Inv
 
 		public void PanToXY(int X, int Y)
 		{
-			PanningX = X * CellSize;
-			PanningY = Y * CellSize;
+			PanningX = (int) ((X - (PanningWidth / 2.0)) * CellSize);
+			PanningY = (int) ((Y - (PanningHeight /2.0)) * CellSize);
 		}
 
 		public Inv.Dimension Dimension { get; set; }
