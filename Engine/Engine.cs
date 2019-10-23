@@ -19,7 +19,7 @@ namespace MegaDungeon
 		const int OUTERCORNERWALL = 832;
 		const int DARK = 829;
 		const int DOOR = 844;
-		const int PLAYER = 340;
+		const int PLAYER = 4;
 
 		Random random = new Random();
 		int _width;
