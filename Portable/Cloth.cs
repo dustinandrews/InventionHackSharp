@@ -155,30 +155,35 @@ namespace Inv
 			};
 		}
 
-		public void PanToXY(int X, int Y)
+		public void KeepXYOnScreen(int X, int Y)
 		{
 
-			int buffer = 3;
-			if (X < PanningLeft + buffer)
+			if (X < PanningLeft || X > PanningRight || Y < PanningTop || Y > PanningBottom)
 			{
-				PanningX = (PanningLeft - 1) * CellSize;
+				PanningX = (int) ((X - (PanningWidth / 2.0)) * CellSize);
+				PanningY = (int) ((Y - (PanningHeight / 2.0)) * CellSize);
 			}
-			else if (X + 1 > PanningRight - buffer)
+			else
 			{
-				PanningX = (PanningLeft + 1) * CellSize;
-			}
+				int buffer = 3;
+				if (X < PanningLeft + buffer)
+				{
+					PanningX = (PanningLeft - 1) * CellSize;
+				}
+				else if (X + 1 > PanningRight - buffer)
+				{
+					PanningX = (PanningLeft + 1) * CellSize;
+				}
 
-			if(Y < PanningTop + buffer)
-			{
-				PanningY = (PanningTop - 1) * CellSize;
+				if(Y < PanningTop + buffer)
+				{
+					PanningY = (PanningTop - 1) * CellSize;
+				}
+				else if (Y + 1 > PanningBottom - buffer)
+				{
+					PanningY =  (PanningTop + 1) * CellSize;
+				}
 			}
-			else if (Y + 1 > PanningBottom - buffer)
-			{
-				PanningY =  (PanningTop + 1) * CellSize;
-			}
-
-			// PanningX = (int) ((X - (PanningWidth / 2.0)) * CellSize);
-			// PanningY = (int) ((Y - (PanningHeight / 2.0)) * CellSize);
 		}
 
 		public Inv.Dimension Dimension { get; set; }

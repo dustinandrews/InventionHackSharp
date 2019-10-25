@@ -89,7 +89,7 @@ namespace Portable
 				_lastInput = MegaDungeon.PlayerInput.NONE;
 				GetActorsFromEngine();
 				var playerLocation = _lastLocation[_player];
-				_cloth.PanToXY(playerLocation.X, playerLocation.Y);
+				_cloth.KeepXYOnScreen(playerLocation.X, playerLocation.Y);
 				_cloth.Draw();
 			}
 		}
