@@ -9,7 +9,7 @@ using MegaDungeon.Contracts;
 
 namespace MegaDungeon
 {
-    public class Engine
+	public class Engine
 	{
 
 		const int FLOOR = 848;
@@ -28,6 +28,7 @@ namespace MegaDungeon
 		int[,] _floor_view; // a copy to return to make _floor effectively readonly
 		RogueSharp.Map _map;
 		ITileManager _tileManager;
+		LocationComponent _playerLocation;
 
 		Point UP = new Point(0,-1);
 		Point UPRIGHT = new Point(1, -1);
@@ -46,6 +47,11 @@ namespace MegaDungeon
 		public EntityManager EntityManager => entityManager;
 		List<RogueSharp.ICell> _walkable = new List<RogueSharp.ICell>();
 		List<ISystem> _turnSystems = new List<ISystem>();
+
+		int _playerSiteDistance = 2;
+
+		public int PlayerSightDistance
+		{ get => _playerSiteDistance; set => _playerSiteDistance = value;}
 
 		public int[,] Floor
 		{
@@ -72,48 +78,56 @@ namespace MegaDungeon
 				{PlayerInput.UPLEFT, UPLEFT}
 			};
 
-			_compassPoints = new [] {
+			_compassPoints = new[] {
 				UPLEFT, UP, UPRIGHT,
 				LEFT, CENTER, RIGHT,
 				DOWNLEFT, DOWN, DOWNRIGHT
 			};
 
-			_doorways.AddRange(new [] {Filters.DoorWay, Filters.DoorWay2, Filters.DoorWay3, Filters.DoorWay4});
+			_doorways.AddRange(new[] { Filters.DoorWay, Filters.DoorWay2, Filters.DoorWay3, Filters.DoorWay4 });
 
 			RandomizeFloor();
+			InitCellGlyphs();
+			InitializePlayer();
+			UpdateViews();
+			// Add systems that should run every turn here.
+			_turnSystems.Add(new MovementSystem(entityManager));
+		}
 
-			foreach(var cell in _map.GetAllCells())
+		private void InitCellGlyphs()
+		{
+			foreach (var cell in _map.GetAllCells())
 			{
 				var sample = GetCellFilterArray(cell);
 				var glyph = DARK;
 				var stotal = sample.Total();
 
-				if(sample.Total() < 9)
+				if (sample.Total() < 9)
 				{
-					if(!cell.IsWalkable)
+					if (!cell.IsWalkable)
 					{
 						// Total number of filled in blocks in the 3x3 area including this cell
-						 if(stotal == 8)
+						if (stotal == 8)
 						{
 							glyph = INNERCORNERWALL;
 						}
-						else if(stotal == 4 || stotal == 5)
+						else if (stotal == 4 || stotal == 5)
 						{
 							glyph = OUTERCORNERWALL;
 						}
-						else if(FilterMatch(sample, Filters.Horizontal))
+						else if (FilterMatch(sample, Filters.Horizontal))
 						{
 							glyph = HORIZWALL;
 						}
-						else if(FilterMatch(sample, Filters.Vertical))
+						else if (FilterMatch(sample, Filters.Vertical))
 						{
 							glyph = VERTICALWALL;
 						}
-						else if(MultiplyFilter(sample, Filters.Horizontal).Total() == 1)
+						else if (MultiplyFilter(sample, Filters.Horizontal).Total() == 1)
 						{
 							glyph = HORIZWALL;
 						}
-						else if(MultiplyFilter(sample, Filters.Vertical).Total() == 1)
+						else if (MultiplyFilter(sample, Filters.Vertical).Total() == 1)
 						{
 							glyph = VERTICALWALL;
 						}
@@ -128,13 +142,6 @@ namespace MegaDungeon
 				}
 				_floor[cell.X, cell.Y] = glyph;
 			}
-
-			InitializePlayer();
-
-			UpdateViews();
-
-			// Add systems that should run every turn here.
-			_turnSystems.Add(new MovementSystem(entityManager));
 		}
 
 		/// <summary>
@@ -147,7 +154,8 @@ namespace MegaDungeon
 			actor.AddComponent<PlayerComponent>();
 			var location = random.Next(0, _walkable.Count);
 			var cell = _walkable[location];
-			actor.AddComponent(new LocationComponent(){X = cell.X, Y = cell.Y});
+			_playerLocation = new LocationComponent(){X = cell.X, Y = cell.Y};
+			actor.AddComponent(_playerLocation);
 			var mapComponent = new MapComponent(){map = _map};
 			actor.AddComponent(mapComponent);
 			actor.AddComponent(new GlyphComponent{glyph = PLAYER});
@@ -179,6 +187,8 @@ namespace MegaDungeon
 			{
 				system.Run();
 			}
+
+			UpdateViews();
 		}
 
 		bool FilterMatch(int[] sample, int[] filter)
@@ -231,18 +241,49 @@ namespace MegaDungeon
 		/// </summary>
 		void UpdateViews()
 		{
+			var circleView = GetFieldOfView(_playerLocation.X, _playerLocation.Y, _playerSiteDistance, _map);
+			foreach(var cell in circleView)
+			{
+				_map.AppendFov(cell.X, cell.Y, 0, true);
+			}
+
 			if(_floor_view == null)
 			{
 				_floor_view = new int[_floor.GetLength(0), _floor.GetLength(1)];
 			}
+
 			for(int x = 0; x < _floor.GetLength(0); x++ )
 			{
 				for(int y = 0; y < _floor.GetLength(1); y++)
 				{
-					_floor_view[x,y] = _floor[x,y];
+					if(!_map.IsInFov(x, y))
+					{
+						_floor_view[x,y] = DARK;
+					}
+					else
+					{
+						_floor_view[x,y] = _floor[x,y];
+					}
 				}
 			}
 		}
+
+		private static IEnumerable<ICell> GetFieldOfView( int x, int y, int selectionSize, IMap map )
+		{
+		List<ICell> circleFov = new List<ICell>();
+		var fieldOfView = new FieldOfView( map );
+		var cellsInFov = fieldOfView.ComputeFov( x, y, (int) ( selectionSize * 1.5 ), true );
+		var circle = map.GetCellsInCircle( x, y, selectionSize ).ToList();
+		foreach ( ICell cell in cellsInFov )
+		{
+			if ( circle.Contains( cell ) )
+			{
+			circleFov.Add( cell );
+			}
+		}
+		return circleFov;
+		}
+
 		private void RandomizeFloor()
 		{
 			var randomRooms = new RogueSharp.MapCreation.RandomRoomsMapCreationStrategy<RogueSharp.Map>(_width, _height, 20, 10, 5);
