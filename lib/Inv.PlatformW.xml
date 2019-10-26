@@ -436,6 +436,13 @@
             <param name="InvScroll"></param>
             <returns></returns>
         </member>
+        <member name="M:Inv.WpfBridge.GetShape(Inv.Shape)">
+            <summary>
+            Retrieve the <see cref="T:Inv.WpfShape"/>
+            </summary>
+            <param name="InvShape"></param>
+            <returns></returns>
+        </member>
         <member name="M:Inv.WpfBridge.GetStack(Inv.Stack)">
             <summary>
             Retrieve the <see cref="T:Inv.WpfStack"/>

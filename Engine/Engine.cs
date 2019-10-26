@@ -26,7 +26,7 @@ namespace MegaDungeon
 		List<RogueSharp.ICell> _walkable = new List<RogueSharp.ICell>();
 		List<ISystem> _turnSystems = new List<ISystem>();
 
-		int _playerSiteDistance = 20;
+		int _playerSiteDistance = 5;
 
 		/// <summary>
 		/// A grid of glyphs representing the discovered map.

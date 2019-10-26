@@ -41,7 +41,7 @@ namespace EntityComponentSystemCSharp.Systems
 					
 					var start = map.map.GetCell(current.X, current.Y);
 					var dest = map.map.GetCell(desired.X, desired.Y);
-					var pathfinder = new RogueSharp.PathFinder(map.map);
+					var pathfinder = new RogueSharp.PathFinder(map.map, 1); //TODO cache the pathfinder
 					var path = pathfinder.TryFindShortestPath(start, dest);
 					if(path != null)
 					{

@@ -244,23 +244,83 @@
             See <see cref="P:Inv.Application.Audio"/>
             </summary>
         </member>
+        <member name="P:Inv.Audio.IsMuted">
+            <summary>
+            All sounds are muted through this API.
+            </summary>
+        </member>
+        <member name="P:Inv.Audio.IsVolumeControlled">
+            <summary>
+            Volume variations are prevented through this API, always playback at full volume.
+            </summary>
+        </member>
+        <member name="P:Inv.Audio.IsRateControlled">
+            <summary>
+            Rate variations are prevented through this API, always playback at regular rate.
+            </summary>
+        </member>
+        <member name="P:Inv.Audio.IsPanControlled">
+            <summary>
+            Pan variations are prevented through this API, always playback with a balanced pan.
+            </summary>
+        </member>
+        <member name="F:Inv.Audio.ZeroVolume">
+            <summary>
+            Minimum allowed playback volume (silent).
+            </summary>
+        </member>
+        <member name="F:Inv.Audio.FullVolume">
+            <summary>
+            Maximum allowed playback volume (loudest).
+            </summary>
+        </member>
+        <member name="F:Inv.Audio.SlowestRate">
+            <summary>
+            Minimum allowed playback rate (slowest speed).
+            </summary>
+        </member>
+        <member name="F:Inv.Audio.FastestRate">
+            <summary>
+            Maximum allowed playback rate (fastest speed).
+            </summary>
+        </member>
+        <member name="F:Inv.Audio.RegularRate">
+            <summary>
+            Regular playback rate (normal speed).
+            </summary>
+        </member>
+        <member name="F:Inv.Audio.LeftmostPan">
+            <summary>
+            Minimum playback pan (left only).
+            </summary>
+        </member>
+        <member name="F:Inv.Audio.RightmostPan">
+            <summary>
+            Maximum playback pan (right only).
+            </summary>
+        </member>
+        <member name="F:Inv.Audio.BalancedPan">
+            <summary>
+            Balanced playback pan (equal on left and right).
+            </summary>
+        </member>
         <member name="M:Inv.Audio.SetMuted(System.Boolean)">
             <summary>
             Global mute for sounds played through this API.
             </summary>
             <param name="IsMuted"></param>
         </member>
-        <member name="M:Inv.Audio.SetRateControl(System.Boolean)">
-            <summary>
-            Global control to prevent rate variations for sounds played through this API.
-            </summary>
-            <param name="IsRateControlled"></param>
-        </member>
         <member name="M:Inv.Audio.SetVolumeControl(System.Boolean)">
             <summary>
             Global control to prevent volume variations for sounds played through this API.
             </summary>
             <param name="IsVolumeControlled"></param>
+        </member>
+        <member name="M:Inv.Audio.SetRateControl(System.Boolean)">
+            <summary>
+            Global control to prevent rate variations for sounds played through this API.
+            </summary>
+            <param name="IsRateControlled"></param>
         </member>
         <member name="M:Inv.Audio.SetPanControl(System.Boolean)">
             <summary>
@@ -274,9 +334,9 @@
             The sound will be played once and to the end of the track.
             </summary>
             <param name="Sound">The mp3 track held in memory</param>
-            <param name="Volume">The volume adjustment between 0.0 and 1.0</param>
-            <param name="Rate">The rate variation between 0.5 and 2.0</param>
-            <param name="Pan">The balance of left and right speakers between -1.0 and 1.0</param>
+            <param name="Volume">The volume level between 0.0F and 1.0F</param>
+            <param name="Rate">The rate variation between 0.5F and 2.0F</param>
+            <param name="Pan">The balance of left and right speakers between -1.0F and 1.0F</param>
         </member>
         <member name="M:Inv.Audio.NewClip(Inv.Sound,System.Single,System.Single,System.Single,System.Boolean)">
             <summary>
@@ -286,7 +346,7 @@
             <param name="Volume">The volume adjustment between 0.0 and 1.0</param>
             <param name="Rate">The rate variation between 0.5 and 2.0</param>
             <param name="Pan">The balance of left and right speakers between -1.0 and 1.0</param>
-            <param name="Loop">Loop the playing of this sound until it is explicitly stopped</param>
+            <param name="Looped">Loop the playing of this sound until it is explicitly stopped</param>
             <returns></returns>
         </member>
         <member name="M:Inv.Audio.GetLength(Inv.Sound)">
@@ -308,7 +368,7 @@
         </member>
         <member name="P:Inv.AudioClip.Volume">
             <summary>
-            The volume to play the sound between 0.0F and 1.0F.
+            The volume level to play the sound between 0.0F and 1.0F.
             </summary>
         </member>
         <member name="P:Inv.AudioClip.Pan">
@@ -323,20 +383,55 @@
             +1 is entirely the right speaker.
             </summary>
         </member>
-        <member name="P:Inv.AudioClip.Loop">
+        <member name="P:Inv.AudioClip.Looped">
             <summary>
             Whether to continuously loop the track until it is manually stopped.
             </summary>
         </member>
         <member name="M:Inv.AudioClip.Play">
             <summary>
-            Play the sound.
+            Start playing the clip.
             </summary>
         </member>
         <member name="M:Inv.AudioClip.Stop">
             <summary>
-            Stop playing the sound.
+            Stop playing the clip.
             </summary>
+        </member>
+        <member name="M:Inv.AudioClip.Pause">
+            <summary>
+            Interrupt the playback.
+            </summary>
+        </member>
+        <member name="M:Inv.AudioClip.Resume">
+            <summary>
+            Continue after pausing the playback.
+            </summary>
+        </member>
+        <!-- Badly formed XML comment ignored for member "M:Inv.AudioClip.GetLength" -->
+        <member name="M:Inv.AudioClip.SetVolume(System.Single)">
+            <summary>
+            Adjust the volume of the clip, before, during or after playback.
+            </summary>
+            <param name="Volume"></param>
+        </member>
+        <member name="M:Inv.AudioClip.SetRate(System.Single)">
+            <summary>
+            Adjust the rate of the clip, before, during or after playback.
+            </summary>
+            <param name="Rate"></param>
+        </member>
+        <member name="M:Inv.AudioClip.SetPan(System.Single)">
+            <summary>
+            Adjust the pan of the clip, before, during or after playback.
+            </summary>
+            <param name="Pan"></param>
+        </member>
+        <member name="M:Inv.AudioClip.SetLooped(System.Boolean)">
+            <summary>
+            Adjust looping of the clip, before, during or after playback.
+            </summary>
+            <param name="Pan"></param>
         </member>
         <member name="T:Inv.Calendar">
             <summary>
@@ -2512,6 +2607,38 @@
             <summary>
             Content of the tooltip.
             </summary>
+        </member>
+        <member name="T:Inv.ShapeFill">
+            <summary>
+            The inner fill colour of the shape.
+            </summary>
+        </member>
+        <member name="P:Inv.ShapeFill.Colour">
+            <summary>
+            Get and set the solid fill colour.
+            </summary>
+        </member>
+        <member name="T:Inv.ShapeStroke">
+            <summary>
+            The style of the outline of the shape.
+            </summary>
+        </member>
+        <member name="P:Inv.ShapeStroke.Thickness">
+            <summary>
+            The width of the stroke in logical points.
+            </summary>
+        </member>
+        <member name="P:Inv.ShapeStroke.Colour">
+            <summary>
+            Get and set the solid stroke colour.
+            </summary>
+        </member>
+        <member name="M:Inv.ShapeStroke.Set(System.Int32)">
+            <summary>
+            Set the thickness and colour of the shape outline.
+            </summary>
+            <param name="Thickness"></param>
+            <param name="Colour"></param>
         </member>
         <member name="T:Inv.Email">
             <summary>
@@ -5726,6 +5853,84 @@
             Whether the text will wrap to over new lines if there is not enough space, or truncate with an ellipsis.
             </summary>
         </member>
+        <member name="M:Inv.Block.AddBreak">
+            <summary>
+            Add a line break.
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Inv.Block.AddRun(System.String,System.Action{Inv.BlockSpan})">
+            <summary>
+            Add a fragment of text.
+            </summary>
+            <param name="Text"></param>
+            <param name="SpanAction"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Inv.Block.RemoveSpan(Inv.BlockSpan)">
+            <summary>
+            Remove a span.
+            </summary>
+            <param name="Span"></param>
+        </member>
+        <member name="M:Inv.Block.RemoveSpans">
+            <summary>
+            Remove all spans.
+            </summary>
+        </member>
+        <member name="M:Inv.Block.GetSpans">
+            <summary>
+            Enumerate each span in the block.
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Inv.Block.HasSpan(Inv.BlockSpan)">
+            <summary>
+            Ask if the span exists in this block.
+            </summary>
+            <param name="Span"></param>
+            <returns></returns>
+        </member>
+        <member name="T:Inv.BlockStyle">
+            <summary>
+            BlockStyle is the type of span.
+            </summary>
+        </member>
+        <member name="F:Inv.BlockStyle.Run">
+            <summary>
+            Fragment of text.
+            </summary>
+        </member>
+        <member name="F:Inv.BlockStyle.Break">
+            <summary>
+            Line break.
+            </summary>
+        </member>
+        <member name="T:Inv.BlockSpan">
+            <summary>
+            Span of text in a block.
+            </summary>
+        </member>
+        <member name="P:Inv.BlockSpan.Style">
+            <summary>
+            Run of text or a line break.
+            </summary>
+        </member>
+        <member name="P:Inv.BlockSpan.Background">
+            <summary>
+            Background highlight of the span.
+            </summary>
+        </member>
+        <member name="P:Inv.BlockSpan.Font">
+            <summary>
+            Font used for the text int the span.
+            </summary>
+        </member>
+        <member name="P:Inv.BlockSpan.Text">
+            <summary>
+            Span text, will be null for a line break.
+            </summary>
+        </member>
         <member name="T:Inv.Native">
             <summary>
             Contains a native control for the platform.
@@ -5746,6 +5951,39 @@
             <summary>
             The native control.
             </summary>
+        </member>
+        <member name="T:Inv.Shape">
+            <summary>
+            Shape.
+            </summary>
+        </member>
+        <member name="M:Inv.Shape.#ctor">
+            <summary>
+            Create a new shape.
+            </summary>
+        </member>
+        <member name="M:Inv.Shape.New">
+            <summary>
+            Create a new shape panel.
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="P:Inv.Shape.Stroke">
+            <summary>
+            The outline of the shape.
+            </summary>
+        </member>
+        <member name="P:Inv.Shape.Fill">
+            <summary>
+            The inner fill colour of the shape.
+            </summary>
+        </member>
+        <member name="M:Inv.Shape.Polygon(Inv.Point[])">
+            <summary>
+            Specify all the points that outline the shape.
+            These points can be used as absolute or relative coordinates because the shape will stretch to fill the available space, or respect the point boundaries as the expected size.
+            </summary>
+            <param name="PointArray"></param>
         </member>
         <member name="T:Inv.Panel`1">
             <summary>
@@ -6167,6 +6405,12 @@
         <member name="M:Inv.Surface.NewNative(System.Object)">
             <summary>
             Create a new <see cref="T:Inv.Native" />
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Inv.Surface.NewShape">
+            <summary>
+            Create a new <see cref="T:Inv.Shape" />
             </summary>
             <returns></returns>
         </member>
