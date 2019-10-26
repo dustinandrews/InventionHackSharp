@@ -4,11 +4,13 @@ using System.Collections.Generic;
 using EntityComponentSystemCSharp.Components;
 using EntityComponentSystemCSharp;
 using static EntityComponentSystemCSharp.EntityManager;
+using static Portable.MegaDungeonUIConstants;
 using Inv;
 
 namespace Portable
 {
-	public class MegaDungeonUI
+
+    public class MegaDungeonUI
 	{
 		int _horizontalCellCount;
 		int _verticalCellCount;
@@ -20,32 +22,6 @@ namespace Portable
 		Dictionary<int, int> _actorLocationMap = new Dictionary<int, int>();
 		Cloth _cloth;
 		Entity _player;
-
-		/// <summary>
-		/// Mapping from UI implementation to game.
-		/// </summary>
-		/// <remarks>
-		/// Enforce a strong firewall between the game the UI implmentation.
-		/// </remarks>
-		/// <typeparam name="Key"></typeparam>
-		/// <typeparam name="MD.PlayerInput"></typeparam>
-		/// <returns></returns>
-		public Dictionary<Inv.Key, MegaDungeon.PlayerInput> keyMap = new Dictionary<Key, MegaDungeon.PlayerInput>()
-		{
-			{Inv.Key.n1,MegaDungeon.PlayerInput.DOWNLEFT},
-			{Inv.Key.n2,MegaDungeon.PlayerInput.DOWN},
-			{Inv.Key.n3,MegaDungeon.PlayerInput.DOWNRIGHT},
-			{Inv.Key.n4,MegaDungeon.PlayerInput.LEFT},
-			{Inv.Key.n5,MegaDungeon.PlayerInput.NONE},
-			{Inv.Key.n6,MegaDungeon.PlayerInput.RIGHT},
-			{Inv.Key.n7,MegaDungeon.PlayerInput.UPLEFT},
-			{Inv.Key.n8,MegaDungeon.PlayerInput.UP},
-			{Inv.Key.n9,MegaDungeon.PlayerInput.UPRIGHT},
-			{Inv.Key.Up,MegaDungeon.PlayerInput.UP},
-			{Inv.Key.Down,MegaDungeon.PlayerInput.DOWN},
-			{Inv.Key.Left,MegaDungeon.PlayerInput.LEFT},
-			{Inv.Key.Right,MegaDungeon.PlayerInput.RIGHT},
-		};
 
 		public MegaDungeon.PlayerInput LastInput { get => _lastInput; set => _lastInput = value; }
 
@@ -96,9 +72,9 @@ namespace Portable
 
 		public void AcceptInput(Inv.Keystroke keystroke)
 		{
-			if (keyMap.ContainsKey(keystroke.Key))
+			if (KeyMap.ContainsKey(keystroke.Key))
 			{
-				_lastInput = keyMap[keystroke.Key];
+				_lastInput = KeyMap[keystroke.Key];
 			}
 		}
 
