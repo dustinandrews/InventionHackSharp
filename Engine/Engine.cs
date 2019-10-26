@@ -6,21 +6,12 @@ using EntityComponentSystemCSharp.Components;
 using EntityComponentSystemCSharp.Systems;
 using RogueSharp;
 using MegaDungeon.Contracts;
+using static MegaDungeon.EngineConstants;
 
 namespace MegaDungeon
 {
 	public class Engine
 	{
-
-		const int FLOOR = 848;
-		const int VERTICALWALL = 830;
-		const int HORIZWALL = 834;
-		const int INNERCORNERWALL = 832;
-		const int OUTERCORNERWALL = 832;
-		const int DARK = 829;
-		const int DOOR = 844;
-		const int PLAYER = 4;
-
 		Random random = new Random();
 		int _width;
 		int _height;
@@ -29,62 +20,35 @@ namespace MegaDungeon
 		RogueSharp.Map _map;
 		ITileManager _tileManager;
 		LocationComponent _playerLocation;
-
-		Point UP = new Point(0,-1);
-		Point UPRIGHT = new Point(1, -1);
-		Point RIGHT = new Point(1, 0);
-		Point DOWNRIGHT = new Point(1, 1);
-		Point DOWN = new Point(0, 1);
-		Point DOWNLEFT = new Point(-1, 1);
-		Point LEFT = new Point(-1, 0);
-		Point UPLEFT = new Point(-1, -1);
-		Point CENTER = new Point(0,0);
-		Point[] _compassPoints;
 		List<int[]> _doorways = new List<int[]>();
-		Dictionary<PlayerInput, Point> _cardinalVectors;
-
 		EntityManager entityManager = new EntityManager();
 		public EntityManager EntityManager => entityManager;
 		List<RogueSharp.ICell> _walkable = new List<RogueSharp.ICell>();
 		List<ISystem> _turnSystems = new List<ISystem>();
 
-		int _playerSiteDistance = 2;
+		int _playerSiteDistance = 20;
 
-		public int PlayerSightDistance
-		{ get => _playerSiteDistance; set => _playerSiteDistance = value;}
-
+		/// <summary>
+		/// A grid of glyphs representing the discovered map.
+		/// </summary>
+		/// <value></value>
 		public int[,] Floor
 		{
 			get{ return _floor_view;}
 		}
 
+		/// <summary>
+		/// Dungeon game engine, seperate from any UI.
+		/// </summary>
+		/// <param name="width"></param>
+		/// <param name="height"></param>
+		/// <param name="tileManager"></param>
 		public Engine(int width, int height, ITileManager tileManager)
 		{
 			_width = width;
 			_height = height;
 			_floor = new int[width, height];
-
 			_tileManager = tileManager;
-
-			_cardinalVectors = new Dictionary<PlayerInput, Point>()
-			{
-				{PlayerInput.UP, UP},
-				{PlayerInput.UPRIGHT, UPRIGHT},
-				{PlayerInput.RIGHT, RIGHT},
-				{PlayerInput.DOWNRIGHT, DOWNRIGHT},
-				{PlayerInput.DOWN, DOWN},
-				{PlayerInput.DOWNLEFT, DOWNLEFT},
-				{PlayerInput.LEFT, LEFT},
-				{PlayerInput.UPLEFT, UPLEFT}
-			};
-
-			_compassPoints = new[] {
-				UPLEFT, UP, UPRIGHT,
-				LEFT, CENTER, RIGHT,
-				DOWNLEFT, DOWN, DOWNRIGHT
-			};
-
-			_doorways.AddRange(new[] { Filters.DoorWay, Filters.DoorWay2, Filters.DoorWay3, Filters.DoorWay4 });
 
 			RandomizeFloor();
 			InitCellGlyphs();
@@ -92,56 +56,6 @@ namespace MegaDungeon
 			UpdateViews();
 			// Add systems that should run every turn here.
 			_turnSystems.Add(new MovementSystem(entityManager));
-		}
-
-		private void InitCellGlyphs()
-		{
-			foreach (var cell in _map.GetAllCells())
-			{
-				var sample = GetCellFilterArray(cell);
-				var glyph = DARK;
-				var stotal = sample.Total();
-
-				if (sample.Total() < 9)
-				{
-					if (!cell.IsWalkable)
-					{
-						// Total number of filled in blocks in the 3x3 area including this cell
-						if (stotal == 8)
-						{
-							glyph = INNERCORNERWALL;
-						}
-						else if (stotal == 4 || stotal == 5)
-						{
-							glyph = OUTERCORNERWALL;
-						}
-						else if (FilterMatch(sample, Filters.Horizontal))
-						{
-							glyph = HORIZWALL;
-						}
-						else if (FilterMatch(sample, Filters.Vertical))
-						{
-							glyph = VERTICALWALL;
-						}
-						else if (MultiplyFilter(sample, Filters.Horizontal).Total() == 1)
-						{
-							glyph = HORIZWALL;
-						}
-						else if (MultiplyFilter(sample, Filters.Vertical).Total() == 1)
-						{
-							glyph = VERTICALWALL;
-						}
-					}
-					else
-					{
-						glyph = FLOOR;
-
-						// Store intial walkable cells in order to place new entities in valid locations.
-						_walkable.Add(cell);
-					}
-				}
-				_floor[cell.X, cell.Y] = glyph;
-			}
 		}
 
 		/// <summary>
@@ -161,15 +75,19 @@ namespace MegaDungeon
 			actor.AddComponent(new GlyphComponent{glyph = PLAYER});
 		}
 
+		/// <summary>
+		/// Given the player input, advance the game one turn.
+		/// </summary>
+		/// <param name="playerInput"></param>
 		public void DoTurn(PlayerInput playerInput)
 		{
 			var player = entityManager.GetAllEntitiesWithComponent<PlayerComponent>().FirstOrDefault();
 			if(player != null)
 			{
 				var position = player.GetComponent<LocationComponent>();
-				if(_cardinalVectors.ContainsKey(playerInput))
+				if(INPUTMAP.ContainsKey(playerInput))
 				{
-					var delta = _cardinalVectors[playerInput];
+					var delta = INPUTMAP[playerInput];
 					var desired = delta + new Point(position.X, position.Y);
 					var desiredComp = player.GetComponent<DestinationComponent>();
 					if(desiredComp == null)
@@ -191,49 +109,57 @@ namespace MegaDungeon
 			UpdateViews();
 		}
 
-		bool FilterMatch(int[] sample, int[] filter)
+		/// <summary>
+		/// Examine each cell and pick a suitable glyph for walls.
+		/// </summary>
+		private void InitCellGlyphs()
 		{
-			var total = FilterTotal(sample, filter);
-			var ftotal = filter.Total();
-			return total == ftotal;
-		}
-		int[] GetCellFilterArray(ICell cell)
-		{
-			var outArray = new int[_compassPoints.Length];
-			for(int i =0 ; i <_compassPoints.Length; i++)
+			foreach (var cell in _map.GetAllCells())
 			{
-				var point = new Point(cell.X, cell.Y) + _compassPoints[i];
-				outArray[i] = 1;
+				var sample = Filters.GetCellFilterArray(cell, _map);
+				var glyph = DARK;
+				var stotal = sample.Total();
 
-				if(point.X > -1 && point.X < _width && point.Y > -1 && point.Y < _height)
+				if (sample.Total() < 9) // 9 == all surounding cells impassible
 				{
-					if(_map.GetCell(point.X, point.Y).IsWalkable)
+					if (!cell.IsWalkable)
 					{
-						outArray[i] = 0;
+						// Total number of filled in blocks in the 3x3 area including this cell
+						if (stotal == 8)
+						{
+							glyph = INNERCORNERWALL;
+						}
+						else if (stotal == 4 || stotal == 5)
+						{
+							glyph = OUTERCORNERWALL;
+						}
+						else if (Filters.FilterMatch(sample, Filters.Horizontal))
+						{
+							glyph = HORIZWALL;
+						}
+						else if (Filters.FilterMatch(sample, Filters.Vertical))
+						{
+							glyph = VERTICALWALL;
+						}
+						else if (Filters.MultiplyFilter(sample, Filters.Horizontal).Total() == 1)
+						{
+							glyph = HORIZWALL;
+						}
+						else if (Filters.MultiplyFilter(sample, Filters.Vertical).Total() == 1)
+						{
+							glyph = VERTICALWALL;
+						}
+					}
+					else
+					{
+						glyph = FLOOR;
+
+						// Store intial walkable cells in order to place new entities in valid locations.
+						_walkable.Add(cell);
 					}
 				}
+				_floor[cell.X, cell.Y] = glyph;
 			}
-			return outArray;
-		}
-
-		int[] MultiplyFilter(int[] sample, int[] filter)
-		{
-			if(sample.Length != filter.Length)
-			{
-				throw new ArgumentException("sample and filter must be the same size.");
-			}
-			var outArray = new int[filter.Length];
-			for(int i = 0; i < filter.Length; i++)
-			{
-				outArray[i] = sample[i] * filter[i];
-			}
-			return outArray;
-		}
-
-		int FilterTotal(int[] sample, int[] filter)
-		{
-			var mult = MultiplyFilter(sample, filter);
-			return mult.Total();
 		}
 
 		/// <summary>
