@@ -21,12 +21,14 @@ namespace Portable
 		Dictionary<Entity, LocationComponent> _lastLocation = new Dictionary<Entity, LocationComponent>();
 		Dictionary<int, int> _actorLocationMap = new Dictionary<int, int>();
 		Cloth _cloth;
+		Dock _outerDock;
+		Dock _innerDock;
 		Entity _player;
 
 		public MegaDungeon.PlayerInput LastInput { get => _lastInput; set => _lastInput = value; }
 
 		/// <summary>
-		/// Constructor for Main UI logic class.
+		/// Constructor for Main UI logic class. Sets up all UI windows.
 		/// </summary>
 		/// <param name="surface"></param>
 		/// <param name="horizontalCellCount"></param>
@@ -38,7 +40,46 @@ namespace Portable
 			_verticalCellCount = vericalCellCount;
 			_surface = surface;
 			_cloth = CreateCloth();
-			_surface.Content = _cloth;
+			_outerDock = surface.NewDock(Orientation.Vertical);
+			_innerDock = surface.NewDock(Orientation.Horizontal);
+			
+			var l1 = surface.NewLabel();
+			l1.Text = "outer header";
+			l1.Font.Colour = Colour.White;
+			l1.Border.Set(1);
+			l1.Border.Colour = Colour.Tomato;
+			var l2 = surface.NewLabel();
+			l2.Text = "outer footer";
+			l2.Font.Colour = Colour.White;
+			l2.Border.Set(1);
+			l2.Border.Colour = Colour.Tomato;
+
+			var lc = surface.NewLabel();
+			lc.Text = "client";
+			lc.Font.Colour = Colour.White;
+			lc.Border.Set(1);
+			lc.Border.Colour = Colour.Magenta;
+
+			_outerDock.AddHeader(l1);
+			_outerDock.AddClient(_innerDock);
+			_outerDock.AddFooter(l2);
+
+			var l3 = surface.NewLabel();
+			l3.Text = "inner header";
+			l3.Font.Colour = Colour.White;
+			l3.Border.Colour = Colour.Tomato;
+			l3.Border.Set(1);
+			var l4 = surface.NewLabel();
+			l4.Text = "inner footer";
+			l4.Font.Colour = Colour.White;
+			l4.Border.Colour = Colour.Tomato;
+			l4.Border.Set(1);
+			_innerDock.AddHeader(l3);
+			_innerDock.AddClient(_cloth);
+			_innerDock.AddFooter(l4);
+
+
+			_surface.Content = _outerDock;
 			_cloth.Draw();
 			_surface.ComposeEvent += () =>
 			{
