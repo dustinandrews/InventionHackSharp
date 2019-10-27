@@ -123,12 +123,7 @@ namespace Inv
 				if (PanningY < -BufferY)
 					PanningY = -BufferY;
 
-				this.PanningWidth = CanvasWidth / CellSizeProperty;
-				this.PanningHeight = CanvasHeight / CellSizeProperty;
-				this.PanningLeft = PanningX / CellSizeProperty;
-				this.PanningTop = PanningY / CellSizeProperty;
-				this.PanningRight = PanningLeft + PanningWidth + 1;
-				this.PanningBottom = PanningTop + PanningHeight + 1;
+				SetPanningParameters();
 
 				var CellY = -(PanningY % CellSizeProperty);
 
@@ -153,6 +148,25 @@ namespace Inv
 					CellY += CellSizeProperty;
 				}
 			};
+		}
+
+		void SetPanningParameters()
+		{
+				var CanvasWidth = Base.Window.Width;
+				var CanvasHeight = Base.Window.Height;
+				this.PanningWidth = CanvasWidth / CellSizeProperty;
+				this.PanningHeight = CanvasHeight / CellSizeProperty;
+				this.PanningLeft = PanningX / CellSizeProperty;
+				this.PanningTop = PanningY / CellSizeProperty;
+				this.PanningRight = PanningLeft + PanningWidth + 1;
+				this.PanningBottom = PanningTop + PanningHeight + 1;
+		}
+
+		public void SetPanningXY(int X, int Y)
+		{
+			SetPanningParameters();
+			PanningX = (int) ((X - (PanningWidth / 2.0)) * CellSize);
+			PanningY = (int) ((Y - (PanningHeight / 2.0)) * CellSize);
 		}
 
 		public void KeepXYOnScreen(int X, int Y)

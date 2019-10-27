@@ -47,20 +47,20 @@ namespace Portable
 			_outerDock = surface.NewDock(Orientation.Vertical);
 			_innerDock = surface.NewDock(Orientation.Horizontal);
 			
-			_topLabel = InitLabel("Top");
-			_bottomLabel = InitLabel("Bottom");
+			_topLabel = InitLabel("Top", ColorPallette.PrimaryColorDark, ColorPallette.PrimaryColorLight, ColorPallette.PrimaryColorDarkAccent);
+			_bottomLabel = InitLabel("Bottom", ColorPallette.Secondary1ColorDark, ColorPallette.Secondary1ColorLight, ColorPallette.Secondary1ColorDarkAccent);
 			_outerDock.AddHeader(_topLabel);
 			_outerDock.AddClient(_innerDock);
 			_outerDock.AddFooter(_bottomLabel);
 
-			_leftLabel = InitLabel("Left");
-			_rightLabel = InitLabel("Right");
+			_leftLabel = InitLabel("Left", ColorPallette.Secondary2ColorDark, ColorPallette.Secondary2ColorLight, ColorPallette.Secondary2ColorDarkAccent);
+			_rightLabel = InitLabel("Right", ColorPallette.ComplementColorDark, ColorPallette.ComplementColorLight, ColorPallette.ComplementColorDarkAccent);
 			_innerDock.AddHeader(_leftLabel);
 			_innerDock.AddClient(_cloth);
 			_innerDock.AddFooter(_rightLabel);
 
 			_surface.Content = _outerDock;
-			_cloth.Draw();
+			
 			_surface.ComposeEvent += () =>
 			{
 				Update();
@@ -68,7 +68,13 @@ namespace Portable
 			
 			_engine = new MegaDungeon.Engine(_horizontalCellCount, _verticalCellCount, _tileManager);
 			_player = _engine.EntityManager.GetAllEntitiesWithComponent<PlayerComponent>().First();
+			var location = _player.GetComponent<LocationComponent>();
+
 			GetActorsFromEngine();
+			var playerLocation = _lastLocation[_player];
+			_cloth.Draw();
+			_cloth.SetPanningXY(location.X, location.Y);
+
 		}
 
 		/// <summary>
@@ -99,12 +105,13 @@ namespace Portable
 			}
 		}
 
-		Label InitLabel(string text)
+		Label InitLabel(string text, Colour background, Colour fontColor, Colour border)
 		{
 			var newLabel = _surface.NewLabel();
 			newLabel.Text = text;
-			newLabel.Font.Colour = Colour.White;
-			newLabel.Border.Colour = Colour.Tomato;
+			newLabel.Background.Colour = background;
+			newLabel.Font.Colour = fontColor;
+			newLabel.Border.Colour = border;
 			newLabel.Border.Set(1);
 			return newLabel;
 		}
