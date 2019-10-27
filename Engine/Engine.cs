@@ -10,7 +10,7 @@ using static MegaDungeon.EngineConstants;
 
 namespace MegaDungeon
 {
-	public class Engine
+    public class Engine
 	{
 		Random random = new Random();
 		int _width;
@@ -25,11 +25,15 @@ namespace MegaDungeon
 		public EntityManager EntityManager => entityManager;
 		List<RogueSharp.ICell> _walkable = new List<RogueSharp.ICell>();
 		List<ISystem> _turnSystems = new List<ISystem>();
-
-		int _playerSiteDistance = 5;
-
 		Queue<string> _messages = new Queue<string>();
 		int _messageLimit = 5;
+		Sight _playerSiteDistance;
+		EntityManager.Entity _player;
+
+		public EntityManager.Entity PlayerEntity
+		{
+			get => _player;
+		}
 
 		public Point PlayerLocation
 		{
@@ -77,13 +81,19 @@ namespace MegaDungeon
 		public void InitializePlayer()
 		{
 			var actor = entityManager.CreateEntity();
-			actor.AddComponent<Actor>();
+			actor.AddComponent(new Actor(){Gold = 0, Speed  = 10});
+			actor.AddComponent(new Attack(){Accuracy = 50, Power = 2});
+			actor.AddComponent(new Defense(){Chance = 10});
+			actor.AddComponent(new Alive(){Health = 100, MaxHealth = 100});
+			actor.AddComponent(new Name(){NameString = "Rogue"});
 			actor.AddComponent<Player>();
+			actor.AddComponent(_playerSiteDistance = new Sight(){Range = 5});
+			actor.AddComponent(new Glyph{glyph = PLAYER});
 			var location = random.Next(0, _walkable.Count);
 			var cell = _walkable[location];
 			_playerLocation = new Location(){X = cell.X, Y = cell.Y};
 			actor.AddComponent(_playerLocation);
-			actor.AddComponent(new Glyph{glyph = PLAYER});
+			_player = actor;
 		}
 
 		/// <summary>
@@ -184,7 +194,7 @@ namespace MegaDungeon
 		/// </summary>
 		void UpdateViews()
 		{
-			var circleView = GetFieldOfView(_playerLocation.X, _playerLocation.Y, _playerSiteDistance, _map);
+			var circleView = GetFieldOfView(_playerLocation.X, _playerLocation.Y, _playerSiteDistance.Range, _map);
 			foreach(var cell in circleView)
 			{
 				_map.AppendFov(cell.X, cell.Y, 0, true);

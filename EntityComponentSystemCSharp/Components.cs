@@ -17,6 +17,27 @@ namespace EntityComponentSystemCSharp.Components
 
 	}
 
+	public class Attack : IComponent
+	{
+		public int Power;
+		public int Accuracy;
+	}
+
+	public class Defense : IComponent
+	{
+		public int Chance;
+	}
+
+	public class Sight : IComponent
+	{
+		public int Range;
+	}
+
+	public class Alive : IComponent
+	{
+		public int Health;
+		public int MaxHealth;
+	}
 
 	public class Destination : PointWrapper, IComponent
 	{
@@ -30,7 +51,8 @@ namespace EntityComponentSystemCSharp.Components
 
 	public class Actor : IComponent
 	{
-
+		public int Speed;
+		public int Gold;
 	}
 
 	public class Glyph : IComponent
@@ -44,30 +66,31 @@ namespace EntityComponentSystemCSharp.Components
 
 	public class Demand : IComponent
 	{
-		public Dictionary<string,int> Demands = new Dictionary<string, int>();
+		public Dictionary<string, int> Demands = new Dictionary<string, int>();
 	}
 	public class Item : IComponent
 	{
 		public string Type = "";
 	}
 
-	public class Tag : IComponent
+	public class Name : IComponent
 	{
-		public string TagString = null;
+		public string NameString = null;
 	}
-	public class Producer: IComponent
+
+	public class Producer : IComponent
 	{
 		public List<ProductionItem> ProducedItems = new List<ProductionItem>();
 
 		public class ProductionItem
-			{
+		{
 			public string product = null;
 			public float rate = 0.0f;
 			public float inprogress = 0;
 		}
 	}
 
-	public class Inventory: IComponent
+	public class Inventory : IComponent
 	{
 		public List<Entity> Items = new List<Entity>();
 		public int Size = int.MaxValue;

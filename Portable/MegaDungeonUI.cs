@@ -26,7 +26,7 @@ namespace Portable
 		Label _topLabel;
 		Label _bottomLabel;
 		Label _rightLabel;
-		Label _leftLabel;
+		EntityData _leftPanel;
 
 		public MegaDungeon.PlayerInput LastInput { get => _lastInput; set => _lastInput = value; }
 
@@ -55,9 +55,15 @@ namespace Portable
 			_outerDock.AddClient(_innerDock);
 			_outerDock.AddFooter(_bottomLabel);
 
-			_leftLabel = InitLabel("Left", ColorPallette.Secondary2ColorLightest, ColorPallette.Secondary2ColorDarkest, ColorPallette.Secondary2ColorDarker);
+			var vstack = _surface.NewVerticalStack();
+			vstack.Background.Colour = ColorPallette.Secondary1ColorDarkest;
+			vstack.Border.Set(5);
+			vstack.Border.Colour = ColorPallette.Secondary1ColorDarkest;
+
+			_leftPanel = new EntityData(_surface, ColorPallette.Secondary1ColorLightest, ColorPallette.Secondary1ColorDarkest);
+			vstack.AddPanel(_leftPanel.Table);
 			_rightLabel = InitLabel("Right", ColorPallette.ComplementColorLightest, ColorPallette.ComplementColorDarkest, ColorPallette.ComplementColorDarker);
-			_innerDock.AddHeader(_leftLabel);
+			_innerDock.AddHeader(vstack);
 			_innerDock.AddClient(_cloth);
 			_innerDock.AddFooter(_rightLabel);
 			
@@ -65,7 +71,6 @@ namespace Portable
 			
 			_surface.ComposeEvent += Warmup();
 		}
-
 
 		/// <summary>
 		/// Check for full _cloth init before going to usual update
@@ -87,6 +92,7 @@ namespace Portable
 				_surface.ComposeEvent -= Warmup();
 				_cloth.SetPanningXY(_engine.PlayerLocation.X, _engine.PlayerLocation.Y);
 				GetActorsFromEngine();
+				_leftPanel.SetData(_engine.PlayerEntity);
 				_surface.ComposeEvent += () => Update();
 				_cloth.Draw();
 			});
@@ -168,15 +174,15 @@ namespace Portable
 
 				if (!_lastLocation.ContainsKey(actor))
 				{
-                    _lastLocation.Add(actor, new EntityComponentSystemCSharp.Components.Location(){ X = location.X, Y = location.Y});
-                    _actorLocationMap.Add(location.X + (location.Y * _horizontalCellCount), glyph.glyph);
+					_lastLocation.Add(actor, new EntityComponentSystemCSharp.Components.Location(){ X = location.X, Y = location.Y});
+					_actorLocationMap.Add(location.X + (location.Y * _horizontalCellCount), glyph.glyph);
 				}
 
 				var last = _lastLocation[actor];
 				if (last != location)
 				{
-                    _actorLocationMap.Remove(last.X + (last.Y * _horizontalCellCount));
-                    _actorLocationMap.Add(location.X + (location.Y * _horizontalCellCount), glyph.glyph);
+					_actorLocationMap.Remove(last.X + (last.Y * _horizontalCellCount));
+					_actorLocationMap.Add(location.X + (location.Y * _horizontalCellCount), glyph.glyph);
 				}
 
 				last.X = location.X;
