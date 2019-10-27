@@ -10,28 +10,28 @@ namespace Portable
 	{
 
 		public static Colour PrimaryColor;
-		public static Colour PrimaryColorLight;
-		public static Colour PrimaryColorLightAccent;
-		public static Colour PrimaryColorDark;
-		public static Colour PrimaryColorDarkAccent;
+		public static Colour PrimaryColorLightest;
+		public static Colour PrimaryColorLighter;
+		public static Colour PrimaryColorDarker;
+		public static Colour PrimaryColorDarkest;
 
 		public static Colour Secondary1Color;
-		public static Colour Secondary1ColorLight;
-		public static Colour Secondary1ColorLightAccent;
-		public static Colour Secondary1ColorDark;
-		public static Colour Secondary1ColorDarkAccent;
+		public static Colour Secondary1ColorLightest;
+		public static Colour Secondary1ColorLighter;
+		public static Colour Secondary1ColorDarker;
+		public static Colour Secondary1ColorDarkest;
 
 		public static Colour Secondary2Color;
-		public static Colour Secondary2ColorLight;
-		public static Colour Secondary2ColorLightAccent;
-		public static Colour Secondary2ColorDark;
-		public static Colour Secondary2ColorDarkAccent;
+		public static Colour Secondary2ColorLightest;
+		public static Colour Secondary2ColorLighter;
+		public static Colour Secondary2ColorDarker;
+		public static Colour Secondary2ColorDarkest;
 
 		public static Colour ComplementColor;
-		public static Colour ComplementColorLight;
-		public static Colour ComplementColorLightAccent;
-		public static Colour ComplementColorDark;
-		public static Colour ComplementColorDarkAccent;
+		public static Colour ComplementColorLightest;
+		public static Colour ComplementColorLighter;
+		public static Colour ComplementColorDarker;
+		public static Colour ComplementColorDarkest;
 
 
 		static ColorPallette()
@@ -51,28 +51,28 @@ namespace Portable
 				}
 			}
 			PrimaryColor = colors[0];
-			PrimaryColorLight = colors[1];
-			PrimaryColorLightAccent = colors[2];
-			PrimaryColorDark = colors[3];
-			PrimaryColorDarkAccent = colors[4];
+			PrimaryColorLightest = colors[1];
+			PrimaryColorLighter = colors[2];
+			PrimaryColorDarker = colors[3];
+			PrimaryColorDarkest = colors[4];
 
 			Secondary1Color = colors[5];
-			Secondary1ColorLight = colors[6];
-			Secondary1ColorLightAccent = colors[7];
-			Secondary1ColorDark = colors[8];
-			Secondary1ColorDarkAccent = colors[9];
+			Secondary1ColorLightest = colors[6];
+			Secondary1ColorLighter = colors[7];
+			Secondary1ColorDarker = colors[8];
+			Secondary1ColorDarkest = colors[9];
 
 			Secondary2Color = colors[10];
-			Secondary2ColorLight = colors[11];
-			Secondary2ColorLightAccent = colors[12];
-			Secondary2ColorDark = colors[13];
-			Secondary2ColorDarkAccent = colors[14];
+			Secondary2ColorLightest = colors[11];
+			Secondary2ColorLighter = colors[12];
+			Secondary2ColorDarker = colors[13];
+			Secondary2ColorDarkest = colors[14];
 
 			ComplementColor = colors[15];
-			ComplementColorLight = colors[16];
-			ComplementColorLightAccent = colors[17];
-			ComplementColorDark = colors[18];
-			ComplementColorDarkAccent = colors[19];
+			ComplementColorLightest = colors[16];
+			ComplementColorLighter = colors[17];
+			ComplementColorDarker = colors[18];
+			ComplementColorDarkest = colors[19];
 		}
 
 		static Regex rgbRe = new Regex(@" rgb\((?<r>[ \d]+),(?<g>[ \d]+),(?<b>[ \d]+)\)");

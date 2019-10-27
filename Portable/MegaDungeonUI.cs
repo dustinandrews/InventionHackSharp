@@ -47,14 +47,14 @@ namespace Portable
 			_outerDock = surface.NewDock(Orientation.Vertical);
 			_innerDock = surface.NewDock(Orientation.Horizontal);
 			
-			_topLabel = InitLabel("Top", ColorPallette.PrimaryColorDark, ColorPallette.PrimaryColorLight, ColorPallette.PrimaryColorDarkAccent);
-			_bottomLabel = InitLabel("Bottom", ColorPallette.Secondary1ColorDark, ColorPallette.Secondary1ColorLight, ColorPallette.Secondary1ColorDarkAccent);
+			_topLabel = InitLabel("Top", ColorPallette.PrimaryColorLightest, ColorPallette.PrimaryColorDarkest, ColorPallette.PrimaryColorDarker);
+			_bottomLabel = InitLabel("Bottom", ColorPallette.Secondary1ColorLightest, ColorPallette.Secondary1ColorDarkest, ColorPallette.Secondary1ColorDarker);
 			_outerDock.AddHeader(_topLabel);
 			_outerDock.AddClient(_innerDock);
 			_outerDock.AddFooter(_bottomLabel);
 
-			_leftLabel = InitLabel("Left", ColorPallette.Secondary2ColorDark, ColorPallette.Secondary2ColorLight, ColorPallette.Secondary2ColorDarkAccent);
-			_rightLabel = InitLabel("Right", ColorPallette.ComplementColorDark, ColorPallette.ComplementColorLight, ColorPallette.ComplementColorDarkAccent);
+			_leftLabel = InitLabel("Left", ColorPallette.Secondary2ColorLightest, ColorPallette.Secondary2ColorDarkest, ColorPallette.Secondary2ColorDarker);
+			_rightLabel = InitLabel("Right", ColorPallette.ComplementColorLightest, ColorPallette.ComplementColorDarkest, ColorPallette.ComplementColorDarker);
 			_innerDock.AddHeader(_leftLabel);
 			_innerDock.AddClient(_cloth);
 			_innerDock.AddFooter(_rightLabel);
@@ -105,7 +105,7 @@ namespace Portable
 			}
 		}
 
-		Label InitLabel(string text, Colour background, Colour fontColor, Colour border)
+		Label InitLabel(string text, Colour fontColor,  Colour border, Colour background)
 		{
 			var newLabel = _surface.NewLabel();
 			newLabel.Text = text;
