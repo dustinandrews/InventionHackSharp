@@ -93,8 +93,9 @@ namespace Portable
 				GetActorsFromEngine();
 				var playerLocation = _lastLocation[_player];
 				_cloth.KeepXYOnScreen(playerLocation.X, playerLocation.Y);
-				_cloth.Draw();
+
 				_bottomLabel.Text = string.Join("\n", _engine.Messages);
+				_cloth.Draw();
 			}
 		}
 

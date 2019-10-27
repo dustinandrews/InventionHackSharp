@@ -47,6 +47,11 @@ namespace Inv
 				Base.Draw();
 			};
 
+			Base.AdjustEvent += () =>
+			{
+				Base.Draw();
+			};
+
 			Base.MoveEvent += (Point) =>
 			{
 				if (PanningPoint != null)
@@ -90,8 +95,9 @@ namespace Inv
 
 			Base.DrawEvent += (DC) =>
 			{
-				var CanvasWidth = Base.Window.Width;
-				var CanvasHeight = Base.Window.Height;
+				var CanvasDimension = Base.GetDimension();
+				var CanvasWidth = CanvasDimension.Width;
+				var CanvasHeight = CanvasDimension.Height;
 				var MapWidth = Dimension.Width * CellSizeProperty;
 				var MapHeight = Dimension.Height * CellSizeProperty;
 				var BufferX = Math.Max(300, CanvasWidth - MapWidth);
@@ -152,8 +158,9 @@ namespace Inv
 
 		void SetPanningParameters()
 		{
-				var CanvasWidth = Base.Window.Width;
-				var CanvasHeight = Base.Window.Height;
+				var CanvasDimensions = Base.GetDimension();
+				var CanvasWidth = CanvasDimensions.Width;
+				var CanvasHeight = CanvasDimensions.Height;
 				this.PanningWidth = CanvasWidth / CellSizeProperty;
 				this.PanningHeight = CanvasHeight / CellSizeProperty;
 				this.PanningLeft = PanningX / CellSizeProperty;
