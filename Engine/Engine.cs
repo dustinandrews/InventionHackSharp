@@ -28,6 +28,14 @@ namespace MegaDungeon
 
 		int _playerSiteDistance = 5;
 
+		Queue<string> _messages = new Queue<string>();
+		int _messageLimit = 10;
+
+		public string[] Messages
+		{
+			get => _messages.ToArray();
+		}
+
 		/// <summary>
 		/// A grid of glyphs representing the discovered map.
 		/// </summary>
@@ -104,6 +112,12 @@ namespace MegaDungeon
 			foreach(var system in _turnSystems)
 			{
 				system.Run();
+			}
+
+			_messages.Enqueue(playerInput.ToString());
+			while(_messages.Count() > _messageLimit)
+			{
+				_messages.Dequeue();
 			}
 
 			UpdateViews();
