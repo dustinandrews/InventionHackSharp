@@ -4,14 +4,17 @@ using static EntityComponentSystemCSharp.EntityManager;
 
 namespace EntityComponentSystemCSharp.Components
 {
+	/// <summary>
+	/// Defines allowable components. Components SHOULD only have data members.
+	/// Components SHOULD be simple to serialize.
+	/// </summary>
+	/// <remarks>
+	/// An entity may one have ONE of a a give component type.
+	/// Use collections of entities for aggregates.
+	/// </remarks>
 	public interface IComponent
 	{
 
-	}
-
-	public class MapComponent : IComponent
-	{
-		public RogueSharp.IMap map;
 	}
 
 	public class DestinationComponent : PointWrapper, IComponent
@@ -36,10 +39,6 @@ namespace EntityComponentSystemCSharp.Components
 
 	public class LocationComponent : PointWrapper, IComponent
 	{
-		public LocationComponent Clone()
-		{
-			return new LocationComponent(){X = this.X, Y = this.Y};
-		}
 	}
 
 	public class DemandComponent : IComponent

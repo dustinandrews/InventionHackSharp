@@ -36,16 +36,19 @@ namespace Portable
 		/// </summary>
 		/// <param name="surface"></param>
 		/// <param name="horizontalCellCount"></param>
-		/// <param name="vericalCellCount"></param>
-		public MegaDungeonUI(Surface surface, int horizontalCellCount, int vericalCellCount)
+		/// <param name="verticalCellCount"></param>
+		public MegaDungeonUI(Surface surface, int horizontalCellCount, int verticalCellCount)
 		{
-			_tileManager = new TileManager("absurd64.bmp", System.IO.File.ReadAllText("tiledata.json"));
 			_horizontalCellCount = horizontalCellCount;
-			_verticalCellCount = vericalCellCount;
+			_verticalCellCount = verticalCellCount;
+
+			_tileManager = new TileManager("absurd64.bmp", System.IO.File.ReadAllText("tiledata.json"));
+			_engine = new MegaDungeon.Engine(horizontalCellCount, verticalCellCount, _tileManager);
+
 			_surface = surface;
 			_cloth = CreateCloth();
-			_outerDock = surface.NewDock(Orientation.Vertical);
-			_innerDock = surface.NewDock(Orientation.Horizontal);
+			_outerDock = _surface.NewDock(Orientation.Vertical);
+			_innerDock = _surface.NewDock(Orientation.Horizontal);
 			
 			_topLabel = InitLabel("Top", ColorPallette.PrimaryColorLightest, ColorPallette.PrimaryColorDarkest, ColorPallette.PrimaryColorDarker);
 			_bottomLabel = InitLabel("Bottom", ColorPallette.Secondary1ColorLightest, ColorPallette.Secondary1ColorDarkest, ColorPallette.Secondary1ColorDarker);
@@ -58,23 +61,36 @@ namespace Portable
 			_innerDock.AddHeader(_leftLabel);
 			_innerDock.AddClient(_cloth);
 			_innerDock.AddFooter(_rightLabel);
-
+			
 			_surface.Content = _outerDock;
 			
-			_surface.ComposeEvent += () =>
+			_surface.ComposeEvent += Warmup();
+		}
+
+
+		/// <summary>
+		/// Check for full _cloth init before going to usual update
+		/// </summary>
+		/// <returns>null</returns>
+		/// <remarks>
+		/// Update gets called a few times before the window is fully laid out.
+		/// When base dimensions are available center the player and connect main Update();
+		/// Cannot use a lambda because -= won't be able to unregister without a method handle.
+		/// </remarks>
+		System.Action Warmup()
+		{
+			return new Action( () =>
 			{
-				Update();
-			};
-			
-			_engine = new MegaDungeon.Engine(_horizontalCellCount, _verticalCellCount, _tileManager);
-			_player = _engine.EntityManager.GetAllEntitiesWithComponent<PlayerComponent>().First();
-			var location = _player.GetComponent<LocationComponent>();
-
-			GetActorsFromEngine();
-			var playerLocation = _lastLocation[_player];
-			_cloth.Draw();
-			_cloth.SetPanningXY(location.X, location.Y);
-
+				if(_cloth.BaseDimension.Height == 0)
+				{
+					return;
+				}
+				_surface.ComposeEvent -= Warmup();
+				_cloth.SetPanningXY(_engine.PlayerLocation.X, _engine.PlayerLocation.Y);
+				GetActorsFromEngine();
+				_surface.ComposeEvent += () => Update();
+				_cloth.Draw();
+			});
 		}
 
 		/// <summary>
@@ -84,16 +100,17 @@ namespace Portable
 		/// This method is the pump for the game. It should be fast enough to always return in less than
 		/// one frame (1/60th sec.)
 		/// </remarks>
-		public void Update()
+		void Update()
 		{
+			// GetActorsFromEngine();
+			// var playerLocation = _lastLocation[_player];
+			// _cloth.SetPanningXY(playerLocation.X, playerLocation.Y);
 			if (_lastInput != MegaDungeon.PlayerInput.NONE)
 			{
 				_engine.DoTurn(_lastInput);
 				_lastInput = MegaDungeon.PlayerInput.NONE;
 				GetActorsFromEngine();
-				var playerLocation = _lastLocation[_player];
-				_cloth.KeepXYOnScreen(playerLocation.X, playerLocation.Y);
-
+				_cloth.KeepXYOnScreen(_engine.PlayerLocation.X, _engine.PlayerLocation.Y);
 				_bottomLabel.Text = string.Join("\n", _engine.Messages);
 				_cloth.Draw();
 			}
@@ -123,6 +140,7 @@ namespace Portable
 			var cloth = new Cloth();
 			cloth.Dimension = new Inv.Dimension(_horizontalCellCount, _verticalCellCount);
 			cloth.CellSize = (_surface.Window.Width / _horizontalCellCount) * 4; //How much of initial map to show.
+			cloth.Draw();
 			cloth.DrawEvent += (DC, patch) => Cloth_DrawEvent(DC, patch);
 			return cloth;
 		}
@@ -151,7 +169,7 @@ namespace Portable
 
 				if (!_lastLocation.ContainsKey(actor))
 				{
-					_lastLocation.Add(actor, location.Clone());
+					_lastLocation.Add(actor, new LocationComponent(){X = location.X, Y = location.Y});
 					_actorLocationMap.Add(location.X + (location.Y * _horizontalCellCount), glyph.glyph);
 				}
 

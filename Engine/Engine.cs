@@ -19,7 +19,7 @@ namespace MegaDungeon
 		int[,] _floor_view; // a copy to return to make _floor effectively readonly
 		RogueSharp.Map _map;
 		ITileManager _tileManager;
-		LocationComponent _playerLocation;
+		LocationComponent _playerLocation = new LocationComponent();
 		List<int[]> _doorways = new List<int[]>();
 		EntityManager entityManager = new EntityManager();
 		public EntityManager EntityManager => entityManager;
@@ -29,7 +29,12 @@ namespace MegaDungeon
 		int _playerSiteDistance = 5;
 
 		Queue<string> _messages = new Queue<string>();
-		int _messageLimit = 10;
+		int _messageLimit = 5;
+
+		public Point PlayerLocation
+		{
+			get => new Point(_playerLocation.X, _playerLocation.Y);
+		}
 
 		public string[] Messages
 		{
@@ -63,7 +68,7 @@ namespace MegaDungeon
 			InitializePlayer();
 			UpdateViews();
 			// Add systems that should run every turn here.
-			_turnSystems.Add(new MovementSystem(entityManager));
+			_turnSystems.Add(new MovementSystem(entityManager, _map));
 		}
 
 		/// <summary>
@@ -78,8 +83,6 @@ namespace MegaDungeon
 			var cell = _walkable[location];
 			_playerLocation = new LocationComponent(){X = cell.X, Y = cell.Y};
 			actor.AddComponent(_playerLocation);
-			var mapComponent = new MapComponent(){map = _map};
-			actor.AddComponent(mapComponent);
 			actor.AddComponent(new GlyphComponent{glyph = PLAYER});
 		}
 

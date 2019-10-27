@@ -25,8 +25,12 @@ namespace EntityComponentSystemCSharp.Systems
 
 	public class MovementSystem : SystemBase, ISystem
 	{
-		public MovementSystem(EntityManager em) : base(em)
+		IMap _map;
+		RogueSharp.PathFinder _pathfinder;
+		public MovementSystem(EntityManager em, IMap map) : base(em)
 		{
+			_map = map;
+			_pathfinder = new RogueSharp.PathFinder(_map, 1);
 		}
 
 		public override void Run()
@@ -35,14 +39,11 @@ namespace EntityComponentSystemCSharp.Systems
 			{
 				var current = entity.GetComponent<LocationComponent>();
 				var desired = entity.GetComponent<DestinationComponent>();
-				var map = entity.GetComponent<MapComponent>();
-				if(map != null && desired != null)
+				if(_map != null && desired != null)
 				{
-					
-					var start = map.map.GetCell(current.X, current.Y);
-					var dest = map.map.GetCell(desired.X, desired.Y);
-					var pathfinder = new RogueSharp.PathFinder(map.map, 1); //TODO cache the pathfinder
-					var path = pathfinder.TryFindShortestPath(start, dest);
+					var start = _map.GetCell(current.X, current.Y);
+					var dest = _map.GetCell(desired.X, desired.Y);
+					var path = _pathfinder.TryFindShortestPath(start, dest);
 					if(path != null)
 					{
 						var next = path.StepForward();

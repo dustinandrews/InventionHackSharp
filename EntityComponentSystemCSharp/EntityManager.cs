@@ -6,11 +6,15 @@ using System.Text;
 
 namespace EntityComponentSystemCSharp
 {
-	public partial class EntityManager
+	/// <summary>
+	/// Manages and stores entities and components.
+	/// Based on http://entity-systems.wikidot.com/rdbms-beta
+	/// </summary>
+	public class EntityManager
 	{
-		// Entities are just and only integers. Entity is a wrapper with a reference back to the entity
-		// manager to allow extension methods to work more fluently.
-		public class Entity
+		// Entities are just and only integers. Entity class is a wrapper with a reference back to the entity
+		// manager to allow extension methods to work more fluently. 
+		public sealed class Entity
 		{
 			private int _id;
 			private EntityManager _manager;
@@ -18,7 +22,7 @@ namespace EntityComponentSystemCSharp
 			public int Id { get{ return _id; } }
 			public EntityManager Manager { get { return _manager; } }
 
-			public Entity(int id, EntityManager manager)
+			internal Entity(int id, EntityManager manager)
 			{
 				_id = id;
 				_manager = manager;
@@ -30,12 +34,17 @@ namespace EntityComponentSystemCSharp
 			}
 		}
 
-		public IEnumerable<Entity> Entities => _entities.ToArray(); // RO version of current entities
+		public IEnumerable<Entity> Entities => _entities.ToArray(); // Read Only version of current entities for debugging
 		HashSet<Entity> _entities = new HashSet<Entity>();
-		// key is "{entityInt}+{typeof(component).ToString()}"
+
+		// key is $"{entityInt}+{typeof(component).ToString()}"
 		Dictionary<String, IComponent> _map = new Dictionary<String, IComponent>();
 		bool isFrozen = false;
 
+		/// <summary>
+		/// Add an entity to the collection
+		/// </summary>
+		/// <returns>New entity created</returns>
 		public Entity CreateEntity()
 		{
 			if(isFrozen)
@@ -54,6 +63,10 @@ namespace EntityComponentSystemCSharp
 			return entity;
 		}
 
+		/// <summary>
+		/// Permanently remove an enitity and all it's components. The ID will be re-used.
+		/// </summary>
+		/// <param name="entity"></param>
 		public void DestroyEntity(Entity entity)
 		{
 			if(isFrozen)
@@ -91,7 +104,6 @@ namespace EntityComponentSystemCSharp
 			return returnList;
 		}
 
-
 		public T GetComponent<T>(Entity entity) where T: class
 		{
 			CheckComponentAndThrow<T>();
@@ -116,6 +128,7 @@ namespace EntityComponentSystemCSharp
 		{
 			return GetAllComponentsOnEntity(entity.Id);
 		}
+
 		private List<IComponent> GetAllComponentsOnEntity(int id)
 		{
 			var returnList = new List<IComponent>();
@@ -150,7 +163,7 @@ namespace EntityComponentSystemCSharp
 			RemoveComponent(entity.Id, component);
 		}
 
-		public void RemoveComponent(int id, IComponent component)
+		internal void RemoveComponent(int id, IComponent component)
 		{
 			if(isFrozen)
 			{
@@ -168,7 +181,8 @@ namespace EntityComponentSystemCSharp
 		{
 			AddComponent(entity.Id, component);
 		}
-		public void AddComponent(int entityId, IComponent component)
+
+		void AddComponent(int entityId, IComponent component)
 		{
 			if(isFrozen)
 			{
@@ -192,11 +206,17 @@ namespace EntityComponentSystemCSharp
 			return component != null;
 		}
 
+		/// <summary>
+		/// Prevent any changes to entities and components for debugging.
+		/// </summary>
 		public void Freeze()
 		{
 			isFrozen = true;
 		}
 
+		/// <summary>
+		/// Allow changes to entities and components after Freeze-ing
+		/// </summary>
 		public void UnFreeze()
 		{
 			isFrozen = false;

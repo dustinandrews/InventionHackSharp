@@ -39,7 +39,7 @@ namespace Inv
 			this.CellSizeProperty = 32;
 			this.Patch = new Patch();
 
-			this.Base = Inv.Canvas.New();
+			Base = Inv.Canvas.New();
 			Base.PressEvent += (Point) =>
 			{
 				this.PanningPoint = Point;
@@ -171,7 +171,6 @@ namespace Inv
 
 		public void SetPanningXY(int X, int Y)
 		{
-			SetPanningParameters();
 			PanningX = (int) ((X - (PanningWidth / 2.0)) * CellSize);
 			PanningY = (int) ((Y - (PanningHeight / 2.0)) * CellSize);
 		}
@@ -209,11 +208,9 @@ namespace Inv
 
 		public Inv.Dimension Dimension { get; set; }
 		public int CellSize { get => CellSizeProperty; set => CellSizeProperty = value; }
-
+		public Inv.Dimension BaseDimension => Base.GetDimension();
 		public event Action<Inv.DrawContract, Patch> DrawEvent;
-
 		public void Draw() => Base.Draw();
-
 		private bool InitialDraw;
 		private int CellSizeProperty;
 		private int PanningX;
