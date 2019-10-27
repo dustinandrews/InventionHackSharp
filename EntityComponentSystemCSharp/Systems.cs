@@ -35,10 +35,10 @@ namespace EntityComponentSystemCSharp.Systems
 
 		public override void Run()
 		{
-			foreach(var entity in _em.GetAllEntitiesWithComponent<DestinationComponent>())
+			foreach(var entity in _em.GetAllEntitiesWithComponent<Destination>())
 			{
-				var current = entity.GetComponent<LocationComponent>();
-				var desired = entity.GetComponent<DestinationComponent>();
+				var current = entity.GetComponent<Location>();
+				var desired = entity.GetComponent<Destination>();
 				if(_map != null && desired != null)
 				{
 					var start = _map.GetCell(current.X, current.Y);
@@ -63,22 +63,22 @@ namespace EntityComponentSystemCSharp.Systems
 
 		public override void Run()
 		{
-			var producers = _em.GetAllEntitiesWithComponent<ProducerComponent>();
+			var producers = _em.GetAllEntitiesWithComponent<Producer>();
 			foreach (var producer in producers)
 			{
-				var production = producer.GetComponent<ProducerComponent>();
+				var production = producer.GetComponent<Producer>();
 
 				foreach(var product in production.ProducedItems)
 				{
 					product.inprogress += product.rate;
 					var wholeItems = (int)(product.inprogress);
 					product.inprogress =- wholeItems;
-					var inventory = producer.GetComponent<InventoryComponent>();
+					var inventory = producer.GetComponent<Inventory>();
 					var numToAdd = Math.Min(inventory.Size, wholeItems);
 					for(int i = 0; i < numToAdd; i++)
 					{
 						var item = _em.CreateEntity();
-						item.AddComponent(new ItemComponent(){Type = product.product});
+						item.AddComponent(new Item(){Type = product.product});
 						inventory.Items.Add(item);
 					}
 				}
@@ -94,11 +94,11 @@ namespace EntityComponentSystemCSharp.Systems
 
 		public override void Run()
 		{
-			var entities = _em.GetAllEntitiesWithComponent<DemandComponent>();
+			var entities = _em.GetAllEntitiesWithComponent<Demand>();
 			foreach(var e in entities)
 			{
-				var demand = e.GetComponent<DemandComponent>();
-				var inventory = e.GetComponent<InventoryComponent>();
+				var demand = e.GetComponent<Demand>();
+				var inventory = e.GetComponent<Inventory>();
 				if(demand != null)
 				{
 					foreach(var d in demand.Demands)
@@ -116,7 +116,7 @@ namespace EntityComponentSystemCSharp.Systems
 
 		Entity[] GetItemsFromInventory(Entity entity, string type)
 		{
-			var inventory = entity.GetComponent<InventoryComponent>();
+			var inventory = entity.GetComponent<Inventory>();
 			if(inventory == null)
 			{
 				throw new MissingComponentException("Production requires an inventory for storage.");
@@ -124,7 +124,7 @@ namespace EntityComponentSystemCSharp.Systems
 			var returnList = new List<Entity>();
 			foreach(var item in inventory.Items)
 			{
-				var itemComponent = item.GetComponent<ItemComponent>();
+				var itemComponent = item.GetComponent<Item>();
 				if(itemComponent != null && itemComponent.Type == type)
 				{
 					returnList.Add(item);
@@ -149,14 +149,14 @@ namespace EntityComponentSystemCSharp.Systems
 		public Dictionary<string, int> GetStacks(Entity entity)
 		{
 			var results = new Dictionary<string, int>();
-			var inventory = entity.GetComponent<InventoryComponent>();
+			var inventory = entity.GetComponent<Inventory>();
 			if(inventory != null)
 			{
 				foreach(var item in inventory.Items)
 				{
-					var itemComponent = item.GetComponent<ItemComponent>();
+					var itemComponent = item.GetComponent<Item>();
 
-					if(itemComponent != null && item.HasComponent<StackableComponent>())
+					if(itemComponent != null && item.HasComponent<Stackable>())
 					{
 						if(!results.ContainsKey(itemComponent.Type))
 						{

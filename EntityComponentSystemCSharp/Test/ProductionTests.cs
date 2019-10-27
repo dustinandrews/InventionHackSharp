@@ -22,7 +22,7 @@ namespace EntityComponentSystemCSharp
 			var producer =  CreateWidgetFactory();
 			entity.AddComponent( producer);
 
-			var inventory = new InventoryComponent();
+			var inventory = new Inventory();
 			entity.AddComponent( inventory);
 
 			var productionSystem = new ProductionSystem(em);
@@ -40,7 +40,7 @@ namespace EntityComponentSystemCSharp
 			var producer =  CreateWidgetFactory();
 			entity.AddComponent(producer);
 
-			var inventory = new InventoryComponent();
+			var inventory = new Inventory();
 			inventory.Size = 10;
 			entity.AddComponent( inventory);
 
@@ -56,14 +56,14 @@ namespace EntityComponentSystemCSharp
 			var entity = em.CreateEntity();
 			var producer =  CreateWidgetFactory();
 			entity.AddComponent( producer);
-			var inventory = new InventoryComponent();
+			var inventory = new Inventory();
 			inventory.Size = 10;
 			entity.AddComponent( inventory);
 			var productionSystem = new ProductionSystem(em);
 			productionSystem.Run();
 
 			var item = inventory.Items[0];
-			var name = item.GetComponent<ItemComponent>().Type;
+			var name = item.GetComponent<Item>().Type;
 			Assert.AreEqual(name, producer.ProducedItems[0].product);
 		}
 
@@ -74,13 +74,13 @@ namespace EntityComponentSystemCSharp
 			var entity = em.CreateEntity();
 			var producer =  CreateWidgetFactory();
 			entity.AddComponent(producer);
-			var inventory = new InventoryComponent();
+			var inventory = new Inventory();
 			inventory.Size = 10;
 			entity.AddComponent( inventory);
 			var productionSystem = new ProductionSystem(em);
 			productionSystem.Run();
 
-			var demand = new DemandComponent();
+			var demand = new Demand();
 			demand.Demands.Add("widget", 1);
 			entity.AddComponent( demand);
 			var demandSystem = new DemandSystem(em);
@@ -94,17 +94,17 @@ namespace EntityComponentSystemCSharp
 		{
 			var em = new EntityManager();
 			var entity = em.CreateEntity();
-			var inventory = new InventoryComponent();
+			var inventory = new Inventory();
 			entity.AddComponent(inventory);
 			var itemEntity = em.CreateEntity();
-			var itemComponent = new ItemComponent(){Type = "widget"};
-			itemEntity.AddComponent<StackableComponent>();
+			var itemComponent = new Item(){Type = "widget"};
+			itemEntity.AddComponent<Stackable>();
 			itemEntity.AddComponent(itemComponent);
 			inventory.Items.Add(itemEntity);
 
 			itemEntity = em.CreateEntity();
 			itemEntity.AddComponent(itemComponent);
-			itemEntity.AddComponent<StackableComponent>();
+			itemEntity.AddComponent<Stackable>();
 			inventory.Items.Add(itemEntity);
 
 			var stackSystem = new StackSystem(em);
@@ -114,10 +114,10 @@ namespace EntityComponentSystemCSharp
 		}
 
 		// * //////////////// Helpers /////////////////
-		ProducerComponent CreateWidgetFactory()
+		Producer CreateWidgetFactory()
 		{
-			var producer = new ProducerComponent();
-			var item = new ProducerComponent.ProductionItem(){product = "widget", rate = 11};
+			var producer = new Producer();
+			var item = new Producer.ProductionItem(){product = "widget", rate = 11};
 			producer.ProducedItems.Add(item);
 			return producer;
 		}

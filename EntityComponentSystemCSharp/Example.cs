@@ -39,19 +39,19 @@ namespace EntityComponentSystemCSharp
 			{
 				Console.WriteLine(baseEntity.Id);
 				var counts = new Dictionary<string, int>();
-				var inventory = baseEntity.GetComponent<InventoryComponent>();
+				var inventory = baseEntity.GetComponent<Inventory>();
 				foreach(var itemEntity in inventory.Items)
 				{
-					var item = itemEntity.GetComponent<ItemComponent>();
+					var item = itemEntity.GetComponent<Item>();
 					var itemType = item.Type;
 					Console.WriteLine($" {itemType}");
 				}
 			}
 		}
 
-		static DemandComponent CreateDemand()
+		static Demand CreateDemand()
 		{
-			var demand = new DemandComponent();
+			var demand = new Demand();
 			foreach(var item in items)
 			{
 				demand.Demands.Add(item, 1);
@@ -68,13 +68,13 @@ namespace EntityComponentSystemCSharp
 				var entity = em.CreateEntity();
 				entities.Add(entity);
 				entity.AddComponent(demand);
-				var inventory = new InventoryComponent();
+				var inventory = new Inventory();
 				entity.AddComponent(inventory);
 
-				var producer = new ProducerComponent();
+				var producer = new Producer();
 				foreach(var item in items)
 				{
-					var itemProduction = new ProducerComponent.ProductionItem();
+					var itemProduction = new Producer.ProductionItem();
 					itemProduction.product = item;
 					itemProduction.rate = 2.5F;
 					producer.ProducedItems.Add(itemProduction);
@@ -86,10 +86,10 @@ namespace EntityComponentSystemCSharp
 			return entities.ToArray();
 		}
 
-		static ProducerComponent CreateWidgetFactory(string itemType)
+		static Producer CreateWidgetFactory(string itemType)
 		{
-			var producer = new ProducerComponent();
-			var item = new ProducerComponent.ProductionItem(){product = itemType, rate = 1.5F};
+			var producer = new Producer();
+			var item = new Producer.ProductionItem(){product = itemType, rate = 1.5F};
 			producer.ProducedItems.Add(item);
 			return producer;
 		}

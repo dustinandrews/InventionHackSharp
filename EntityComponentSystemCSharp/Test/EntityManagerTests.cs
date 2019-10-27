@@ -21,10 +21,10 @@ namespace EntityComponentSystemCSharp
 		{
 			var _em = new EntityManager();
 			var entity = _em.CreateEntity();
-			var tag = new TagComponent();
+			var tag = new Tag();
 			entity.AddComponent(tag);
 			entity.Destroy();
-			var entities = _em.GetAllEntitiesWithComponent<TagComponent>();
+			var entities = _em.GetAllEntitiesWithComponent<Tag>();
 			Assert.AreEqual(0, entities.Count);
 		}
 
@@ -33,9 +33,9 @@ namespace EntityComponentSystemCSharp
 		{
 			var _em = new EntityManager();
 			var entity = _em.CreateEntity();
-			var tag = new TagComponent(){Tag = "test"};
+			var tag = new Tag(){TagString = "test"};
 			entity.AddComponent(tag);
-			var actaul = entity.GetComponent<TagComponent>();
+			var actaul = entity.GetComponent<Tag>();
 			Assert.AreEqual(tag, actaul);
 		}
 
@@ -44,15 +44,15 @@ namespace EntityComponentSystemCSharp
 		{
 			var _em = new EntityManager();
 			var entity = _em.CreateEntity();
-			var tag = new TagComponent(){Tag = "test"};
+			var tag = new Tag(){TagString = "test"};
 			entity.AddComponent(tag);
 			entity.RemoveComponent(tag);
-			var actual = entity.GetComponent<TagComponent>();
+			var actual = entity.GetComponent<Tag>();
 			Assert.Null(actual);
 
 			entity.AddComponent(tag);
-			entity.RemoveComponent<TagComponent>();
-			actual = entity.GetComponent<TagComponent>();
+			entity.RemoveComponent<Tag>();
+			actual = entity.GetComponent<Tag>();
 			Assert.Null(actual);
 		}
 
@@ -61,10 +61,10 @@ namespace EntityComponentSystemCSharp
 		{
 			var _em = new EntityManager();
 			var entity = _em.CreateEntity();
-			var tag = new TagComponent(){Tag = "test"};
+			var tag = new Tag(){TagString = "test"};
 			entity.AddComponent(tag);
-			entity.RemoveComponent<TagComponent>();
-			var actual = entity.GetComponent<TagComponent>();
+			entity.RemoveComponent<Tag>();
+			var actual = entity.GetComponent<Tag>();
 			Assert.Null(actual);
 		}
 
@@ -81,8 +81,8 @@ namespace EntityComponentSystemCSharp
 		{
 			var _em = new EntityManager();
 			var entity = _em.CreateEntity();
-			var tag = new TagComponent(){Tag = "test"};
-			var producer = new ProducerComponent();
+			var tag = new Tag(){TagString = "test"};
+			var producer = new Producer();
 			entity.AddComponent(tag);
 			entity.AddComponent(producer);
 			var allComponents = entity.GetComponents();
@@ -94,11 +94,11 @@ namespace EntityComponentSystemCSharp
 		{
 			var _em = new EntityManager();
 			var entity = _em.CreateEntity();
-			var tag = new TagComponent(){Tag = "test"};
-			var producer = new ProducerComponent();
+			var tag = new Tag(){TagString = "test"};
+			var producer = new Producer();
 			entity.AddComponent(tag);
 			entity.AddComponent(producer);
-			var actual = entity.GetComponent<TagComponent>();
+			var actual = entity.GetComponent<Tag>();
 			Assert.AreEqual(tag, actual);
 		}
 
@@ -107,20 +107,20 @@ namespace EntityComponentSystemCSharp
 		{
 			var _em = new EntityManager();
 			var entity = _em.CreateEntity();
-			var tag = new TagComponent(){Tag = "test"};
-			var producer = new ProducerComponent();
+			var tag = new Tag(){TagString = "test"};
+			var producer = new Producer();
 			entity.AddComponent(tag);
 			entity.AddComponent(producer);
 
 			var entity2 = _em.CreateEntity();
-			var tag2 = new TagComponent(){Tag = "test2"};
-			var producer2 = new ProducerComponent();
+			var tag2 = new Tag(){TagString = "test2"};
+			var producer2 = new Producer();
 			entity2.AddComponent(tag2);
 			entity2.AddComponent(producer2);
 
-			var tagComponents = _em.GetAllComponentsOfType<TagComponent>();
+			var tagComponents = _em.GetAllComponentsOfType<Tag>();
 			Assert.AreEqual(2, tagComponents.Count());
-			Assert.AreEqual(tagComponents.First().GetType(), typeof(TagComponent));
+			Assert.AreEqual(tagComponents.First().GetType(), typeof(Tag));
 		}
 
 		[Test]
@@ -129,16 +129,16 @@ namespace EntityComponentSystemCSharp
 			var _em = new EntityManager();
 			_em.CreateEntity();
 			var entity = _em.CreateEntity();
-			var tag = new TagComponent(){Tag = "test"};
-			var producer = new ProducerComponent();
+			var tag = new Tag(){TagString = "test"};
+			var producer = new Producer();
 			entity.AddComponent(tag);
 			entity.AddComponent(producer);
 
 			var entity2 = _em.CreateEntity();
-			var producer2 = new ProducerComponent();
+			var producer2 = new Producer();
 			entity2.AddComponent(producer2);
 
-			var entities = _em.GetAllEntitiesWithComponent<ProducerComponent>();
+			var entities = _em.GetAllEntitiesWithComponent<Producer>();
 			Assert.AreEqual(2, entities.Count);
 			Assert.IsTrue(entities.Contains(entity));
 			Assert.IsTrue(entities.Contains(entity2));
@@ -149,12 +149,12 @@ namespace EntityComponentSystemCSharp
 		{
 			var _em = new EntityManager();
 			var entity = _em.CreateEntity();
-			var tag = new TagComponent(){Tag = "test"};
+			var tag = new Tag(){TagString = "test"};
 			entity.AddComponent(tag);
-			var hasTag = _em.HasComponent<TagComponent>(entity);
+			var hasTag = _em.HasComponent<Tag>(entity);
 			Assert.IsTrue(hasTag);
 
-			var hasProducer = _em.HasComponent<ProducerComponent>(entity);
+			var hasProducer = _em.HasComponent<Producer>(entity);
 			Assert.IsFalse(hasProducer);
 		}
 
@@ -170,9 +170,9 @@ namespace EntityComponentSystemCSharp
 
 			var entity = _em.CreateEntity();
 			_em.Freeze();
-			var tag = new TagComponent();
+			var tag = new Tag();
 			entity.AddComponent(tag);
-			var entities = _em.GetAllEntitiesWithComponent<TagComponent>();
+			var entities = _em.GetAllEntitiesWithComponent<Tag>();
 			Assert.AreEqual(0, entities.Count);
 		}
 
@@ -183,9 +183,9 @@ namespace EntityComponentSystemCSharp
 			var entity = _em.CreateEntity();
 			_em.Freeze();
 			_em.UnFreeze();
-			var tag = new TagComponent();
+			var tag = new Tag();
 			entity.AddComponent(tag);
-			var entities = _em.GetAllEntitiesWithComponent<TagComponent>();
+			var entities = _em.GetAllEntitiesWithComponent<Tag>();
 			Assert.AreEqual(1, entities.Count);
 		}
 
@@ -194,8 +194,8 @@ namespace EntityComponentSystemCSharp
 		{
 			var _em = new EntityManager();
 			var entity = _em.CreateEntity();
-			var tag1 = new TagComponent();
-			var tag2 = new TagComponent();
+			var tag1 = new Tag();
+			var tag2 = new Tag();
 			entity.AddComponent(tag1);
 			Assert.That(( ) => entity.AddComponent(tag2), Throws.TypeOf<DuplicateComponentException>());
 		}

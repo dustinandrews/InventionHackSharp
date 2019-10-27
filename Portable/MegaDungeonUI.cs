@@ -18,12 +18,11 @@ namespace Portable
 		MegaDungeon.Engine _engine;
 		MegaDungeon.PlayerInput _lastInput = MegaDungeon.PlayerInput.NONE;
 		TileManager _tileManager;
-		Dictionary<Entity, LocationComponent> _lastLocation = new Dictionary<Entity, LocationComponent>();
+		Dictionary<Entity, EntityComponentSystemCSharp.Components.Location> _lastLocation = new Dictionary<Entity, EntityComponentSystemCSharp.Components.Location>();
 		Dictionary<int, int> _actorLocationMap = new Dictionary<int, int>();
 		Cloth _cloth;
 		Dock _outerDock;
 		Dock _innerDock;
-		Entity _player;
 		Label _topLabel;
 		Label _bottomLabel;
 		Label _rightLabel;
@@ -161,23 +160,23 @@ namespace Portable
 
 		void GetActorsFromEngine()
 		{
-			foreach (var actor in _engine.EntityManager.GetAllEntitiesWithComponent<LocationComponent>())
+			foreach (var actor in _engine.EntityManager.GetAllEntitiesWithComponent<EntityComponentSystemCSharp.Components.Location>())
 			{
 
-				var location = actor.GetComponent<LocationComponent>();
-				var glyph = actor.GetComponent<GlyphComponent>();
+				var location = actor.GetComponent<EntityComponentSystemCSharp.Components.Location>();
+				var glyph = actor.GetComponent<Glyph>();
 
 				if (!_lastLocation.ContainsKey(actor))
 				{
-					_lastLocation.Add(actor, new LocationComponent(){X = location.X, Y = location.Y});
-					_actorLocationMap.Add(location.X + (location.Y * _horizontalCellCount), glyph.glyph);
+                    _lastLocation.Add(actor, new EntityComponentSystemCSharp.Components.Location(){ X = location.X, Y = location.Y});
+                    _actorLocationMap.Add(location.X + (location.Y * _horizontalCellCount), glyph.glyph);
 				}
 
 				var last = _lastLocation[actor];
 				if (last != location)
 				{
-					_actorLocationMap.Remove(last.X + (last.Y * _horizontalCellCount));
-					_actorLocationMap.Add(location.X + (location.Y * _horizontalCellCount), glyph.glyph);
+                    _actorLocationMap.Remove(last.X + (last.Y * _horizontalCellCount));
+                    _actorLocationMap.Add(location.X + (location.Y * _horizontalCellCount), glyph.glyph);
 				}
 
 				last.X = location.X;

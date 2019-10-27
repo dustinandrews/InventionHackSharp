@@ -17,43 +17,45 @@ namespace EntityComponentSystemCSharp.Components
 
 	}
 
-	public class DestinationComponent : PointWrapper, IComponent
+
+	public class Destination : PointWrapper, IComponent
 	{
 
 	}
 
-	public class PlayerComponent : IComponent
+	public class Player : IComponent
 	{
 
 	}
 
-	public class ActorComponent : IComponent
+	public class Actor : IComponent
 	{
 
 	}
 
-	public class GlyphComponent : IComponent
+	public class Glyph : IComponent
 	{
 		public int glyph = -1;
 	}
 
-	public class LocationComponent : PointWrapper, IComponent
+	public class Location : PointWrapper, IComponent
 	{
 	}
 
-	public class DemandComponent : IComponent
+	public class Demand : IComponent
 	{
 		public Dictionary<string,int> Demands = new Dictionary<string, int>();
 	}
-	public class ItemComponent : IComponent
+	public class Item : IComponent
 	{
 		public string Type = "";
 	}
-	public class TagComponent : IComponent
+
+	public class Tag : IComponent
 	{
-		public object Tag = null;
+		public string TagString = null;
 	}
-	public class ProducerComponent: IComponent
+	public class Producer: IComponent
 	{
 		public List<ProductionItem> ProducedItems = new List<ProductionItem>();
 
@@ -65,13 +67,13 @@ namespace EntityComponentSystemCSharp.Components
 		}
 	}
 
-	public class InventoryComponent: IComponent
+	public class Inventory: IComponent
 	{
 		public List<Entity> Items = new List<Entity>();
 		public int Size = int.MaxValue;
 	}
 
-	public class StackableComponent : IComponent
+	public class Stackable : IComponent
 	{
 	}
 }

@@ -19,7 +19,7 @@ namespace MegaDungeon
 		int[,] _floor_view; // a copy to return to make _floor effectively readonly
 		RogueSharp.Map _map;
 		ITileManager _tileManager;
-		LocationComponent _playerLocation = new LocationComponent();
+		Location _playerLocation = new Location();
 		List<int[]> _doorways = new List<int[]>();
 		EntityManager entityManager = new EntityManager();
 		public EntityManager EntityManager => entityManager;
@@ -77,13 +77,13 @@ namespace MegaDungeon
 		public void InitializePlayer()
 		{
 			var actor = entityManager.CreateEntity();
-			actor.AddComponent<ActorComponent>();
-			actor.AddComponent<PlayerComponent>();
+			actor.AddComponent<Actor>();
+			actor.AddComponent<Player>();
 			var location = random.Next(0, _walkable.Count);
 			var cell = _walkable[location];
-			_playerLocation = new LocationComponent(){X = cell.X, Y = cell.Y};
+			_playerLocation = new Location(){X = cell.X, Y = cell.Y};
 			actor.AddComponent(_playerLocation);
-			actor.AddComponent(new GlyphComponent{glyph = PLAYER});
+			actor.AddComponent(new Glyph{glyph = PLAYER});
 		}
 
 		/// <summary>
@@ -92,18 +92,18 @@ namespace MegaDungeon
 		/// <param name="playerInput"></param>
 		public void DoTurn(PlayerInput playerInput)
 		{
-			var player = entityManager.GetAllEntitiesWithComponent<PlayerComponent>().FirstOrDefault();
+			var player = entityManager.GetAllEntitiesWithComponent<Player>().FirstOrDefault();
 			if(player != null)
 			{
-				var position = player.GetComponent<LocationComponent>();
+				var position = player.GetComponent<Location>();
 				if(INPUTMAP.ContainsKey(playerInput))
 				{
 					var delta = INPUTMAP[playerInput];
 					var desired = delta + new Point(position.X, position.Y);
-					var desiredComp = player.GetComponent<DestinationComponent>();
+					var desiredComp = player.GetComponent<Destination>();
 					if(desiredComp == null)
 					{
-						desiredComp = new DestinationComponent();
+						desiredComp = new Destination();
 						player.AddComponent(desiredComp);
 					}
 					desiredComp.X = desired.X;
