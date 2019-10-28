@@ -4,7 +4,6 @@
 		<OutputPath>$(SolutionDir)\bin\$(Configuration)\$(AssemblyName)\</OutputPath>
 	</PropertyGroup>
 	<ItemGroup>
-		<Reference Include="netstandard" />
 		<Reference Include="Inv.Library">
 			<HintPath>..\lib\Inv.Library.dll</HintPath>
 		</Reference>

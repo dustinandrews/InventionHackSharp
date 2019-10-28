@@ -4,4 +4,9 @@ namespace EntityComponentSystemCSharp.Systems
 	{
 		void Run();
 	}
+
+	public interface ISystemLogger
+	{
+		void Log(string message);
+	}
 }

@@ -22,23 +22,28 @@ namespace EntityComponentSystemCSharp.Components
 	{
 	}
 
+	public class Attacked : IComponent
+	{
+		public Entity attacker;
+	}
+
 	public class Faction : IComponent
 	{
 		public MegaDungeon.Contracts.Factions Type;
 	}
 
-	public class Attack : IComponent
+	public class AttackStat : IComponent
 	{
 		public int Power;
 		public int Accuracy;
 	}
 
-	public class Defense : IComponent
+	public class DefenseStat : IComponent
 	{
 		public int Chance;
 	}
 
-	public class Sight : IComponent
+	public class SightStat : IComponent
 	{
 		public int Range;
 	}

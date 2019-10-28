@@ -25,9 +25,9 @@ namespace MegaDungeon
 		public EntityManager EntityManager => entityManager;
 		List<RogueSharp.ICell> _walkable = new List<RogueSharp.ICell>();
 		List<ISystem> _turnSystems = new List<ISystem>();
-		Queue<string> _messages = new Queue<string>();
+		internal Queue<string> _messages = new Queue<string>();
 		int _messageLimit = 5;
-		Sight _playerSiteDistance;
+		SightStat _playerSiteDistance;
 		EntityManager.Entity _player;
 		ActorManager _actorManager;
 		HashSet<Point> _viewable;
@@ -81,8 +81,11 @@ namespace MegaDungeon
 			PlaceMonsters();
 			UpdateViews();
 			// Add systems that should run every turn here.
-			_turnSystems.Add(new MovementSystem(entityManager, _map));
+			var logger = new EngineLogger(this);
+
 			_turnSystems.Add(new RandomMovementSystem(entityManager, _map));
+			_turnSystems.Add(new MovementSystem(entityManager, _map));
+			_turnSystems.Add(new CombatSystem(entityManager, logger));
 		}
 
 		/// <summary>
@@ -130,7 +133,7 @@ namespace MegaDungeon
 		{
 			_player = _actorManager.GetPlayerActor();
 			ICell cell = GetWalkableCell();
-			_playerSiteDistance = _player.GetComponent<Sight>();
+			_playerSiteDistance = _player.GetComponent<SightStat>();
 			_playerLocation = new Location() { X = cell.X, Y = cell.Y };
 			_player.AddComponent(_playerLocation);
 		}

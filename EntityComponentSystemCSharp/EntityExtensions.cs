@@ -52,6 +52,11 @@ namespace EntityComponentSystemCSharp
 			entity.Manager.AddComponent(entity, component);
 		}
 
+		public static void AddOrUpdateComponent(this Entity entity, IComponent component)
+		{
+			entity.Manager.AddOrUpdateComponent(entity, component);
+		}
+
 		/// <summary>
 		/// Adds and returns a new type T component to the entity.
 		/// </summary>

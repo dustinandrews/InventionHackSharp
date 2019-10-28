@@ -34,8 +34,19 @@ namespace EntityComponentSystemCSharp.Systems
 							// TODO: Do something other than swapping.
 							if( l.X == next.X && l.Y == next.Y)
 							{
-								l.X = current.X;
-								l.Y = current.Y;
+								var myFaction = entity.GetComponent<Faction>();
+								var theirFaction = entity.GetComponent<Faction>();
+								if(myFaction != null &&
+								 theirFaction!= null &&
+								 myFaction.Type == theirFaction.Type)
+								 {
+									l.X = current.X;
+									l.Y = current.Y;
+								 }
+								 else
+								 {
+									 e.AddOrUpdateComponent(new Attacked(){attacker = entity});
+								 }
 							}
 						}
 						current.X = next.X;

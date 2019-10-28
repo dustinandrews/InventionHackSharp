@@ -136,10 +136,10 @@ namespace Portable
 		{
 			var alive = entity.GetComponent<Alive>();
 			var name = entity.GetComponent<Name>();
-			var attack = entity.GetComponent<Attack>();
-			var defense = entity.GetComponent<Defense>();
+			var attack = entity.GetComponent<AttackStat>();
+			var defense = entity.GetComponent<DefenseStat>();
 			var actor = entity.GetComponent<Actor>();
-			
+
 			if (alive != null)
 			{
 				_health.Text = alive.Health.ToString();

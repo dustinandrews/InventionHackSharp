@@ -13,7 +13,7 @@ namespace EntityComponentSystemCSharp
 	public class EntityManager
 	{
 		// Entities are just and only integers. Entity class is a wrapper with a reference back to the entity
-		// manager to allow extension methods to work more fluently. 
+		// manager to allow extension methods to work more fluently.
 		public sealed class Entity
 		{
 			private int _id;
@@ -183,6 +183,12 @@ namespace EntityComponentSystemCSharp
 		public void AddComponent(Entity entity, IComponent component)
 		{
 			AddComponent(entity.Id, component);
+		}
+
+		public void AddOrUpdateComponent(Entity entity, IComponent component)
+		{
+			var key = GetMapKey(entity.Id, component.GetType());
+			_map[key] = component;
 		}
 
 		void AddComponent(int entityId, IComponent component)
