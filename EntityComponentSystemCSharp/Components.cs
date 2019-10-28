@@ -17,6 +17,11 @@ namespace EntityComponentSystemCSharp.Components
 
 	}
 
+	public class Faction : IComponent
+	{
+		public MegaDungeon.Contracts.Factions Type;
+	}
+
 	public class Attack : IComponent
 	{
 		public int Power;

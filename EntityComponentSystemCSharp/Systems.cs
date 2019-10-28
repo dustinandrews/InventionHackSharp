@@ -35,6 +35,7 @@ namespace EntityComponentSystemCSharp.Systems
 
 		public override void Run()
 		{
+			var placedEntities = _em.GetAllEntitiesWithComponent<Location>();
 			foreach(var entity in _em.GetAllEntitiesWithComponent<Destination>())
 			{
 				var current = entity.GetComponent<Location>();
@@ -47,6 +48,16 @@ namespace EntityComponentSystemCSharp.Systems
 					if(path != null)
 					{
 						var next = path.StepForward();
+						foreach(var e in placedEntities)
+						{
+							var l = e.GetComponent<Location>();
+							// TODO: Do something other than swapping.
+							if( l.X == next.X && l.Y == next.Y)
+							{
+								l.X = current.X;
+								l.Y = current.Y;
+							}
+						}
 						current.X = next.X;
 						current.Y = next.Y;
 					}

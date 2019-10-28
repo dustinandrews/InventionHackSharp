@@ -6,7 +6,7 @@ using System.Collections.Generic;
 
 namespace MegaDungeon.Contracts
 {
-	public class TileData
+    public class TileData
 	{
 		public int tile_size;
 		public Dictionary<string,TileDataData> data;

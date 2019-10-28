@@ -152,41 +152,49 @@ namespace Portable
 
 		void Cloth_DrawEvent(DrawContract DC, Patch patch)
 		{
+			var point = new RogueSharp.Point(patch.X, patch.Y);
 			int glyph = _engine.Floor[patch.X, patch.Y];
-			var image = _tileManager.GetInvImage(glyph);
-			DC.DrawImage(image, patch.Rect);
-
-			if(_actorLocationMap.ContainsKey(patch.X + (patch.Y * _horizontalCellCount)))
+			Inv.Image image;
+			if(_engine.Viewable.Contains(point))
 			{
-				glyph = _actorLocationMap[patch.X + (patch.Y * _horizontalCellCount)];
-				var actorImage = _tileManager.GetInvImage(glyph);
-				DC.DrawImage(actorImage, patch.Rect);
+				if(_actorLocationMap.ContainsKey(patch.X + (patch.Y * _horizontalCellCount)))
+				{	
+					glyph = _actorLocationMap[patch.X + (patch.Y * _horizontalCellCount)];
+					image = _tileManager.GetInvImage(glyph);
+				}
+				else
+				{
+					image = _tileManager.GetInvImage(glyph);
+				}
 			}
+			else
+			{
+				image = _tileManager.GetInvImageDark(glyph);
+			}
+			DC.DrawImage(image, patch.Rect);
 		}
 
 		void GetActorsFromEngine()
 		{
+			// Remove old location from the map.
 			foreach (var actor in _engine.EntityManager.GetAllEntitiesWithComponent<EntityComponentSystemCSharp.Components.Location>())
 			{
-
 				var location = actor.GetComponent<EntityComponentSystemCSharp.Components.Location>();
 				var glyph = actor.GetComponent<Glyph>();
-
-				if (!_lastLocation.ContainsKey(actor))
+				if (_lastLocation.ContainsKey(actor))
 				{
-					_lastLocation.Add(actor, new EntityComponentSystemCSharp.Components.Location(){ X = location.X, Y = location.Y});
-					_actorLocationMap.Add(location.X + (location.Y * _horizontalCellCount), glyph.glyph);
-				}
-
-				var last = _lastLocation[actor];
-				if (last != location)
-				{
+					var last = _lastLocation[actor];
 					_actorLocationMap.Remove(last.X + (last.Y * _horizontalCellCount));
-					_actorLocationMap.Add(location.X + (location.Y * _horizontalCellCount), glyph.glyph);
 				}
+			}
 
-				last.X = location.X;
-				last.Y = location.Y;
+			// Add new locations
+			foreach(var actor in _engine.EntityManager.GetAllEntitiesWithComponent<EntityComponentSystemCSharp.Components.Location>())
+			{
+				var location = actor.GetComponent<EntityComponentSystemCSharp.Components.Location>();
+				var glyph = actor.GetComponent<Glyph>();
+				_actorLocationMap[location.X + (location.Y * _horizontalCellCount)] = glyph.glyph;
+				_lastLocation[actor] = new EntityComponentSystemCSharp.Components.Location() {X = location.X, Y = location.Y};
 			}
 		}
 	}

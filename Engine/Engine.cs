@@ -10,7 +10,7 @@ using static MegaDungeon.EngineConstants;
 
 namespace MegaDungeon
 {
-    public class Engine
+	public class Engine
 	{
 		Random random = new Random();
 		int _width;
@@ -29,6 +29,13 @@ namespace MegaDungeon
 		int _messageLimit = 5;
 		Sight _playerSiteDistance;
 		EntityManager.Entity _player;
+		ActorManager _actorManager;
+		HashSet<Point> _viewable;
+
+		public HashSet<Point> Viewable
+		{
+			get => _viewable;
+		}
 
 		public EntityManager.Entity PlayerEntity
 		{
@@ -69,31 +76,12 @@ namespace MegaDungeon
 
 			RandomizeFloor();
 			InitCellGlyphs();
+			_actorManager = new ActorManager(entityManager);
 			InitializePlayer();
+			PlaceMonsters();
 			UpdateViews();
 			// Add systems that should run every turn here.
 			_turnSystems.Add(new MovementSystem(entityManager, _map));
-		}
-
-		/// <summary>
-		/// Add the player to the map.
-		/// </summary>
-		public void InitializePlayer()
-		{
-			var actor = entityManager.CreateEntity();
-			actor.AddComponent(new Actor(){Gold = 0, Speed  = 10});
-			actor.AddComponent(new Attack(){Accuracy = 50, Power = 2});
-			actor.AddComponent(new Defense(){Chance = 10});
-			actor.AddComponent(new Alive(){Health = 100, MaxHealth = 100});
-			actor.AddComponent(new Name(){NameString = "Rogue"});
-			actor.AddComponent<Player>();
-			actor.AddComponent(_playerSiteDistance = new Sight(){Range = 5});
-			actor.AddComponent(new Glyph{glyph = PLAYER});
-			var location = random.Next(0, _walkable.Count);
-			var cell = _walkable[location];
-			_playerLocation = new Location(){X = cell.X, Y = cell.Y};
-			actor.AddComponent(_playerLocation);
-			_player = actor;
 		}
 
 		/// <summary>
@@ -136,10 +124,41 @@ namespace MegaDungeon
 			UpdateViews();
 		}
 
+
+		void InitializePlayer()
+		{
+			_player = _actorManager.GetPlayerActor();
+			ICell cell = GetWalkableCell();
+			_playerSiteDistance = _player.GetComponent<Sight>();
+			_playerLocation = new Location() { X = cell.X, Y = cell.Y };
+			_player.AddComponent(_playerLocation);
+		}
+
+		ICell GetWalkableCell()
+		{
+			var location = random.Next(0, _walkable.Count);
+			var cell = _walkable[location];
+			_walkable.Remove(cell);
+			return cell;
+		}
+
+		void PlaceMonsters()
+		{
+			var numMonsters = RogueSharp.DiceNotation.Dice.Roll("1D6+3");
+			for(int i = 0; i < numMonsters; i++)
+			{
+				var location = GetWalkableCell();
+				var monster = _actorManager.CreateActor(60);
+				monster.AddComponent(new Location(){X = location.X, Y = location.Y});
+				monster.AddComponent(new Faction(){Type = Factions.Monster});
+				_messages.Enqueue(location.ToString());
+			}
+		}
+
 		/// <summary>
 		/// Examine each cell and pick a suitable glyph for walls.
 		/// </summary>
-		private void InitCellGlyphs()
+		void InitCellGlyphs()
 		{
 			foreach (var cell in _map.GetAllCells())
 			{
@@ -195,10 +214,13 @@ namespace MegaDungeon
 		void UpdateViews()
 		{
 			var circleView = GetFieldOfView(_playerLocation.X, _playerLocation.Y, _playerSiteDistance.Range, _map);
+			var viewable = new List<Point>();
 			foreach(var cell in circleView)
 			{
+				viewable.Add(new Point(cell.X, cell.Y));
 				_map.AppendFov(cell.X, cell.Y, 0, true);
 			}
+			_viewable = new HashSet<Point>(viewable);
 
 			if(_floor_view == null)
 			{
@@ -243,4 +265,42 @@ namespace MegaDungeon
 			_map = randomRooms.CreateMap();
 		}
 	}
+
+	public class ActorManager
+	{
+		EntityManager _entityManager;
+		public ActorManager(EntityManager entityManager)
+		{
+			_entityManager = entityManager;
+		}
+
+		public EntityManager.Entity GetPlayerActor()
+		{
+			var actor = CreateActor(
+				PLAYER, 
+				"Rogue",
+				100,
+				10,
+				2,
+				50,
+				10
+			);
+			actor.AddComponent(new Sight(){Range=5});
+			actor.AddComponent<Player>();
+			return actor;
+		}
+
+		public EntityManager.Entity CreateActor(int glyph, string name = "actor", int maxHealth = 1,int defence = 1, int power = 1,int accuracy = 50,int speed = 10)
+		{
+			var actor = _entityManager.CreateEntity();
+			actor.AddComponent(new Actor(){Gold = 0, Speed  = speed});
+			actor.AddComponent(new Attack(){Accuracy = accuracy, Power = power});
+			actor.AddComponent(new Defense(){Chance = defence});
+			actor.AddComponent(new Alive(){Health = maxHealth, MaxHealth = maxHealth});
+			actor.AddComponent(new Name(){NameString = name});
+			actor.AddComponent(new Glyph{glyph = glyph});
+			return actor;
+		}
+	}
+
 }
