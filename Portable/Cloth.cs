@@ -76,21 +76,7 @@ namespace Inv
 
 			Base.ZoomEvent += (Z) =>
 			{
-				var GlobalX = PanningX + Z.Point.X;
-				var GlobalY = PanningY + Z.Point.Y;
-				var OldX = GlobalX / CellSizeProperty;
-				var OldY = GlobalY / CellSizeProperty;
-				var ModX = GlobalX % CellSizeProperty;
-				var ModY = GlobalY % CellSizeProperty;
-				var smoothing = Math.Max(1, CellSize / 8);
-				CellSizeProperty += Z.Delta * smoothing;
-				if (CellSizeProperty > 256)
-					CellSizeProperty = 256;
-				else if (CellSizeProperty < 4)
-					CellSizeProperty = 4;
-				PanningX = (OldX * CellSizeProperty) - Z.Point.X + ModX;
-				PanningY = (OldY * CellSizeProperty) - Z.Point.Y + ModY;
-				Base.Draw();
+				Zoom(Z.Point.X, Z.Point.Y, Z.Delta );
 			};
 
 			Base.DrawEvent += (DC) =>
@@ -154,6 +140,25 @@ namespace Inv
 					CellY += CellSizeProperty;
 				}
 			};
+		}
+
+		public void Zoom(int X, int Y, int Delta)
+		{
+				var GlobalX = PanningX + X;
+				var GlobalY = PanningY + Y;
+				var OldX = GlobalX / CellSizeProperty;
+				var OldY = GlobalY / CellSizeProperty;
+				var ModX = GlobalX % CellSizeProperty;
+				var ModY = GlobalY % CellSizeProperty;
+				var smoothing = Math.Max(1, CellSize / 8);
+				CellSizeProperty += Delta * smoothing;
+				if (CellSizeProperty > 256)
+					CellSizeProperty = 256;
+				else if (CellSizeProperty < 4)
+					CellSizeProperty = 4;
+				PanningX = (OldX * CellSizeProperty) - X + ModX;
+				PanningY = (OldY * CellSizeProperty) - Y + ModY;
+				Base.Draw();
 		}
 
 		void SetPanningParameters()

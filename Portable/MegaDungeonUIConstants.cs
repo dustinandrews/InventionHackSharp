@@ -49,8 +49,6 @@ namespace Portable
 			{Inv.Key.Q,MegaDungeon.PlayerInput.UPLEFT},
 			{Inv.Key.W,MegaDungeon.PlayerInput.UP},
 			{Inv.Key.E,MegaDungeon.PlayerInput.UPRIGHT},
-
-
 		};
 	}
 }

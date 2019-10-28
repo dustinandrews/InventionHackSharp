@@ -28,6 +28,7 @@ namespace Portable
 		Label _rightLabel;
 		EntityData _leftPanel;
 
+		static Dictionary<Inv.Key, Action> UICommands = new Dictionary<Key, Action>();
 		public MegaDungeon.PlayerInput LastInput { get => _lastInput; set => _lastInput = value; }
 
 		/// <summary>
@@ -70,8 +71,15 @@ namespace Portable
 			_surface.Content = _outerDock;
 			
 			_surface.ComposeEvent += Warmup();
+
+			InitUiCommands();
 		}
 
+		void InitUiCommands()
+		{
+			UICommands[Inv.Key.Plus] = () => {_cloth.Zoom(0,0,1);};
+			UICommands[Inv.Key.Minus] = () => {_cloth.Zoom(0,0,-1);};
+		}
 		/// <summary>
 		/// Check for full _cloth init before going to usual update
 		/// </summary>
@@ -126,6 +134,10 @@ namespace Portable
 			if (KeyMap.ContainsKey(keystroke.Key))
 			{
 				_lastInput = KeyMap[keystroke.Key];
+			}
+			else if (UICommands.ContainsKey(keystroke.Key))
+			{
+				UICommands[keystroke.Key]();
 			}
 		}
 
