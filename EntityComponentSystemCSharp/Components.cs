@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using RogueSharp;
 using static EntityComponentSystemCSharp.EntityManager;
 
 namespace EntityComponentSystemCSharp.Components
@@ -15,6 +16,11 @@ namespace EntityComponentSystemCSharp.Components
 	public interface IComponent
 	{
 
+	}
+
+	public class RandomMovement : IComponent
+	{
+		public Path Path;
 	}
 
 	public class Faction : IComponent
