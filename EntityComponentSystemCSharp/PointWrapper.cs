@@ -108,7 +108,6 @@ namespace EntityComponentSystemCSharp.Components
 		}
 		public static bool operator ==(PointWrapper a, PointWrapper b)
 		{
-
 			return a?.point == b?.point;
 		}
 

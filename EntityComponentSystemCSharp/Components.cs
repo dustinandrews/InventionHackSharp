@@ -20,7 +20,6 @@ namespace EntityComponentSystemCSharp.Components
 
 	public class RandomMovement : IComponent
 	{
-		public Path Path;
 	}
 
 	public class Faction : IComponent

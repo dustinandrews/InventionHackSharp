@@ -160,7 +160,10 @@ namespace EntityComponentSystemCSharp
 		public void RemoveComponent<T>(Entity entity) where T: class
 		{
 			var component = (IComponent) GetComponent<T>(entity);
-			RemoveComponent(entity.Id, component);
+			if(component != null)
+			{
+				RemoveComponent(entity.Id, component);
+			}
 		}
 
 		internal void RemoveComponent(int id, IComponent component)

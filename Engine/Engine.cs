@@ -82,6 +82,7 @@ namespace MegaDungeon
 			UpdateViews();
 			// Add systems that should run every turn here.
 			_turnSystems.Add(new MovementSystem(entityManager, _map));
+			_turnSystems.Add(new RandomMovementSystem(entityManager, _map));
 		}
 
 		/// <summary>
@@ -151,6 +152,7 @@ namespace MegaDungeon
 				var monster = _actorManager.CreateActor(60);
 				monster.AddComponent(new Location(){X = location.X, Y = location.Y});
 				monster.AddComponent(new Faction(){Type = Factions.Monster});
+				monster.AddComponent<RandomMovement>();
 				_messages.Enqueue(location.ToString());
 			}
 		}

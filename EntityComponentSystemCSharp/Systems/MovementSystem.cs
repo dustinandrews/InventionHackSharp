@@ -25,7 +25,7 @@ namespace EntityComponentSystemCSharp.Systems
 					var start = _map.GetCell(current.X, current.Y);
 					var dest = _map.GetCell(desired.X, desired.Y);
 					var path = _pathfinder.TryFindShortestPath(start, dest);
-					if(path != null)
+					if(path != null && path.Length > 1)
 					{
 						var next = path.StepForward();
 						foreach(var e in placedEntities)
