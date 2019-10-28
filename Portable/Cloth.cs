@@ -178,14 +178,15 @@ namespace Inv
 		public void KeepXYOnScreen(int X, int Y)
 		{
 
-			if (X < PanningLeft || X > PanningRight || Y < PanningTop || Y > PanningBottom)
+			int buffer = 5;
+			if (X < PanningLeft || X > PanningRight || Y < PanningTop || Y > PanningBottom ||
+			buffer > PanningWidth || buffer > PanningHeight)
 			{
 				PanningX = (int) ((X - (PanningWidth / 2.0)) * CellSize);
 				PanningY = (int) ((Y - (PanningHeight / 2.0)) * CellSize);
 			}
 			else
 			{
-				int buffer = 3;
 				if (X < PanningLeft + buffer)
 				{
 					PanningX = (PanningLeft - 1) * CellSize;
