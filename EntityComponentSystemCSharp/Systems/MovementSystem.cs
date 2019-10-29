@@ -17,10 +17,12 @@ namespace EntityComponentSystemCSharp.Systems
 			var locationEntities = _em.GetAllEntitiesWithComponent<Location>()
 				.Where(e => e.HasComponent<Actor>());
 			var actors = _em.GetAllEntitiesWithComponent<Actor>()
-				.Where(e => e.HasComponent<Destination>());
+				.Where(e => e.HasComponent<Destination>())
+				.Where(e => e.GetComponent<Actor>().Energy >= 10);
 
 			foreach (var entity in actors)
 			{
+				entity.GetComponent<Actor>().Energy -= 10;
 				var allComponents = entity.GetComponents();
 				var current = entity.GetComponent<Location>();
 				var desired = entity.GetComponent<Destination>();

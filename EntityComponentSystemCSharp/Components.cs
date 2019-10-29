@@ -73,6 +73,7 @@ namespace EntityComponentSystemCSharp.Components
 	{
 		public int Speed;
 		public int Gold;
+		public int Energy;
 	}
 
 	public class Glyph : IComponent
