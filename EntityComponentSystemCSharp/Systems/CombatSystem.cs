@@ -1,20 +1,19 @@
 using System;
 using EntityComponentSystemCSharp.Components;
+using RogueSharp;
 
 namespace EntityComponentSystemCSharp.Systems
 {
-    public class CombatSystem : ISystem
+
+    public class CombatSystem : SystemBase, ISystem
 	{
 		Random _rand = new Random();
-		EntityManager _em;
-		ISystemLogger _logger;
-		public CombatSystem(EntityManager em, ISystemLogger logger)
+
+		public CombatSystem(EntityManager em, ISystemLogger logger, IMap map) : base(em, logger, map)
 		{
-			_logger = logger;
-			_em = em;
 		}
 
-		public void Run()
+		public override void Run()
 		{
 			foreach(var e in _em.GetAllEntitiesWithComponent<Attacked>())
 			{

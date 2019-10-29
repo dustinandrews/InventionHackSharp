@@ -2,15 +2,15 @@
 using System.Collections.Generic;
 using EntityComponentSystemCSharp;
 using EntityComponentSystemCSharp.Components;
+using RogueSharp;
 using static EntityComponentSystemCSharp.EntityManager;
 
 namespace EntityComponentSystemCSharp.Systems
 {
 	public class StackSystem : SystemBase, ISystem
 	{
-		public StackSystem(EntityManager em) : base(em)
+		public StackSystem(EntityManager em, ISystemLogger logger, IMap map) : base(em, logger, map)
 		{
-			// TODO maybe compact stacks? InventoryItem would need a count.
 		}
 
 		public override void Run()

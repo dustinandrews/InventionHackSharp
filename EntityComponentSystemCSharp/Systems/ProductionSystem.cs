@@ -1,11 +1,12 @@
 using System;
 using EntityComponentSystemCSharp.Components;
+using RogueSharp;
 
 namespace EntityComponentSystemCSharp.Systems
 {
-    public class ProductionSystem : SystemBase, ISystem
+	public class ProductionSystem : SystemBase, ISystem
 	{
-		public ProductionSystem(EntityManager em) : base(em)
+		public ProductionSystem(EntityManager em, ISystemLogger logger, IMap map) : base(em, logger, map)
 		{
 		}
 

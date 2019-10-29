@@ -83,9 +83,9 @@ namespace MegaDungeon
 			// Add systems that should run every turn here.
 			var logger = new EngineLogger(this);
 
-			_turnSystems.Add(new RandomMovementSystem(entityManager, _map));
-			_turnSystems.Add(new MovementSystem(entityManager, _map));
-			_turnSystems.Add(new CombatSystem(entityManager, logger));
+			_turnSystems.Add(new RandomMovementSystem(entityManager, logger, _map));
+			_turnSystems.Add(new MovementSystem(entityManager, logger, _map));
+			_turnSystems.Add(new CombatSystem(entityManager, logger, _map));
 		}
 
 		/// <summary>

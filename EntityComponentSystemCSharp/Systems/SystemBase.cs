@@ -10,9 +10,13 @@ namespace EntityComponentSystemCSharp.Systems
 	public abstract class SystemBase: ISystem
 	{
 		protected readonly EntityManager _em;
-		public SystemBase(EntityManager em)
+		protected readonly ISystemLogger _logger;
+		protected readonly IMap _map;
+		public SystemBase(EntityManager em, ISystemLogger logger, IMap map)
 		{
 			_em = em;
+			_logger = logger;
+			_map = map;
 		}
 		public abstract void Run();
 	}
@@ -21,7 +25,7 @@ namespace EntityComponentSystemCSharp.Systems
 	{
 		Random rand = new Random();
 		List<ICell> walkable = new List<ICell>();
-		public RandomMovementSystem(EntityManager em, IMap map) : base(em)
+		public RandomMovementSystem(EntityManager em, ISystemLogger logger, IMap map): base(em, logger, map)
 		{
 			foreach(var cell in map.GetAllCells())
 			{

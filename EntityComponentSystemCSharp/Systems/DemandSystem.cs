@@ -7,9 +7,9 @@ using static EntityComponentSystemCSharp.EntityManager;
 namespace EntityComponentSystemCSharp.Systems
 {
 
-    public class DemandSystem : SystemBase, ISystem
+	public class DemandSystem : SystemBase, ISystem
 	{
-		public DemandSystem(EntityManager em) : base(em)
+		public DemandSystem(EntityManager em, ISystemLogger logger, RogueSharp.IMap map) : base(em, logger, map)
 		{
 		}
 

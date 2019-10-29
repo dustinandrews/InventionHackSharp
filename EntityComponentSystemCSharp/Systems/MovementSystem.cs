@@ -3,13 +3,11 @@ using RogueSharp;
 
 namespace EntityComponentSystemCSharp.Systems
 {
-    public class MovementSystem : SystemBase, ISystem
+	public class MovementSystem : SystemBase, ISystem
 	{
-		IMap _map;
 		RogueSharp.PathFinder _pathfinder;
-		public MovementSystem(EntityManager em, IMap map) : base(em)
+		public MovementSystem(EntityManager em, ISystemLogger logger, RogueSharp.IMap map) : base(em, logger, map)
 		{
-			_map = map;
 			_pathfinder = new RogueSharp.PathFinder(_map, 1);
 		}
 
@@ -35,7 +33,7 @@ namespace EntityComponentSystemCSharp.Systems
 							if( l.X == next.X && l.Y == next.Y)
 							{
 								var myFaction = entity.GetComponent<Faction>();
-								var theirFaction = entity.GetComponent<Faction>();
+								var theirFaction = e.GetComponent<Faction>();
 								if(myFaction != null &&
 								 theirFaction!= null &&
 								 myFaction.Type == theirFaction.Type)
