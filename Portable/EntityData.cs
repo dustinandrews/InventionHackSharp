@@ -134,7 +134,7 @@ namespace Portable
 
 		public void SetData(Entity entity)
 		{
-			var alive = entity.GetComponent<Alive>();
+			var alive = entity.GetComponent<Life>();
 			var name = entity.GetComponent<Name>();
 			var attack = entity.GetComponent<AttackStat>();
 			var defense = entity.GetComponent<DefenseStat>();

@@ -5,7 +5,7 @@ using System.Linq;
 
 namespace EntityComponentSystemCSharp
 {
-	public class ProductionTests
+	public partial class ProductionSystemTests
 	{
 		[Test]
 		public void ConstructorTest()

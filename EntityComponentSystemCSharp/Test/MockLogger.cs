@@ -1,14 +1,9 @@
 namespace EntityComponentSystemCSharp
 {
-	public partial class ProductionTests
+	public class MockLogger : EntityComponentSystemCSharp.Systems.ISystemLogger
 	{
-		public class MockLogger : EntityComponentSystemCSharp.Systems.ISystemLogger
+		public void Log(string message)
 		{
-			public void Log(string message)
-			{
-				
-			}
 		}
-
 	}
 }

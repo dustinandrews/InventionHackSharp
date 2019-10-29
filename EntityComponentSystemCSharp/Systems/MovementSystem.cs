@@ -1,3 +1,4 @@
+using System.Linq;
 using EntityComponentSystemCSharp.Components;
 using RogueSharp;
 
@@ -13,9 +14,14 @@ namespace EntityComponentSystemCSharp.Systems
 
 		public override void Run()
 		{
-			var placedEntities = _em.GetAllEntitiesWithComponent<Location>();
-			foreach(var entity in _em.GetAllEntitiesWithComponent<Destination>())
+			var locationEntities = _em.GetAllEntitiesWithComponent<Location>()
+				.Where(e => e.HasComponent<Actor>());
+			var actors = _em.GetAllEntitiesWithComponent<Actor>()
+				.Where(e => e.HasComponent<Destination>());
+
+			foreach (var entity in actors)
 			{
+				var allComponents = entity.GetComponents();
 				var current = entity.GetComponent<Location>();
 				var desired = entity.GetComponent<Destination>();
 				if(_map != null && desired != null)
@@ -23,32 +29,38 @@ namespace EntityComponentSystemCSharp.Systems
 					var start = _map.GetCell(current.X, current.Y);
 					var dest = _map.GetCell(desired.X, desired.Y);
 					var path = _pathfinder.TryFindShortestPath(start, dest);
+					var isClear = true;
 					if(path != null && path.Length > 1)
 					{
 						var next = path.StepForward();
-						foreach(var e in placedEntities)
+						foreach(var e in locationEntities)
 						{
-							var l = e.GetComponent<Location>();
-							// TODO: Do something other than swapping.
-							if( l.X == next.X && l.Y == next.Y)
+							var othersLocation = e.GetComponent<Location>();
+
+							if( othersLocation.X == next.X && othersLocation.Y == next.Y)
 							{
 								var myFaction = entity.GetComponent<Faction>();
 								var theirFaction = e.GetComponent<Faction>();
 								if(myFaction != null &&
-								 theirFaction!= null &&
-								 myFaction.Type == theirFaction.Type)
-								 {
-									l.X = current.X;
-									l.Y = current.Y;
-								 }
-								 else
-								 {
+								theirFaction!= null &&
+								myFaction.Type == theirFaction.Type)
+								{
+									othersLocation.X = current.X;
+									othersLocation.Y = current.Y;
+								}
+								else
+								{
 									 e.AddOrUpdateComponent(new Attacked(){attacker = entity});
-								 }
+									 isClear = false; //Attacking cancels move
+								}
 							}
 						}
-						current.X = next.X;
-						current.Y = next.Y;
+
+						if (isClear)
+						{
+							current.X = next.X;
+							current.Y = next.Y;
+						}
 					}
 				}
 			}

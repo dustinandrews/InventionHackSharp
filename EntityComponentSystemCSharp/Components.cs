@@ -48,7 +48,12 @@ namespace EntityComponentSystemCSharp.Components
 		public int Range;
 	}
 
-	public class Alive : IComponent
+	public class Dead : IComponent
+	{
+
+	}
+	
+	public class Life : IComponent
 	{
 		public int Health;
 		public int MaxHealth;

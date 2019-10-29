@@ -86,6 +86,7 @@ namespace MegaDungeon
 			_turnSystems.Add(new RandomMovementSystem(entityManager, logger, _map));
 			_turnSystems.Add(new MovementSystem(entityManager, logger, _map));
 			_turnSystems.Add(new CombatSystem(entityManager, logger, _map));
+			_turnSystems.Add(new HealthSystem(entityManager, logger, _map));
 		}
 
 		/// <summary>

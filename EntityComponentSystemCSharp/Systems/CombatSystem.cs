@@ -18,7 +18,7 @@ namespace EntityComponentSystemCSharp.Systems
 			foreach(var e in _em.GetAllEntitiesWithComponent<Attacked>())
 			{
 				var attacked = e.GetComponent<Attacked>();
-				var alive = e.GetComponent<Alive>();
+				var alive = e.GetComponent<Life>();
 				var attackStat = attacked.attacker.GetComponent<AttackStat>();
 				var defense = e.GetComponent<DefenseStat>();
 				if(alive != null && attackStat != null)

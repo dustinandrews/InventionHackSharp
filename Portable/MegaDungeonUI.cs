@@ -156,7 +156,7 @@ namespace Portable
 		{
 			var cloth = new Cloth();
 			cloth.Dimension = new Inv.Dimension(_horizontalCellCount, _verticalCellCount);
-			cloth.CellSize = (_surface.Window.Width / _horizontalCellCount) * 4; //How much of initial map to show.
+			cloth.CellSize = (_surface.Window.Width / _horizontalCellCount) * 2; //How much of initial map to show.
 			cloth.Draw();
 			cloth.DrawEvent += (DC, patch) => Cloth_DrawEvent(DC, patch);
 			return cloth;

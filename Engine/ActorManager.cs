@@ -34,7 +34,7 @@ namespace MegaDungeon
 			actor.AddComponent(new Actor(){Gold = 0, Speed  = speed});
 			actor.AddComponent(new AttackStat(){Accuracy = accuracy, Power = power});
 			actor.AddComponent(new DefenseStat(){Chance = defence});
-			actor.AddComponent(new Alive(){Health = maxHealth, MaxHealth = maxHealth});
+			actor.AddComponent(new Life(){Health = maxHealth, MaxHealth = maxHealth});
 			actor.AddComponent(new Name(){NameString = name});
 			actor.AddComponent(new Glyph{glyph = glyph});
 			return actor;
