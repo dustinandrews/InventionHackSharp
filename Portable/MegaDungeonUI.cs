@@ -188,7 +188,7 @@ namespace Portable
 		void GetActorsFromEngine()
 		{
 			// Remove old location from the map.
-			foreach (var actor in _engine.EntityManager.GetAllEntitiesWithComponent<EntityComponentSystemCSharp.Components.Location>())
+			foreach (var actor in _engine.GetEntityManager().GetAllEntitiesWithComponent<EntityComponentSystemCSharp.Components.Location>())
 			{
 				var location = actor.GetComponent<EntityComponentSystemCSharp.Components.Location>();
 				var glyph = actor.GetComponent<Glyph>();
@@ -200,7 +200,7 @@ namespace Portable
 			}
 
 			// Add new locations
-			foreach(var actor in _engine.EntityManager.GetAllEntitiesWithComponent<EntityComponentSystemCSharp.Components.Location>())
+			foreach(var actor in _engine.GetEntityManager().GetAllEntitiesWithComponent<EntityComponentSystemCSharp.Components.Location>())
 			{
 				var location = actor.GetComponent<EntityComponentSystemCSharp.Components.Location>();
 				var glyph = actor.GetComponent<Glyph>();

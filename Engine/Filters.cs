@@ -114,7 +114,7 @@ namespace MegaDungeon
 		/// <param name="map"></param>
 		/// <returns></returns>
 		/// <remarks>Array order top-left,top,top-right,left,center,right,bottomleft,bottom,bottomright
-		public static int[] GetCellFilterArray(ICell cell, RogueSharp.Map map)
+		public static int[] GetCellFilterArray(ICell cell, RogueSharp.IMap map)
 		{
 			var outArray = new int[COMPASSPOINTS.Length];
 			for(int i =0 ; i < COMPASSPOINTS.Length; i++)

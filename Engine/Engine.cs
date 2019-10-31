@@ -10,21 +10,20 @@ using MegaDungeon.Contracts;
 using static MegaDungeon.EngineConstants;
 using static EntityComponentSystemCSharp.EntityManager;
 
-namespace MegaDungeon
+namespace MegaDungeon 
 {
-	public class Engine
+	public class Engine : IEngine
 	{
 		Random random = new Random();
 		int _width;
 		int _height;
 		int[,] _floor;
 		int[,] _floor_view; // a copy to return to make _floor effectively readonly
-		RogueSharp.Map _map;
+		RogueSharp.IMap _map;
 		ITileManager _tileManager;
 		Location _playerLocation = new Location();
 		List<int[]> _doorways = new List<int[]>();
 		EntityManager _entityManager = new EntityManager();
-		public EntityManager EntityManager => _entityManager;
 		List<RogueSharp.ICell> _walkable = new List<RogueSharp.ICell>();
 		List<ISystem> _turnSystems = new List<ISystem>();
 		internal Queue<string> _messages = new Queue<string>();
@@ -33,7 +32,10 @@ namespace MegaDungeon
 		EntityManager.Entity _player;
 		ActorManager _actorManager;
 		HashSet<Point> _viewable;
-
+		EngineLogger _logger;
+		public ISystemLogger GetLogger() {return _logger;}
+		public RogueSharp.IMap GetMap() {return _map;}
+		public EntityManager GetEntityManager() {return _entityManager;}
 		public HashSet<Point> Viewable
 		{
 			get => _viewable;
@@ -84,14 +86,14 @@ namespace MegaDungeon
 			PlaceMonsters();
 			UpdateViews();
 			// Add systems that should run every turn here.
-			var logger = new EngineLogger(this);
+			_logger = new EngineLogger(this);
 
 			// Setup systems to run. Order matters.
-			_turnSystems.Add(new CombatSystem(_entityManager, logger, _map));
-			_turnSystems.Add(new HealthSystem(_entityManager, logger, _map));
-			_turnSystems.Add(new EnergySystem(_entityManager, logger, _map));
-			_turnSystems.Add(new RandomMovementSystem(_entityManager, logger, _map));
-			_turnSystems.Add(new MovementSystem(_entityManager, logger, _map));
+			_turnSystems.Add(new CombatSystem(this));
+			_turnSystems.Add(new HealthSystem(this));
+			_turnSystems.Add(new EnergySystem(this));
+			_turnSystems.Add(new WanderingMonsterSystem(this));
+			_turnSystems.Add(new MovementSystem(this));
 		}
 
 		/// <summary>
@@ -161,7 +163,7 @@ namespace MegaDungeon
 				var monster = _actorManager.CreateActor(60, name);
 				monster.AddComponent(new Location(){X = location.X, Y = location.Y});
 				monster.AddComponent(new Faction(){Type = Factions.Monster});
-				monster.AddComponent<RandomMovement>();
+				monster.AddComponent<WanderingMonster>();
 				Debug.WriteLine($"Spawned {name} ({location.X},{location.Y})");
 			}
 		}

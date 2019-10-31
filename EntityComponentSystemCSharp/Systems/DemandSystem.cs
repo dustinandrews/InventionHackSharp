@@ -9,7 +9,7 @@ namespace EntityComponentSystemCSharp.Systems
 
 	public class DemandSystem : SystemBase, ISystem
 	{
-		public DemandSystem(EntityManager em, ISystemLogger logger, RogueSharp.IMap map) : base(em, logger, map)
+		public DemandSystem(IEngine engine) : base(engine)
 		{
 		}
 

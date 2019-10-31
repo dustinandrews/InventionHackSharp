@@ -5,12 +5,21 @@ using System.Linq;
 
 namespace EntityComponentSystemCSharp
 {
-	public partial class ProductionSystemTests
+
+    public partial class ProductionSystemTests
 	{
+		MockEngine _mockEngine;
+		[OneTimeSetUp]
+		public void OneTimeSetUp()
+		{
+			_mockEngine = new MockEngine(new EntityManager(), new MockLogger(), new MockMap());
+		}
+
 		[Test]
 		public void ConstructorTest()
 		{
-			var productionSystem = new ProductionSystem(new EntityManager(), new MockLogger(), new MockMap());
+			var mockEngine = new MockEngine(new EntityManager(), new MockLogger(), new MockMap());
+			var productionSystem = new ProductionSystem(mockEngine);
 		}
 
 		[Test]
@@ -24,7 +33,7 @@ namespace EntityComponentSystemCSharp
 			var inventory = new Inventory();
 			entity.AddComponent( inventory);
 
-			var productionSystem = new ProductionSystem(em, new MockLogger(), new MockMap());
+			var productionSystem = new ProductionSystem(_mockEngine);
 			productionSystem.Run(entity);
 
 			Assert.AreEqual(11, inventory.Items.Count);
@@ -43,7 +52,7 @@ namespace EntityComponentSystemCSharp
 			inventory.Size = 10;
 			entity.AddComponent( inventory);
 
-			var productionSystem = new ProductionSystem(em, new MockLogger(), new MockMap());
+			var productionSystem = new ProductionSystem(_mockEngine);
 			productionSystem.Run(entity);
 			Assert.AreEqual(10, inventory.Items.Count);
 		}
@@ -58,7 +67,7 @@ namespace EntityComponentSystemCSharp
 			var inventory = new Inventory();
 			inventory.Size = 10;
 			entity.AddComponent( inventory);
-			var productionSystem = new ProductionSystem(em, new MockLogger(), new MockMap());
+			var productionSystem = new ProductionSystem(_mockEngine);
 			productionSystem.Run(entity);
 
 			var item = inventory.Items[0];
@@ -76,13 +85,13 @@ namespace EntityComponentSystemCSharp
 			var inventory = new Inventory();
 			inventory.Size = 10;
 			entity.AddComponent( inventory);
-			var productionSystem = new ProductionSystem(em, new MockLogger(), new MockMap());
+			var productionSystem = new ProductionSystem(_mockEngine);
 			productionSystem.Run(entity);
 
 			var demand = new Demand();
 			demand.Demands.Add("widget", 1);
 			entity.AddComponent( demand);
-			var demandSystem = new DemandSystem(em, new MockLogger(), new MockMap());
+			var demandSystem = new DemandSystem(_mockEngine);
 			demandSystem.Run(entity);
 
 			Assert.Less(inventory.Items.Count, 10);
@@ -106,7 +115,7 @@ namespace EntityComponentSystemCSharp
 			itemEntity.AddComponent<Stackable>();
 			inventory.Items.Add(itemEntity);
 
-			var stackSystem = new StackSystem(em, new MockLogger(), new MockMap());
+			var stackSystem = new StackSystem(_mockEngine);
 			var stacks = stackSystem.GetStacks(entity);
 
 			Assert.AreEqual(2, stacks["widget"]);

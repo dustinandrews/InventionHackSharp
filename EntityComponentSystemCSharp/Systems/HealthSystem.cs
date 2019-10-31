@@ -8,7 +8,7 @@ namespace EntityComponentSystemCSharp.Systems
 	{
 		int CORPSE = 636;
 		Random rand = new Random();
-		public HealthSystem(EntityManager em, ISystemLogger logger, IMap map) : base(em, logger, map)
+		public HealthSystem(IEngine engine) : base(engine)
 		{
 		}
 

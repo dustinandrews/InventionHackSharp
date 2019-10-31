@@ -9,7 +9,7 @@ namespace EntityComponentSystemCSharp.Systems
 {
 	public class StackSystem : SystemBase, ISystem
 	{
-		public StackSystem(EntityManager em, ISystemLogger logger, IMap map) : base(em, logger, map)
+		public StackSystem(IEngine engine) : base(engine)
 		{
 		}
 

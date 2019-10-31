@@ -7,7 +7,7 @@ namespace EntityComponentSystemCSharp.Systems
 	public class MovementSystem : SystemBase, ISystem
 	{
 		RogueSharp.PathFinder _pathfinder;
-		public MovementSystem(EntityManager em, ISystemLogger logger, RogueSharp.IMap map) : base(em, logger, map)
+		public MovementSystem(IEngine engine) : base(engine)
 		{
 			_pathfinder = new RogueSharp.PathFinder(_map, 1);
 		}

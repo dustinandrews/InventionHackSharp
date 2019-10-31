@@ -8,7 +8,7 @@ namespace EntityComponentSystemCSharp.Systems
 {
 	public class EnergySystem : SystemBase, ISystem
 	{
-		public EnergySystem(EntityManager em, ISystemLogger logger, IMap map) : base(em, logger, map)
+		public EnergySystem(IEngine engine) : base(engine)
 		{
 		}
 

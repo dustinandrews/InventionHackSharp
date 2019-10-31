@@ -18,7 +18,7 @@ namespace EntityComponentSystemCSharp.Components
 
 	}
 
-	public class RandomMovement : IComponent
+	public class WanderingMonster : IComponent
 	{
 	}
 

@@ -9,7 +9,7 @@ namespace EntityComponentSystemCSharp.Systems
 	{
 		Random _rand = new Random();
 
-		public CombatSystem(EntityManager em, ISystemLogger logger, IMap map) : base(em, logger, map)
+		public CombatSystem(IEngine engine) : base(engine)
 		{
 		}
 

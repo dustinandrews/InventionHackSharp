@@ -1,17 +1,21 @@
-using System;
+﻿using System;
 using System.Collections.Generic;
 using EntityComponentSystemCSharp.Components;
 using RogueSharp;
 
 namespace EntityComponentSystemCSharp.Systems
 {
-	public class RandomMovementSystem : SystemBase
+	/// <summary>
+	/// Entities with the wandering monster component will wander around at random
+	/// and attack the player if they see them.
+	/// </summary>
+	public class WanderingMonsterSystem : SystemBase
 	{
 		Random rand = new Random();
 		List<ICell> walkable = new List<ICell>();
-		public RandomMovementSystem(EntityManager em, ISystemLogger logger, IMap map): base(em, logger, map)
+		public WanderingMonsterSystem(IEngine engine): base(engine)
 		{
-			foreach(var cell in map.GetAllCells())
+			foreach(var cell in _map.GetAllCells())
 			{
 				if(cell.IsWalkable)
 				{
@@ -22,7 +26,7 @@ namespace EntityComponentSystemCSharp.Systems
 
 		public override void Run(EntityManager.Entity entity)
 		{
-			if(!entity.HasComponent<RandomMovement>()){return;}
+			if(!entity.HasComponent<WanderingMonster>()){return;}
 
 			var actual = entity.GetComponent<Location>();
 			var desired = entity.GetComponent<Destination>();

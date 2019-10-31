@@ -6,7 +6,7 @@ namespace EntityComponentSystemCSharp.Systems
 {
 	public class ProductionSystem : SystemBase, ISystem
 	{
-		public ProductionSystem(EntityManager em, ISystemLogger logger, IMap map) : base(em, logger, map)
+		public ProductionSystem(IEngine engine) : base(engine)
 		{
 		}
 
