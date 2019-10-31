@@ -52,9 +52,9 @@ namespace EntityComponentSystemCSharp
 			entity.Manager.AddComponent(entity, component);
 		}
 
-		public static void AddOrUpdateComponent(this Entity entity, IComponent component)
+		public static IComponent AddOrUpdateComponent(this Entity entity, IComponent component)
 		{
-			entity.Manager.AddOrUpdateComponent(entity, component);
+			return entity.Manager.AddOrUpdateComponent(entity, component);
 		}
 
 		/// <summary>

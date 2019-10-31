@@ -1,5 +1,6 @@
+using System.Collections.Generic;
 using EntityComponentSystemCSharp.Systems;
-
+using RogueSharp;
 
 namespace EntityComponentSystemCSharp
 {
@@ -8,5 +9,7 @@ namespace EntityComponentSystemCSharp
 		EntityManager GetEntityManager();
 		RogueSharp.IMap GetMap();
 		ISystemLogger GetLogger();
+		HashSet<Point> GetPlayerViewable();
+		Point GetPlayerLocation();
 	}
 }

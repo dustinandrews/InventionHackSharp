@@ -27,10 +27,18 @@ namespace EntityComponentSystemCSharp.Systems
 		public override void Run(EntityManager.Entity entity)
 		{
 			if(!entity.HasComponent<WanderingMonster>()){return;}
+			if(!entity.HasComponent<Location>()){return;}
 
 			var actual = entity.GetComponent<Location>();
 			var desired = entity.GetComponent<Destination>();
-			if(desired == null || desired == actual)
+
+			var point = new Point(actual.X, actual.Y);
+			if (_engine.GetPlayerViewable().Contains(point))
+			{
+				desired = new Destination() {X =_engine.GetPlayerLocation().X, Y = _engine.GetPlayerLocation().Y};
+				entity.AddOrUpdateComponent((IComponent)desired);
+			}
+			else if(desired == null || desired == actual)
 			{
 				entity.RemoveComponent<Destination>();
 				var randCell = walkable[rand.Next(0, walkable.Count)];

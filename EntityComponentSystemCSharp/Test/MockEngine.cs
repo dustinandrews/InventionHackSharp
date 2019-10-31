@@ -1,9 +1,10 @@
+using System.Collections.Generic;
 using EntityComponentSystemCSharp.Systems;
 using RogueSharp;
 
 namespace EntityComponentSystemCSharp
 {
-    public class MockEngine : IEngine
+	public class MockEngine : IEngine
 	{
 		EntityManager _em;
 		ISystemLogger _logger;
@@ -27,6 +28,16 @@ namespace EntityComponentSystemCSharp
 		public IMap GetMap()
 		{
 			return _map;
+		}
+
+		public Point GetPlayerLocation()
+		{
+			throw new System.NotImplementedException();
+		}
+
+		public HashSet<Point> GetPlayerViewable()
+		{
+			throw new System.NotImplementedException();
 		}
 	}
 }

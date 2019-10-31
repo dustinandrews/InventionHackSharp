@@ -185,10 +185,11 @@ namespace EntityComponentSystemCSharp
 			AddComponent(entity.Id, component);
 		}
 
-		public void AddOrUpdateComponent(Entity entity, IComponent component)
+		public IComponent AddOrUpdateComponent(Entity entity, IComponent component)
 		{
 			var key = GetMapKey(entity.Id, component.GetType());
 			_map[key] = component;
+			return component;
 		}
 
 		void AddComponent(int entityId, IComponent component)

@@ -36,6 +36,9 @@ namespace MegaDungeon
 		public ISystemLogger GetLogger() {return _logger;}
 		public RogueSharp.IMap GetMap() {return _map;}
 		public EntityManager GetEntityManager() {return _entityManager;}
+		public HashSet<Point> GetPlayerViewable() {return _viewable;}
+		public Point GetPlayerLocation() {return new Point(){X = _playerLocation.X, Y = _playerLocation.Y};}
+
 		public HashSet<Point> Viewable
 		{
 			get => _viewable;
