@@ -27,6 +27,7 @@ namespace Portable
 		Label _bottomLabel;
 		Label _rightLabel;
 		EntityData _leftPanel;
+		bool _showDebugInfo = false;
 
 		static Dictionary<Inv.Key, Action> UICommands = new Dictionary<Key, Action>();
 		public MegaDungeon.PlayerInput LastInput { get => _lastInput; set => _lastInput = value; }
@@ -79,6 +80,7 @@ namespace Portable
 		{
 			UICommands[Inv.Key.Plus] = () => {_cloth.Zoom(0,0,1);};
 			UICommands[Inv.Key.Minus] = () => {_cloth.Zoom(0,0,-1);};
+			UICommands[Inv.Key.F2] = () => {_showDebugInfo = !_showDebugInfo;_cloth.Draw();};
 		}
 		/// <summary>
 		/// Check for full _cloth init before going to usual update
@@ -159,7 +161,7 @@ namespace Portable
 			return cloth;
 		}
 
-		void Cloth_DrawEvent(DrawContract DC, Patch patch)
+		void Cloth_DrawEvent(DrawContract dc, Patch patch)
 		{
 			var point = new RogueSharp.Point(patch.X, patch.Y);
 			int glyph = _engine.Floor[patch.X, patch.Y];
@@ -171,20 +173,35 @@ namespace Portable
 				{	
 					glyph = _actorLocationMap[patch.X + (patch.Y * _horizontalCellCount)];
 					image = _tileManager.GetInvImage(glyph);
+					dc.DrawImage(image, patch.Rect);
+					if(_showDebugInfo)
+					{
+						foreach(var loc in _lastLocation)
+						{
+							if(loc.Value.X == patch.X && loc.Value.Y == patch.Y)
+							{
+								DrawText(loc.Key.Id.ToString(), dc, patch);
+							}
+						}
+					}
 				}
 				else
 				{
 					image = _tileManager.GetInvImage(glyph);
+					dc.DrawImage(image, patch.Rect);
 				}
 			}
 			else
 			{
 				image = _tileManager.GetInvImageDark(glyph);
+				dc.DrawImage(image, patch.Rect);
 			}
-
-			DC.DrawImage(image, patch.Rect);
 		}
 
+		void DrawText(string text, DrawContract dc, Patch patch)
+		{
+			dc.DrawText(text, "Courier", 11,FontWeight.Regular, Colour.YellowGreen, new Point(patch.Rect.Left, patch.Rect.Top), HorizontalPosition.Left, VerticalPosition.Top);
+		}
 		void GetActorsFromEngine()
 		{
 			// Remove old location from the map.
