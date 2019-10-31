@@ -25,7 +25,7 @@ namespace EntityComponentSystemCSharp
 			entity.AddComponent( inventory);
 
 			var productionSystem = new ProductionSystem(em, new MockLogger(), new MockMap());
-			productionSystem.Run();
+			productionSystem.Run(entity);
 
 			Assert.AreEqual(11, inventory.Items.Count);
 		}
@@ -44,7 +44,7 @@ namespace EntityComponentSystemCSharp
 			entity.AddComponent( inventory);
 
 			var productionSystem = new ProductionSystem(em, new MockLogger(), new MockMap());
-			productionSystem.Run();
+			productionSystem.Run(entity);
 			Assert.AreEqual(10, inventory.Items.Count);
 		}
 
@@ -59,7 +59,7 @@ namespace EntityComponentSystemCSharp
 			inventory.Size = 10;
 			entity.AddComponent( inventory);
 			var productionSystem = new ProductionSystem(em, new MockLogger(), new MockMap());
-			productionSystem.Run();
+			productionSystem.Run(entity);
 
 			var item = inventory.Items[0];
 			var name = item.GetComponent<Item>().Type;
@@ -77,13 +77,13 @@ namespace EntityComponentSystemCSharp
 			inventory.Size = 10;
 			entity.AddComponent( inventory);
 			var productionSystem = new ProductionSystem(em, new MockLogger(), new MockMap());
-			productionSystem.Run();
+			productionSystem.Run(entity);
 
 			var demand = new Demand();
 			demand.Demands.Add("widget", 1);
 			entity.AddComponent( demand);
 			var demandSystem = new DemandSystem(em, new MockLogger(), new MockMap());
-			demandSystem.Run();
+			demandSystem.Run(entity);
 
 			Assert.Less(inventory.Items.Count, 10);
 		}

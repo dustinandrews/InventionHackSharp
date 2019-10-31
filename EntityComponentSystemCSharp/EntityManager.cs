@@ -34,7 +34,7 @@ namespace EntityComponentSystemCSharp
 			}
 		}
 
-		public IEnumerable<Entity> Entities => _entities.ToArray(); // Read Only version of current entities for debugging
+		public IEnumerable<Entity> Entities => _entities.ToArray(); // Read Only version of current entities
 		HashSet<Entity> _entities = new HashSet<Entity>();
 
 		// key is $"{entityInt}+{typeof(component).ToString()}"

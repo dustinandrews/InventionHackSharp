@@ -71,9 +71,9 @@ namespace EntityComponentSystemCSharp.Components
 
 	public class Actor : IComponent
 	{
-		public int Speed;
+		public float Speed;
 		public int Gold;
-		public int Energy;
+		public float Energy;
 	}
 
 	public class Glyph : IComponent

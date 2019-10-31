@@ -13,36 +13,35 @@ namespace EntityComponentSystemCSharp.Systems
 		{
 		}
 
-		public override void Run()
+		public override void Run(EntityManager.Entity entity)
 		{
-			foreach(var e in _em.GetAllEntitiesWithComponent<Attacked>())
+			if(!entity.HasComponent<Attacked>()) {return;}
+			
+			var attacked = entity.GetComponent<Attacked>();
+			var alive = entity.GetComponent<Life>();
+			var attackStat = attacked.attacker.GetComponent<AttackStat>();
+			var defense = entity.GetComponent<DefenseStat>();
+			if(alive != null && attackStat != null)
 			{
-				var attacked = e.GetComponent<Attacked>();
-				var alive = e.GetComponent<Life>();
-				var attackStat = attacked.attacker.GetComponent<AttackStat>();
-				var defense = e.GetComponent<DefenseStat>();
-				if(alive != null && attackStat != null)
+				var hit = _rand.Next(100);
+				if(hit > attackStat.Accuracy)
 				{
-					var hit = _rand.Next(100);
-					if(hit > attackStat.Accuracy)
+					var damage = _rand.Next(attackStat.Power + 1);
+					if(defense != null)
 					{
-						var damage = _rand.Next(attackStat.Power + 1);
-						if(defense != null)
+						if (hit > defense.Chance)
 						{
-							if (hit > defense.Chance)
-							{
-								_logger.Log($"Hit {damage}.");
-								alive.Health -= damage;
-							}
+							_logger.Log($"Hit {damage}.");
+							alive.Health -= damage;
 						}
 					}
-					else
-					{
-						_logger.Log("miss!");
-					}
 				}
-				e.RemoveComponent<Attacked>();
+				else
+				{
+					_logger.Log("miss!");
+				}
 			}
+			entity.RemoveComponent<Attacked>();
 		}
 	}
 }

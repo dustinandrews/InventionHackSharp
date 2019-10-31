@@ -13,7 +13,7 @@ namespace EntityComponentSystemCSharp.Systems
 		{
 		}
 
-		public override void Run()
+		public override void Run(Entity entity)
 		{
 			throw new NotImplementedException();
 		}

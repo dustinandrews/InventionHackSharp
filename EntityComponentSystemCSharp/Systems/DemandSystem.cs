@@ -13,23 +13,21 @@ namespace EntityComponentSystemCSharp.Systems
 		{
 		}
 
-		public override void Run()
+		public override void Run(Entity entity)
 		{
-			var entities = _em.GetAllEntitiesWithComponent<Demand>();
-			foreach(var e in entities)
+			if(!entity.HasComponent<Demand>()){return;}
+
+			var demand = entity.GetComponent<Demand>();
+			var inventory = entity.GetComponent<Inventory>();
+			if(demand != null)
 			{
-				var demand = e.GetComponent<Demand>();
-				var inventory = e.GetComponent<Inventory>();
-				if(demand != null)
+				foreach(var d in demand.Demands)
 				{
-					foreach(var d in demand.Demands)
+					var items = GetItemsFromInventory(entity, d.Key);
+					var numToRemove = Math.Min(items.Length, d.Value);
+					for(int i = 0; i < numToRemove; i++)
 					{
-						var items = GetItemsFromInventory(e, d.Key);
-						var numToRemove = Math.Min(items.Length, d.Value);
-						for(int i = 0; i < numToRemove; i++)
-						{
-							inventory.Items.Remove(items[i]);
-						}
+						inventory.Items.Remove(items[i]);
 					}
 				}
 			}

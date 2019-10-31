@@ -12,14 +12,13 @@ namespace EntityComponentSystemCSharp.Systems
 		{
 		}
 
-		public override void Run()
+		public override void Run(EntityManager.Entity entity)
 		{
-			var actors = _em.GetAllEntitiesWithComponent<Actor>();
-			foreach(var entity in actors)
-			{
-				var actor = entity.GetComponent<Actor>();
-				actor.Energy += actor.Speed;
-			}
+			if(!entity.HasComponent<Actor>()){return;}
+			
+			var actor = entity.GetComponent<Actor>();
+			actor.Energy += actor.Speed;
+			
 		}
 	}
 }

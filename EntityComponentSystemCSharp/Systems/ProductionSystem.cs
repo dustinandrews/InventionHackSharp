@@ -10,26 +10,24 @@ namespace EntityComponentSystemCSharp.Systems
 		{
 		}
 
-		public override void Run()
+		public override void Run(EntityManager.Entity entity)
 		{
-			var producers = _em.GetAllEntitiesWithComponent<Producer>();
-			foreach (var producer in producers)
-			{
-				var production = producer.GetComponent<Producer>();
+			if(!entity.HasComponent<Producer>()){return;}
 
-				foreach(var product in production.ProducedItems)
+			var production = entity.GetComponent<Producer>();
+
+			foreach(var product in production.ProducedItems)
+			{
+				product.inprogress += product.rate;
+				var wholeItems = (int)(product.inprogress);
+				product.inprogress =- wholeItems;
+				var inventory = entity.GetComponent<Inventory>();
+				var numToAdd = Math.Min(inventory.Size, wholeItems);
+				for(int i = 0; i < numToAdd; i++)
 				{
-					product.inprogress += product.rate;
-					var wholeItems = (int)(product.inprogress);
-					product.inprogress =- wholeItems;
-					var inventory = producer.GetComponent<Inventory>();
-					var numToAdd = Math.Min(inventory.Size, wholeItems);
-					for(int i = 0; i < numToAdd; i++)
-					{
-						var item = _em.CreateEntity();
-						item.AddComponent(new Item(){Type = product.product});
-						inventory.Items.Add(item);
-					}
+					var item = _em.CreateEntity();
+					item.AddComponent(new Item(){Type = product.product});
+					inventory.Items.Add(item);
 				}
 			}
 		}

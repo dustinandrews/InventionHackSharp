@@ -28,7 +28,7 @@ namespace MegaDungeon
 			return actor;
 		}
 
-		public EntityManager.Entity CreateActor(int glyph, string name = "actor", int maxHealth = 1,int defence = 1, int power = 1,int accuracy = 50,int speed = 5)
+		public EntityManager.Entity CreateActor(int glyph, string name = "actor", int maxHealth = 1,int defence = 1, int power = 1,int accuracy = 50, float speed = 6.6F)
 		{
 			var actor = _entityManager.CreateEntity();
 			actor.AddComponent(new Actor(){Gold = 0, Speed  = speed});

@@ -12,42 +12,38 @@ namespace EntityComponentSystemCSharp.Systems
 		{
 		}
 
-		public override void Run()
+		public override void Run(EntityManager.Entity entity)
 		{
-			foreach(var entity in _em.GetAllEntitiesWithComponent<Life>())
-			{
 				var life = entity.GetComponent<Life>();
+				if(life == null) {return;}
+				
 				if(life.Health <= 0)
 				{
-					var nameComponent = entity.GetComponent<Name>();
-					string name;
-					if(nameComponent != null)
-					{
-						name = nameComponent.NameString;
-					}
-					else
-					{
-						name = $"Entity {entity.Id.ToString()}";
-					}
-					_logger.Log($"{name} has run out of hitpoints and died.");
-
-					entity.RemoveComponent<Actor>();
-					entity.RemoveComponent<Life>();
-					entity.AddComponent<Dead>();
-
-					var glyph = entity.GetComponent<Glyph>();
-					glyph.glyph = CORPSE;
+				var nameComponent = entity.GetComponent<Name>();
+				string name = "";
+				if(nameComponent != null)
+				{
+					name = nameComponent.NameString;
 				}
 
-				if(life.Health < life.MaxHealth)
+				_logger.Log($"{name}({entity.Id.ToString()}) has run out of hitpoints and died.");
+
+				entity.RemoveComponent<Actor>();
+				entity.RemoveComponent<Life>();
+				entity.AddComponent<Dead>();
+
+				var glyph = entity.GetComponent<Glyph>();
+				glyph.glyph = CORPSE;
+			}
+
+			if(life.Health < life.MaxHealth)
+			{
+				var regenRole = rand.Next(1000);
+				if (regenRole < life.MaxHealth)
 				{
-					var regenRole = rand.Next(1000);
-					if (regenRole < life.MaxHealth)
-					{
-						life.Health++;
-					}
+					life.Health++;
 				}
 			}
 		}
-	}
+    }
 }

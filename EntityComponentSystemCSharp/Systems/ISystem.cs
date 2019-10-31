@@ -2,7 +2,7 @@ namespace EntityComponentSystemCSharp.Systems
 {
 	public interface ISystem
 	{
-		void Run();
+		void Run(EntityManager.Entity entity);
 	}
 
 	public interface ISystemLogger

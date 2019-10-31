@@ -21,8 +21,8 @@ namespace MegaDungeon
 		ITileManager _tileManager;
 		Location _playerLocation = new Location();
 		List<int[]> _doorways = new List<int[]>();
-		EntityManager entityManager = new EntityManager();
-		public EntityManager EntityManager => entityManager;
+		EntityManager _entityManager = new EntityManager();
+		public EntityManager EntityManager => _entityManager;
 		List<RogueSharp.ICell> _walkable = new List<RogueSharp.ICell>();
 		List<ISystem> _turnSystems = new List<ISystem>();
 		internal Queue<string> _messages = new Queue<string>();
@@ -76,7 +76,7 @@ namespace MegaDungeon
 
 			RandomizeFloor();
 			InitCellGlyphs();
-			_actorManager = new ActorManager(entityManager);
+			_actorManager = new ActorManager(_entityManager);
 			InitializePlayer();
 			PlaceMonsters();
 			UpdateViews();
@@ -84,11 +84,11 @@ namespace MegaDungeon
 			var logger = new EngineLogger(this);
 
 			// Setup systems to run. Order matters.
-			_turnSystems.Add(new EnergySystem(entityManager, logger, _map));
-			_turnSystems.Add(new RandomMovementSystem(entityManager, logger, _map));
-			_turnSystems.Add(new MovementSystem(entityManager, logger, _map));
-			_turnSystems.Add(new CombatSystem(entityManager, logger, _map));
-			_turnSystems.Add(new HealthSystem(entityManager, logger, _map));
+			_turnSystems.Add(new EnergySystem(_entityManager, logger, _map));
+			_turnSystems.Add(new RandomMovementSystem(_entityManager, logger, _map));
+			_turnSystems.Add(new MovementSystem(_entityManager, logger, _map));
+			_turnSystems.Add(new CombatSystem(_entityManager, logger, _map));
+			_turnSystems.Add(new HealthSystem(_entityManager, logger, _map));
 		}
 
 		/// <summary>
@@ -97,7 +97,7 @@ namespace MegaDungeon
 		/// <param name="playerInput"></param>
 		public void DoTurn(PlayerInput playerInput)
 		{
-			var player = entityManager.GetAllEntitiesWithComponent<Player>().FirstOrDefault();
+			var player = _entityManager.GetAllEntitiesWithComponent<Player>().FirstOrDefault();
 			if(player != null)
 			{
 				var position = player.GetComponent<Location>();
@@ -119,7 +119,10 @@ namespace MegaDungeon
 			// Run all the game systems.
 			foreach(var system in _turnSystems)
 			{
-				system.Run();
+				foreach(var entity in _entityManager.Entities)
+				{
+					system.Run(entity);
+				}
 			}
 
 			_messages.Enqueue(playerInput.ToString());

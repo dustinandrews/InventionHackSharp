@@ -20,20 +20,19 @@ namespace EntityComponentSystemCSharp.Systems
 			}
 		}
 
-		public override void Run()
+		public override void Run(EntityManager.Entity entity)
 		{
-			foreach(var entity in _em.GetAllEntitiesWithComponent<RandomMovement>())
+			if(!entity.HasComponent<RandomMovement>()){return;}
+
+			var actual = entity.GetComponent<Location>();
+			var desired = entity.GetComponent<Destination>();
+			if(desired == null || desired == actual)
 			{
-				var actual = entity.GetComponent<Location>();
-				var desired = entity.GetComponent<Destination>();
-				if(desired == null || desired == actual)
-				{
-					entity.RemoveComponent<Destination>();
-					var randCell = walkable[rand.Next(0, walkable.Count)];
-					desired = entity.AddComponent<Destination>();
-					desired.X = randCell.X;
-					desired.Y = randCell.Y;
-				}
+				entity.RemoveComponent<Destination>();
+				var randCell = walkable[rand.Next(0, walkable.Count)];
+				desired = entity.AddComponent<Destination>();
+				desired.X = randCell.X;
+				desired.Y = randCell.Y;
 			}
 		}
 	}

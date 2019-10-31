@@ -15,6 +15,6 @@ namespace EntityComponentSystemCSharp.Systems
 			_logger = logger;
 			_map = map;
 		}
-		public abstract void Run();
+		public abstract void Run(Entity entity);
 	}
 }
