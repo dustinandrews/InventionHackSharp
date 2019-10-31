@@ -125,7 +125,6 @@ namespace MegaDungeon
 				}
 			}
 
-			_messages.Enqueue(playerInput.ToString());
 			while(_messages.Count() > _messageLimit)
 			{
 				_messages.Dequeue();
@@ -158,7 +157,7 @@ namespace MegaDungeon
 			for(int i = 0; i < numMonsters; i++)
 			{
 				var location = GetWalkableCell();
-				var monster = _actorManager.CreateActor(60);
+				var monster = _actorManager.CreateActor(60, $"Kobold {i}");
 				monster.AddComponent(new Location(){X = location.X, Y = location.Y});
 				monster.AddComponent(new Faction(){Type = Factions.Monster});
 				monster.AddComponent<RandomMovement>();

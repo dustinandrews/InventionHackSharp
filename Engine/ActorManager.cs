@@ -19,8 +19,8 @@ namespace MegaDungeon
 				"Rogue",
 				100,
 				10,
-				2,
-				50,
+				10,
+				100,
 				10
 			);
 			actor.AddComponent(new SightStat(){Range=4});

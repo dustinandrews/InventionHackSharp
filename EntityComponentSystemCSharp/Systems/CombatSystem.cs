@@ -24,9 +24,9 @@ namespace EntityComponentSystemCSharp.Systems
 			if(alive != null && attackStat != null)
 			{
 				var hit = _rand.Next(100);
-				if(hit > attackStat.Accuracy)
+				if(hit < attackStat.Accuracy)
 				{
-					var damage = _rand.Next(attackStat.Power + 1);
+					var damage = _rand.Next(attackStat.Power) + 1;
 					if(defense != null)
 					{
 						if (hit > defense.Chance)
