@@ -14,11 +14,20 @@ namespace EntityComponentSystemCSharp.Systems
 
 		public override void Run(EntityManager.Entity entity)
 		{
-				var life = entity.GetComponent<Life>();
-				if(life == null) {return;}
-				
-				if(life.Health <= 0)
+			var life = entity.GetComponent<Life>();
+			if(life == null) {return;}
+
+			if(life.Health < life.MaxHealth)
+			{
+				var regenRole = rand.Next(1000);
+				if (regenRole < life.MaxHealth)
 				{
+					life.Health++;
+				}
+			}
+
+			if(life.Health <= 0)
+			{
 				var nameComponent = entity.GetComponent<Name>();
 				string name = "";
 				if(nameComponent != null)
@@ -35,15 +44,6 @@ namespace EntityComponentSystemCSharp.Systems
 				var glyph = entity.GetComponent<Glyph>();
 				glyph.glyph = CORPSE;
 			}
-
-			if(life.Health < life.MaxHealth)
-			{
-				var regenRole = rand.Next(1000);
-				if (regenRole < life.MaxHealth)
-				{
-					life.Health++;
-				}
-			}
 		}
-    }
+	}
 }

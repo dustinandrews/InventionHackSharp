@@ -115,17 +115,14 @@ namespace Portable
 		/// </remarks>
 		void Update()
 		{
-			// GetActorsFromEngine();
-			// var playerLocation = _lastLocation[_player];
-			// _cloth.SetPanningXY(playerLocation.X, playerLocation.Y);
 			if (_lastInput != MegaDungeon.PlayerInput.NONE)
 			{
 				_engine.DoTurn(_lastInput);
-				_lastInput = MegaDungeon.PlayerInput.NONE;
 				GetActorsFromEngine();
 				_cloth.KeepXYOnScreen(_engine.PlayerLocation.X, _engine.PlayerLocation.Y);
 				_bottomLabel.Text = string.Join("\n", _engine.Messages);
 				_cloth.Draw();
+				_lastInput = MegaDungeon.PlayerInput.NONE;
 			}
 		}
 
@@ -166,6 +163,7 @@ namespace Portable
 		{
 			var point = new RogueSharp.Point(patch.X, patch.Y);
 			int glyph = _engine.Floor[patch.X, patch.Y];
+
 			Inv.Image image;
 			if(_engine.Viewable.Contains(point))
 			{
@@ -183,6 +181,7 @@ namespace Portable
 			{
 				image = _tileManager.GetInvImageDark(glyph);
 			}
+
 			DC.DrawImage(image, patch.Rect);
 		}
 

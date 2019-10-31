@@ -1,16 +1,18 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Diagnostics;
 using EntityComponentSystemCSharp;
 using EntityComponentSystemCSharp.Components;
 using EntityComponentSystemCSharp.Systems;
 using RogueSharp;
 using MegaDungeon.Contracts;
 using static MegaDungeon.EngineConstants;
+using static EntityComponentSystemCSharp.EntityManager;
 
 namespace MegaDungeon
 {
-    public class Engine
+	public class Engine
 	{
 		Random random = new Random();
 		int _width;
@@ -75,6 +77,7 @@ namespace MegaDungeon
 			_tileManager = tileManager;
 
 			RandomizeFloor();
+			// BigRoom();
 			InitCellGlyphs();
 			_actorManager = new ActorManager(_entityManager);
 			InitializePlayer();
@@ -84,11 +87,11 @@ namespace MegaDungeon
 			var logger = new EngineLogger(this);
 
 			// Setup systems to run. Order matters.
+			_turnSystems.Add(new CombatSystem(_entityManager, logger, _map));
+			_turnSystems.Add(new HealthSystem(_entityManager, logger, _map));
 			_turnSystems.Add(new EnergySystem(_entityManager, logger, _map));
 			_turnSystems.Add(new RandomMovementSystem(_entityManager, logger, _map));
 			_turnSystems.Add(new MovementSystem(_entityManager, logger, _map));
-			_turnSystems.Add(new CombatSystem(_entityManager, logger, _map));
-			_turnSystems.Add(new HealthSystem(_entityManager, logger, _map));
 		}
 
 		/// <summary>
@@ -97,40 +100,37 @@ namespace MegaDungeon
 		/// <param name="playerInput"></param>
 		public void DoTurn(PlayerInput playerInput)
 		{
-			var player = _entityManager.GetAllEntitiesWithComponent<Player>().FirstOrDefault();
-			if(player != null)
+			if(_player != null)
 			{
-				var position = player.GetComponent<Location>();
+				// Attach or modify any components needed to the player.
+				var position = _player.GetComponent<Location>();
 				if(INPUTMAP.ContainsKey(playerInput))
 				{
 					var delta = INPUTMAP[playerInput];
 					var desired = delta + new Point(position.X, position.Y);
-					var desiredComp = player.GetComponent<Destination>();
+					var desiredComp = _player.GetComponent<Destination>();
 					if(desiredComp == null)
 					{
 						desiredComp = new Destination();
-						player.AddComponent(desiredComp);
+						_player.AddComponent(desiredComp);
 					}
 					desiredComp.X = desired.X;
 					desiredComp.Y = desired.Y;
 				}
 			}
 
-			// Run all the game systems.
+			// Cycle each entity through every system in turn.
+			foreach(var entity in _entityManager.Entities)
 			foreach(var system in _turnSystems)
 			{
-				foreach(var entity in _entityManager.Entities)
-				{
-					system.Run(entity);
-				}
+				system.Run(entity);
 			}
 
+			UpdateViews();
 			while(_messages.Count() > _messageLimit)
 			{
 				_messages.Dequeue();
 			}
-
-			UpdateViews();
 		}
 
 
@@ -157,11 +157,12 @@ namespace MegaDungeon
 			for(int i = 0; i < numMonsters; i++)
 			{
 				var location = GetWalkableCell();
-				var monster = _actorManager.CreateActor(60, $"Kobold {i}");
+				string name = $"Kobold";
+				var monster = _actorManager.CreateActor(60, name);
 				monster.AddComponent(new Location(){X = location.X, Y = location.Y});
 				monster.AddComponent(new Faction(){Type = Factions.Monster});
 				monster.AddComponent<RandomMovement>();
-				_messages.Enqueue(location.ToString());
+				Debug.WriteLine($"Spawned {name} ({location.X},{location.Y})");
 			}
 		}
 
@@ -267,6 +268,12 @@ namespace MegaDungeon
 			}
 		}
 		return circleFov;
+		}
+
+		private void BigRoom()
+		{
+			var bigroom = new RogueSharp.MapCreation.BorderOnlyMapCreationStrategy<RogueSharp.Map>(_width, _height);
+			_map = bigroom.CreateMap();
 		}
 
 		private void RandomizeFloor()

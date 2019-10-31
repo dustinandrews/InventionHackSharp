@@ -23,7 +23,7 @@ namespace MegaDungeon
 				100,
 				10
 			);
-			actor.AddComponent(new SightStat(){Range=4});
+			actor.AddComponent(new SightStat(){Range=5});
 			actor.AddComponent<Player>();
 			return actor;
 		}
