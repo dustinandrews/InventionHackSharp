@@ -44,8 +44,13 @@ namespace EntityComponentSystemCSharp.Systems
 						{
 							var myFaction = entity.GetComponent<Faction>();
 							var theirFaction = e.GetComponent<Faction>();
+							var theirAttacked = e.GetComponent<Attacked>();
+
+							// Check to see if the two are eligible to swap.
+							// Must be same faction and target not under (unresolved) attack.
 							if(myFaction != null &&
 							theirFaction!= null &&
+							theirAttacked == null &&
 							myFaction.Type == theirFaction.Type)
 							{
 								othersLocation.X = current.X;
