@@ -13,6 +13,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "InventionUiWpf", "Invention
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Contracts", "Contracts\Contracts.csproj", "{4C39707F-0B3B-4597-970F-F47A67331E84}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FeatureDetector", "FeatureDetector\FeatureDetector.csproj", "{2C024C71-0EE7-47F8-8A69-6A84EDD1989F}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -113,6 +115,18 @@ Global
 		{4C39707F-0B3B-4597-970F-F47A67331E84}.Release|x64.Build.0 = Release|Any CPU
 		{4C39707F-0B3B-4597-970F-F47A67331E84}.Release|x86.ActiveCfg = Release|Any CPU
 		{4C39707F-0B3B-4597-970F-F47A67331E84}.Release|x86.Build.0 = Release|Any CPU
+		{2C024C71-0EE7-47F8-8A69-6A84EDD1989F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{2C024C71-0EE7-47F8-8A69-6A84EDD1989F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{2C024C71-0EE7-47F8-8A69-6A84EDD1989F}.Debug|x64.ActiveCfg = Debug|Any CPU
+		{2C024C71-0EE7-47F8-8A69-6A84EDD1989F}.Debug|x64.Build.0 = Debug|Any CPU
+		{2C024C71-0EE7-47F8-8A69-6A84EDD1989F}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{2C024C71-0EE7-47F8-8A69-6A84EDD1989F}.Debug|x86.Build.0 = Debug|Any CPU
+		{2C024C71-0EE7-47F8-8A69-6A84EDD1989F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{2C024C71-0EE7-47F8-8A69-6A84EDD1989F}.Release|Any CPU.Build.0 = Release|Any CPU
+		{2C024C71-0EE7-47F8-8A69-6A84EDD1989F}.Release|x64.ActiveCfg = Release|Any CPU
+		{2C024C71-0EE7-47F8-8A69-6A84EDD1989F}.Release|x64.Build.0 = Release|Any CPU
+		{2C024C71-0EE7-47F8-8A69-6A84EDD1989F}.Release|x86.ActiveCfg = Release|Any CPU
+		{2C024C71-0EE7-47F8-8A69-6A84EDD1989F}.Release|x86.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

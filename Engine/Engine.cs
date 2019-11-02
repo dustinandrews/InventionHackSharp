@@ -285,6 +285,7 @@ namespace MegaDungeon
 		{
 			var randomRooms = new RogueSharp.MapCreation.RandomRoomsMapCreationStrategy<RogueSharp.Map>(_width, _height, 20, 10, 5);
 			_map = randomRooms.CreateMap();
+			Debug.WriteLine(_map);
 		}
 	}
 }
