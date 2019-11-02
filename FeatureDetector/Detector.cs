@@ -43,69 +43,29 @@ namespace FeatureDetector
 			Assert.AreEqual(1, corridors[34,22]);
 		}
 
-		[OneTimeSetUp]
-		public void OneTimeSetUp()
+		[Test]
+		public void FindDoorwaysTest()
 		{
-			mapArray = np.ndarray(new Shape(40,60), typeof(int));
-			frameArray = np.ndarray(new Shape(42, 62), typeof(int));
-			int x = 0;
-			foreach(var line in map.Replace("\r","").Split('\n'))
+			var detector = new Detector(mapIntArray);
+			var doorways = detector.FindDoorways();
+			Debug.WriteLine(detector.ToMapString(doorways));
+		}
+
+		private static void IterateMaps(Detector detector, int[,] matrix)
+		{
+			var thing = detector.ConvolveFilter(matrix);
+			var min = (int)thing.min().Data<int>()[0];
+			var max = (int)thing.max().Data<int>()[0];
+			var arr = (int[,])thing.ToMuliDimArray<int>();
+			for (int i = min; i <= max; i++)
 			{
-				int y = 0;
-				foreach(var ch in line.ToCharArray())
-				{
-					var digit = int.Parse(ch.ToString());
-					mapArray[x,y] = digit;
-					frameArray[x+1,y+1] = digit;
-					y++;
-				}
-				x++;
+				var splats = detector.FilterArray(thing, i);
+				Debug.WriteLine(i);
+				Debug.WriteLine(detector.ToMapString(splats));
 			}
 		}
 
-		NDArray mapArray, frameArray;
-		string map = @"111111111111111111111111111111111111111111111111111111111111
-111111111111111111111111111111111111111111111111111111111111
-111111111111111111111111111111111111111111111111111111111111
-111111111111111111111100000000111111111111111111111111111111
-111111111111111111111100000000111111111111111111111111111111
-111111111111111111111100000000111111000000000111111111111111
-111111111111111111111100000000111111000000000111111111111111
-111111111111111111000000000000000000000000000111111111111111
-111111111111111111011100000000111111000000000111111111111111
-111111111111111111011100000000000000000000000111111111111111
-111111111111111111011100000000111111000000000111111111111111
-111111111111111111011100000000111111000000000111111111111111
-111111111111111111011111111101111111000000000111111111111111
-111111111111111111011111111101111111000000000111111111111111
-111111111111111111011111111101111111111111101111111111111111
-111111111111111111011111111101111111111111101111111111111111
-111111111111111110000111111101111111100000001111111111111111
-111111111111111110000111111101111111100000001111111111111111
-111111111111111110000111111101111111100000001111111111111111
-111111111111111110000000000000000000000000001111111111111111
-111111111111111110000111111101111111100000001111100000000011
-111111111111111110000111111101111111100000001111100000000011
-111111111111111110000111111101111111100000000000000000000011
-111111111111111110000111111101111111111111101111100000000011
-111111111111111111111111111101111111111111101111100000000011
-111111111111111100000111111101111111111111101111100000000011
-111111111111111100000111111101111111111111101111111111111111
-111111111111111100000111111101111111111111101111111111111111
-111111111111111100000111111101111111111111101111111111111111
-111111111111111100000111111101111111111110000001111111111111
-111111111111111100000111100000000111111110000001111111111111
-111111111111111111011111100000000111111110000001111111111111
-111111111111111111011111100000000111111110000001111111111111
-111111111111111111011111100000000111111110000001111111111111
-111111111111111111000000000000000111111110000001111111111111
-111111111111111111111111100000000111111110000001111111111111
-111111111111111111111111100000000111111111111111111111111111
-111111111111111111111111100000000111111111111111111111111111
-111111111111111111111111100000000111111111111111111111111111
-111111111111111111111111111111111111111111111111111111111111";
-
-int[,] mapIntArray = new int[,]{{1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1},
+		int[,] mapIntArray = new int[,]{{1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1},
 {1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1},
 {1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1},
 {1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,0,0,0,0,0,0,0,0,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1},
@@ -170,7 +130,7 @@ int[,] mapIntArray = new int[,]{{1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1
 		public int[,] FindHorizontalEdges()
 		{
 			var filters = new List<int[,]>();
-			filters.Add( RotateMatrixCounterClockwise(Matrixes.Vertical));
+			filters.Add( Matrixes.RotateMatrixCounterClockwise(Matrixes.Vertical));
 			var convolution = ConvolveFilters(filters)[0];
 			var cutoff = 3;
 			return FilterArray(convolution, cutoff);
@@ -180,7 +140,7 @@ int[,] mapIntArray = new int[,]{{1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1
 		{
 			var list = new List<int[,]>();
 			list.Add(Matrixes.Vertical);
-			list.Add(RotateMatrixCounterClockwise(Matrixes.Vertical));
+			list.Add(Matrixes.RotateMatrixCounterClockwise(Matrixes.Vertical));
 			var convolutions = ConvolveFilters(list);
 			var outputArray = np.zeros(_xSize, _ySize);
 			foreach(NDArray conv in convolutions)
@@ -189,6 +149,25 @@ int[,] mapIntArray = new int[,]{{1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1
 				outputArray += np.array(corridors);
 			}
 			return  (int[,]) outputArray.ToMuliDimArray<int>();
+		}
+
+		
+		public int[,] FindDoorways()
+		{
+			var list = new List<int[,]>();
+			var filter = Matrixes.Doorway;
+			for(int i = 0; i < 4; i ++)
+			{
+				list.Add(filter);
+				filter = Matrixes.RotateMatrixCounterClockwise(filter);
+			}
+			var convolutions = ConvolveFilters(list);
+			var outputArray = np.zeros(_xSize, _ySize);
+			foreach(NDArray conv in convolutions)
+			{
+				outputArray += FilterArray(conv, -8);
+			}
+			return (int[,]) outputArray.ToMuliDimArray<int>();
 		}
 
 		public int[,] FilterArray(NDArray array, int match)
@@ -211,6 +190,13 @@ int[,] mapIntArray = new int[,]{{1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1
 			return (int[,]) outArray.ToMuliDimArray<int>();
 		}
 		
+		public NDArray ConvolveFilter(int[,] filter)
+		{
+			var list = new List<int[,]>();
+			list.Add(filter);
+			return ConvolveFilters(list)[0];
+		}
+
 		public NDArray[] ConvolveFilters(List<int[,]> filters)
 		{
 			var ndList = new List<NDArray>();
@@ -219,10 +205,10 @@ int[,] mapIntArray = new int[,]{{1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1
 				ndList.Add(np.array(f));
 			}
 
-			return ConvolveFilter(ndList);
+			return ConvolveFilters(ndList);
 		}
 
-		private NDArray[] ConvolveFilter(List<NDArray> ndFilters)
+		NDArray[] ConvolveFilters(List<NDArray> ndFilters)
 		{
 			var outputArrays = new NDArray[ndFilters.Count];
 			for(int i = 0; i < ndFilters.Count; i++)
@@ -230,7 +216,7 @@ int[,] mapIntArray = new int[,]{{1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1
 				outputArrays[i] = np.zeros(_xSize, _ySize);
 			}
 
-			var window = 3;
+			var window = ndFilters[0].shape[0];
 			var outputArr = np.zeros(_xSize, _ySize);
 			for (int x = 0; x < _xSize; x += 1)
 			{
@@ -252,7 +238,7 @@ int[,] mapIntArray = new int[,]{{1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1
 			_xSize = map.GetLength(0);
 			_ySize = map.GetLength(1);
 			_mapArray = np.array(map);
-			_paddedArray = np.ones(new Shape(_xSize+2, _ySize+2), typeof(int));
+			_paddedArray = np.zeros(new Shape(_xSize + 2, _ySize + 2), typeof(int));
 			
 			for(int x = 0; x < _xSize; x++)
 			{
@@ -261,23 +247,6 @@ int[,] mapIntArray = new int[,]{{1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1
 					_paddedArray[x+1,y+1] = _mapArray[x,y];
 				}
 			}
-		}
-
-		static int[,] RotateMatrixCounterClockwise(int[,] oldMatrix)
-		{
-			int[,] newMatrix = new int[oldMatrix.GetLength(1), oldMatrix.GetLength(0)];
-			int newColumn, newRow = 0;
-			for (int oldColumn = oldMatrix.GetLength(1) - 1; oldColumn >= 0; oldColumn--)
-			{
-				newColumn = 0;
-				for (int oldRow = 0; oldRow < oldMatrix.GetLength(0); oldRow++)
-				{
-					newMatrix[newRow, newColumn] = oldMatrix[oldRow, oldColumn];
-					newColumn++;
-				}
-				newRow++;
-			}
-			return newMatrix;
 		}
 
 		public string ToMapString(int[,] map)
@@ -318,10 +287,27 @@ int[,] mapIntArray = new int[,]{{1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1
 			{-1, 2, -1}
 		};
 
-		public static int[,] Cross2 = new int[,]{
-			{-2, 1,-1},
-			{ 1, 2, 2},
-			{-1, 2, -1}
+		public static int[,] Doorway = new int[,]{
+			{ 2, 2, 2},
+			{-1, 2,-1},
+			{-1, 2,-1},
 		};
+
+		public static int[,] RotateMatrixCounterClockwise(int[,] oldMatrix)
+		{
+			int[,] newMatrix = new int[oldMatrix.GetLength(1), oldMatrix.GetLength(0)];
+			int newColumn, newRow = 0;
+			for (int oldColumn = oldMatrix.GetLength(1) - 1; oldColumn >= 0; oldColumn--)
+			{
+				newColumn = 0;
+				for (int oldRow = 0; oldRow < oldMatrix.GetLength(0); oldRow++)
+				{
+					newMatrix[newRow, newColumn] = oldMatrix[oldRow, oldColumn];
+					newColumn++;
+				}
+				newRow++;
+			}
+			return newMatrix;
+		}
 	}
 }
