@@ -1,6 +1,6 @@
 namespace FeatureDetector
 {
-    public static class FeatureFilters
+	public static class FeatureFilters
 	{
 		// 1 == impassable/wall
 		public static int[,] Vertical = new int[,]{

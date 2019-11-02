@@ -4,7 +4,7 @@ using NUnit.Framework;
 
 namespace FeatureDetector
 {
-    [TestFixture]
+	[TestFixture]
 	public class DetectorTests
 	{
 		[Test]

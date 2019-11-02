@@ -6,7 +6,7 @@ using NumSharp;
 namespace FeatureDetector
 {
 
-    public class Detector
+	public class Detector
 	{
 		NDArray _mapArray;
 		NDArray _paddedArray;
