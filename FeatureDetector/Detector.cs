@@ -1,114 +1,12 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Diagnostics;
-using NUnit.Framework;
 using NumSharp;
 
 
 namespace FeatureDetector
 {
 
-	[TestFixture]
-	public class DetectorTests
-	{
-		[Test]
-		public void ConstructorTest()
-		{
-			var detector = new Detector(mapIntArray);
-		}
-
-		[Test]
-		public void FindVerticalWallsTest()
-		{
-			var detector = new Detector(mapIntArray);
-			var walls = detector.FindVerticalEdges();
-			Debug.WriteLine(detector.ToMapString(walls));
-			Assert.AreEqual(1, walls[12,45]);
-		}
-
-		[Test]
-		public void FindHorizontalWallsTest()
-		{
-			var detector = new Detector(mapIntArray);
-			var walls = detector.FindHorizontalEdges();
-			Assert.AreEqual(1, walls[20,33]);
-		}
-
-		[Test]
-		public void FindCorridorTest()
-		{
-			var detector = new Detector(mapIntArray);
-			var corridors = detector.FindCorridors();
-			Debug.WriteLine(detector.ToMapString(corridors));
-			Assert.AreEqual(1, corridors[34,22]);
-		}
-
-		[Test]
-		public void FindDoorwaysTest()
-		{
-			var detector = new Detector(mapIntArray);
-			var doorways = detector.FindDoorways();
-			Debug.WriteLine(detector.ToMapString(doorways));
-		}
-
-		private static void IterateMaps(Detector detector, int[,] matrix)
-		{
-			var thing = detector.ConvolveFilter(matrix);
-			var min = (int)thing.min().Data<int>()[0];
-			var max = (int)thing.max().Data<int>()[0];
-			var arr = (int[,])thing.ToMuliDimArray<int>();
-			for (int i = min; i <= max; i++)
-			{
-				var splats = detector.FilterArray(thing, i);
-				Debug.WriteLine(i);
-				Debug.WriteLine(detector.ToMapString(splats));
-			}
-		}
-
-		int[,] mapIntArray = new int[,]{{1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1},
-{1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1},
-{1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1},
-{1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,0,0,0,0,0,0,0,0,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1},
-{1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,0,0,0,0,0,0,0,0,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1},
-{1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,0,0,0,0,0,0,0,0,1,1,1,1,1,1,0,0,0,0,0,0,0,0,0,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1},
-{1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,0,0,0,0,0,0,0,0,1,1,1,1,1,1,0,0,0,0,0,0,0,0,0,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1},
-{1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1},
-{1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,0,1,1,1,0,0,0,0,0,0,0,0,1,1,1,1,1,1,0,0,0,0,0,0,0,0,0,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1},
-{1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,0,1,1,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1},
-{1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,0,1,1,1,0,0,0,0,0,0,0,0,1,1,1,1,1,1,0,0,0,0,0,0,0,0,0,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1},
-{1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,0,1,1,1,0,0,0,0,0,0,0,0,1,1,1,1,1,1,0,0,0,0,0,0,0,0,0,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1},
-{1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,0,1,1,1,1,1,1,1,1,1,0,1,1,1,1,1,1,1,0,0,0,0,0,0,0,0,0,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1},
-{1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,0,1,1,1,1,1,1,1,1,1,0,1,1,1,1,1,1,1,0,0,0,0,0,0,0,0,0,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1},
-{1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,0,1,1,1,1,1,1,1,1,1,0,1,1,1,1,1,1,1,1,1,1,1,1,1,1,0,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1},
-{1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,0,1,1,1,1,1,1,1,1,1,0,1,1,1,1,1,1,1,1,1,1,1,1,1,1,0,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1},
-{1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,0,0,0,0,1,1,1,1,1,1,1,0,1,1,1,1,1,1,1,1,0,0,0,0,0,0,0,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1},
-{1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,0,0,0,0,1,1,1,1,1,1,1,0,1,1,1,1,1,1,1,1,0,0,0,0,0,0,0,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1},
-{1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,0,0,0,0,1,1,1,1,1,1,1,0,1,1,1,1,1,1,1,1,0,0,0,0,0,0,0,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1},
-{1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1},
-{1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,0,0,0,0,1,1,1,1,1,1,1,0,1,1,1,1,1,1,1,1,0,0,0,0,0,0,0,1,1,1,1,1,0,0,0,0,0,0,0,0,0,1,1},
-{1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,0,0,0,0,1,1,1,1,1,1,1,0,1,1,1,1,1,1,1,1,0,0,0,0,0,0,0,1,1,1,1,1,0,0,0,0,0,0,0,0,0,1,1},
-{1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,0,0,0,0,1,1,1,1,1,1,1,0,1,1,1,1,1,1,1,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,1},
-{1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,0,0,0,0,1,1,1,1,1,1,1,0,1,1,1,1,1,1,1,1,1,1,1,1,1,1,0,1,1,1,1,1,0,0,0,0,0,0,0,0,0,1,1},
-{1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,0,1,1,1,1,1,1,1,1,1,1,1,1,1,1,0,1,1,1,1,1,0,0,0,0,0,0,0,0,0,1,1},
-{1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,0,0,0,0,0,1,1,1,1,1,1,1,0,1,1,1,1,1,1,1,1,1,1,1,1,1,1,0,1,1,1,1,1,0,0,0,0,0,0,0,0,0,1,1},
-{1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,0,0,0,0,0,1,1,1,1,1,1,1,0,1,1,1,1,1,1,1,1,1,1,1,1,1,1,0,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1},
-{1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,0,0,0,0,0,1,1,1,1,1,1,1,0,1,1,1,1,1,1,1,1,1,1,1,1,1,1,0,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1},
-{1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,0,0,0,0,0,1,1,1,1,1,1,1,0,1,1,1,1,1,1,1,1,1,1,1,1,1,1,0,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1},
-{1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,0,0,0,0,0,1,1,1,1,1,1,1,0,1,1,1,1,1,1,1,1,1,1,1,1,0,0,0,0,0,0,1,1,1,1,1,1,1,1,1,1,1,1,1},
-{1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,0,0,0,0,0,1,1,1,1,0,0,0,0,0,0,0,0,1,1,1,1,1,1,1,1,0,0,0,0,0,0,1,1,1,1,1,1,1,1,1,1,1,1,1},
-{1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,0,1,1,1,1,1,1,0,0,0,0,0,0,0,0,1,1,1,1,1,1,1,1,0,0,0,0,0,0,1,1,1,1,1,1,1,1,1,1,1,1,1},
-{1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,0,1,1,1,1,1,1,0,0,0,0,0,0,0,0,1,1,1,1,1,1,1,1,0,0,0,0,0,0,1,1,1,1,1,1,1,1,1,1,1,1,1},
-{1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,0,1,1,1,1,1,1,0,0,0,0,0,0,0,0,1,1,1,1,1,1,1,1,0,0,0,0,0,0,1,1,1,1,1,1,1,1,1,1,1,1,1},
-{1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,1,1,1,1,1,1,1,0,0,0,0,0,0,1,1,1,1,1,1,1,1,1,1,1,1,1},
-{1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,0,0,0,0,0,0,0,0,1,1,1,1,1,1,1,1,0,0,0,0,0,0,1,1,1,1,1,1,1,1,1,1,1,1,1},
-{1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,0,0,0,0,0,0,0,0,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1},
-{1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,0,0,0,0,0,0,0,0,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1},
-{1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,0,0,0,0,0,0,0,0,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1},
-{1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1}};
-
-	}
-
-	public class Detector
+    public class Detector
 	{
 		NDArray _mapArray;
 		NDArray _paddedArray;
@@ -121,7 +19,7 @@ namespace FeatureDetector
 		public int[,] FindVerticalEdges()
 		{
 			var filters = new List<int[,]>();
-			filters.Add(Matrixes.Vertical);
+			filters.Add(FeatureFilters.Vertical);
 			var convolution = ConvolveFilters(filters)[0];
 			var cutoff = 3;
 			return FilterArray(convolution, cutoff);
@@ -130,7 +28,7 @@ namespace FeatureDetector
 		public int[,] FindHorizontalEdges()
 		{
 			var filters = new List<int[,]>();
-			filters.Add( Matrixes.RotateMatrixCounterClockwise(Matrixes.Vertical));
+			filters.Add( FeatureFilters.RotateMatrixCounterClockwise(FeatureFilters.Vertical));
 			var convolution = ConvolveFilters(filters)[0];
 			var cutoff = 3;
 			return FilterArray(convolution, cutoff);
@@ -139,8 +37,8 @@ namespace FeatureDetector
 		public int[,] FindCorridors()
 		{
 			var list = new List<int[,]>();
-			list.Add(Matrixes.Vertical);
-			list.Add(Matrixes.RotateMatrixCounterClockwise(Matrixes.Vertical));
+			list.Add(FeatureFilters.Vertical);
+			list.Add(FeatureFilters.RotateMatrixCounterClockwise(FeatureFilters.Vertical));
 			var convolutions = ConvolveFilters(list);
 			var outputArray = np.zeros(_xSize, _ySize);
 			foreach(NDArray conv in convolutions)
@@ -155,11 +53,11 @@ namespace FeatureDetector
 		public int[,] FindDoorways()
 		{
 			var list = new List<int[,]>();
-			var filter = Matrixes.Doorway;
+			var filter = FeatureFilters.Doorway;
 			for(int i = 0; i < 4; i ++)
 			{
 				list.Add(filter);
-				filter = Matrixes.RotateMatrixCounterClockwise(filter);
+				filter = FeatureFilters.RotateMatrixCounterClockwise(filter);
 			}
 			var convolutions = ConvolveFilters(list);
 			var outputArray = np.zeros(_xSize, _ySize);
@@ -269,45 +167,6 @@ namespace FeatureDetector
 				sb.AppendLine();
 			}
 			return sb.ToString();
-		}
-	}
-
-	public static class Matrixes
-	{
-		// 1 == impassable/wall
-		public static int[,] Vertical = new int[,]{
-			{-1,2,-1},
-			{-1,2,-1},
-			{-1,2,-1}
-		};
-
-		public static int[,] Cross = new int[,]{
-			{-1, 2,-1},
-			{ 2, 2, 2},
-			{-1, 2, -1}
-		};
-
-		public static int[,] Doorway = new int[,]{
-			{ 2, 2, 2},
-			{-1, 2,-1},
-			{-1, 2,-1},
-		};
-
-		public static int[,] RotateMatrixCounterClockwise(int[,] oldMatrix)
-		{
-			int[,] newMatrix = new int[oldMatrix.GetLength(1), oldMatrix.GetLength(0)];
-			int newColumn, newRow = 0;
-			for (int oldColumn = oldMatrix.GetLength(1) - 1; oldColumn >= 0; oldColumn--)
-			{
-				newColumn = 0;
-				for (int oldRow = 0; oldRow < oldMatrix.GetLength(0); oldRow++)
-				{
-					newMatrix[newRow, newColumn] = oldMatrix[oldRow, oldColumn];
-					newColumn++;
-				}
-				newRow++;
-			}
-			return newMatrix;
 		}
 	}
 }
