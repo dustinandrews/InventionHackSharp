@@ -12,6 +12,7 @@
 	<ItemGroup>
 		<ProjectReference Include="..\EntityComponentSystemCSharp\EntityComponentSystemCSharp.csproj" />
 		<ProjectReference Include="..\Contracts\Contracts.csproj" />
+		<ProjectReference Include="..\FeatureDetector\FeatureDetector.csproj" />
 	</ItemGroup>
 
 </Project>

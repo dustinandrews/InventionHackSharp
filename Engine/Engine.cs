@@ -6,6 +6,7 @@ using EntityComponentSystemCSharp;
 using EntityComponentSystemCSharp.Components;
 using EntityComponentSystemCSharp.Systems;
 using RogueSharp;
+using FeatureDetector;
 using MegaDungeon.Contracts;
 using static MegaDungeon.EngineConstants;
 using static EntityComponentSystemCSharp.EntityManager;
@@ -176,51 +177,43 @@ namespace MegaDungeon
 		/// </summary>
 		void InitCellGlyphs()
 		{
-			foreach (var cell in _map.GetAllCells())
+			int[,] mapArray = new int[_width, _height];
+			for(int x = 0; x < _width; x++)
 			{
-				var sample = Filters.GetCellFilterArray(cell, _map);
-				var glyph = DARK;
-				var stotal = sample.Total();
-
-				if (sample.Total() < 9) // 9 == all surounding cells impassible
+				for(int y = 0; y < _height; y++)
 				{
-					if (!cell.IsWalkable)
+					var cell = _map.GetCell(x,y);
+					if(cell.IsWalkable)
 					{
-						// Total number of filled in blocks in the 3x3 area including this cell
-						if (stotal == 8)
-						{
-							glyph = INNERCORNERWALL;
-						}
-						else if (stotal == 4 || stotal == 5)
-						{
-							glyph = OUTERCORNERWALL;
-						}
-						else if (Filters.FilterMatch(sample, Filters.Horizontal))
-						{
-							glyph = HORIZWALL;
-						}
-						else if (Filters.FilterMatch(sample, Filters.Vertical))
-						{
-							glyph = VERTICALWALL;
-						}
-						else if (Filters.MultiplyFilter(sample, Filters.Horizontal).Total() == 1)
-						{
-							glyph = HORIZWALL;
-						}
-						else if (Filters.MultiplyFilter(sample, Filters.Vertical).Total() == 1)
-						{
-							glyph = VERTICALWALL;
-						}
-					}
-					else
-					{
-						glyph = FLOOR;
-
-						// Store intial walkable cells in order to place new entities in valid locations.
 						_walkable.Add(cell);
 					}
+					mapArray[x,y] = cell.IsWalkable ? 0 : 1;
 				}
-				_floor[cell.X, cell.Y] = glyph;
+			}
+
+			var detector = new MapFeatureDetector(mapArray);
+			var vertWalls = detector.FindHorizontalWalls();
+			var horizWalls = detector.FindVerticalWalls();
+			var corridors = detector.FindCorridors();
+			var doorways = detector.FindDoorways();
+
+			for(int x = 0; x < _width; x++)
+			{
+				for(int y = 0; y < _height; y++)
+				{
+					_floor[x,y] = DARK;
+					if(mapArray[x,y] == 0) 
+					{
+						_floor[x,y] = FLOOR;
+						if(corridors[x,y] == 1) {_floor[x,y] = CORRIDOR;}
+						if(doorways[x,y] == 1) {_floor[x,y] = 0;}
+					}
+					else 
+					{
+						if(vertWalls[x,y] == 1) {_floor[x,y] = VERTICALWALL;}
+						if(horizWalls[x,y] == 1) {_floor[x,y] = HORIZWALL;}
+					}
+				}
 			}
 		}
 

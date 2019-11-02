@@ -10,14 +10,14 @@ namespace FeatureDetector
 		[Test]
 		public void ConstructorTest()
 		{
-			var detector = new Detector(mapIntArray);
+			var detector = new MapFeatureDetector(mapIntArray);
 		}
 
 		[Test]
 		public void FindVerticalWallsTest()
 		{
-			var detector = new Detector(mapIntArray);
-			var walls = detector.FindVerticalEdges();
+			var detector = new MapFeatureDetector(mapIntArray);
+			var walls = detector.FindVerticalWalls();
 			Debug.WriteLine(detector.ToMapString(walls));
 			Assert.AreEqual(1, walls[12,45]);
 		}
@@ -25,15 +25,16 @@ namespace FeatureDetector
 		[Test]
 		public void FindHorizontalWallsTest()
 		{
-			var detector = new Detector(mapIntArray);
-			var walls = detector.FindHorizontalEdges();
+			var detector = new MapFeatureDetector(mapIntArray);
+			var walls = detector.FindHorizontalWalls();
+			Debug.WriteLine(detector.ToMapString(walls));
 			Assert.AreEqual(1, walls[20,33]);
 		}
 
 		[Test]
 		public void FindCorridorTest()
 		{
-			var detector = new Detector(mapIntArray);
+			var detector = new MapFeatureDetector(mapIntArray);
 			var corridors = detector.FindCorridors();
 			Debug.WriteLine(detector.ToMapString(corridors));
 			Assert.AreEqual(1, corridors[34,22]);
@@ -42,12 +43,19 @@ namespace FeatureDetector
 		[Test]
 		public void FindDoorwaysTest()
 		{
-			var detector = new Detector(mapIntArray);
+			var detector = new MapFeatureDetector(mapIntArray);
 			var doorways = detector.FindDoorways();
 			Debug.WriteLine(detector.ToMapString(doorways));
 		}
 
-		private static void IterateMaps(Detector detector, int[,] matrix)
+		[Test]
+		public void Temp()
+		{
+			var detector = new MapFeatureDetector(mapIntArray);
+			IterateMaps(detector, FeatureFilters.RotateMatrixCounterClockwise(FeatureFilters.Vertical));
+		}
+
+		private static void IterateMaps(MapFeatureDetector detector, int[,] matrix)
 		{
 			var conv = detector.ConvolveFilter(matrix);
 			var min = (int)conv.min().Data<int>()[0];

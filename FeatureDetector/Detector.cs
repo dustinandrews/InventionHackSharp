@@ -2,36 +2,36 @@
 using System.Collections.Generic;
 using NumSharp;
 
-
 namespace FeatureDetector
 {
-
-	public class Detector
+	public class MapFeatureDetector
 	{
 		NDArray _mapArray;
 		NDArray _paddedArray;
 		int _xSize, _ySize;
-		public Detector(int[,] map)
+		public MapFeatureDetector(int[,] map)
 		{
 			CreateNdArrays(map);
 		}
 
-		public int[,] FindVerticalEdges()
+		public int[,] FindVerticalWalls()
 		{
 			var filters = new List<int[,]>();
 			filters.Add(FeatureFilters.Vertical);
 			var convolution = ConvolveFilters(filters)[0];
-			var cutoff = 3;
-			return FilterArray(convolution, cutoff);
+			var match = FilterArray(convolution, 3);
+			match += FilterArray(convolution, 6);
+			return (int[,]) match.ToMuliDimArray<int>();
 		}
 
-		public int[,] FindHorizontalEdges()
+		public int[,] FindHorizontalWalls()
 		{
 			var filters = new List<int[,]>();
 			filters.Add( FeatureFilters.RotateMatrixCounterClockwise(FeatureFilters.Vertical));
 			var convolution = ConvolveFilters(filters)[0];
-			var cutoff = 3;
-			return FilterArray(convolution, cutoff);
+			var match = FilterArray(convolution, 3);
+			match += FilterArray(convolution, 6);
+			return (int[,]) match.ToMuliDimArray<int>();
 		}
 
 		public int[,] FindCorridors()
@@ -49,7 +49,6 @@ namespace FeatureDetector
 			return  (int[,]) outputArray.ToMuliDimArray<int>();
 		}
 
-		
 		public int[,] FindDoorways()
 		{
 			var list = new List<int[,]>();
@@ -68,7 +67,7 @@ namespace FeatureDetector
 			return (int[,]) outputArray.ToMuliDimArray<int>();
 		}
 
-		public int[,] FilterArray(NDArray array, int match)
+		public NDArray FilterArray(NDArray array, int match)
 		{
 			var outArray = np.zeros_like(array);
 			for(int x = 0; x < _xSize; x++)
@@ -85,7 +84,8 @@ namespace FeatureDetector
 					}
 				}
 			}
-			return (int[,]) outArray.ToMuliDimArray<int>();
+			//return (int[,]) outArray.ToMuliDimArray<int>();
+			return outArray;
 		}
 		
 		public NDArray ConvolveFilter(int[,] filter)
@@ -147,6 +147,12 @@ namespace FeatureDetector
 			}
 		}
 
+		public string ToMapString(NDArray map)
+		{
+			var intMap = (int[,]) map.ToMuliDimArray<int>();
+			return ToMapString(intMap);
+		}
+		
 		public string ToMapString(int[,] map)
 		{
 			var one = np.array(new int[]{1});
