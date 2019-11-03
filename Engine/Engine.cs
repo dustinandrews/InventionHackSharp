@@ -206,7 +206,7 @@ namespace MegaDungeon
 					{
 						_floor[x,y] = FLOOR;
 						if(corridors[x,y] == 1) {_floor[x,y] = CORRIDOR;}
-						if(doorways[x,y] == 1) {_floor[x,y] = 0;}
+						if(doorways[x,y] == 1) {_floor[x,y] = DOOR;}
 					}
 					else 
 					{

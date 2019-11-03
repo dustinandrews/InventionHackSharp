@@ -1,24 +1,38 @@
+using System;
+
 namespace FeatureDetector
 {
 	public static class FeatureFilters
 	{
 		// 1 == impassable/wall
 		public static int[,] Vertical = new int[,]{
-			{-1,2,-1},
-			{-1,2,-1},
-			{-1,2,-1}
+			{-1,8,-1},
+			{-4,16,-4},
+			{-1,8,-1}
 		};
 
 		public static int[,] Cross = new int[,]{
-			{-1, 2,-1},
-			{ 2, 2, 2},
-			{-1, 2, -1}
+			{ 8, -1, 8},
+			{-1,-32,-1},
+			{ 8, -1, 8}
 		};
 
 		public static int[,] Doorway = new int[,]{
-			{ 2, 2, 2},
-			{-1, 2,-1},
-			{-1, 2,-1},
+			{ -2,-16,-2},
+			{  2,-16, 2},
+			{  2,-16, 2},
+		};
+		
+		public static int[,] OuterCorner= new int[,]{
+			{ -4,-4,-4},
+			{  2, 2,-4},
+			{  2, 2,-4},
+		};
+
+		public static int[,] InnerCorner= new int[,]{
+			{  1, 1,-8},
+			{  1, 1, 1},
+			{  1, 1, 1},
 		};
 
 		public static int[,] RotateMatrixCounterClockwise(int[,] oldMatrix)
@@ -36,6 +50,25 @@ namespace FeatureDetector
 				newRow++;
 			}
 			return newMatrix;
+		}
+	}
+
+	public static class GridExtentsions
+	{
+		public static void UpDate(this int[,] grid, Func<int, int> action )
+		{
+			if(grid.Rank != 2)
+			{
+				throw new NotImplementedException("Only valid on 2D arrays.");
+			}
+
+			for(int i = 0; i < grid.GetLength(0); i++)
+			{
+				for(int j = 0; j < grid.GetLength(1); j++)
+				{
+					grid[i,j]= action(grid[i,j]);
+				}
+			}
 		}
 	}
 }
