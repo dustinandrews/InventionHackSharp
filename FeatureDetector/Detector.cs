@@ -32,7 +32,7 @@ namespace FeatureDetector
 
 		private int[,] MatchWallFilters(List<int[,]> filters)
 		{
-			var convolution = ConvolveFilters(filters)[0];
+			var convolution = ConvolveFilters(filters, _paddedArray)[0];
 			var match = FilterArray(convolution, 7);
 			match += FilterArray(convolution, 8);
 			match += FilterArray(convolution, 9);
@@ -47,7 +47,7 @@ namespace FeatureDetector
 			var list = new List<int[,]>();
 			list.Add(FeatureFilters.Vertical);
 			list.Add(FeatureFilters.Rotate90CCW(FeatureFilters.Vertical));
-			var convolutions = ConvolveFilters(list);
+			var convolutions = ConvolveFilters(list, _paddedArray);
 			var outputArray = np.zeros(_xSize, _ySize);
 			foreach(NDArray conv in convolutions)
 			{
@@ -55,7 +55,7 @@ namespace FeatureDetector
 				corridors += FilterArray(conv, -5);
 				outputArray += np.array(corridors);
 			}
-			var convCross = ConvolveFilter(FeatureFilters.Cross);
+			var convCross = ConvolveFilter(FeatureFilters.Cross, _paddedArray);
 			outputArray += FilterArray(convCross, 30);
 			outputArray += FilterArray(convCross, 31);
 			outputArray += FilterArray(convCross, 32);
@@ -78,24 +78,29 @@ namespace FeatureDetector
 			}
 
 			// Mark 1 = up, 2 = right, 3 = down, 4 = left
-			var convolutions = ConvolveFilters(list);
+			var convolutions = ConvolveFilters(list, _paddedArray);
 			for (int i = 0; i < convolutions.Count(); i++)
 			{
 				outputArray += FilterArray(convolutions[i], 8, i+1);
 				outputArray += FilterArray(convolutions[i], 6, i+1);
 			}
 
-			// Cull any spaces without at least 4 neighbors.
 			var neighbors = (int[,]) ConvolveFilter(FeatureFilters.Neighbors).ToMuliDimArray<int>();
-			for (int i = 0; i < neighbors.GetLength(0); i++)
-			{
-				for (int j = 0; j < neighbors.GetLength(1); j++)
-				{
-					if(neighbors[i,j] < 4){outputArray[i,j] = 0;}
-				}
-			
-			}
 
+			// Cull any spaces without at least 4 solid neighbors and in crowded areas
+			// This removes candidates technically in rooms or L bends in corridors
+			var density = (int[,]) GetDensityMap().ToMuliDimArray<int>();
+			for (int i = 0; i < density.GetLength(0); i++)
+			{
+				for (int j = 0; j < density.GetLength(1); j++)
+				{
+					if(neighbors[i,j] < 4 ||density[i,j] > 35)
+					{
+						outputArray[i,j] = 0;
+					}
+				}
+			}
+			// 23,43
 			return (int[,]) outputArray.ToMuliDimArray<int>();
 		}
 
@@ -115,7 +120,7 @@ namespace FeatureDetector
 				list.Add(filter);
 				filter = FeatureFilters.Rotate90CCW(filter);
 			}
-			var convolutions = ConvolveFilters(list);
+			var convolutions = ConvolveFilters(list, _paddedArray);
 			var outputArray = np.zeros(_xSize, _ySize);
 			foreach(NDArray conv in convolutions)
 			{
@@ -145,14 +150,20 @@ namespace FeatureDetector
 			return outArray;
 		}
 		
+
 		public NDArray ConvolveFilter(int[,] filter)
+		{
+			return ConvolveFilter(filter, _paddedArray);
+		}
+
+		public NDArray ConvolveFilter(int[,] filter, NDArray paddedArray)
 		{
 			var list = new List<int[,]>();
 			list.Add(filter);
-			return ConvolveFilters(list)[0];
+			return ConvolveFilters(list, paddedArray)[0];
 		}
 
-		public NDArray[] ConvolveFilters(List<int[,]> filters)
+		public NDArray[] ConvolveFilters(List<int[,]> filters, NDArray paddedArray)
 		{
 			var ndList = new List<NDArray>();
 			foreach(var f in filters)
@@ -160,10 +171,22 @@ namespace FeatureDetector
 				ndList.Add(np.array(f));
 			}
 
-			return ConvolveFilters(ndList);
+			return ConvolveFilters(ndList, paddedArray);
 		}
 
-		NDArray[] ConvolveFilters(List<NDArray> ndFilters)
+		/// <summary>
+		/// By convolving the number of neighbors 2 times each cell has a number indicating how many neighbors
+		/// it has in the 64 nearest blocks.
+		/// </summary>
+		/// <returns></returns>
+		NDArray GetDensityMap()
+		{
+			var conv = ConvolveFilter(FeatureFilters.Neighbors);
+			var padded = PaddedArrayFromSource(conv, 1);
+			var density = ConvolveFilter(FeatureFilters.Neighbors, padded);
+			return density;
+		}
+		NDArray[] ConvolveFilters(List<NDArray> ndFilters, NDArray paddedArray)
 		{
 			var outputArrays = new NDArray[ndFilters.Count];
 			for(int i = 0; i < ndFilters.Count; i++)
@@ -177,7 +200,7 @@ namespace FeatureDetector
 			{
 				for (int y = 0; y < _ySize; y += 1)
 				{
-					var segment = _paddedArray[$"{x}:{x + window},{y}:{y + window}"];
+					var segment = paddedArray[$"{x}:{x + window},{y}:{y + window}"];
 					for(int i = 0; i < outputArrays.Length; i++)
 					{
 						var conv = np.multiply(segment, ndFilters[i]).sum();
@@ -196,7 +219,7 @@ namespace FeatureDetector
 			_paddedArray = PaddedArrayFromSource(_mapArray, 1);
 		}
 
-		int[,] PaddedArrayFromSource(NDArray source, int padding)
+		public int[,] PaddedArrayFromSource(NDArray source, int padding)
 		{
 			var paddedArray = np.ones(new Shape(_xSize + padding * 2, _ySize + padding * 2), typeof(int));
 			
@@ -204,7 +227,7 @@ namespace FeatureDetector
 			{
 				for(int y = 0; y < _ySize; y++)
 				{
-					paddedArray[x+padding,y+padding] = _mapArray[x,y];
+					paddedArray[x+padding,y+padding] = source[x,y];
 				}
 			}
 			return (int[,]) paddedArray.ToMuliDimArray<int>();
