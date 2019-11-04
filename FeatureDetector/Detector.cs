@@ -59,13 +59,35 @@ namespace FeatureDetector
 			outputArray += FilterArray(convCross, 30);
 			outputArray += FilterArray(convCross, 31);
 			outputArray += FilterArray(convCross, 32);
-			outputArray += FindDoorways();
+			outputArray += GetDoorCandidates();
 			var intOutPutArray = (int[,]) outputArray.ToMuliDimArray<int>();
 			intOutPutArray.UpDate(e => (e > 0) ? 1 : 0);
 			return  intOutPutArray;
 		}
 
 		public int[,] FindDoorways()
+		{
+			NDArray outputArray = GetDoorCandidates();
+
+			var neighbors = (int[,])ConvolveFilter(FeatureFilters.Neighbors).ToMuliDimArray<int>();
+			// Cull any spaces without at least 4 solid neighbors and in crowded areas
+			// This removes candidates technically in rooms or L bends in corridors
+			var density = (int[,])GetDensityMap().ToMuliDimArray<int>();
+			for (int i = 0; i < density.GetLength(0); i++)
+			{
+				for (int j = 0; j < density.GetLength(1); j++)
+				{
+					if (neighbors[i, j] < 4 || density[i, j] > 35)
+					{
+						outputArray[i, j] = 0;
+					}
+				}
+			}
+			// 23,43
+			return (int[,])outputArray.ToMuliDimArray<int>();
+		}
+
+		private NDArray GetDoorCandidates()
 		{
 			var list = new List<int[,]>();
 			var filter = FeatureFilters.Doorway;
@@ -81,27 +103,11 @@ namespace FeatureDetector
 			var convolutions = ConvolveFilters(list, _paddedArray);
 			for (int i = 0; i < convolutions.Count(); i++)
 			{
-				outputArray += FilterArray(convolutions[i], 8, i+1);
-				outputArray += FilterArray(convolutions[i], 6, i+1);
+				outputArray += FilterArray(convolutions[i], 8, i + 1);
+				outputArray += FilterArray(convolutions[i], 6, i + 1);
 			}
 
-			var neighbors = (int[,]) ConvolveFilter(FeatureFilters.Neighbors).ToMuliDimArray<int>();
-
-			// Cull any spaces without at least 4 solid neighbors and in crowded areas
-			// This removes candidates technically in rooms or L bends in corridors
-			var density = (int[,]) GetDensityMap().ToMuliDimArray<int>();
-			for (int i = 0; i < density.GetLength(0); i++)
-			{
-				for (int j = 0; j < density.GetLength(1); j++)
-				{
-					if(neighbors[i,j] < 4 ||density[i,j] > 35)
-					{
-						outputArray[i,j] = 0;
-					}
-				}
-			}
-			// 23,43
-			return (int[,]) outputArray.ToMuliDimArray<int>();
+			return outputArray;
 		}
 
 		public int[,] FindCorners()

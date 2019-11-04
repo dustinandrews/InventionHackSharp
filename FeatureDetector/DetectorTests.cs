@@ -81,11 +81,12 @@ namespace FeatureDetector
 		public void Temp()
 		{
 			var detector = new MapFeatureDetector(mapIntArray);
-			var conv = detector.ConvolveFilter(FeatureFilters.Neighbors);
-			var padded = detector.PaddedArrayFromSource(conv, 1);
-			var conv2 = detector.ConvolveFilter(FeatureFilters.Neighbors, padded);
-			Debug.WriteLine(detector.ToMapString(conv2));
-			// IterateMaps(detector, FeatureFilters.Neighbors);
+			// var conv = detector.ConvolveFilter(FeatureFilters.Neighbors);
+			// var padded = detector.PaddedArrayFromSource(conv, 1);
+			// var conv2 = detector.ConvolveFilter(FeatureFilters.Neighbors, padded);
+			// Debug.WriteLine(detector.ToMapString(conv2));
+
+			IterateMaps(detector, FeatureFilters.Vertical);
 		}
 
 		private static void IterateMaps(MapFeatureDetector detector, int[,] matrix)
