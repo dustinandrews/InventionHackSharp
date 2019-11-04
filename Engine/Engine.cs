@@ -34,6 +34,7 @@ namespace MegaDungeon
 		ActorManager _actorManager;
 		HashSet<Point> _viewable;
 		EngineLogger _logger;
+		List<Point> _doors = new List<Point>();
 		public ISystemLogger GetLogger() {return _logger;}
 		public RogueSharp.IMap GetMap() {return _map;}
 		public EntityManager GetEntityManager() {return _entityManager;}
@@ -208,7 +209,7 @@ namespace MegaDungeon
 					{
 						_floor[x,y] = FLOOR;
 						if(corridors[x,y] == 1) {_floor[x,y] = CORRIDOR;}
-						if(doorways[x,y] > 1) {_floor[x,y] = DOOR;}
+						if(doorways[x,y] > 0) {ConsiderAddDoor(x,y, (Orientation) doorways[x,y] -1);}
 					}
 					else 
 					{
@@ -218,6 +219,41 @@ namespace MegaDungeon
 					}
 				}
 			}
+		}
+
+		void ConsiderAddDoor(int x, int y, Orientation orientation)
+		{
+			var doorChance = 100;
+			var doorRoll = random.Next(100);
+			if(doorRoll < doorChance)
+			{
+				var doorPoint = new Point(x, y);
+				foreach(Point d in _doors)
+				{
+					// No side by side doors
+					if(PointDistance(doorPoint, d) == 1)
+					{
+						return;
+					}
+				}
+				var entity = _entityManager.CreateEntity();
+				var isDoor = new IsDoor(){Orientation = orientation};
+				entity.AddComponent(isDoor);
+				var location = new Location(){X = x, Y = y};
+				entity.AddComponent(location);
+				var glyph = new Glyph(){glyph = DOOR};
+				entity.AddComponent(glyph);
+				_map.SetCellProperties(x,y, isTransparent: false, isWalkable: true);
+				_doors.Add(doorPoint);
+			}
+		}
+
+		double PointDistance(Point a, Point b)
+		{
+			var dx = a.X - b.X;
+			var dy = a.Y - b.Y;
+			var dist = Math.Sqrt((dx * dx) + (dy * dy));
+			return dist;
 		}
 
 		/// <summary>

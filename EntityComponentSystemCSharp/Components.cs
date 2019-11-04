@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using RogueSharp;
 using static EntityComponentSystemCSharp.EntityManager;
 
+
 namespace EntityComponentSystemCSharp.Components
 {
 	/// <summary>
@@ -57,6 +58,12 @@ namespace EntityComponentSystemCSharp.Components
 	{
 		public int Health;
 		public int MaxHealth;
+	}
+
+	public class IsDoor : IComponent
+	{
+		public Orientation Orientation;
+		bool IsOpen;
 	}
 
 	public class Destination : PointWrapper, IComponent

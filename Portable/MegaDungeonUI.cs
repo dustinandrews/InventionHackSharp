@@ -48,8 +48,8 @@ namespace Portable
 
 			_surface = surface;
 			_cloth = CreateCloth();
-			_outerDock = _surface.NewDock(Orientation.Vertical);
-			_innerDock = _surface.NewDock(Orientation.Horizontal);
+			_outerDock = _surface.NewDock(Inv.Orientation.Vertical);
+			_innerDock = _surface.NewDock(Inv.Orientation.Horizontal);
 			
 			_topLabel = InitLabel("Top", ColorPallette.PrimaryColorLightest, ColorPallette.PrimaryColorDarkest, ColorPallette.PrimaryColorDarker);
 			_bottomLabel = InitLabel("Bottom", ColorPallette.Secondary1ColorLightest, ColorPallette.Secondary1ColorDarkest, ColorPallette.Secondary1ColorDarker);
