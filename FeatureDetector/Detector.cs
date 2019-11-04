@@ -20,52 +20,48 @@ namespace FeatureDetector
 		{
 			var filters = new List<int[,]>();
 			filters.Add(FeatureFilters.Vertical);
-			var convolution = ConvolveFilters(filters)[0];
-			Debug.WriteLine(convolution.ToString());
-			// 22,24,25,26,32
-			var match = FilterArray(convolution, 22);
-			match += FilterArray(convolution, 24);
-			match += FilterArray(convolution, 25);
-			match += FilterArray(convolution, 26);
-			match += FilterArray(convolution, 32);
-			return (int[,]) match.ToMuliDimArray<int>();
+			return MatchWallFilters(filters);
 		}
 
 		public int[,] FindHorizontalWalls()
 		{
 			var filters = new List<int[,]>();
-			filters.Add( FeatureFilters.RotateMatrixCounterClockwise(FeatureFilters.Vertical));
+			filters.Add(FeatureFilters.Rotate90CCW(FeatureFilters.Vertical));
+			return MatchWallFilters(filters);
+		}
+
+		private int[,] MatchWallFilters(List<int[,]> filters)
+		{
 			var convolution = ConvolveFilters(filters)[0];
-			Debug.WriteLine(convolution.ToString());
-			var match = FilterArray(convolution, 22);
-			match += FilterArray(convolution, 24);
-			match += FilterArray(convolution, 25);
-			match += FilterArray(convolution, 26);
-			match += FilterArray(convolution, 32);
-			return (int[,]) match.ToMuliDimArray<int>();
+			var match = FilterArray(convolution, 7);
+			match += FilterArray(convolution, 8);
+			match += FilterArray(convolution, 9);
+			match += FilterArray(convolution, 10);
+			match += FilterArray(convolution, 11);
+			match += FilterArray(convolution, 12);
+			return (int[,])match.ToMuliDimArray<int>();
 		}
 
 		public int[,] FindCorridors()
 		{
 			var list = new List<int[,]>();
 			list.Add(FeatureFilters.Vertical);
-			list.Add(FeatureFilters.RotateMatrixCounterClockwise(FeatureFilters.Vertical));
+			list.Add(FeatureFilters.Rotate90CCW(FeatureFilters.Vertical));
 			var convolutions = ConvolveFilters(list);
 			var outputArray = np.zeros(_xSize, _ySize);
 			foreach(NDArray conv in convolutions)
 			{
-				var corridors = FilterArray(conv, -10);
-				corridors += FilterArray(conv, -11);
-				corridors += FilterArray(conv, -12);
+				var corridors = FilterArray(conv, -6);
+				corridors += FilterArray(conv, -5);
 				outputArray += np.array(corridors);
 			}
 			var convCross = ConvolveFilter(FeatureFilters.Cross);
 			outputArray += FilterArray(convCross, 30);
 			outputArray += FilterArray(convCross, 31);
 			outputArray += FilterArray(convCross, 32);
+			outputArray += FindDoorways();
 			var intOutPutArray = (int[,]) outputArray.ToMuliDimArray<int>();
 			intOutPutArray.UpDate(e => (e > 0) ? 1 : 0);
-			Debug.WriteLine(ToMapString(intOutPutArray));
 			return  intOutPutArray;
 		}
 
@@ -73,17 +69,33 @@ namespace FeatureDetector
 		{
 			var list = new List<int[,]>();
 			var filter = FeatureFilters.Doorway;
-			for(int i = 0; i < 4; i ++)
+			var outputArray = np.zeros(_xSize, _ySize);
+
+			for (int i = 0; i < 4; i++)
 			{
 				list.Add(filter);
-				filter = FeatureFilters.RotateMatrixCounterClockwise(filter);
+				filter = FeatureFilters.Rotate90CCW(filter);
 			}
+
+			// Mark 1 = up, 2 = right, 3 = down, 4 = left
 			var convolutions = ConvolveFilters(list);
-			var outputArray = np.zeros(_xSize, _ySize);
-			foreach(NDArray conv in convolutions)
+			for (int i = 0; i < convolutions.Count(); i++)
 			{
-				outputArray += FilterArray(conv, 8);
+				outputArray += FilterArray(convolutions[i], 8, i+1);
+				outputArray += FilterArray(convolutions[i], 6, i+1);
 			}
+
+			// Cull any spaces without at least 4 neighbors.
+			var neighbors = (int[,]) ConvolveFilter(FeatureFilters.Neighbors).ToMuliDimArray<int>();
+			for (int i = 0; i < neighbors.GetLength(0); i++)
+			{
+				for (int j = 0; j < neighbors.GetLength(1); j++)
+				{
+					if(neighbors[i,j] < 4){outputArray[i,j] = 0;}
+				}
+			
+			}
+
 			return (int[,]) outputArray.ToMuliDimArray<int>();
 		}
 
@@ -94,25 +106,25 @@ namespace FeatureDetector
 			for(int i = 0; i < 4; i ++)
 			{
 				list.Add(filter);
-				filter = FeatureFilters.RotateMatrixCounterClockwise(filter);
+				filter = FeatureFilters.Rotate90CCW(filter);
 			}
 
 			filter = FeatureFilters.OuterCorner;
 			for(int i = 0; i < 4; i ++)
 			{
 				list.Add(filter);
-				filter = FeatureFilters.RotateMatrixCounterClockwise(filter);
+				filter = FeatureFilters.Rotate90CCW(filter);
 			}
 			var convolutions = ConvolveFilters(list);
 			var outputArray = np.zeros(_xSize, _ySize);
 			foreach(NDArray conv in convolutions)
 			{
-				outputArray += FilterArray(conv, 8);
+				outputArray += FilterArray(conv, 32);
 			}
 			return (int[,]) outputArray.ToMuliDimArray<int>();
 		}
 
-		public NDArray FilterArray(NDArray array, int match)
+		public NDArray FilterArray(NDArray array, int match, int filterValue = 1)
 		{
 			var outArray = np.zeros_like(array);
 			for(int x = 0; x < _xSize; x++)
@@ -125,7 +137,7 @@ namespace FeatureDetector
 					}
 					else
 					{
-						outArray[x,y] = 1;
+						outArray[x,y] = filterValue;
 					}
 				}
 			}
@@ -181,15 +193,21 @@ namespace FeatureDetector
 			_xSize = map.GetLength(0);
 			_ySize = map.GetLength(1);
 			_mapArray = np.array(map);
-			_paddedArray = np.ones(new Shape(_xSize + 2, _ySize + 2), typeof(int));
+			_paddedArray = PaddedArrayFromSource(_mapArray, 1);
+		}
+
+		int[,] PaddedArrayFromSource(NDArray source, int padding)
+		{
+			var paddedArray = np.ones(new Shape(_xSize + padding * 2, _ySize + padding * 2), typeof(int));
 			
 			for(int x = 0; x < _xSize; x++)
 			{
 				for(int y = 0; y < _ySize; y++)
 				{
-					_paddedArray[x+1,y+1] = _mapArray[x,y];
+					paddedArray[x+padding,y+padding] = _mapArray[x,y];
 				}
 			}
+			return (int[,]) paddedArray.ToMuliDimArray<int>();
 		}
 
 		public string ToMapString(NDArray map)

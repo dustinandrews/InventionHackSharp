@@ -42,7 +42,7 @@ namespace Portable
 
 		static void Surface_KeystrokeEvent(Keystroke keystroke, MegaDungeonUI ui)
 		{
-			Console.WriteLine($"{keystroke.Modifier}{keystroke.Key}");
+			// Console.WriteLine($"{keystroke.Modifier}{keystroke.Key}");
 			ui.AcceptInput(keystroke);
 		}
 		static void Surface_ArrangeEvent(Surface surface)

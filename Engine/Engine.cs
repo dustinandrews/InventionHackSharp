@@ -196,6 +196,8 @@ namespace MegaDungeon
 			var horizWalls = detector.FindVerticalWalls();
 			var corridors = detector.FindCorridors();
 			var doorways = detector.FindDoorways();
+			Debug.WriteLine(detector.ToMapString(doorways));
+			var corners = detector.FindCorners();
 
 			for(int x = 0; x < _width; x++)
 			{
@@ -206,12 +208,13 @@ namespace MegaDungeon
 					{
 						_floor[x,y] = FLOOR;
 						if(corridors[x,y] == 1) {_floor[x,y] = CORRIDOR;}
-						if(doorways[x,y] == 1) {_floor[x,y] = DOOR;}
+						if(doorways[x,y] > 1) {_floor[x,y] = DOOR;}
 					}
 					else 
 					{
 						if(vertWalls[x,y] == 1) {_floor[x,y] = VERTICALWALL;}
 						if(horizWalls[x,y] == 1) {_floor[x,y] = HORIZWALL;}
+						if(corners[x,y] == 1) {_floor[x,y] = CORNERWALL;}
 					}
 				}
 			}

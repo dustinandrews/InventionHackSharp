@@ -1,4 +1,5 @@
 using System;
+using System.Text;
 
 namespace FeatureDetector
 {
@@ -6,9 +7,9 @@ namespace FeatureDetector
 	{
 		// 1 == impassable/wall
 		public static int[,] Vertical = new int[,]{
-			{-1,8,-1},
-			{-4,16,-4},
-			{-1,8,-1}
+			{-1, 4,-1},
+			{-1, 4,-1},
+			{-1, 4,-1}
 		};
 
 		public static int[,] Cross = new int[,]{
@@ -24,18 +25,32 @@ namespace FeatureDetector
 		};
 		
 		public static int[,] OuterCorner= new int[,]{
-			{ -4,-4,-4},
-			{  2, 2,-4},
-			{  2, 2,-4},
+			{  0,-32,-32},
+			{  8, 8,-32},
+			{  8, 8, 0},
 		};
 
 		public static int[,] InnerCorner= new int[,]{
-			{  1, 1,-8},
-			{  1, 1, 1},
-			{  1, 1, 1},
+			{  4, 4,-8},
+			{  4, 4, 4},
+			{  4, 4, 4},
 		};
 
-		public static int[,] RotateMatrixCounterClockwise(int[,] oldMatrix)
+		public static int[,] Neighbors = new int[,]{
+			{ 1, 1, 1},
+			{ 1, 0, 1},
+			{ 1, 1, 1},
+		};
+
+
+		public static int[,] Rotate180Degrees(int[,] oldMatrix)
+		{
+			int[,] newMatrix = Rotate90CCW(oldMatrix);
+			newMatrix = Rotate90CCW(newMatrix);
+			return newMatrix;
+		}
+
+		public static int[,] Rotate90CCW(int[,] oldMatrix)
 		{
 			int[,] newMatrix = new int[oldMatrix.GetLength(1), oldMatrix.GetLength(0)];
 			int newColumn, newRow = 0;
@@ -50,6 +65,20 @@ namespace FeatureDetector
 				newRow++;
 			}
 			return newMatrix;
+		}
+
+		public static string ToFilterString(int[,] filter)
+		{
+			var sb = new StringBuilder();
+			for (int i = 0; i < filter.GetLength(0); i++)
+			{
+				for (int j = 0; j < filter.GetLength(1); j++)
+				{
+					sb.Append($"{filter[i,j]:##}");
+				}
+				sb.AppendLine();
+			}
+			return sb.ToString();
 		}
 	}
 

@@ -10,7 +10,7 @@ using Inv;
 namespace Portable
 {
 
-    public class MegaDungeonUI
+	public class MegaDungeonUI
 	{
 		int _horizontalCellCount;
 		int _verticalCellCount;

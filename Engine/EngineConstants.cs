@@ -21,11 +21,10 @@ namespace MegaDungeon
 		public const int FLOOR = 848;
 		public const int VERTICALWALL = 830;
 		public const int HORIZWALL = 834;
-		public const int INNERCORNERWALL = 832;
-		public const int OUTERCORNERWALL = 832;
+		public const int CORNERWALL = 832;
 		public const int CORRIDOR = 849;
 		public const int DARK = 829;
-		public const int DOOR = 843;
+		public const int DOOR = 844;
 		public const int PLAYER = 4;
 
 		public static Point[] COMPASSPOINTS = new[] {
