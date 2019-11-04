@@ -69,7 +69,7 @@ namespace FeatureDetector
 		{
 			NDArray outputArray = GetDoorCandidates();
 
-			var neighbors = (int[,])ConvolveFilter(FeatureFilters.Neighbors).ToMuliDimArray<int>();
+			var neighbors = (int[,])ConvolveFilter(FeatureFilters.NeighborCount).ToMuliDimArray<int>();
 			// Cull any spaces without at least 4 solid neighbors and in crowded areas
 			// This removes candidates technically in rooms or L bends in corridors
 			var density = (int[,])GetDensityMap().ToMuliDimArray<int>();
@@ -187,9 +187,9 @@ namespace FeatureDetector
 		/// <returns></returns>
 		NDArray GetDensityMap()
 		{
-			var conv = ConvolveFilter(FeatureFilters.Neighbors);
+			var conv = ConvolveFilter(FeatureFilters.NeighborCount);
 			var padded = PaddedArrayFromSource(conv, 1);
-			var density = ConvolveFilter(FeatureFilters.Neighbors, padded);
+			var density = ConvolveFilter(FeatureFilters.NeighborCount, padded);
 			return density;
 		}
 		NDArray[] ConvolveFilters(List<NDArray> ndFilters, NDArray paddedArray)

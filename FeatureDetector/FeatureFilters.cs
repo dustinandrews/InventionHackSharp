@@ -36,12 +36,17 @@ namespace FeatureDetector
 			{  4, 4, 4},
 		};
 
-		public static int[,] Neighbors = new int[,]{
+		public static int[,] NeighborCount = new int[,]{
 			{ 1, 1, 1},
 			{ 1, 0, 1},
 			{ 1, 1, 1},
 		};
 
+		public static int[,] Neighbors = new int[,]{
+			{  16,  1,  32},
+			{   2,  0,   4},
+			{ 64,   8, 128},
+		};
 
 		public static int[,] Rotate180Degrees(int[,] oldMatrix)
 		{
