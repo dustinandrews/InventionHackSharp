@@ -237,7 +237,7 @@ namespace MegaDungeon
 					}
 				}
 				var entity = _entityManager.CreateEntity();
-				var isDoor = new IsDoor(){Orientation = orientation};
+				var isDoor = new IsDoor(){Orientation = orientation, IsOpen = false};
 				entity.AddComponent(isDoor);
 				var location = new Location(){X = x, Y = y};
 				entity.AddComponent(location);

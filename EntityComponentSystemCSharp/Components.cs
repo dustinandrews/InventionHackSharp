@@ -63,7 +63,7 @@ namespace EntityComponentSystemCSharp.Components
 	public class IsDoor : IComponent
 	{
 		public Orientation Orientation;
-		bool IsOpen;
+		public bool IsOpen;
 	}
 
 	public class Destination : PointWrapper, IComponent

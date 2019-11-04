@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using System.Linq;
 using EntityComponentSystemCSharp.Components;
 using RogueSharp;
@@ -22,7 +23,6 @@ namespace EntityComponentSystemCSharp.Systems
 			var locationEntities = _em.GetAllEntitiesWithComponent<Location>()
 				.Where(e => e.HasComponent<Actor>());
 
-			
 			entity.GetComponent<Actor>().Energy -= 10;
 			var allComponents = entity.GetComponents();
 			var current = entity.GetComponent<Location>();
@@ -36,33 +36,7 @@ namespace EntityComponentSystemCSharp.Systems
 				if(path != null && path.Length > 1)
 				{
 					var next = path.StepForward();
-					foreach(var e in locationEntities)
-					{
-						var othersLocation = e.GetComponent<Location>();
-
-						if( othersLocation.X == next.X && othersLocation.Y == next.Y)
-						{
-							var myFaction = entity.GetComponent<Faction>();
-							var theirFaction = e.GetComponent<Faction>();
-							var theirAttacked = e.GetComponent<Attacked>();
-
-							// Check to see if the two are eligible to swap.
-							// Must be same faction and target not under (unresolved) attack.
-							if(myFaction != null &&
-							theirFaction!= null &&
-							theirAttacked == null &&
-							myFaction.Type == theirFaction.Type)
-							{
-								othersLocation.X = current.X;
-								othersLocation.Y = current.Y;
-							}
-							else
-							{
-									e.AddOrUpdateComponent(new Attacked(){attacker = entity});
-									isClear = false; //Attacking cancels move
-							}
-						}
-					}
+					isClear = ResolveAttacks(entity, locationEntities, current, next);
 
 					if (isClear)
 					{
@@ -71,6 +45,38 @@ namespace EntityComponentSystemCSharp.Systems
 					}
 				}
 			}
+		}
+
+		private bool ResolveAttacks(EntityManager.Entity entity, IEnumerable<EntityManager.Entity> locationEntities, Location current, ICell next)
+		{
+			bool isClear = true;
+			foreach(var e in locationEntities)
+			{
+				var othersLocation = e.GetComponent<Location>();
+				if (othersLocation.X == next.X && othersLocation.Y == next.Y)
+				{
+					var myFaction = entity.GetComponent<Faction>();
+					var theirFaction = e.GetComponent<Faction>();
+					var theirAttacked = e.GetComponent<Attacked>();
+
+					// Check to see if the two are eligible to swap.
+					// Must be same faction and target not under (unresolved) attack.
+					if (myFaction != null &&
+					theirFaction != null &&
+					theirAttacked == null &&
+					myFaction.Type == theirFaction.Type)
+					{
+						othersLocation.X = current.X;
+						othersLocation.Y = current.Y;
+					}
+					else
+					{
+						e.AddOrUpdateComponent(new Attacked() { attacker = entity });
+						isClear = false; //Attacking cancels move
+					}
+				}
+			}
+			return isClear;
 		}
 	}
 }
