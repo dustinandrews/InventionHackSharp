@@ -64,6 +64,7 @@ namespace EntityComponentSystemCSharp.Components
 	{
 		public Orientation Orientation;
 		public bool IsOpen;
+		public bool Locked = false;
 	}
 
 	public class Destination : PointWrapper, IComponent

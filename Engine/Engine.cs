@@ -25,7 +25,7 @@ namespace MegaDungeon
 		Location _playerLocation = new Location();
 		List<int[]> _doorways = new List<int[]>();
 		EntityManager _entityManager = new EntityManager();
-		List<RogueSharp.ICell> _walkable = new List<RogueSharp.ICell>();
+		List<RogueSharp.ICell> _spawnLocations = new List<RogueSharp.ICell>();
 		List<ISystem> _turnSystems = new List<ISystem>();
 		internal Queue<string> _messages = new Queue<string>();
 		int _messageLimit = 5;
@@ -152,9 +152,9 @@ namespace MegaDungeon
 
 		ICell GetWalkableCell()
 		{
-			var location = random.Next(0, _walkable.Count);
-			var cell = _walkable[location];
-			_walkable.Remove(cell);
+			var location = random.Next(0, _spawnLocations.Count);
+			var cell = _spawnLocations[location];
+			_spawnLocations.Remove(cell);
 			return cell;
 		}
 
@@ -186,7 +186,7 @@ namespace MegaDungeon
 					var cell = _map.GetCell(x,y);
 					if(cell.IsWalkable)
 					{
-						_walkable.Add(cell);
+						_spawnLocations.Add(cell);
 					}
 					mapArray[x,y] = cell.IsWalkable ? 0 : 1;
 				}
@@ -243,8 +243,10 @@ namespace MegaDungeon
 				entity.AddComponent(location);
 				var glyph = new Glyph(){glyph = DOOR};
 				entity.AddComponent(glyph);
-				_map.SetCellProperties(x,y, isTransparent: false, isWalkable: true);
+				_map.SetCellProperties(x, y, isTransparent: false, isWalkable: true);
 				_doors.Add(doorPoint);
+				var cell = _map.GetCell(x, y);
+				_spawnLocations.Remove(cell); // Remove doors as a spawn location
 			}
 		}
 
