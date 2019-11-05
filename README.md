@@ -3,6 +3,8 @@ The C# Roguelike built on top of the [Invention API](https://gitlab.com/hodgskin
 ## The Mission
 Use the Invention API to create a basic roguelike with all the features of the [Roguesharp C# tutorial](https://roguesharp.wordpress.com/) and put it on github with an MIT license as a jumping off point for aspiring roguelike creators.
 
+![](InventionHackGameplay.gif)
+
 ## Features
 
  - Basic roguelike gameplay
