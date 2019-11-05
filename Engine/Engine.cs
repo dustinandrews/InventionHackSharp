@@ -15,6 +15,8 @@ namespace MegaDungeon
 {
 	public class Engine : IEngine
 	{
+		int _doorPercentChance = 50; // Percentage of possible doors that will actually spawn.
+		int _messageLimit = 5;
 		Random random = new Random();
 		int _width;
 		int _height;
@@ -28,7 +30,6 @@ namespace MegaDungeon
 		List<RogueSharp.ICell> _spawnLocations = new List<RogueSharp.ICell>();
 		List<ISystem> _turnSystems = new List<ISystem>();
 		internal Queue<string> _messages = new Queue<string>();
-		int _messageLimit = 5;
 		SightStat _playerSiteDistance;
 		EntityManager.Entity _player;
 		ActorManager _actorManager;
@@ -71,7 +72,7 @@ namespace MegaDungeon
 		}
 
 		/// <summary>
-		/// Dungeon game engine, seperate from any UI.
+		/// Dungeon floor engine, seperate from any UI.
 		/// </summary>
 		/// <param name="width"></param>
 		/// <param name="height"></param>
@@ -193,12 +194,9 @@ namespace MegaDungeon
 			}
 
 			var detector = new MapFeatureDetector(mapArray);
-			var vertWalls = detector.FindHorizontalWalls();
-			var horizWalls = detector.FindVerticalWalls();
-			var corridors = detector.FindCorridors();
+			var walls = detector.FindWalls();
 			var doorways = detector.FindDoorways();
 			Debug.WriteLine(detector.ToMapString(doorways));
-			var corners = detector.FindCorners();
 
 			for(int x = 0; x < _width; x++)
 			{
@@ -208,14 +206,11 @@ namespace MegaDungeon
 					if(mapArray[x,y] == 0) 
 					{
 						_floor[x,y] = FLOOR;
-						if(corridors[x,y] == 1) {_floor[x,y] = CORRIDOR;}
 						if(doorways[x,y] > 0) {ConsiderAddDoor(x,y, (Orientation) doorways[x,y] -1);}
 					}
 					else 
 					{
-						if(vertWalls[x,y] == 1) {_floor[x,y] = VERTICALWALL;}
-						if(horizWalls[x,y] == 1) {_floor[x,y] = HORIZWALL;}
-						if(corners[x,y] == 1) {_floor[x,y] = CORNERWALL;}
+						if(walls[x,y] == 1) {_floor[x,y] = TILEABLEWALL;}
 					}
 				}
 			}
@@ -223,9 +218,8 @@ namespace MegaDungeon
 
 		void ConsiderAddDoor(int x, int y, Orientation orientation)
 		{
-			var doorChance = 100;
 			var doorRoll = random.Next(100);
-			if(doorRoll < doorChance)
+			if(doorRoll < _doorPercentChance)
 			{
 				var doorPoint = new Point(x, y);
 				foreach(Point d in _doors)

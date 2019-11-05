@@ -20,7 +20,7 @@ namespace Portable
 			{Inv.Key.n2,MegaDungeon.PlayerInput.DOWN},
 			{Inv.Key.n3,MegaDungeon.PlayerInput.DOWNRIGHT},
 			{Inv.Key.n4,MegaDungeon.PlayerInput.LEFT},
-			{Inv.Key.n5,MegaDungeon.PlayerInput.NONE},
+			{Inv.Key.n5,MegaDungeon.PlayerInput.WAIT},
 			{Inv.Key.n6,MegaDungeon.PlayerInput.RIGHT},
 			{Inv.Key.n7,MegaDungeon.PlayerInput.UPLEFT},
 			{Inv.Key.n8,MegaDungeon.PlayerInput.UP},
@@ -29,6 +29,7 @@ namespace Portable
 			{Inv.Key.Down,MegaDungeon.PlayerInput.DOWN},
 			{Inv.Key.Left,MegaDungeon.PlayerInput.LEFT},
 			{Inv.Key.Right,MegaDungeon.PlayerInput.RIGHT},
+			{Inv.Key.Space,MegaDungeon.PlayerInput.WAIT},
 
 			// vi keys
 			{Inv.Key.B,MegaDungeon.PlayerInput.DOWNLEFT},
@@ -40,7 +41,7 @@ namespace Portable
 			{Inv.Key.K,MegaDungeon.PlayerInput.UP},
 			{Inv.Key.U,MegaDungeon.PlayerInput.UPRIGHT},
 
-			// QWEASDZC
+			// qWeASDzc
 			{Inv.Key.Z,MegaDungeon.PlayerInput.DOWNLEFT},
 			{Inv.Key.S,MegaDungeon.PlayerInput.DOWN},
 			{Inv.Key.C,MegaDungeon.PlayerInput.DOWNRIGHT},

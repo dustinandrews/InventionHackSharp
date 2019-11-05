@@ -23,6 +23,9 @@ namespace EntityComponentSystemCSharp.Systems
 			var defense = entity.GetComponent<DefenseStat>();
 			if(alive != null && attackStat != null)
 			{
+				string attackerName = attacked.attacker.GetComponent<Name>()?.NameString ?? entity.Id.ToString();
+				string victimName = entity.GetComponent<Name>()?.NameString ?? entity.Id.ToString();
+
 				var hit = _rand.Next(100);
 				if(hit < attackStat.Accuracy)
 				{
@@ -31,14 +34,14 @@ namespace EntityComponentSystemCSharp.Systems
 					{
 						if (hit > defense.Chance)
 						{
-							_logger.Log($"Hit {damage}.");
+							_logger.Log($"{attackerName} hit {victimName} for {damage} damage.");
 							alive.Health -= damage;
 						}
 					}
 				}
 				else
 				{
-					_logger.Log("miss!");
+					_logger.Log($"{attackerName} missed {victimName}.");
 				}
 			}
 			entity.RemoveComponent<Attacked>();

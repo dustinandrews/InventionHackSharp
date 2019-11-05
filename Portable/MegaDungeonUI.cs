@@ -26,6 +26,7 @@ namespace Portable
 		Label _topLabel;
 		Label _bottomLabel;
 		Label _rightLabel;
+		Label _gameOver;
 		EntityData _leftPanel;
 		bool _showDebugInfo = false;
 
@@ -68,14 +69,22 @@ namespace Portable
 			_innerDock.AddHeader(vstack);
 			_innerDock.AddClient(_cloth);
 			_innerDock.AddFooter(_rightLabel);
-			
 			_surface.Content = _outerDock;
-			
 			_surface.ComposeEvent += Warmup();
+
+			_gameOver = _surface.NewLabel();
+			_gameOver.Text = "YOU HAVE DIED.";
+			_gameOver.Font.ExtraMassive();
+			_gameOver.Font.Colour = Colour.Red;
+			_gameOver.Background.Colour = Colour.DarkBlue;
+			_gameOver.Justify.Center();
 
 			InitUiCommands();
 		}
 
+		/// <summary>
+		/// Commands the only do something in the UI layer and are not passed into the game engine.
+		/// </summary>
 		void InitUiCommands()
 		{
 			UICommands[Inv.Key.Plus] = () => {_cloth.Zoom(0,0,1);};
@@ -89,7 +98,7 @@ namespace Portable
 		/// <remarks>
 		/// Update gets called a few times before the window is fully laid out.
 		/// When base dimensions are available center the player and connect main Update();
-		/// Cannot use a lambda because -= won't be able to unregister without a method handle.
+		/// (Cannot use a lambda because -= won't be able to unregister without a method handle.)
 		/// </remarks>
 		System.Action Warmup()
 		{
@@ -119,10 +128,16 @@ namespace Portable
 		{
 			if (_lastInput != MegaDungeon.PlayerInput.NONE)
 			{
+				if(!_engine.PlayerEntity.HasComponent<Actor>())
+				{
+					_surface.Content = _gameOver;
+					return;
+				}
 				_engine.DoTurn(_lastInput);
 				GetActorsFromEngine();
 				_cloth.KeepXYOnScreen(_engine.PlayerLocation.X, _engine.PlayerLocation.Y);
 				_bottomLabel.Text = string.Join("\n", _engine.Messages);
+				_leftPanel.SetData(_engine.PlayerEntity);
 				_cloth.Draw();
 				_lastInput = MegaDungeon.PlayerInput.NONE;
 			}

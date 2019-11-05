@@ -10,6 +10,7 @@ namespace MegaDungeon
 		DOWN,
 		DOWNLEFT,
 		LEFT,
-		UPLEFT
+		UPLEFT,
+		WAIT
 	}
 }

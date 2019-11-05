@@ -14,24 +14,15 @@ namespace FeatureDetector
 		}
 
 		[Test]
-		public void FindVerticalWallsTest()
+		public void FindWallsTest()
 		{
 			var detector = new MapFeatureDetector(mapIntArray);
-			var walls = detector.FindVerticalWalls();
+			var walls = detector.FindWalls();
 			Debug.WriteLine(detector.ToMapString(walls));
 			Assert.AreEqual(1, walls[12,45]);
 			Assert.AreEqual(1, walls[12,27]);
 			Assert.AreEqual(1, walls[13,27]);
 			Assert.AreEqual(1, walls[14,27]);
-
-		}
-
-		[Test]
-		public void FindHorizontalWallsTest()
-		{
-			var detector = new MapFeatureDetector(mapIntArray);
-			var walls = detector.FindHorizontalWalls();
-			Debug.WriteLine(detector.ToMapString(walls));
 			Assert.AreEqual(1, walls[20,34]);
 			Assert.AreEqual(1, walls[8,30]);
 			Assert.AreEqual(1, walls[8,31]);
@@ -41,18 +32,6 @@ namespace FeatureDetector
 			Assert.AreEqual(1, walls[8,35]);
 		}
 
-		[Test]
-		public void FindCorridorTest()
-		{
-			var detector = new MapFeatureDetector(mapIntArray);
-			var corridors = detector.FindCorridors();
-			Debug.WriteLine(detector.ToMapString(corridors));
-
-			Assert.AreEqual(1, corridors[15,43]);
-			Assert.AreEqual(1, corridors[34,22]);
-			Assert.AreEqual(1, corridors[7,18]);
-			Assert.AreEqual(1, corridors[20,32]);
-		}
 
 		[Test]
 		public void FindDoorwaysTest()
@@ -60,21 +39,11 @@ namespace FeatureDetector
 			var detector = new MapFeatureDetector(mapIntArray);
 			var doorways = detector.FindDoorways();
 			Debug.WriteLine(detector.ToMapString(doorways));
-			Assert.AreEqual(1, doorways[31, 18]);
+			
 			Assert.AreEqual(2, doorways[19, 21]);
 			Assert.AreEqual(3, doorways[29, 28]);
 			Assert.AreEqual(4, doorways[34, 24]);
 			Assert.AreEqual(0, doorways[23, 43]);
-		}
-
-		[Test]
-		public void FindCornersTest()
-		{
-			var detector = new MapFeatureDetector(mapIntArray);
-			var corners = detector.FindCorners();
-			Debug.WriteLine(detector.ToMapString(corners));
-			Assert.AreEqual(1, corners[39,24]);
-			Assert.AreEqual(1, corners[35,24]);
 		}
 
 		[Test]

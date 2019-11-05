@@ -19,13 +19,10 @@ namespace MegaDungeon
 		public static Point CENTER = new Point(0,0);
 
 		public const int FLOOR = 848;
-		public const int VERTICALWALL = 1058;
-		public const int HORIZWALL = 1058;
-		public const int CORNERWALL = 1058;
-		public const int CORRIDOR = 848;
+		public const int TILEABLEWALL = 1058;
 		public const int DARK = 829;
 		public const int DOOR = 844;
-		public const int PLAYER = 4;
+		public const int PLAYER = 348;
 
 		public static Point[] COMPASSPOINTS = new[] {
 				UPLEFT, UP, UPRIGHT,
@@ -42,7 +39,8 @@ namespace MegaDungeon
 				{PlayerInput.DOWN, DOWN},
 				{PlayerInput.DOWNLEFT, DOWNLEFT},
 				{PlayerInput.LEFT, LEFT},
-				{PlayerInput.UPLEFT, UPLEFT}
+				{PlayerInput.UPLEFT, UPLEFT},
+				{PlayerInput.WAIT, CENTER},
 			};
 	}
 }

@@ -12,12 +12,6 @@ namespace FeatureDetector
 			{-1, 4,-1}
 		};
 
-		public static int[,] Cross = new int[,]{
-			{ 8, -1, 8},
-			{-1,-32,-1},
-			{ 8, -1, 8}
-		};
-
 		public static int[,] Doorway = new int[,]{
 			{ -2,-16,-2},
 			{  2,-16, 2},
@@ -40,12 +34,6 @@ namespace FeatureDetector
 			{ 1, 1, 1},
 			{ 1, 0, 1},
 			{ 1, 1, 1},
-		};
-
-		public static int[,] Neighbors = new int[,]{
-			{  16,  1,  32},
-			{   2,  0,   4},
-			{ 64,   8, 128},
 		};
 
 		public static int[,] Rotate180Degrees(int[,] oldMatrix)
