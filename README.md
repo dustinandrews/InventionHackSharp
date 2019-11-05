@@ -16,11 +16,12 @@ Use the Invention API to create a basic roguelike with all the features of the [
  - Not too buggy!
  - Invention is a very good UI engine and the starter game only scratches the surface of whats possible with it.
 
-## Cloning, Building and running
+## Cloning, Building and running in Windows 10
 There may be other valid ways to build this.
 #### Pre-Reqs
 
  - Visual Studio 2017/2019 community edition
+ - Git
  - [Dotnet 4.6 developer pack](https://www.microsoft.com/en-us/download/details.aspx?id=53321)
  - Optional: [Visual Studio Code](https://code.visualstudio.com/)
 
