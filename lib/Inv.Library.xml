@@ -1,0 +1,3585 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>Inv.Library</name>
+    </assembly>
+    <members>
+        <member name="T:Inv.Any">
+            <summary>
+            Primitive type variant class.
+            </summary>
+        </member>
+        <member name="T:Inv.Assert">
+            <summary>
+            Global assertion manager used in the Inv projects.
+            This is different to System.Diagnostics.Assert() as it is a runtime option.
+            It is recommended to disable assertions in your RELEASE builds.
+            </summary>
+        </member>
+        <member name="P:Inv.Assert.IsEnabled">
+            <summary>
+            Assertions are enabled by default.
+            </summary>
+        </member>
+        <member name="M:Inv.Assert.Enable">
+            <summary>
+            Enable assertions.
+            </summary>
+        </member>
+        <member name="M:Inv.Assert.Disable">
+            <summary>
+            Disable assertions.
+            </summary>
+        </member>
+        <member name="M:Inv.Assert.Check(System.Boolean,System.String)">
+            <summary>
+            If the condition is false then throw an exception with the provided message.
+            </summary>
+            <param name="Condition"></param>
+            <param name="Message"></param>
+        </member>
+        <member name="M:Inv.Assert.Check(System.Boolean,System.String,System.Object[])">
+            <summary>
+            If the condition is false then throw an exception with the formatted message.
+            The string is only formatted when the condition is false.
+            </summary>
+            <param name="Condition"></param>
+            <param name="Format"></param>
+            <param name="ArgumentArray"></param>
+        </member>
+        <member name="M:Inv.Assert.Fail(System.String)">
+            <summary>
+            Throw an exception with the provided message.
+            </summary>
+            <param name="Message"></param>
+        </member>
+        <member name="M:Inv.Assert.CheckNotNull(System.Object,System.String)">
+            <summary>
+            Throw an ArgumentNullException if the provided variable is null.
+            </summary>
+            <param name="ArgumentObject"></param>
+            <param name="ArgumentName"></param>
+        </member>
+        <member name="T:Inv.IDistinctList">
+            <summary>
+            Represents a collection of distinct items.
+            </summary>
+        </member>
+        <member name="P:Inv.IDistinctList.Capacity">
+            <summary>
+            Capacity of the distinct list.
+            </summary>
+        </member>
+        <member name="M:Inv.IDistinctList.AddRange(System.Collections.IEnumerable)">
+            <summary>
+            Add a range of items to the distinct list.
+            </summary>
+            <param name="Items"></param>
+        </member>
+        <member name="T:Inv.DistinctList`1">
+            <summary>
+            Represents a strongly typed list of distinct objects that can be accessed by index. Provides methods to search, sort and manipulate lists.
+            </summary>
+            <remarks>
+            <para>The <see cref="T:Inv.DistinctList`1"/> class extends the functionality of <see cref="T:System.Collections.Generic.List`1"/> by preventing duplicate items from being
+            inserted into the list.</para>
+            <para>The <see cref="T:Inv.DistinctList`1"/> is not guaranteed to be sorted. You must sort the <see cref="T:Inv.DistinctList`1"/> before performing operations that
+            require the <see cref="T:Inv.DistinctList`1"/> to be sorted.</para>
+            </remarks>
+            <typeparam name="T">The type of elements in the list.</typeparam>
+        </member>
+        <member name="M:Inv.DistinctList`1.#ctor">
+            <summary>
+            Initializes a new instance of the <see cref="T:Inv.DistinctList`1"/> class that is empty, has the default initial capacity and the default equality comparer.
+            </summary>
+        </member>
+        <member name="M:Inv.DistinctList`1.#ctor(System.Collections.Generic.IEqualityComparer{`0})">
+            <summary>
+            Initializes a new instance of the <see cref="T:Inv.DistinctList`1"/> class that is empty, has the default initial capacity and a specified default equality comparer.
+            </summary>
+        </member>
+        <member name="M:Inv.DistinctList`1.#ctor(System.Int32)">
+            <summary>
+            Initializes a new instance of the <see cref="T:Inv.DistinctList`1"/> class that is empty and has the specified initial capacity.
+            </summary>
+            <param name="InitialCapacity">The number of elements that the new list can initially store.</param>
+        </member>
+        <member name="M:Inv.DistinctList`1.#ctor(System.Collections.IEnumerable)">
+            <summary>
+            Initializes a new instance of <see cref="T:Inv.DistinctList`1"/> with that contains elements copied from the specified enumerable.
+            </summary>
+            <param name="Range">The enumerable whose elements are copied to the new list.</param>
+        </member>
+        <member name="M:Inv.DistinctList`1.#ctor(System.Collections.Generic.IEnumerable{`0})">
+            <summary>
+            Initializes a new instance of the <see cref="T:Inv.DistinctList`1"/> class that contains elements copied from the specified collection
+            and has sufficient capacity to accommodate the number of elements copied.
+            </summary>
+            <param name="Range">The collection whose elements are copied to the new list.</param>
+        </member>
+        <member name="P:Inv.DistinctList`1.Capacity">
+            <summary>
+            Gets or sets the total number of elements the internal data structure can hold without resizing.
+            </summary>
+            <value>The number of elements that the <see cref="T:Inv.DistinctList`1"/> can hold before resizing is required.</value>
+            <remarks>
+            <para>Capacity is the number of elements that the <see cref="T:Inv.DistinctList`1"/> can hold before resizing is required, while <see cref="P:Inv.DistinctList`1.Count"/> is the number of elements
+            that are actually in the <see cref="T:Inv.DistinctList`1"/>.</para>
+            <para>Capacity is always greater than or equal to <see cref="P:Inv.DistinctList`1.Count"/>.</para>
+            </remarks>
+        </member>
+        <member name="P:Inv.DistinctList`1.Count">
+            <summary>
+            Gets the number of elements actually stored in the <see cref="T:Inv.DistinctList`1"/>.
+            </summary>
+            <value>The number of elements actually stored in the <see cref="T:Inv.DistinctList`1"/>.</value>
+            <remarks>
+            <para>Capacity is the number of elements that the <see cref="T:Inv.DistinctList`1"/> can hold before resizing is required, while <see cref="P:Inv.DistinctList`1.Count"/> is the number of elements
+            that are actually in the <see cref="T:Inv.DistinctList`1"/>.</para>
+            <para>Capacity is always greater than or equal to <see cref="P:Inv.DistinctList`1.Count"/>.</para>
+            </remarks>
+        </member>
+        <member name="P:Inv.DistinctList`1.Item(System.Int32)">
+            <summary>
+            Gets or sets the element at the specified index.
+            </summary>
+            <param name="Index">The zero-based index of the element to get or set.</param>
+            <returns>The element at the specified index.</returns>
+            <remarks>
+            <see cref="T:Inv.DistinctList`1"/> accepts null as a valid value for reference types and does not allow duplicate elements.
+            </remarks>
+        </member>
+        <member name="M:Inv.DistinctList`1.Clear">
+            <summary>
+            Removes all elements from the <see cref="T:Inv.DistinctList`1"/>.
+            </summary>
+            <remarks>
+            <para><see cref="P:Inv.DistinctList`1.Count"/> is set to 0, and references to other objects from elements of the collection are also released.</para>
+            <para><see cref="P:Inv.DistinctList`1.Capacity"/> is unchanged. To reset the capacity of the <see cref="T:Inv.DistinctList`1"/>, set the <see cref="P:Inv.DistinctList`1.Capacity"/> property directly.</para>
+            </remarks>
+        </member>
+        <member name="M:Inv.DistinctList`1.Contains(`0)">
+            <summary>
+            Determines whether an element is in the <see cref="T:Inv.DistinctList`1"/>.
+            </summary>
+            <param name="Item">The object to locate in the <see cref="T:Inv.DistinctList`1"/>.</param>
+            <returns>True if the item is found in the <see cref="T:Inv.DistinctList`1"/>, false otherwise.</returns>
+        </member>
+        <member name="M:Inv.DistinctList`1.Insert(System.Int32,`0)">
+            <summary>
+            Inserts an element into the <see cref="T:Inv.DistinctList`1"/> at the specified location.
+            </summary>
+            <param name="Index">The zero-based index at which the item should be inserted.</param>
+            <param name="Item">The object to insert.</param>
+            <remarks>
+            If <see cref="P:Inv.DistinctList`1.Count"/> already equals <see cref="P:Inv.DistinctList`1.Capacity"/>, the capacity of the <see cref="T:Inv.DistinctList`1"/> is increased.
+            </remarks>
+        </member>
+        <member name="M:Inv.DistinctList`1.InsertAfter(`0,`0)">
+            <summary>
+            Insert an item after another item.
+            </summary>
+            <param name="After"></param>
+            <param name="Item"></param>
+        </member>
+        <member name="M:Inv.DistinctList`1.InsertBefore(`0,`0)">
+            <summary>
+            Insert an item before another item.
+            </summary>
+            <param name="Before"></param>
+            <param name="Item"></param>
+        </member>
+        <member name="M:Inv.DistinctList`1.InsertRange(System.Int32,System.Collections.Generic.IEnumerable{`0})">
+            <summary>
+            Inserts the elements of a collection into the <see cref="T:Inv.DistinctList`1"/> at the specified index.
+            </summary>
+            <param name="Index">The zero-based index at which the new elements should be inserted.</param>
+            <param name="Range">The collection whose elements should be inserted into the <see cref="T:Inv.DistinctList`1"/>. The collection itself cannot be null,
+            but it can contain elements that are null, if type T is a reference type.</param>
+        </member>
+        <member name="M:Inv.DistinctList`1.Add(`0)">
+            <summary>
+            Adds an object to the end of the <see cref="T:Inv.DistinctList`1"/>.
+            </summary>
+            <param name="Item">The object to be added to the end of the <see cref="T:Inv.DistinctList`1"/>.</param>
+        </member>
+        <member name="M:Inv.DistinctList`1.AddArray(`0[])">
+            <summary>
+            Add an array to the list.
+            </summary>
+            <param name="Array"></param>
+        </member>
+        <member name="M:Inv.DistinctList`1.AddRange(System.Collections.Generic.IEnumerable{`0})">
+            <summary>
+            Adds the elements of the specified collection to the end of the <see cref="T:Inv.DistinctList`1"/>.
+            </summary>
+            <param name="Enumerable">The collection whose elements should be added to the end of the <see cref="T:Inv.DistinctList`1"/>. The collection itself cannot be null,
+            but it can contain elements that are null, if type T is a reference type.</param>
+        </member>
+        <member name="M:Inv.DistinctList`1.Remove(`0)">
+            <summary>
+            Remove the first occurrence of a specific object from the <see cref="T:Inv.DistinctList`1"/>.
+            </summary>
+            <param name="Item">The object to remove from the <see cref="T:Inv.DistinctList`1"/>. The value can be null for reference types.</param>
+            <returns>True if the item is successfully removed, false otherwise.</returns>
+        </member>
+        <member name="M:Inv.DistinctList`1.RemoveAll(System.Predicate{`0})">
+            <summary>
+            Removes all the elements that match the conditions defined by the specified predicate.
+            </summary>
+            <param name="Match">The <see cref="T:System.Predicate`1"/> delegate that defines the conditions of the elements to remove.</param>
+            <returns>The number of elements removed from the <see cref="T:Inv.DistinctList`1"/>.</returns>
+        </member>
+        <member name="M:Inv.DistinctList`1.RemoveAt(System.Int32)">
+            <summary>
+            Removes the element at the specified index of the <see cref="T:Inv.DistinctList`1"/>.
+            </summary>
+            <param name="Index">The zero-based index of the element to remove.</param>
+        </member>
+        <member name="M:Inv.DistinctList`1.RemoveRange(System.Int32,System.Int32)">
+            <summary>
+            Removes a range of elements from the <see cref="T:Inv.DistinctList`1"/>.
+            </summary>
+            <param name="Index">The zero-based starting index of the range of elements to remove.</param>
+            <param name="Length">The number of elements to remove.</param>
+        </member>
+        <member name="M:Inv.DistinctList`1.CopyTo(`0[],System.Int32)">
+            <summary>
+            Copies the entire <see cref="T:Inv.DistinctList`1"/> to a compatible one-dimensional array, starting at the beginning of the target array.
+            </summary>
+            <param name="TargetArray">The one-dimensional <see cref="T:System.Array"/> that is the destination of the elements copied from <see cref="T:Inv.DistinctList`1"/>.
+            The <see cref="T:System.Array"/> must have zero-based indexing.</param>
+            <param name="SourceIndex">The starting index in the target array, defaults to 0.</param>
+        </member>
+        <member name="M:Inv.DistinctList`1.Find(System.Predicate{`0})">
+            <summary>
+            Searches for an element that matches the conditions defined by the specified predicate, and returns the first occurrence within the entire <see cref="T:Inv.DistinctList`1"/>.
+            </summary>
+            <param name="Match">The <see cref="T:System.Predicate`1"/> delegate that defines the conditions of the element to search for.</param>
+            <returns>The first element that matches the conditions defined by the specified predicate, if found; otherwise, the default value for type T.</returns>
+        </member>
+        <member name="M:Inv.DistinctList`1.Exists(System.Predicate{`0})">
+            <summary>
+            Determines whether the <see cref="T:Inv.DistinctList`1"/> contains elements that match the conditions defined by the specified predicate.
+            </summary>
+            <param name="Match">The <see cref="T:System.Predicate`1"/> delegate that defines the conditions of the elements to search for.</param>
+            <returns>True if the <see cref="T:Inv.DistinctList`1"/> contains one or more elements that match the conditions defined by the specified predicate; false otherwise.</returns>
+        </member>
+        <member name="M:Inv.DistinctList`1.ExistsAt(System.Int32)">
+            <summary>
+            Determines whether the <see cref="T:Inv.DistinctList`1"/> contains an element at the specified index.
+            </summary>
+            <param name="Index">The zero-based index to check for contents.</param>
+            <returns>True if an element exists at the specified index, otherwise false.</returns>
+        </member>
+        <member name="M:Inv.DistinctList`1.FindIndex(System.Predicate{`0})">
+            <summary>
+            Searches for an element that matches the conditions defined by the specified predicate, and returns the zero-based index of the first occurrence
+            within the entire <see cref="T:Inv.DistinctList`1"/>.
+            </summary>
+            <param name="Match">The <see cref="T:System.Predicate`1"/> delegate that defines the conditions of the elements to search for.</param>
+            <returns>The zero-based index of the first occurrence of an element that matches the conditions defined by <paramref name="Match"/>, if found; otherwise -1.</returns>
+        </member>
+        <member name="M:Inv.DistinctList`1.FindIndex(System.Int32,System.Predicate{`0})">
+            <summary>
+            Searches for an element that matches the conditions defined by the specified predicate, and returns the zero-based index of the first occurrence
+            within the range of elements in the <see cref="T:Inv.DistinctList`1"/> that extends from the specified index to the last element.
+            </summary>
+            <param name="StartIndex">The zero-based starting index of the search.</param>
+            <param name="Match">The <see cref="T:System.Predicate`1"/> delegate that defines the conditions of the elements to search for.</param>
+            <returns>The zero-based index of the first occurrence of an element that matches the conditions defined by <paramref name="Match"/>, if found; otherwise -1.</returns>
+        </member>
+        <member name="M:Inv.DistinctList`1.FindIndex(System.Int32,System.Int32,System.Predicate{`0})">
+            <summary>
+            Searches for an element that matches the conditions defined by the specified predicate, and returns the zero-based index of the first occurrence
+            within the range of elements in the <see cref="T:Inv.DistinctList`1"/> that starts at the specified index and contains the specified number of elements.
+            </summary>
+            <param name="Index">The zero-based starting index of the search.</param>
+            <param name="Length">The number of elements in the section to search.</param>
+            <param name="Match">The <see cref="T:System.Predicate`1"/> delegate that defines the conditions of the elements to search for.</param>
+            <returns>The zero-based index of the first occurrence of an element that matches the conditions defined by <paramref name="Match"/>, if found; otherwise -1.</returns>
+        </member>
+        <member name="M:Inv.DistinctList`1.BinarySearch(`0,System.Collections.Generic.IComparer{`0})">
+            <summary>
+            Binary search to find an item.
+            </summary>
+            <param name="Item"></param>
+            <param name="Comparer"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Inv.DistinctList`1.IndexOf(`0)">
+            <summary>
+            Searches for the specified object and returns the zero-based index of the first occurrence within the entire <see cref="T:Inv.DistinctList`1"/>.
+            </summary>
+            <param name="Item">The object to locate in the <see cref="T:Inv.DistinctList`1"/>.</param>
+            <returns>The zero-based index of the first occurrence of <paramref name="Item"/> within the entire <see cref="T:Inv.DistinctList`1"/>.</returns>
+        </member>
+        <member name="M:Inv.DistinctList`1.Sort">
+            <summary>
+            Sorts the elements in the entire <see cref="T:Inv.DistinctList`1"/> using the default comparer.
+            </summary>
+        </member>
+        <member name="M:Inv.DistinctList`1.Sort(System.Collections.Generic.IComparer{`0})">
+            <summary>
+            Sorts the elements in the entire <see cref="T:Inv.DistinctList`1"/> using the specified <see cref="T:System.Collections.Generic.IComparer`1"/>.
+            </summary>
+            <param name="Comparer">The <see cref="T:System.Collections.Generic.IComparer`1"/> implementation to use when comparing elements, or null to use the default comparer <see cref="P:System.Collections.Generic.Comparer`1.Default"/>.</param>
+        </member>
+        <member name="M:Inv.DistinctList`1.Sort(System.Comparison{`0})">
+            <summary>
+            Sorts the elements in the entire <see cref="T:Inv.DistinctList`1"/> using the specified <see cref="T:System.Comparison`1"/>.
+            </summary>
+            <param name="Comparison">The <see cref="T:System.Comparison`1"/> to use when comparing elements.</param>
+        </member>
+        <member name="M:Inv.DistinctList`1.Sort(System.Int32,System.Int32,System.Collections.Generic.IComparer{`0})">
+            <summary>
+            Sorts the elements in a range of elements in <see cref="T:Inv.DistinctList`1"/> using the specified comparer.
+            </summary>
+            <param name="Index">The zero-based starting index of the range to sort.</param>
+            <param name="Length">The length of the range to sort.</param>
+            <param name="Comparer">The <see cref="T:System.Collections.Generic.IComparer`1"/> implementation to use when comparing elements, or null to use the default comparer <see cref="P:System.Collections.Generic.Comparer`1.Default"/>.</param>
+        </member>
+        <member name="M:Inv.DistinctList`1.Truncate(System.Int32)">
+            <summary>
+            Truncate the list to the number of items specified.
+            </summary>
+            <param name="Limit"></param>
+        </member>
+        <member name="M:Inv.DistinctList`1.Move(System.Int32,System.Int32)">
+            <summary>
+            Move an item in the list to a new position.
+            </summary>
+            <param name="SourceIndex"></param>
+            <param name="TargetIndex"></param>
+        </member>
+        <member name="M:Inv.DistinctList`1.Shuffle">
+            <summary>
+            Randomly shuffle the items in the list.
+            </summary>
+        </member>
+        <member name="M:Inv.DistinctList`1.Replace(`0,`0)">
+            <summary>
+            Replace an existing item in the list with another item.
+            </summary>
+            <param name="Old"></param>
+            <param name="New"></param>
+        </member>
+        <member name="M:Inv.DistinctList`1.GetEnumerator">
+            <summary>
+            Returns an enumerator that iterates through the <see cref="T:Inv.DistinctList`1"/>.
+            </summary>
+            <returns>An <see cref="T:System.Collections.Generic.IEnumerator`1"/> for the <see cref="T:Inv.DistinctList`1"/>.</returns>
+        </member>
+        <member name="P:Inv.DistinctList`1.ReadShielded">
+            <summary>
+            Gets or sets a value indicating whether the <see cref="T:Inv.DistinctList`1"/> is shielded from reads.
+            </summary>
+        </member>
+        <member name="P:Inv.DistinctList`1.WriteShielded">
+            <summary>
+            Gets or sets a value indicating whether the <see cref="T:Inv.DistinctList`1"/> is shielded from writes.
+            </summary>
+        </member>
+        <member name="T:Inv.DistinctList`1.Enumerator">
+            <summary>
+            An enumerator representing this <see cref="T:Inv.DistinctList`1"/>.
+            </summary>
+        </member>
+        <member name="M:Inv.DistinctList`1.Enumerator.Dispose">
+            <summary>
+            Releases the resources held by the enumerator.
+            </summary>
+        </member>
+        <member name="P:Inv.DistinctList`1.Enumerator.Current">
+            <summary>
+            The current item this enumerator points to.
+            </summary>
+        </member>
+        <member name="M:Inv.DistinctList`1.Enumerator.MoveNext">
+            <summary>
+            Moves the enumerator to the next item in the list.
+            </summary>
+            <returns>True if the next item exists; false otherwise.</returns>
+        </member>
+        <member name="T:Inv.Grid`1">
+            <summary>
+            Represents a two-dimensional grid of elements.
+            </summary>
+            <typeparam name="T">The type of elements in the <see cref="T:Inv.Grid`1"/>.</typeparam>
+        </member>
+        <member name="M:Inv.Grid`1.#ctor">
+            <summary>
+            Create a new 2D grid with a starting width and height of zero.
+            </summary>
+        </member>
+        <member name="M:Inv.Grid`1.#ctor(System.Int32,System.Int32)">
+            <summary>
+            Create a new 2D grid with the specified width and height.
+            </summary>
+            <param name="Width"></param>
+            <param name="Height"></param>
+        </member>
+        <member name="P:Inv.Grid`1.Width">
+            <summary>
+            The read-only width of the <see cref="T:Inv.Grid`1"/> in elements.
+            </summary>
+            <value>The width of the <see cref="T:Inv.Grid`1"/> in elements.</value>
+        </member>
+        <member name="P:Inv.Grid`1.Height">
+            <summary>
+            The read-only height of the <see cref="T:Inv.Grid`1"/> in elements.
+            </summary>
+            <value>The height of the <see cref="T:Inv.Grid`1"/> in elements.</value>
+        </member>
+        <member name="P:Inv.Grid`1.Item(System.Int32,System.Int32)">
+            <summary>
+            Gets or sets the element at the specified zero-based index coordinates in the <see cref="T:Inv.Grid`1"/>.
+            </summary>
+            <param name="X">The zero-based index of the X coordinate.</param>
+            <param name="Y">The zero-based index of the Y coordinate.</param>
+            <returns>The element at the specified coordinates.</returns>
+        </member>
+        <member name="M:Inv.Grid`1.IsValid(System.Int32,System.Int32)">
+            <summary>
+            Determine whether or not the grid coordinates specified are valid.
+            </summary>
+            <param name="X">The X coordinate to check.</param>
+            <param name="Y">The Y coordinate to check.</param>
+            <returns>True if (X, Y) is within the width/height bounds of the <see cref="T:Inv.Grid`1"/>; false otherwise.</returns>
+        </member>
+        <member name="M:Inv.Grid`1.IsValidX(System.Int32)">
+            <summary>
+            Ask if the X is within the grid.
+            </summary>
+            <param name="X"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Inv.Grid`1.IsValidY(System.Int32)">
+            <summary>
+            Ask if the Y is within the grid.
+            </summary>
+            <param name="Y"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Inv.Grid`1.Resize(System.Int32,System.Int32)">
+            <summary>
+            Destructively resizes the <see cref="T:Inv.Grid`1"/> to the specified new size.
+            </summary>
+            <remarks>
+            Any elements currently in the <see cref="T:Inv.Grid`1"/> will be removed.
+            </remarks>
+            <param name="NewWidth">The new width of the <see cref="T:Inv.Grid`1"/>.</param>
+            <param name="NewHeight">The new height of the <see cref="T:Inv.Grid`1"/>.</param>
+        </member>
+        <member name="M:Inv.Grid`1.FillDefault">
+            <summary>
+            Fill the grid with the default value.
+            </summary>
+        </member>
+        <member name="M:Inv.Grid`1.Fill(`0)">
+            <summary>
+            Populate the <see cref="T:Inv.Grid`1"/> with default instances of T.
+            </summary>
+        </member>
+        <member name="M:Inv.Grid`1.Fill(System.Func{System.Int32,System.Int32,`0})">
+            <summary>
+            Populate the <see cref="T:Inv.Grid`1"/> with default instances of T.
+            </summary>
+        </member>
+        <member name="M:Inv.Grid`1.Rotate90Degrees">
+            <summary>
+            Rotate the grid 90 degrees. Width becomes Height and vice versa.
+            </summary>
+        </member>
+        <member name="M:Inv.Grid`1.GetRowCells(System.Int32)">
+            <summary>
+            Enumerate the cells in the row.
+            </summary>
+            <param name="Row"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Inv.Grid`1.GetColumnCells(System.Int32)">
+            <summary>
+            Enumerate the cells in the column.
+            </summary>
+            <param name="Column"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Inv.Grid`1.Copy">
+            <summary>
+            Make a shallow copy of the grid.
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="T:Inv.CharacterSet">
+            <summary>
+            Represents a set of characters for string validity checking.
+            </summary>
+        </member>
+        <member name="M:Inv.CharacterSet.ContainsValue(System.Char)">
+            <summary>
+            Check to see if this <see cref="T:Inv.CharacterSet"/> contains the specified char.
+            </summary>
+            <param name="Value">The character to check.</param>
+            <returns>True if this <see cref="T:Inv.CharacterSet"/> contains <paramref name="Value"/>, false otherwise.</returns>
+        </member>
+        <member name="M:Inv.CharacterSet.Add(System.Char)">
+            <summary>
+            Add the specified character to the <see cref="T:Inv.CharacterSet"/>.
+            </summary>
+            <param name="Value">The character to add.</param>
+        </member>
+        <member name="M:Inv.CharacterSet.AddRange(System.Char,System.Char)">
+            <summary>
+            Add a range of characters to the <see cref="T:Inv.CharacterSet"/>.
+            </summary>
+            <param name="FromValue">The first character to add.</param>
+            <param name="ToValue">The last character to add.</param>
+        </member>
+        <member name="M:Inv.CharacterSet.AddSet(Inv.CharacterSet)">
+            <summary>
+            Add the contents of another <see cref="T:Inv.CharacterSet"/> to this <see cref="T:Inv.CharacterSet"/>.
+            </summary>
+            <param name="CharacterSet">The <see cref="T:Inv.CharacterSet"/> to add to this <see cref="T:Inv.CharacterSet"/>.</param>
+        </member>
+        <member name="M:Inv.CharacterSet.RemoveSet(Inv.CharacterSet)">
+            <summary>
+            Remove the characters contained in another <see cref="T:Inv.CharacterSet"/> from this <see cref="T:Inv.CharacterSet"/>.
+            </summary>
+            <param name="CharacterSet">The <see cref="T:Inv.CharacterSet"/> to remove from this <see cref="T:Inv.CharacterSet"/>.</param>
+        </member>
+        <member name="M:Inv.CharacterSet.EqualTo(Inv.CharacterSet)">
+            <summary>
+            Check to see if this <see cref="T:Inv.CharacterSet"/> is equivalent to another <see cref="T:Inv.CharacterSet"/>.
+            </summary>
+            <param name="CharacterSet">The <see cref="T:Inv.CharacterSet"/>to compare.</param>
+            <returns>True if the two <see cref="T:Inv.CharacterSet"/>s are equivalent; false otherwise.</returns>
+        </member>
+        <member name="M:Inv.CharacterSet.Conforms(System.String)">
+            <summary>
+            Check to see if a given <see cref="T:System.String"/> conforms to this <see cref="T:Inv.CharacterSet"/>.
+            </summary>
+            <param name="Value">The string value to check.</param>
+            <returns>True if every character of <paramref name="Value"/> is contained within this <see cref="T:Inv.CharacterSet"/>, false otherwise.</returns>
+        </member>
+        <member name="T:Inv.Bidictionary`2">
+            <summary>
+            A bidirectional dictionary of elements.
+            </summary>
+            <remarks>
+            <para><see cref="T:Inv.Bidictionary`2"/> is conceptually a matched pair of <see cref="T:System.Collections.Generic.Dictionary`2"/>s to facilitate retrieval by either the key (the 'left side')
+            or the value (the 'right side'); by comparison, <see cref="T:System.Collections.Generic.Dictionary`2"/> has no methods for fetching a key given a value.</para>
+            </remarks>
+            <typeparam name="TLeft">The type of the elements on the left side of the dictionary.</typeparam>
+            <typeparam name="TRight">The type of the elements on the right side of the dictionary.</typeparam>
+        </member>
+        <member name="M:Inv.Bidictionary`2.Clear">
+            <summary>
+            Remove all entries from the <see cref="T:Inv.Bidictionary`2"/>.
+            </summary>
+        </member>
+        <member name="M:Inv.Bidictionary`2.Add(`0,`1)">
+            <summary>
+            Add a pair of entries to the <see cref="T:Inv.Bidictionary`2"/>.
+            </summary>
+            <param name="Left">The left side value.</param>
+            <param name="Right">The right side value.</param>
+        </member>
+        <member name="M:Inv.Bidictionary`2.Remove(`0,`1)">
+            <summary>
+            Remove a pair of entries from the <see cref="T:Inv.Bidictionary`2"/>.
+            </summary>
+            <param name="Left">The left side value to remove.</param>
+            <param name="Right">The right side value to remove.</param>
+            <returns>True if the remove succeeded.</returns>
+        </member>
+        <member name="M:Inv.Bidictionary`2.RemoveByLeft(`0)">
+            <summary>
+            Remove a pair of values from the <see cref="T:Inv.Bidictionary`2"/> given the left side value.
+            </summary>
+            <param name="Left">The left side value to remove from the <see cref="T:Inv.Bidictionary`2"/>.</param>
+            <returns>True if the remove succeeded.</returns>
+        </member>
+        <member name="M:Inv.Bidictionary`2.RemoveByRight(`1)">
+            <summary>
+            Remove a pair of values from the <see cref="T:Inv.Bidictionary`2"/> given the right side value.
+            </summary>
+            <param name="Right">The right side value to remove from the <see cref="T:Inv.Bidictionary`2"/>.</param>
+            <returns>True if the remove succeeded.</returns>
+        </member>
+        <member name="M:Inv.Bidictionary`2.AddAll(Inv.Bidictionary{`0,`1})">
+            <summary>
+            Add every entry from another <see cref="T:Inv.Bidictionary`2"/> to this <see cref="T:Inv.Bidictionary`2"/>.
+            </summary>
+            <param name="Index">The <see cref="T:Inv.Bidictionary`2"/> to add to this <see cref="T:Inv.Bidictionary`2"/>.</param>
+        </member>
+        <member name="M:Inv.Bidictionary`2.GetByLeft(`0)">
+            <summary>
+            Get the right hand value for the given left hand value.
+            </summary>
+            <param name="Left">The left hand value.</param>
+            <returns>The right hand value corresponding to the specified left hand value.</returns>
+            <exception cref="T:System.Exception">Thrown if no matching right hand value could be found.</exception>
+        </member>
+        <member name="M:Inv.Bidictionary`2.GetByRight(`1)">
+            <summary>
+            Get the left hand value for the given right hand value.
+            </summary>
+            <param name="Right">The right hand value.</param>
+            <returns>The left hand value corresponding to the specified right hand value.</returns>
+            <exception cref="T:System.Exception">Thrown if no matching left hand value could be found.</exception>
+        </member>
+        <member name="M:Inv.Bidictionary`2.TryGetByLeft(`0,`1@)">
+            <summary>
+            Gets the right hand value for the given left hand value if possible.
+            </summary>
+            <param name="Left">The left hand value.</param>
+            <param name="Right">When this method returns, contains the right hand value corresponding to the specified left hand value, if that value exists; otherwise
+            returns the default value for the TRight type.</param>
+            <returns>True if the <see cref="T:Inv.Bidictionary`2"/> contains a right hand value corresponding to the specified left hand value, false otherwise.</returns>
+        </member>
+        <member name="M:Inv.Bidictionary`2.TryGetByRight(`1,`0@)">
+            <summary>
+            Gets the left hand value for the given right hand value if possible.
+            </summary>
+            <param name="Right">The right hand value.</param>
+            <param name="Left">When this method returns, contains the left hand value corresponding to the specified right hand value, if that value exists; otherwise
+            returns the default value for the TLeft type.</param>
+            <returns>True if the <see cref="T:Inv.Bidictionary`2"/> contains a left hand value corresponding to the specified right hand value, false otherwise.</returns>
+        </member>
+        <member name="M:Inv.Bidictionary`2.ContainsByRight(`1)">
+            <summary>
+            Check to see if the <see cref="T:Inv.Bidictionary`2"/> contains the specified right hand value.
+            </summary>
+            <param name="Right">The right hand value to check</param>
+            <returns>True if the <see cref="T:Inv.Bidictionary`2"/> contains the specified right hand value</returns>
+        </member>
+        <member name="M:Inv.Bidictionary`2.ContainsByLeft(`0)">
+            <summary>
+            Check to see if the <see cref="T:Inv.Bidictionary`2"/> contains the specified left hand value.
+            </summary>
+            <param name="Left">The left hand value to check</param>
+            <returns>True if the <see cref="T:Inv.Bidictionary`2"/> contains the specified left hand value</returns>
+        </member>
+        <member name="P:Inv.Bidictionary`2.Lefts">
+            <summary>
+            Gets a <see cref="T:System.Collections.Generic.Dictionary`2.KeyCollection"/> of the left hand values of this <see cref="T:Inv.Bidictionary`2"/>.
+            </summary>
+        </member>
+        <member name="P:Inv.Bidictionary`2.Rights">
+            <summary>
+            Gets a <see cref="T:System.Collections.Generic.Dictionary`2.KeyCollection"/> of the right hand values of this <see cref="T:Inv.Bidictionary`2"/>.
+            </summary>
+        </member>
+        <member name="T:Inv.Colour">
+            <summary>
+            A serializable class representing a 32-bit ARGB colour.
+            </summary>
+        </member>
+        <member name="M:Inv.Colour.FromArgb(System.Byte,System.Byte,System.Byte,System.Byte)">
+            <summary>
+            Return a colour from ARGB components.
+            </summary>
+            <param name="Alpha"></param>
+            <param name="Red"></param>
+            <param name="Green"></param>
+            <param name="Blue"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Inv.Colour.FromArgb(Inv.ColourARGBRecord)">
+            <summary>
+            Return a colour from an ARGB struct.
+            </summary>
+            <param name="Argb"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Inv.Colour.FromArgb(System.UInt32)">
+            <summary>
+            Return a colour from a raw number.
+            </summary>
+            <param name="Argb"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Inv.Colour.FromArgb(System.Int32)">
+            <summary>
+            Return a colour from a raw number.
+            </summary>
+            <param name="Argb"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Inv.Colour.FromHSV(System.Double,System.Double,System.Double)">
+            <summary>
+            Return a colour from HSV components.
+            </summary>
+            <param name="hue"></param>
+            <param name="saturation"></param>
+            <param name="value"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Inv.Colour.FromName(System.String)">
+            <summary>
+            Return a colour from a registered name.
+            </summary>
+            <param name="Name"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Inv.Colour.FromHexadecimalString(System.String)">
+            <summary>
+            Return a colour from a hexadecimal string. eg. FFF0F8FF or F0F8FF
+            Must not start with a hash (#).
+            </summary>
+            <param name="Value"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Inv.Colour.FromHtmlString(System.String)">
+            <summary>
+            Return a colour from a html string. eg. #F0F8FF
+            Must start with a hash (#) and represent only RR GG BB.
+            </summary>
+            <param name="Value"></param>
+            <returns></returns>
+        </member>
+        <member name="P:Inv.Colour.Name">
+            <summary>
+            Registered name of the colour, otherwise the Hex representation.
+            </summary>
+        </member>
+        <member name="P:Inv.Colour.Hex">
+            <summary>
+            Hex representation of the colour. eg. FF F0 F8 FF
+            </summary>
+        </member>
+        <member name="P:Inv.Colour.RawValue">
+            <summary>
+            Raw internal value.
+            </summary>
+        </member>
+        <member name="P:Inv.Colour.IsOpaque">
+            <summary>
+            Ask if the colour is opaque (Alpha 0xFF)
+            </summary>
+        </member>
+        <member name="P:Inv.Colour.IsTransparent">
+            <summary>
+            Ask if the colour is transparent (Alpha 0x00)
+            </summary>
+        </member>
+        <member name="M:Inv.Colour.GetARGBRecord">
+            <summary>
+            Get the colour as an ARGBA struct.
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Inv.Colour.GetHSLRecord">
+            <summary>
+            Get the colour as a HSL struct.
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Inv.Colour.GetArgb">
+            <summary>
+            Get the raw value of the colour.
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Inv.Colour.ToHtmlColour">
+            <summary>
+            Get the html colour representation. eg. #F0F8FF
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Inv.Colour.CompareTo(Inv.Colour)">
+            <summary>
+            Compare to another colour.
+            </summary>
+            <param name="Colour"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Inv.Colour.EqualTo(Inv.Colour)">
+            <summary>
+            Ask if the colours are equal.
+            </summary>
+            <param name="Colour"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Inv.Colour.GetHashCode">
+            <summary>
+            Get hash code for the colour.
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Inv.Colour.ToString">
+            <summary>
+            Return the registered name or hex display of the colour.
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="F:Inv.Colour.AliceBlue">
+            <summary>
+            AliceBlue is F0 F8 FF
+            </summary>
+        </member>
+        <member name="F:Inv.Colour.AntiqueWhite">
+            <summary>
+            AntiqueWhite is FA EB D7
+            </summary>
+        </member>
+        <member name="F:Inv.Colour.Aquamarine">
+            <summary>
+            Aquamarine is 7F FF D4
+            </summary>
+        </member>
+        <member name="F:Inv.Colour.Azure">
+            <summary>
+            Azure is F0 FF FF
+            </summary>
+        </member>
+        <member name="F:Inv.Colour.Beige">
+            <summary>
+            Beige is F5 F5 DC
+            </summary>
+        </member>
+        <member name="F:Inv.Colour.Bisque">
+            <summary>
+            Bisque is FF E4 C4
+            </summary>
+        </member>
+        <member name="F:Inv.Colour.Black">
+            <summary>
+            Black is 00 00 00
+            </summary>
+        </member>
+        <member name="F:Inv.Colour.BlackSmoke">
+            <summary>
+            BlackSmoke is 28 28 28
+            </summary>
+        </member>
+        <member name="F:Inv.Colour.BlanchedAlmond">
+            <summary>
+            BlanchedAlmond is FF EB CD
+            </summary>
+        </member>
+        <member name="F:Inv.Colour.Blue">
+            <summary>
+            Blue is 00 00 FF
+            </summary>
+        </member>
+        <member name="F:Inv.Colour.BlueViolet">
+            <summary>
+            BlueViolet is 8A 2B E2
+            </summary>
+        </member>
+        <member name="F:Inv.Colour.Brown">
+            <summary>
+            Brown is A5 2A 2A
+            </summary>
+        </member>
+        <member name="F:Inv.Colour.BurlyWood">
+            <summary>
+            BurlyWood is DE B8 87
+            </summary>
+        </member>
+        <member name="F:Inv.Colour.CadetBlue">
+            <summary>
+            CadetBlue is 5F 9E A0
+            </summary>
+        </member>
+        <member name="F:Inv.Colour.Chartreuse">
+            <summary>
+            Chartreuse is 7F FF 00
+            </summary>
+        </member>
+        <member name="F:Inv.Colour.Chocolate">
+            <summary>
+            Chocolate is D2 69 1E
+            </summary>
+        </member>
+        <member name="F:Inv.Colour.Coral">
+            <summary>
+            Coral is FF 7F 50
+            </summary>
+        </member>
+        <member name="F:Inv.Colour.CornflowerBlue">
+            <summary>
+            CornflowerBlue is 64 95 ED
+            </summary>
+        </member>
+        <member name="F:Inv.Colour.Cornsilk">
+            <summary>
+            Cornsilk is FF F8 DC
+            </summary>
+        </member>
+        <member name="F:Inv.Colour.Crimson">
+            <summary>
+            Crimson is DC 14 3C
+            </summary>
+        </member>
+        <member name="F:Inv.Colour.Cyan">
+            <summary>
+            Cyan is 00 FF FF
+            </summary>
+        </member>
+        <member name="F:Inv.Colour.DarkBlue">
+            <summary>
+            DarkBlue is 00 00 8B
+            </summary>
+        </member>
+        <member name="F:Inv.Colour.DarkCyan">
+            <summary>
+            DarkCyan is 00 8B 8B
+            </summary>
+        </member>
+        <member name="F:Inv.Colour.DarkGoldenrod">
+            <summary>
+            DarkGoldenrod is B8 86 0B
+            </summary>
+        </member>
+        <member name="F:Inv.Colour.DarkGray">
+            <summary>
+            DarkGray is A9 A9 A9
+            </summary>
+        </member>
+        <member name="F:Inv.Colour.DarkGreen">
+            <summary>
+            DarkGreen is 00 64 00
+            </summary>
+        </member>
+        <member name="F:Inv.Colour.DarkKhaki">
+            <summary>
+            DarkKhaki is BD B7 6B
+            </summary>
+        </member>
+        <member name="F:Inv.Colour.DarkMagenta">
+            <summary>
+            DarkMagenta is 8B 00 8B
+            </summary>
+        </member>
+        <member name="F:Inv.Colour.DarkOliveGreen">
+            <summary>
+            DarkOliveGreen is 55 6B 2F
+            </summary>
+        </member>
+        <member name="F:Inv.Colour.DarkOrange">
+            <summary>
+            DarkOrange is FF 8C 00
+            </summary>
+        </member>
+        <member name="F:Inv.Colour.DarkOrchid">
+            <summary>
+            DarkOrchid is 99 32 CC
+            </summary>
+        </member>
+        <member name="F:Inv.Colour.DarkRed">
+            <summary>
+            DarkRed is 8B 00 00
+            </summary>
+        </member>
+        <member name="F:Inv.Colour.DarkSalmon">
+            <summary>
+            DarkSalmon is E9 96 7A
+            </summary>
+        </member>
+        <member name="F:Inv.Colour.DarkSeaGreen">
+            <summary>
+            DarkSeaGreen is 8F BC 8F
+            </summary>
+        </member>
+        <member name="F:Inv.Colour.DarkSlateBlue">
+            <summary>
+            DarkSlateBlue is 48 3D 8B
+            </summary>
+        </member>
+        <member name="F:Inv.Colour.DarkSlateGray">
+            <summary>
+            DarkSlateGray is 2F 4F 4F
+            </summary>
+        </member>
+        <member name="F:Inv.Colour.DarkTurquoise">
+            <summary>
+            DarkTurquoise is 00 CE D1
+            </summary>
+        </member>
+        <member name="F:Inv.Colour.DarkViolet">
+            <summary>
+            DarkViolet is 94 00 D3
+            </summary>
+        </member>
+        <member name="F:Inv.Colour.DarkYellow">
+            <summary>
+            DarkYellow is CC CC 00
+            </summary>
+        </member>
+        <member name="F:Inv.Colour.DeepPink">
+            <summary>
+            DeepPink is FF 14 93
+            </summary>
+        </member>
+        <member name="F:Inv.Colour.DeepSkyBlue">
+            <summary>
+            DeepSkyBlue is 00 BF FF
+            </summary>
+        </member>
+        <member name="F:Inv.Colour.DimGray">
+            <summary>
+            DimGray is 69 69 69
+            </summary>
+        </member>
+        <member name="F:Inv.Colour.DeepGray">
+            <summary>
+            DeepGray is 4B 4B 4B
+            </summary>
+        </member>
+        <member name="F:Inv.Colour.DodgerBlue">
+            <summary>
+            DodgerBlue is 1E 90 FF
+            </summary>
+        </member>
+        <member name="F:Inv.Colour.Firebrick">
+            <summary>
+            Firebrick is B2 22 22
+            </summary>
+        </member>
+        <member name="F:Inv.Colour.FloralWhite">
+            <summary>
+            FloralWhite is FF FA F0
+            </summary>
+        </member>
+        <member name="F:Inv.Colour.ForestGreen">
+            <summary>
+            ForestGreen is 22 8B 22
+            </summary>
+        </member>
+        <member name="F:Inv.Colour.Gainsboro">
+            <summary>
+            Gainsboro is DC DC DC
+            </summary>
+        </member>
+        <member name="F:Inv.Colour.GhostWhite">
+            <summary>
+            GhostWhite is F8 F8 FF
+            </summary>
+        </member>
+        <member name="F:Inv.Colour.Gold">
+            <summary>
+            Gold is FF D7 00
+            </summary>
+        </member>
+        <member name="F:Inv.Colour.Goldenrod">
+            <summary>
+            Goldenrod is DA A5 20
+            </summary>
+        </member>
+        <member name="F:Inv.Colour.Gray">
+            <summary>
+            Gray is 80 80 80
+            </summary>
+        </member>
+        <member name="F:Inv.Colour.GraySmoke">
+            <summary>
+            GraySmoke is 32 36 3F
+            </summary>
+        </member>
+        <member name="F:Inv.Colour.Green">
+            <summary>
+            Green is 00 80 00
+            </summary>
+        </member>
+        <member name="F:Inv.Colour.GreenYellow">
+            <summary>
+            GreenYellow is AD FF 2F
+            </summary>
+        </member>
+        <member name="F:Inv.Colour.Honeydew">
+            <summary>
+            Honeydew is F0 FF F0
+            </summary>
+        </member>
+        <member name="F:Inv.Colour.HotPink">
+            <summary>
+            HotPink is FF 69 B4
+            </summary>
+        </member>
+        <member name="F:Inv.Colour.IndianRed">
+            <summary>
+            IndianRed is CD 5C 5C
+            </summary>
+        </member>
+        <member name="F:Inv.Colour.Indigo">
+            <summary>
+            Indigo is 4B 00 82
+            </summary>
+        </member>
+        <member name="F:Inv.Colour.Ivory">
+            <summary>
+            Ivory is FF FF F0
+            </summary>
+        </member>
+        <member name="F:Inv.Colour.Khaki">
+            <summary>
+            Khaki is F0 E6 8C
+            </summary>
+        </member>
+        <member name="F:Inv.Colour.Lavender">
+            <summary>
+            Lavender is E6 E6 FA
+            </summary>
+        </member>
+        <member name="F:Inv.Colour.LavenderBlush">
+            <summary>
+            LavenderBlush is FF F0 F5
+            </summary>
+        </member>
+        <member name="F:Inv.Colour.LawnGreen">
+            <summary>
+            LawnGreen is 7C FC 00
+            </summary>
+        </member>
+        <member name="F:Inv.Colour.LemonChiffon">
+            <summary>
+            LemonChiffon is FF FA CD
+            </summary>
+        </member>
+        <member name="F:Inv.Colour.LightBlue">
+            <summary>
+            LightBlue is AD D8 E6
+            </summary>
+        </member>
+        <member name="F:Inv.Colour.LightCoral">
+            <summary>
+            LightCoral is F0 80 80
+            </summary>
+        </member>
+        <member name="F:Inv.Colour.LightCyan">
+            <summary>
+            LightCyan is E0 FF FF
+            </summary>
+        </member>
+        <member name="F:Inv.Colour.LightGoldenrodYellow">
+            <summary>
+            LightGoldenrodYellow is FA FA D2
+            </summary>
+        </member>
+        <member name="F:Inv.Colour.LightGray">
+            <summary>
+            LightGray is D3 D3 D3
+            </summary>
+        </member>
+        <member name="F:Inv.Colour.LightGreen">
+            <summary>
+            LightGreen is 90 EE 90
+            </summary>
+        </member>
+        <member name="F:Inv.Colour.LightPink">
+            <summary>
+            LightPink is FF B6 C1
+            </summary>
+        </member>
+        <member name="F:Inv.Colour.LightSalmon">
+            <summary>
+            LightSalmon is FF A0 7A
+            </summary>
+        </member>
+        <member name="F:Inv.Colour.LightSeaGreen">
+            <summary>
+            LightSeaGreen is 20 B2 AA
+            </summary>
+        </member>
+        <member name="F:Inv.Colour.LightSkyBlue">
+            <summary>
+            LightSkyBlue is 87 CE FA
+            </summary>
+        </member>
+        <member name="F:Inv.Colour.LightSlateGray">
+            <summary>
+            LightSlateGray is 77 88 99
+            </summary>
+        </member>
+        <member name="F:Inv.Colour.LightSteelBlue">
+            <summary>
+            LightSteelBlue is B0 C4 DE
+            </summary>
+        </member>
+        <member name="F:Inv.Colour.LightYellow">
+            <summary>
+            LightYellow is FF FF E0
+            </summary>
+        </member>
+        <member name="F:Inv.Colour.Lime">
+            <summary>
+            Lime is 00 FF 00
+            </summary>
+        </member>
+        <member name="F:Inv.Colour.LimeGreen">
+            <summary>
+            LimeGreen is 32 CD 32
+            </summary>
+        </member>
+        <member name="F:Inv.Colour.Linen">
+            <summary>
+            Linen is FA F0 E6
+            </summary>
+        </member>
+        <member name="F:Inv.Colour.Magenta">
+            <summary>
+            Magenta is FF 00 FF
+            </summary>
+        </member>
+        <member name="F:Inv.Colour.Maroon">
+            <summary>
+            Maroon is 80 00 00
+            </summary>
+        </member>
+        <member name="F:Inv.Colour.MediumAquamarine">
+            <summary>
+            MediumAquamarine is 66 CD AA
+            </summary>
+        </member>
+        <member name="F:Inv.Colour.MediumBlue">
+            <summary>
+            MediumBlue is 00 00 CD
+            </summary>
+        </member>
+        <member name="F:Inv.Colour.MediumOrchid">
+            <summary>
+            MediumOrchid is BA 55 D3
+            </summary>
+        </member>
+        <member name="F:Inv.Colour.MediumPurple">
+            <summary>
+            MediumPurple is 93 70 DB
+            </summary>
+        </member>
+        <member name="F:Inv.Colour.MediumSeaGreen">
+            <summary>
+            MediumSeaGreen is 3C B3 71
+            </summary>
+        </member>
+        <member name="F:Inv.Colour.MediumSlateBlue">
+            <summary>
+            MediumSlateBlue is 7B 68 EE
+            </summary>
+        </member>
+        <member name="F:Inv.Colour.MediumSpringGreen">
+            <summary>
+            MediumSpringGreen is 00 FA 9A
+            </summary>
+        </member>
+        <member name="F:Inv.Colour.MediumTurquoise">
+            <summary>
+            MediumTurquoise is 48 D1 CC
+            </summary>
+        </member>
+        <member name="F:Inv.Colour.MediumVioletRed">
+            <summary>
+            MediumVioletRed is C7 15 85
+            </summary>
+        </member>
+        <member name="F:Inv.Colour.MidnightBlue">
+            <summary>
+            MidnightBlue is 19 19 70
+            </summary>
+        </member>
+        <member name="F:Inv.Colour.MintCream">
+            <summary>
+            MintCream is F5 FF FA
+            </summary>
+        </member>
+        <member name="F:Inv.Colour.MistyRose">
+            <summary>
+            MistyRose is FF E4 E1
+            </summary>
+        </member>
+        <member name="F:Inv.Colour.Moccasin">
+            <summary>
+            Moccasin is FF E4 B5
+            </summary>
+        </member>
+        <member name="F:Inv.Colour.NavajoWhite">
+            <summary>
+            NavajoWhite is FF DE AD
+            </summary>
+        </member>
+        <member name="F:Inv.Colour.Navy">
+            <summary>
+            Navy is 00 00 80
+            </summary>
+        </member>
+        <member name="F:Inv.Colour.OldLace">
+            <summary>
+            OldLace is FD F5 E6
+            </summary>
+        </member>
+        <member name="F:Inv.Colour.Olive">
+            <summary>
+            Olive is 80 80 00
+            </summary>
+        </member>
+        <member name="F:Inv.Colour.OliveDrab">
+            <summary>
+            OliveDrab is 6B 8E 23
+            </summary>
+        </member>
+        <member name="F:Inv.Colour.Orange">
+            <summary>
+            Orange is FF A5 00
+            </summary>
+        </member>
+        <member name="F:Inv.Colour.OrangeRed">
+            <summary>
+            OrangeRed is FF 45 00
+            </summary>
+        </member>
+        <member name="F:Inv.Colour.Orchid">
+            <summary>
+            Orchid is DA 70 D6
+            </summary>
+        </member>
+        <member name="F:Inv.Colour.PaleGoldenrod">
+            <summary>
+            PaleGoldenrod is EE E8 AA
+            </summary>
+        </member>
+        <member name="F:Inv.Colour.PaleGreen">
+            <summary>
+            PaleGreen is 98 FB 98
+            </summary>
+        </member>
+        <member name="F:Inv.Colour.PaleTurquoise">
+            <summary>
+            PaleTurquoise is AF EE EE
+            </summary>
+        </member>
+        <member name="F:Inv.Colour.PaleVioletRed">
+            <summary>
+            PaleVioletRed is DB 70 93
+            </summary>
+        </member>
+        <member name="F:Inv.Colour.PapayaWhip">
+            <summary>
+            PapayaWhip is FF EF D5
+            </summary>
+        </member>
+        <member name="F:Inv.Colour.PeachPuff">
+            <summary>
+            PeachPuff is FF DA B9
+            </summary>
+        </member>
+        <member name="F:Inv.Colour.Peru">
+            <summary>
+            Peru is CD 85 3F
+            </summary>
+        </member>
+        <member name="F:Inv.Colour.Pink">
+            <summary>
+            Pink is FF C0 CB
+            </summary>
+        </member>
+        <member name="F:Inv.Colour.Plum">
+            <summary>
+            Plum is DD A0 DD
+            </summary>
+        </member>
+        <member name="F:Inv.Colour.PowderBlue">
+            <summary>
+            PowderBlue is B0 E0 E6
+            </summary>
+        </member>
+        <member name="F:Inv.Colour.Purple">
+            <summary>
+            Purple is 80 00 80
+            </summary>
+        </member>
+        <member name="F:Inv.Colour.Red">
+            <summary>
+            Red is FF 00 00
+            </summary>
+        </member>
+        <member name="F:Inv.Colour.RosyBrown">
+            <summary>
+            RosyBrown is BC 8F 8F
+            </summary>
+        </member>
+        <member name="F:Inv.Colour.RoyalBlue">
+            <summary>
+            RoyalBlue is 41 69 E1
+            </summary>
+        </member>
+        <member name="F:Inv.Colour.SaddleBrown">
+            <summary>
+            SaddleBrown is 8B 45 13
+            </summary>
+        </member>
+        <member name="F:Inv.Colour.Salmon">
+            <summary>
+            Salmon is FA 80 72
+            </summary>
+        </member>
+        <member name="F:Inv.Colour.SandyBrown">
+            <summary>
+            SandyBrown is F4 A4 60
+            </summary>
+        </member>
+        <member name="F:Inv.Colour.SeaGreen">
+            <summary>
+            SeaGreen is 2E 8B 57
+            </summary>
+        </member>
+        <member name="F:Inv.Colour.SeaShell">
+            <summary>
+            SeaShell is FF F5 EE
+            </summary>
+        </member>
+        <member name="F:Inv.Colour.Sienna">
+            <summary>
+            Sienna is A0 52 2D
+            </summary>
+        </member>
+        <member name="F:Inv.Colour.Silver">
+            <summary>
+            Silver is C0 C0 C0
+            </summary>
+        </member>
+        <member name="F:Inv.Colour.SkyBlue">
+            <summary>
+            SkyBlue is 87 CE EB
+            </summary>
+        </member>
+        <member name="F:Inv.Colour.SlateBlue">
+            <summary>
+            SlateBlue is 6A 5A CD
+            </summary>
+        </member>
+        <member name="F:Inv.Colour.SlateGray">
+            <summary>
+            SlateGray is 70 80 90
+            </summary>
+        </member>
+        <member name="F:Inv.Colour.Snow">
+            <summary>
+            Snow is FF FA FA
+            </summary>
+        </member>
+        <member name="F:Inv.Colour.SpringGreen">
+            <summary>
+            SpringGreen is 00 FF 7F
+            </summary>
+        </member>
+        <member name="F:Inv.Colour.SteelBlue">
+            <summary>
+            SteelBlue is 46 82 B4
+            </summary>
+        </member>
+        <member name="F:Inv.Colour.Tan">
+            <summary>
+            Tan is D2 B4 8C
+            </summary>
+        </member>
+        <member name="F:Inv.Colour.Teal">
+            <summary>
+            Teal is 00 80 80
+            </summary>
+        </member>
+        <member name="F:Inv.Colour.Thistle">
+            <summary>
+            Thistle is D8 BF D8
+            </summary>
+        </member>
+        <member name="F:Inv.Colour.Tomato">
+            <summary>
+            Tomato is FF 63 47
+            </summary>
+        </member>
+        <member name="F:Inv.Colour.Transparent">
+            <summary>
+            Transparent is FF FF FF
+            </summary>
+        </member>
+        <member name="F:Inv.Colour.Turquoise">
+            <summary>
+            Turquoise is 40 E0 D0
+            </summary>
+        </member>
+        <member name="F:Inv.Colour.Violet">
+            <summary>
+            Violet is EE 82 EE
+            </summary>
+        </member>
+        <member name="F:Inv.Colour.Wheat">
+            <summary>
+            Wheat is F5 DE B3
+            </summary>
+        </member>
+        <member name="F:Inv.Colour.White">
+            <summary>
+            White is FF FF FF
+            </summary>
+        </member>
+        <member name="F:Inv.Colour.WhiteSmoke">
+            <summary>
+            WhiteSmoke is F5 F5 F5
+            </summary>
+        </member>
+        <member name="F:Inv.Colour.Yellow">
+            <summary>
+            Yellow is FF FF 00
+            </summary>
+        </member>
+        <member name="F:Inv.Colour.YellowGreen">
+            <summary>
+            YellowGreen is 9A CD 32
+            </summary>
+        </member>
+        <member name="F:Inv.Colour.All">
+            <summary>
+            List of all registered colours.
+            </summary>
+        </member>
+        <member name="T:Inv.ColourHSLRecord">
+            <summary>
+            HSL representation.
+            </summary>
+        </member>
+        <member name="F:Inv.ColourHSLRecord.H">
+            <summary>
+            Hue
+            </summary>
+        </member>
+        <member name="F:Inv.ColourHSLRecord.S">
+            <summary>
+            Saturation
+            </summary>
+        </member>
+        <member name="F:Inv.ColourHSLRecord.L">
+            <summary>
+            Lightness
+            </summary>
+        </member>
+        <member name="T:Inv.ColourARGBRecord">
+            <summary>
+            ARGBA representation.
+            </summary>
+        </member>
+        <member name="F:Inv.ColourARGBRecord.Argb">
+            <summary>
+            Raw value.
+            </summary>
+        </member>
+        <member name="F:Inv.ColourARGBRecord.A">
+            <summary>
+            Alpha
+            </summary>
+        </member>
+        <member name="F:Inv.ColourARGBRecord.R">
+            <summary>
+            Red
+            </summary>
+        </member>
+        <member name="F:Inv.ColourARGBRecord.G">
+            <summary>
+            Green
+            </summary>
+        </member>
+        <member name="F:Inv.ColourARGBRecord.B">
+            <summary>
+            Blue
+            </summary>
+        </member>
+        <member name="T:Inv.Date">
+            <summary>
+            Represents a calendar date.
+            </summary>
+        </member>
+        <member name="T:Inv.DateTimeRange">
+            <summary>
+            Represents a range of date/times (System.DateTime).
+            </summary>
+        </member>
+        <member name="T:Inv.TimestampRange">
+            <summary>
+            Represents a range of timestamps (System.DateTimeOffset).
+            </summary>
+        </member>
+        <member name="T:Inv.Time">
+            <summary>
+            Represents a clock time.
+            </summary>
+        </member>
+        <member name="T:Inv.TimePeriod">
+            <summary>
+            Represents a time interval using calendar and clock concepts.
+            </summary>
+        </member>
+        <member name="T:Inv.TimePeriodUnit">
+            <summary>
+            Logical unit of time periods.
+            </summary>
+        </member>
+        <member name="T:Inv.TimeSpanRange">
+            <summary>
+            Represents a range of time spans.
+            </summary>
+        </member>
+        <member name="T:Inv.Pixels">
+            <summary>
+            Grid of ARGB pixels that make up an image.
+            </summary>
+        </member>
+        <member name="P:Inv.Pixels.Width">
+            <summary>
+            The width of the grid.
+            </summary>
+        </member>
+        <member name="P:Inv.Pixels.Height">
+            <summary>
+            The height of the grid.
+            </summary>
+        </member>
+        <member name="P:Inv.Pixels.Item(System.Int32,System.Int32)">
+            <summary>
+            Gets or sets the pixel at the specified zero-based index coordinates.
+            </summary>
+            <param name="X">The zero-based index of the X coordinate.</param>
+            <param name="Y">The zero-based index of the Y coordinate.</param>
+            <returns>The pixel at the specified coordinates.</returns>
+        </member>
+        <member name="M:Inv.Pixels.Fill(Inv.Colour)">
+            <summary>
+            Populate the grid with a default colour.
+            </summary>
+        </member>
+        <member name="M:Inv.Pixels.Fill(System.Func{System.Int32,System.Int32,Inv.Colour})">
+            <summary>
+            Populate the grid using a colour function.
+            </summary>
+        </member>
+        <member name="M:Inv.Pixels.Rotate90Degrees">
+            <summary>
+            Rotate the grid 90 degrees. Width becomes Height and vice versa.
+            </summary>
+        </member>
+        <member name="M:Inv.Pixels.Copy">
+            <summary>
+            Make a shallow copy of the pixels.
+            </summary>
+            <returns></returns>    
+        </member>
+        <member name="T:Inv.LogFolder">
+             <summary>
+             Represents a folder containing multiple log file series.
+             </summary>
+             <remarks>
+             <para>After creating a <see cref="T:Inv.LogFolder"/> object, create one or more <see cref="T:Inv.LogSeries"/> objects using <see cref="M:Inv.LogFolder.AddSeries(System.String,System.String,System.String)"/> and then call <see cref="M:Inv.LogSeries.Acquire"/>
+             on the <see cref="T:Inv.LogSeries"/> object(s) to receive <see cref="T:Inv.LogHandle"/> objects which can be used to write to disk.</para>
+             <para>Unlike Inv.LogFile, actual writes to the log file are unmanaged; <see cref="T:Inv.LogHandle"/> directly exposes a <see cref="T:System.IO.Stream"/>, so for logs that comprise mostly
+             string records, Inv.LogFile will probably be more useful.</para>
+             </remarks>
+             <example>
+             <para>This example will write a single log entry to the 'series1' log series in C:\Temp. Each time the code is run, a new log file will be generated with 
+             an incrementing filename; files older than 30 days (by default) will be automatically deleted.</para>
+             <code>
+             LogFolder folder = new LogFolder("C:\\Temp");
+             LogSeries series = folder.AddSeries("series1");
+            
+             folder.Open();
+            
+             using (LogContext ctx = series.AcquireContext())
+             {
+               StreamWriter writer = new StreamWriter(ctx.FileStream);
+            
+               writer.WriteLine("Log entry");
+            
+               writer.Close();
+             }
+             </code>
+             </example>
+        </member>
+        <member name="M:Inv.LogFolder.#ctor(Inv.ILogDirectory)">
+            <summary>
+            Initializes a new <see cref="T:Inv.LogFolder"/> with the specified path.
+            </summary>
+            <param name="Directory">The interface to an implementation of the log directory.</param>
+        </member>
+        <member name="M:Inv.LogFolder.AddSeries(System.String,System.String,System.String)">
+            <summary>
+            Add a new series of log files with the specified extension and name to the <see cref="T:Inv.LogFolder"/>.
+            </summary>
+            <param name="Name">The name to give the new <see cref="T:Inv.LogSeries"/>.</param>
+            <param name="Title">The title to give the new <see cref="T:Inv.LogSeries"/>.</param>
+            <param name="Extension">The extension of the log files in the new <see cref="T:Inv.LogSeries"/>.</param>
+            <returns>The new <see cref="T:Inv.LogSeries"/> object.</returns>
+        </member>
+        <member name="M:Inv.LogFolder.Open">
+            <summary>
+            Open the log folder, creating it if necessary.
+            </summary>
+        </member>
+        <member name="M:Inv.LogFolder.Close">
+            <summary>
+            Close all the <see cref="T:Inv.LogSeries"/> associated with this <see cref="T:Inv.LogFolder"/>.
+            </summary>
+        </member>
+        <member name="M:Inv.LogFolder.Rollover">
+            <summary>
+            Request to break the log file to the new day, instead of waiting for the first log line of the new day to be written.
+            </summary>
+        </member>
+        <member name="T:Inv.LogSeries">
+            <summary>
+            Represents a series of log files.
+            </summary>
+            <remarks>
+            <para><see cref="T:Inv.LogSeries"/> objects are not directly instantiated. Instead, use <see cref="M:Inv.LogFolder.AddSeries(System.String,System.String,System.String)">LogFolder.AddSeries(String)</see> to obtain a new <see cref="T:Inv.LogSeries"/> object.</para>
+            <para><see cref="T:Inv.LogSeries"/> manages creating and deleting individual log files automatically; actual log output is done via a <see cref="T:Inv.LogHandle"/> obtained by
+            calling <see cref="M:Inv.LogSeries.Acquire"/>.</para>
+            <para>By default, log files managed by a <see cref="T:Inv.LogSeries"/> are deleted after 30 days. To modify this, set an appropriate value for <see cref="P:Inv.LogSeries.RelevantTimeSpan"/>.</para>
+            </remarks>
+            <example>See <see cref="T:Inv.LogFolder"/> for a code example.</example>
+        </member>
+        <member name="P:Inv.LogSeries.Folder">
+            <summary>
+            The <see cref="T:Inv.LogFolder"/> this <see cref="T:Inv.LogSeries"/> writes log files into.
+            </summary>
+        </member>
+        <member name="P:Inv.LogSeries.Name">
+            <summary>
+            The display name for log files managed by this <see cref="T:Inv.LogSeries"/>.
+            </summary>
+        </member>
+        <member name="P:Inv.LogSeries.Title">
+            <summary>
+            The file name prefix for log files managed by this <see cref="T:Inv.LogSeries"/>.
+            </summary>
+        </member>
+        <member name="P:Inv.LogSeries.Extension">
+            <summary>
+            The file extension for log files managed by this <see cref="T:Inv.LogSeries"/>.
+            </summary>
+        </member>
+        <member name="P:Inv.LogSeries.RelevantTimeSpan">
+            <summary>
+            The timespan for which log files managed by this <see cref="T:Inv.LogSeries"/> stay relevant.
+            </summary>
+        </member>
+        <member name="M:Inv.LogSeries.Acquire">
+            <summary>
+            Acquire a <see cref="T:Inv.LogHandle"/> representing the active log file managed by this <see cref="T:Inv.LogSeries"/>.
+            </summary>
+            <remarks>
+            <see cref="M:Inv.LogSeries.Acquire"/> will not create the initial log context, and will throw an exception if you do not first call <see cref="M:Inv.LogFolder.Open"/> 
+            on the <see cref="T:Inv.LogFolder"/> containing this <see cref="T:Inv.LogSeries"/>.
+            </remarks>
+            <returns>A <see cref="T:Inv.LogHandle"/> that can be used to log to disk.</returns>
+        </member>
+        <member name="T:Inv.LogHandle">
+            <summary>
+            Represents a logging context to which log entries can be written.
+            </summary>
+            <remarks>
+            <para><see cref="T:Inv.LogHandle"/> provides an abstracted interface to a <see cref="P:Inv.LogHandle.Stream"/> representing a log file on disk. The actual log file name is
+            determined by the parent <see cref="T:Inv.LogSeries"/> which created the <see cref="T:Inv.LogHandle"/>.</para>
+            <para>To obtain a <see cref="T:Inv.LogHandle"/>, call <see cref="M:Inv.LogSeries.Acquire"/>.</para>
+            </remarks>
+            <example>See <see cref="T:Inv.LogFolder"/> for a code example.</example>
+        </member>
+        <member name="P:Inv.LogHandle.Stream">
+            <summary>
+            Gets a <see cref="P:Inv.LogHandle.Stream"/> object representing the on-disk log file managed by this <see cref="T:Inv.LogHandle"/>.
+            </summary>
+        </member>
+        <member name="P:Inv.LogHandle.Series">
+            <summary>
+            Releases all resources used by the <see cref="T:Inv.LogHandle"/>.
+            </summary>
+        </member>
+        <member name="M:Inv.Rect.Expand(System.Int32)">
+            <summary>
+            Return a new rect expanded around the center of this rect.
+            This means the rect shifts up and to the left by the <paramref name="Size"/> and width and height increase by 2 x <paramref name="Size"/>.
+            For example:
+            <code>Rect(10, 10, 5, 5).Expand(5) -> Rect(5, 5, 15, 15)</code>
+            </summary>
+            <param name="Size"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Inv.Coordinate.ToPosition">
+            <summary>
+            Returns the latitude and longitude as a human readable string. eg. 37.3861° N, 122.0839° W
+            </summary>
+        </member>
+        <member name="T:Inv.Money">
+            <summary>
+            A serializable class representing a monetary amount.
+            </summary>
+        </member>
+        <member name="M:Inv.Money.#ctor(System.Decimal)">
+            <summary>
+            Initializes a new <see cref="T:Inv.Money"/> object with the specified decimal amount.
+            </summary>
+            <param name="Amount">The decimal value representing the money amount.</param>
+        </member>
+        <member name="M:Inv.Money.GetAmount">
+            <summary>
+            Get the decimal value for the amount represented by this <see cref="T:Inv.Money"/> object.
+            </summary>
+            <returns>The decimal value for the amount represented by this <see cref="T:Inv.Money"/> object.</returns>
+        </member>
+        <member name="M:Inv.Money.Clone">
+            <summary>
+            Create a clone of this <see cref="T:Inv.Money"/> object.
+            </summary>
+            <returns>A new <see cref="T:Inv.Money"/> object which represents the same amount as this <see cref="T:Inv.Money"/> object.</returns>
+        </member>
+        <member name="M:Inv.Money.CompareTo(Inv.Money)">
+            <summary>
+            Compare this <see cref="T:Inv.Money"/> object to another <see cref="T:Inv.Money"/> object.
+            </summary>
+            <param name="Money">The <see cref="T:Inv.Money"/> object to compare to this <see cref="T:Inv.Money"/> object.</param>
+            <returns>
+            <para>A signed number indicating the relative values of this <see cref="T:Inv.Money"/> object and <paramref name="Money"/></para>
+            <para>
+            <list type="table">
+            <listheader>
+            <term>Return Value</term>
+            <term>Description</term>
+            </listheader>
+            <item>
+            <description>Less than zero</description>
+            <description>This <see cref="T:Inv.Money"/> is less than <paramref name="Money"/>.</description>
+            </item>
+            <item>
+            <description>Zero</description>
+            <description>This <see cref="T:Inv.Money"/> is equivalent to <paramref name="Money"/>.</description>
+            </item>
+            <item>
+            <description>Greater than zero</description>
+            <description>This <see cref="T:Inv.Money"/> is greater to <paramref name="Money"/>.</description>
+            </item>
+            </list>
+            </para>
+            </returns>
+        </member>
+        <member name="M:Inv.Money.ToString">
+            <summary>
+            Get a string representation of this <see cref="T:Inv.Money"/> object.
+            </summary>
+            <returns>A string in the current money format.</returns>
+        </member>
+        <member name="M:Inv.Money.Equals(System.Object)">
+            <summary>
+            Compare this <see cref="T:Inv.Money"/> object to another <see cref="T:Inv.Money"/> object.
+            </summary>
+            <param name="obj">The <see cref="T:Inv.Money"/> object to compare to this <see cref="T:Inv.Money"/> object.</param>
+            <returns>True if the two <see cref="T:Inv.Money"/> objects represent the same amount.</returns>
+        </member>
+        <member name="M:Inv.Money.GetHashCode">
+            <summary>
+            Returns the hash code for this <see cref="T:Inv.Money"/>.
+            </summary>
+            <returns>The hash code for this <see cref="T:Inv.Money"/>.</returns>
+        </member>
+        <member name="T:Inv.Persist.Governor">
+            <summary>
+            The governor is a registration of classes for object persistence (aka serialization).
+            All classes involved must be registered with the governor.
+            There is shorthand for registration of polymorphic classes and custom serialization.
+            </summary>
+        </member>
+        <member name="M:Inv.Persist.Governor.#ctor">
+            <summary>
+            Create a new persistence governor.
+            </summary>
+        </member>
+        <member name="M:Inv.Persist.Governor.Register``1">
+            <summary>
+            Register a class for persistence.
+            </summary>
+            <typeparam name="TRegister"></typeparam>
+            <returns></returns>
+        </member>
+        <member name="M:Inv.Persist.Governor.Validate``1">
+            <summary>
+            Validate this class and dependencies are all registered with the governor.
+            </summary>
+            <typeparam name="TRoot"></typeparam>
+        </member>
+        <member name="M:Inv.Persist.Governor.Save``1(``0,System.IO.Stream)">
+            <summary>
+            Save a record to the stream.
+            </summary>
+            <typeparam name="TRegister"></typeparam>
+            <param name="Record"></param>
+            <param name="Stream"></param>
+        </member>
+        <member name="M:Inv.Persist.Governor.Load``1(``0,System.IO.Stream)">
+            <summary>
+            Load a record from the stream.
+            </summary>
+            <typeparam name="TRegister"></typeparam>
+            <param name="Record"></param>
+            <param name="Stream"></param>
+        </member>
+        <member name="T:Inv.Persist.Register`1">
+            <summary>
+            Represents a single class that is registered for persistence.
+            By default, the fields are persisted using reflection.
+            </summary>
+            <typeparam name="TRegister"></typeparam>
+        </member>
+        <member name="M:Inv.Persist.Register`1.AsCustom(System.Action{Inv.CompactWriter,`0},System.Func{Inv.CompactReader,`0})">
+            <summary>
+            Custom serialization for this class.
+            </summary>
+            <param name="SaveAction"></param>
+            <param name="LoadFunction"></param>
+        </member>
+        <member name="M:Inv.Persist.Register`1.AsLookup(System.Collections.Generic.IEnumerable{`0},System.Func{`0,System.String})">
+            <summary>
+            The class is serialized using a lookup dictionary.
+            That is, only the identifying string is written to the stream.
+            </summary>
+            <param name="Registers"></param>
+            <param name="HandleFunction"></param>
+        </member>
+        <member name="M:Inv.Persist.Register`1.AsPolymorph">
+            <summary>
+            Register this class and all immediate subclasses.
+            </summary>
+        </member>
+        <member name="M:Inv.Persist.Register`1.AsSingleton(`0)">
+            <summary>
+            Register this class as having only one instance referenced in the object graph.
+            </summary>
+            <param name="Singleton"></param>
+        </member>
+        <member name="M:Inv.Persist.Register`1.Ignore(System.String)">
+            <summary>
+            Exclude a field on the registered class from the serialization.
+            </summary>
+            <param name="Name"></param>
+        </member>
+        <member name="M:Inv.Persist.Register`1.Ignore(System.String[])">
+            <summary>
+            Exclude a set of fields on the registered class from the serialization.
+            </summary>
+            <param name="NameArray"></param>
+        </member>
+        <member name="T:Inv.PipeStream">
+            <summary>
+            Represents a Unix-style pipe of data between a reader and a writer thread.
+            </summary>
+            <remarks>
+            <para><see cref="T:Inv.PipeStream"/> can be used to pipe data between threads. After creating the <see cref="T:Inv.PipeStream"/> with the desired maximum buffer size, the
+            reader thread should attempt to <see cref="M:Inv.PipeStream.Read(System.Byte[],System.Int32,System.Int32)"/> data from the <see cref="T:Inv.PipeStream"/>; this call will block until data is available.</para>
+            <para>The writer thread can <see cref="M:Inv.PipeStream.Write(System.Byte[],System.Int32,System.Int32)"/> data into the <see cref="T:Inv.PipeStream"/> at any point; as enough data becomes available for the reader
+            thread to read, <see cref="M:Inv.PipeStream.Read(System.Byte[],System.Int32,System.Int32)"/> will return.</para>
+            </remarks>
+        </member>
+        <member name="M:Inv.PipeStream.#ctor(System.Int32)">
+            <summary>
+            Initializes a new <see cref="T:Inv.PipeStream"/> with the specified buffer size.
+            </summary>
+            <param name="BufferSize">The maximum size of the buffer to use for this <see cref="T:Inv.PipeStream"/>.</param>
+        </member>
+        <member name="P:Inv.PipeStream.WriteSize">
+            <summary>
+            The total number of bytes written to this <see cref="T:Inv.PipeStream"/>.
+            </summary>
+        </member>
+        <member name="P:Inv.PipeStream.CanRead">
+            <summary>
+            True; <see cref="T:Inv.PipeStream"/> supports reading.
+            </summary>
+        </member>
+        <member name="P:Inv.PipeStream.CanSeek">
+            <summary>
+            False; <see cref="T:Inv.PipeStream"/> does not support seeking.
+            </summary>
+        </member>
+        <member name="P:Inv.PipeStream.CanWrite">
+            <summary>
+            True; <see cref="T:Inv.PipeStream"/> supports writing.
+            </summary>
+        </member>
+        <member name="P:Inv.PipeStream.Length">
+            <summary>
+            Get the length in bytes of the stream.
+            </summary>
+        </member>
+        <member name="P:Inv.PipeStream.Position">
+            <summary>
+            Gets or sets the position within the current stream. Always 0 for <see cref="T:Inv.PipeStream"/>, cannot be set.
+            </summary>
+        </member>
+        <member name="M:Inv.PipeStream.Flush">
+            <summary>
+            Flush the <see cref="T:Inv.PipeStream"/>, signaling any blocked readers that there is available data.
+            </summary>
+        </member>
+        <member name="M:Inv.PipeStream.Write(System.Byte[],System.Int32,System.Int32)">
+            <summary>
+            Write data to the <see cref="T:Inv.PipeStream"/>.
+            </summary>
+            <remarks>
+            <see cref="M:Inv.PipeStream.Write(System.Byte[],System.Int32,System.Int32)"/> will block if the <see cref="T:Inv.PipeStream"/> buffer fills up until a reader successfully reads some bytes from the <see cref="T:Inv.PipeStream"/>.
+            </remarks>
+            <param name="buffer">The buffer containing the data to write.</param>
+            <param name="offset">The first byte within the buffer to write.</param>
+            <param name="count">The number of bytes to write to the <see cref="T:Inv.PipeStream"/>.</param>
+        </member>
+        <member name="M:Inv.PipeStream.Read(System.Byte[],System.Int32,System.Int32)">
+            <summary>
+            Attempt to read data from the <see cref="T:Inv.PipeStream"/>.
+            </summary>
+            <remarks>
+            <see cref="M:Inv.PipeStream.Read(System.Byte[],System.Int32,System.Int32)"/> will block until the buffer has been flushed, and until either the buffer is full or there are at least <paramref name="count"/> bytes available to read.
+            </remarks>
+            <param name="buffer">The buffer to store read data into.</param>
+            <param name="offset">The offset into the buffer to start storing read data to.</param>
+            <param name="count">The number of bytes to read.</param>
+            <returns>The number of bytes successfully read.</returns>
+        </member>
+        <member name="M:Inv.PipeStream.Seek(System.Int64,System.IO.SeekOrigin)">
+            <summary>
+            Set the position within the current stream. Not implemented by <see cref="T:Inv.PipeStream"/>.
+            </summary>
+            <exception cref="T:System.NotImplementedException">Always thrown; <see cref="T:Inv.PipeStream"/> does not support seeking.</exception>
+            <param name="offset">A byte offset relative to the <paramref name="origin"/> parameter.</param>
+            <param name="origin">A value of type <see cref="T:System.IO.SeekOrigin"/> indicating the reference point used to obtain the new position.</param>
+            <returns>The new position within the current stream.</returns>
+        </member>
+        <member name="M:Inv.PipeStream.SetLength(System.Int64)">
+            <summary>
+            Set the length of the current stream. Not implemented by <see cref="T:Inv.PipeStream"/>.
+            </summary>
+            <exception cref="T:System.NotImplementedException">Always thrown.</exception>
+            <param name="value">The desired length of the current stream in bytes.</param>
+        </member>
+        <member name="T:Inv.Support.ColourHelper">
+            <summary>
+            <see cref="T:Inv.Colour"/> extension methods.
+            </summary>
+        </member>
+        <member name="M:Inv.Support.ColourHelper.Opacity(Inv.Colour,System.Single)">
+            <summary>
+            Return a new colour with the applied opacity percentage.
+            </summary>
+            <param name="Colour"></param>
+            <param name="Percent"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Inv.Support.ColourHelper.Lighten(Inv.Colour,System.Single)">
+            <summary>
+            Return a new colour lightened by the applied percentage using the HSL colour space.
+            </summary>
+            <param name="Colour"></param>
+            <param name="Percent"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Inv.Support.ColourHelper.Darken(Inv.Colour,System.Single)">
+            <summary>
+            Return a new colour darkened by the applied percentage using the HSL colour space.
+            </summary>
+            <param name="Colour"></param>
+            <param name="Percent"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Inv.Support.ColourHelper.AdjustAlpha(Inv.Colour,System.Byte)">
+            <summary>
+            Return a new colour with the Alpha value overridden by the provided value.
+            </summary>
+            <param name="Colour"></param>
+            <param name="AlphaValue"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Inv.Support.ColourHelper.BackgroundToForeground(Inv.Colour)">
+            <summary>
+            Return a new colour by inverting the lightness in the HSL colour space.
+            This can be used to determine the foreground text colour given an arbitrary background colour.
+            </summary>
+            <param name="Colour"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Inv.Support.ColourHelper.BackgroundToBlackWhiteForeground(Inv.Colour)">
+            <summary>
+            Return appropriate black or white foreground colour by analysing brightness of input background colour.
+            </summary>
+            <param name="Colour"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Inv.Support.ColourHelper.ToBlackWhite(Inv.Colour)">
+            <summary>
+            Return black or white where return is closest approximation of input colour.
+            </summary>
+            <param name="Colour"></param>
+            <returns></returns>
+        </member>
+        <member name="T:Inv.Support.DecimalHelper">
+            <summary>
+            System.Decimal extension methods.
+            </summary>
+        </member>
+        <member name="M:Inv.Support.DecimalHelper.Normalise(System.Decimal)">
+            <summary>
+            Remove trailing zeros.
+            </summary>
+            <param name="Source"></param>
+            <returns></returns>
+        </member>
+        <member name="T:Inv.Support.AssemblyHelper">
+            <summary>
+            <see cref="T:System.Reflection.Assembly"/> extension methods.
+            </summary>
+        </member>
+        <member name="M:Inv.Support.AssemblyHelper.GetRelease(System.Reflection.Assembly)">
+            <summary>
+            Render the assembly version excluding the revision number.
+            This means the version is just three numbers Major.Minor.Build.
+            </summary>
+            <param name="Assembly"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Inv.Support.AssemblyHelper.GetBuild(System.Reflection.Assembly)">
+            <summary>
+            Render the revision number from the assembly version.
+            </summary>
+            <param name="Assembly"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Inv.Support.AssemblyHelper.GetVersion(System.Reflection.Assembly)">
+            <summary>
+            Render the full assembly version.
+            This is four numbers Major.Minor.Build.Revision.
+            </summary>
+            <param name="Assembly"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Inv.Support.AssemblyHelper.ExtractResourceBuffer(System.Reflection.Assembly,System.String,System.String)">
+            <summary>
+            Extract a given named resource from this <see cref="T:System.Reflection.Assembly"/> as a byte array.
+            </summary>
+            <param name="Assembly">This <see cref="T:System.Reflection.Assembly"/>.</param>
+            <param name="ResourceName">The name of the resource to extract.</param>
+            <param name="DefaultNamespace">The default namespace used to find the resource.</param>
+            <returns>The contents of the named resource as a byte array.</returns>
+        </member>
+        <member name="M:Inv.Support.AssemblyHelper.ExtractResourceString(System.Reflection.Assembly,System.String,System.String)">
+            <summary>
+            Extract a given named resource from this <see cref="T:System.Reflection.Assembly"/> as a <see cref="T:System.String"/>.
+            </summary>
+            <param name="Assembly">This <see cref="T:System.Reflection.Assembly"/>.</param>
+            <param name="ResourceName">The name of the resource to extract.</param>
+            <param name="DefaultNamespace">The default namespace used to find the resource.</param>
+            <returns>The contents of the named resource as a <see cref="T:System.String"/>.</returns>
+        </member>
+        <member name="M:Inv.Support.AssemblyHelper.ExtractResourceStream(System.Reflection.Assembly,System.String,System.String)">
+            <summary>
+            Extract a given named resource from this <see cref="T:System.Reflection.Assembly"/> as a <see cref="T:System.String"/>.
+            </summary>
+            <param name="Assembly">This <see cref="T:System.Reflection.Assembly"/>.</param>
+            <param name="ResourceName">The name of the resource to extract.</param>
+            <param name="DefaultNamespace">The default namespace used to find the resource.</param>
+            <returns>The contents of the named resource as a <see cref="T:System.IO.Stream"/> that must be Disposed when you are finished.</returns>
+        </member>
+        <member name="M:Inv.Support.AssemblyHelper.CanonicaliseResourceName(System.Reflection.Assembly,System.String,System.String)">
+            <summary>
+            Given a resource name, assembly, and optionally default namespace to look in, attempt to find the fully-qualified name of a matching resource in the assembly.
+            </summary>
+            <param name="Assembly"></param>
+            <param name="ResourceName"></param>
+            <param name="DefaultNamespace"></param>
+            <returns></returns>
+        </member>
+        <member name="T:Inv.Support.ICollectionHelper">
+            <summary>
+            <see cref="T:System.Collections.Generic.ICollection`1"/> extension methods.
+            </summary>
+        </member>
+        <member name="M:Inv.Support.ICollectionHelper.AddRange``1(System.Collections.Generic.ICollection{``0},System.Collections.Generic.IEnumerable{``0})">
+            <summary>
+            Add a range of elements to this <see cref="T:System.Collections.Generic.ICollection`1"/>.
+            </summary>
+            <typeparam name="T">The type of elements in this <see cref="T:System.Collections.Generic.ICollection`1"/>.</typeparam>
+            <param name="Source">This <see cref="T:System.Collections.Generic.ICollection`1"/>.</param>
+            <param name="Array">An <see cref="T:System.Collections.Generic.IEnumerable`1"/> containing the elements to add to this <see cref="T:System.Collections.Generic.ICollection`1"/>.</param>
+        </member>
+        <member name="M:Inv.Support.ICollectionHelper.RemoveRange``1(System.Collections.Generic.ICollection{``0},System.Collections.Generic.IEnumerable{``0})">
+            <summary>
+            Remove a range of elements from this <see cref="T:System.Collections.Generic.ICollection`1"/>.
+            </summary>
+            <typeparam name="T">The type of elements in this <see cref="T:System.Collections.Generic.ICollection`1"/>.</typeparam>
+            <param name="Source">This <see cref="T:System.Collections.Generic.ICollection`1"/>.</param>
+            <param name="Array">An <see cref="T:System.Collections.Generic.IEnumerable`1"/> containing the elements to remove from this <see cref="T:System.Collections.Generic.ICollection`1"/>.</param>
+        </member>
+        <member name="M:Inv.Support.ICollectionHelper.RemoveExcept``1(System.Collections.Generic.ICollection{``0},System.Collections.Generic.IEnumerable{``0})">
+            <summary>
+            Remove all items from a collection except the input enumerable.
+            </summary>
+            <typeparam name="T"></typeparam>
+            <param name="Source"></param>
+            <param name="Array"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Inv.Support.ICollectionHelper.ExistsAt``1(System.Collections.Generic.ICollection{``0},System.Int32)">
+            <summary>
+            Determine whether or not this <see cref="T:System.Collections.Generic.ICollection`1"/> has an element numbered <paramref name="Index"/>.
+            </summary>
+            <typeparam name="T">The type of elements in this <see cref="T:System.Collections.Generic.ICollection`1"/>.</typeparam>
+            <param name="Source">This <see cref="T:System.Collections.Generic.ICollection`1"/>.</param>
+            <param name="Index">The index value to check.</param>
+            <returns>True if <paramref name="Index"/> is within the bounds of this <see cref="T:System.Collections.Generic.ICollection`1"/>; false otherwise.</returns>
+        </member>
+        <member name="M:Inv.Support.ICollectionHelper.Exists``1(System.Collections.ICollection,System.Predicate{``0})">
+            <summary>
+            Determine whether or not there exists an element in this <see cref="T:System.Collections.Generic.ICollection`1"/> that satisfies the given predicate.
+            </summary>
+            <typeparam name="T">The type of elements in this <see cref="T:System.Collections.Generic.ICollection`1"/>.</typeparam>
+            <param name="Source">This <see cref="T:System.Collections.Generic.ICollection`1"/>.</param>
+            <param name="Predicate">The predicate to check.</param>
+            <returns>True if any element of this <see cref="T:System.Collections.Generic.ICollection`1"/> satisfies <paramref name="Predicate"/>; false otherwise.</returns>
+        </member>
+        <member name="M:Inv.Support.ICollectionHelper.ExceptAt``1(System.Collections.Generic.ICollection{``0},System.Int32)">
+            <summary>
+            Return the items in the collection except the item at the provided index.
+            </summary>
+            <typeparam name="T"></typeparam>
+            <param name="Source"></param>
+            <param name="Index"></param>
+            <returns></returns>
+        </member>
+        <member name="T:Inv.Support.DateHelper">
+            <summary>
+            <see cref="T:Inv.Date"/> extension methods.
+            </summary>
+        </member>
+        <member name="M:Inv.Support.DateHelper.IsAnniversaryOf(System.Nullable{Inv.Date},Inv.Date,Inv.TimePeriod)">
+            <summary>
+            Is this date the anniversary of the original date.
+            </summary>
+            <param name="Source">The date to check as the anniversary of the original date</param>
+            <param name="AnniversaryDate">The original date</param>
+            <param name="TimePeriod">Can be set to year anniversary, month anniversary, four week anniversary, etc.</param>
+            <returns></returns>
+        </member>
+        <member name="M:Inv.Support.DateHelper.IsEndOfMonth(Inv.Date)">
+            <summary>
+            Is this date the last day of the month.
+            </summary>
+            <param name="Source"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Inv.Support.DateHelper.IsEndOfYear(Inv.Date)">
+            <summary>
+            Is this date the last day of the year.
+            </summary>
+            <param name="Source"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Inv.Support.DateHelper.StartOfDay(System.Nullable{Inv.Date})">
+            <summary>
+            Return the source date as a DateTime representing the start of the day.
+            </summary>
+            <param name="Source"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Inv.Support.DateHelper.EndOfDay(System.Nullable{Inv.Date})">
+            <summary>
+            Return the source date as a DateTime representing the end of the day.
+            </summary>
+            <param name="Source"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Inv.Support.DateHelper.EasterFriday(System.Int32)">
+            <summary>
+            Good Friday is the Friday before Easter.
+            </summary>
+            <param name="Year"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Inv.Support.DateHelper.EasterSunday(System.Int32)">
+            <summary>
+            Easter falls on the first Sunday following the Paschal Full Moon, the full moon on or after 21 March, taken to be the date of the vernal equinox.
+            </summary>
+            <param name="Year"></param>
+            <returns></returns>
+        </member>
+        <member name="T:Inv.Support.DateTimeHelper">
+            <summary>
+            <see cref="T:System.DateTime"/> extension methods.
+            </summary>
+        </member>
+        <member name="M:Inv.Support.DateTimeHelper.AddWeeks(System.DateTime,System.Int32)">
+            <summary>
+            Add a number of weeks to the date time.
+            </summary>
+            <param name="Source"></param>
+            <param name="Weeks"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Inv.Support.DateTimeHelper.StartOfYear(System.DateTime)">
+            <summary>
+            Get a <see cref="T:System.DateTime"/> object representing the start of the year of this <see cref="T:System.DateTime"/>.
+            </summary>
+            <param name="Source">This <see cref="T:System.DateTime"/>.</param>
+            <returns>The start of the year of this <see cref="T:System.DateTime"/>.</returns>
+        </member>
+        <member name="M:Inv.Support.DateTimeHelper.EndOfYear(System.DateTime)">
+            <summary>
+            Get a <see cref="T:System.DateTime"/> object representing the end of the year of this <see cref="T:System.DateTime"/>.
+            </summary>
+            <param name="Source">This <see cref="T:System.DateTime"/>.</param>
+            <returns>The end of the year of this <see cref="T:System.DateTime"/>.</returns>
+        </member>
+        <member name="M:Inv.Support.DateTimeHelper.StartOfQuarter(System.DateTime)">
+            <summary>
+            Get a <see cref="T:System.DateTime"/> object representing the start of the quarter of this <see cref="T:System.DateTime"/>.
+            </summary>
+            <param name="Source">This <see cref="T:System.DateTime"/>.</param>
+            <returns>The start of the quarter of this <see cref="T:System.DateTime"/>.</returns>
+        </member>
+        <member name="M:Inv.Support.DateTimeHelper.EndOfQuarter(System.DateTime)">
+            <summary>
+            Get a <see cref="T:System.DateTime"/> object representing the end of the quarter of this <see cref="T:System.DateTime"/>.
+            </summary>
+            <param name="Source">This <see cref="T:System.DateTime"/>.</param>
+            <returns>The end of the quarter of this <see cref="T:System.DateTime"/>.</returns>
+        </member>
+        <member name="M:Inv.Support.DateTimeHelper.StartOfMonth(System.DateTime)">
+            <summary>
+            Get a <see cref="T:System.DateTime"/> object representing the start of the month of this <see cref="T:System.DateTime"/>.
+            </summary>
+            <param name="Source">This <see cref="T:System.DateTime"/>.</param>
+            <returns>The start of the Month of this <see cref="T:System.DateTime"/>.</returns>
+        </member>
+        <member name="M:Inv.Support.DateTimeHelper.EndOfMonth(System.DateTime)">
+            <summary>
+            Get a <see cref="T:System.DateTime"/> object representing the end of the month of this <see cref="T:System.DateTime"/>.
+            </summary>
+            <param name="Source">This <see cref="T:System.DateTime"/>.</param>
+            <returns>The end of the month of this <see cref="T:System.DateTime"/>.</returns>
+        </member>
+        <member name="M:Inv.Support.DateTimeHelper.StartOfFinancialYear(System.DateTime)">
+            <summary>
+            Get a <see cref="T:System.DateTime"/> object representing the start of the financial year of this <see cref="T:System.DateTime"/>.
+            </summary>
+            <param name="Source">This <see cref="T:System.DateTime"/>.</param>
+            <returns>The start of the financial year of this <see cref="T:System.DateTime"/>.</returns>
+        </member>
+        <member name="M:Inv.Support.DateTimeHelper.EndOfFinancialYear(System.DateTime)">
+            <summary>
+            Get a <see cref="T:System.DateTime"/> object representing the end of the financial year of this <see cref="T:System.DateTime"/>.
+            </summary>
+            <param name="Source">This <see cref="T:System.DateTime"/>.</param>
+            <returns>The end of the financial year of this <see cref="T:System.DateTime"/>.</returns>
+        </member>
+        <member name="M:Inv.Support.DateTimeHelper.StartOfWeek(System.DateTime,System.DayOfWeek)">
+            <summary>
+            Get a <see cref="T:System.DateTime"/> object representing the start of the week of this <see cref="T:System.DateTime"/>.
+            </summary>
+            <param name="Source">This <see cref="T:System.DateTime"/>.</param>
+            <param name="StartOfWeek">The day considered to be the start of the week.</param>
+            <returns>A <see cref="T:System.DateTime"/> representing the start of the week of this <see cref="T:System.DateTime"/>.</returns>
+        </member>
+        <member name="M:Inv.Support.DateTimeHelper.EndOfWeek(System.DateTime,System.DayOfWeek)">
+            <summary>
+            Get a <see cref="T:System.DateTime"/> object representing the end of the week of this <see cref="T:System.DateTime"/>.
+            </summary>
+            <param name="Source">This <see cref="T:System.DateTime"/>.</param>
+            <param name="EndOfWeek">The day considered to be the end of the week.</param>
+            <returns>A <see cref="T:System.DateTime"/> representing the end of the week of this <see cref="T:System.DateTime"/>.</returns>
+        </member>
+        <member name="M:Inv.Support.DateTimeHelper.StartOfDay(System.DateTime)">
+            <summary>
+            Get a <see cref="T:System.DateTime"/> object representing the start of the day of this <see cref="T:System.DateTime"/>.
+            </summary>
+            <param name="Source">This <see cref="T:System.DateTime"/>.</param>
+            <returns>A <see cref="T:System.DateTime"/> representing the start of the day of this <see cref="T:System.DateTime"/>.</returns>
+        </member>
+        <member name="M:Inv.Support.DateTimeHelper.EndOfDay(System.DateTime)">
+            <summary>
+            Get a <see cref="T:System.DateTime"/> object representing the end of the day of this <see cref="T:System.DateTime"/>.
+            </summary>
+            <param name="Source">This <see cref="T:System.DateTime"/>.</param>
+            <returns>A <see cref="T:System.DateTime"/> representing the end of the day of this <see cref="T:System.DateTime"/>.</returns>
+        </member>
+        <member name="M:Inv.Support.DateTimeHelper.StartOfDay(System.Nullable{System.DateTime})">
+            <summary>
+            Get a <see cref="T:System.DateTime"/> object representing the start of the day of this <see cref="T:System.DateTime"/>.
+            </summary>
+            <param name="Source">This <see cref="T:System.DateTime"/>.</param>
+            <returns>A <see cref="T:System.DateTime"/> representing the start of the day of this <see cref="T:System.DateTime"/>.</returns>
+        </member>
+        <member name="M:Inv.Support.DateTimeHelper.EndOfDay(System.Nullable{System.DateTime})">
+            <summary>
+            Get a <see cref="T:System.DateTime"/> object representing the end of the day of this <see cref="T:System.DateTime"/>.
+            </summary>
+            <param name="Source">This <see cref="T:System.DateTime"/>.</param>
+            <returns>A <see cref="T:System.DateTime"/> representing the end of the day of this <see cref="T:System.DateTime"/>.</returns>
+        </member>
+        <member name="M:Inv.Support.DateTimeHelper.EqualTo(System.DateTime,System.DateTime,System.TimeSpan)">
+            <summary>
+            Check whether this <see cref="T:System.DateTime"/> is within a threshold amount of another <see cref="T:System.DateTime"/>.
+            </summary>
+            <param name="Left">This <see cref="T:System.DateTime"/>.</param>
+            <param name="Right">The <see cref="T:System.DateTime"/> to compare to.</param>
+            <param name="Threshold">The amount of leeway to consider two <see cref="T:System.DateTime"/>s to be identical.</param>
+            <returns>True if the difference between this <see cref="T:System.DateTime"/> and <paramref name="Right"/> is shorter than <paramref name="Threshold"/></returns>
+        </member>
+        <member name="M:Inv.Support.DateTimeHelper.IsWeekend(System.DateTime)">
+            <summary>
+            Is this datetime on the weekend.
+            </summary>
+            <param name="Source"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Inv.Support.DateTimeHelper.IsWeekday(System.DateTime)">
+            <summary>
+            Is this datetime on a weekday.
+            </summary>
+            <param name="Source"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Inv.Support.DateTimeHelper.DateSeries(System.DateTime,System.DateTime)">
+            <summary>
+            Enumerate each date between the first and last date, inclusive.
+            </summary>
+            <param name="FirstDate"></param>
+            <param name="LastDate"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Inv.Support.DateTimeHelper.AsDate(System.Nullable{System.DateTime})">
+            <summary>
+            Convert a <see cref="T:System.DateTime"/> to an <see cref="T:Inv.Date"/> by removing the time component.
+            </summary>
+            <param name="Source"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Inv.Support.DateTimeHelper.AsDate(System.DateTime)">
+            <summary>
+            Convert a <see cref="T:System.DateTime"/> to an <see cref="T:Inv.Date"/> by removing the time component.
+            </summary>
+            <param name="Source"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Inv.Support.DateTimeHelper.AsTime(System.Nullable{System.DateTime})">
+            <summary>
+            Convert a <see cref="T:System.DateTime"/> to an <see cref="T:Inv.Time"/> by removing the date component.
+            </summary>
+            <param name="Source"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Inv.Support.DateTimeHelper.AsTime(System.DateTime)">
+            <summary>
+            Convert a <see cref="T:System.DateTime"/> to an <see cref="T:Inv.Time"/> by removing the date component.
+            </summary>
+            <param name="Source"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Inv.Support.DateTimeHelper.ToShortDateTimeString(System.DateTime)">
+            <summary>
+            Use the current culture to display the short date time format of a <see cref="T:System.DateTime"/>.
+            </summary>
+            <param name="Source"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Inv.Support.DateTimeHelper.ToShortDateTimeString(System.Nullable{System.DateTime})">
+            <summary>
+            Use the current culture to display the short date time format of a <see cref="T:System.DateTime"/>.
+            </summary>
+            <param name="Source"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Inv.Support.DateTimeHelper.ToShortDateString(System.DateTime)">
+            <summary>
+            Use the current culture to display the short date format of a <see cref="T:System.DateTime"/>.
+            </summary>
+            <param name="Source"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Inv.Support.DateTimeHelper.ToShortDateString(System.Nullable{System.DateTime})">
+            <summary>
+            Use the current culture to display the short date format of a <see cref="T:System.DateTime"/>.
+            </summary>
+            <param name="Source"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Inv.Support.DateTimeHelper.ToUnixTimeSeconds(System.DateTime)">
+            <summary>
+            Convert a <see cref="T:System.DateTime"/> to unix time format.
+            </summary>
+            <param name="Source"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Inv.Support.DateTimeHelper.RoundUp(System.DateTime,System.TimeSpan)">
+            <summary>
+            Round a <see cref="T:System.DateTime"/> up to the granularity specified by a <see cref="T:System.TimeSpan"/>.
+            </summary>
+            <param name="dt"></param>
+            <param name="ts"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Inv.Support.DateTimeHelper.FormatCanonical(System.DateTime,Inv.Support.DateAccuracyLevel,Inv.Support.TimeAccuracyLevel)">
+            <summary>
+            Return the canonical format for a <see cref="T:System.DateTime"/> based on the provided date and time accuracy levels.
+            </summary>
+            <param name="Source"></param>
+            <param name="DateAccuracy"></param>
+            <param name="TimeAccuracy"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Inv.Support.DateTimeHelper.Between(System.DateTime,System.DateTime,System.DateTime)">
+            <summary>
+            Determines if this <see cref="T:System.DateTime"/> is between the range of two <see cref="T:System.DateTime"/>.
+            </summary>
+            <param name="Source">This <see cref="T:System.DateTime"/>.</param>
+            <param name="From">The starting <see cref="T:System.DateTime"/>.</param>
+            <param name="Until">The ending <see cref="T:System.DateTime"/>.</param>
+            <returns>True if this <see cref="T:System.DateTime"/> is between the calculated range.</returns>
+        </member>
+        <member name="M:Inv.Support.DateTimeHelper.ToRelativeDate(System.DateTime)">
+            <summary>
+            Returns a string that represents the approximate time of an event as compared to now.
+            </summary>
+            <param name="DateTime"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Inv.Support.DateTimeHelper.IsBetween(System.DateTime,System.DateTime,System.DateTime)">
+            <summary>
+            Determines if this <see cref="T:System.DateTime"/> is between the range of two <see cref="T:System.DateTime"/>.
+            </summary>
+            <param name="Source">This <see cref="T:System.DateTime"/>.</param>
+            <param name="From">The starting <see cref="T:System.DateTime"/>.</param>
+            <param name="Until">The ending <see cref="T:System.DateTime"/>.</param>
+            <returns>True if this <see cref="T:System.DateTime"/> is between the calculated range.</returns>
+        </member>
+        <member name="M:Inv.Support.DateTimeHelper.Min(System.DateTime,System.DateTime)">
+            <summary>
+            Returns the smaller of two <see cref="T:System.DateTime"/> values.
+            </summary>
+            <param name="A">The first value to compare.</param>
+            <param name="B">The second value to compare.</param>
+            <returns>The smaller of the two values.</returns>
+        </member>
+        <member name="M:Inv.Support.DateTimeHelper.Max(System.DateTime,System.DateTime)">
+            <summary>
+            Returns the larger of the two <see cref="T:System.DateTime"/> values.
+            </summary>
+            <param name="A">The first value to compare.</param>
+            <param name="B">The second value to compare.</param>
+            <returns>The larger of the two values.</returns>
+        </member>
+        <member name="T:Inv.Support.DayOfWeekHelper">
+            <summary>
+            <see cref="T:System.DayOfWeek"/> extension methods.
+            </summary>
+        </member>
+        <member name="P:Inv.Support.DayOfWeekHelper.FirstDayOfWeek">
+            <summary>
+            Return the current cultures first day of the week.
+            </summary>
+        </member>
+        <member name="P:Inv.Support.DayOfWeekHelper.LastDayOfWeek">
+            <summary>
+            Return the current cultures last day of the week.
+            </summary>
+        </member>
+        <member name="M:Inv.Support.DayOfWeekHelper.DayOfWeekSeries">
+            <summary>
+            Return an enumerable of the days of the week in the current culture order.
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Inv.Support.DayOfWeekHelper.Rank(System.DayOfWeek)">
+            <summary>
+            Returns the integer rank of the day of the week in the current culture order.
+            </summary>
+            <param name="DayOfWeek"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Inv.Support.DayOfWeekHelper.ToNameString(System.DayOfWeek)">
+            <summary>
+            Return the full name of the day in the current culture.
+            </summary>
+            <param name="DayOfWeek"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Inv.Support.DayOfWeekHelper.ToAbbreviatedString(System.DayOfWeek)">
+            <summary>
+            Return the abbreviated name of the day in the current culture.
+            </summary>
+            <param name="DayOfWeek"></param>
+            <returns></returns>
+        </member>
+        <member name="T:Inv.Support.DateRangeHelper">
+            <summary>
+            <see cref="T:Inv.DateRange"/> extension methods.
+            </summary>
+        </member>
+        <member name="T:Inv.Support.DateTimeOffsetHelper">
+            <summary>
+            <see cref="T:System.DateTimeOffset"/> extension methods.
+            </summary>
+        </member>
+        <member name="M:Inv.Support.DateTimeOffsetHelper.EqualTo(System.DateTimeOffset,System.DateTimeOffset,System.TimeSpan)">
+            <summary>
+            Check whether this <see cref="T:System.DateTimeOffset"/> is within a threshold amount of another <see cref="T:System.DateTimeOffset"/>.
+            </summary>
+            <param name="Left">This <see cref="T:System.DateTimeOffset"/>.</param>
+            <param name="Right">The <see cref="T:System.DateTimeOffset"/> to compare to.</param>
+            <param name="Threshold">The amount of leeway to consider two <see cref="T:System.DateTimeOffset"/>s to be identical.</param>
+            <returns>True if the difference between this <see cref="T:System.DateTimeOffset"/> and <paramref name="Right"/> is shorter than <paramref name="Threshold"/></returns>
+        </member>
+        <member name="M:Inv.Support.DateTimeOffsetHelper.DateSeries(System.DateTimeOffset,System.DateTimeOffset)">
+            <summary>
+            Enumerate each date between the first and last date, inclusive.
+            </summary>
+            <param name="FirstDate"></param>
+            <param name="LastDate"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Inv.Support.DateTimeOffsetHelper.AlterBaseTimeZone(System.DateTimeOffset,System.TimeZoneInfo)">
+            <summary>
+            Returns a <see cref="T:System.DateTimeOffset"/> representing the date and time from this <see cref="T:System.DateTimeOffset"/> in the specified time zone.
+            </summary>
+            <param name="Source">This <see cref="T:System.DateTimeOffset"/>.</param>
+            <param name="NewTimeZone">The time zone to adjust this <see cref="T:System.DateTimeOffset"/> to.</param>
+            <returns>A <see cref="T:System.DateTimeOffset"/> instance representing this <see cref="T:System.DateTimeOffset"/> in the specified time zone.</returns>
+        </member>
+        <member name="M:Inv.Support.DateTimeOffsetHelper.StartOfMinute(System.DateTimeOffset)">
+            <summary>
+            Get a <see cref="T:System.DateTimeOffset"/> object representing the start of the minute of this <see cref="T:System.DateTimeOffset"/>.
+            </summary>
+            <param name="Source">This <see cref="T:System.DateTimeOffset"/>.</param>
+            <returns>A <see cref="T:System.DateTimeOffset"/> representing the start of the minute of this <see cref="T:System.DateTimeOffset"/>.</returns>
+        </member>
+        <member name="M:Inv.Support.DateTimeOffsetHelper.EndOfMinute(System.DateTimeOffset)">
+            <summary>
+            Get a <see cref="T:System.DateTimeOffset"/> object representing the end of the minute of this <see cref="T:System.DateTimeOffset"/>.
+            </summary>
+            <param name="Source">This <see cref="T:System.DateTimeOffset"/>.</param>
+            <returns>A <see cref="T:System.DateTimeOffset"/> representing the end of the minute of this <see cref="T:System.DateTimeOffset"/>.</returns>
+        </member>
+        <member name="M:Inv.Support.DateTimeOffsetHelper.StartOfHour(System.DateTimeOffset)">
+            <summary>
+            Get a <see cref="T:System.DateTimeOffset"/> object representing the start of the hour of this <see cref="T:System.DateTimeOffset"/>.
+            </summary>
+            <param name="Source">This <see cref="T:System.DateTimeOffset"/>.</param>
+            <returns>A <see cref="T:System.DateTimeOffset"/> representing the start of the hour of this <see cref="T:System.DateTimeOffset"/>.</returns>
+        </member>
+        <member name="M:Inv.Support.DateTimeOffsetHelper.EndOfHour(System.DateTimeOffset)">
+            <summary>
+            Get a <see cref="T:System.DateTimeOffset"/> object representing the end of the hour of this <see cref="T:System.DateTimeOffset"/>.
+            </summary>
+            <param name="Source">This <see cref="T:System.DateTimeOffset"/>.</param>
+            <returns>A <see cref="T:System.DateTimeOffset"/> representing the end of the hour of this <see cref="T:System.DateTimeOffset"/>.</returns>
+        </member>
+        <member name="M:Inv.Support.DateTimeOffsetHelper.StartOfDay(System.DateTimeOffset)">
+            <summary>
+            Get a <see cref="T:System.DateTimeOffset"/> object representing the start of the day of this <see cref="T:System.DateTimeOffset"/>.
+            </summary>
+            <param name="Source">This <see cref="T:System.DateTimeOffset"/>.</param>
+            <returns>A <see cref="T:System.DateTimeOffset"/> representing the start of the day of this <see cref="T:System.DateTimeOffset"/>.</returns>
+        </member>
+        <member name="M:Inv.Support.DateTimeOffsetHelper.EndOfDay(System.DateTimeOffset)">
+            <summary>
+            Get a <see cref="T:System.DateTimeOffset"/> object representing the end of the day of this <see cref="T:System.DateTimeOffset"/>.
+            </summary>
+            <param name="Source">This <see cref="T:System.DateTimeOffset"/>.</param>
+            <returns>A <see cref="T:System.DateTimeOffset"/> representing the end of the day of this <see cref="T:System.DateTimeOffset"/>.</returns>
+        </member>
+        <member name="M:Inv.Support.DateTimeOffsetHelper.StartOfDay(System.Nullable{System.DateTimeOffset})">
+            <summary>
+            Get a <see cref="T:System.DateTimeOffset"/> object representing the start of the day of this <see cref="T:System.DateTimeOffset"/>.
+            </summary>
+            <param name="Source">This <see cref="T:System.DateTimeOffset"/>.</param>
+            <returns>A <see cref="T:System.DateTimeOffset"/> representing the start of the day of this <see cref="T:System.DateTimeOffset"/>.</returns>
+        </member>
+        <member name="M:Inv.Support.DateTimeOffsetHelper.EndOfDay(System.Nullable{System.DateTimeOffset})">
+            <summary>
+            Get a <see cref="T:System.DateTimeOffset"/> object representing the end of the day of this <see cref="T:System.DateTimeOffset"/>.
+            </summary>
+            <param name="Source">This <see cref="T:System.DateTimeOffset"/>.</param>
+            <returns>A <see cref="T:System.DateTimeOffset"/> representing the end of the day of this <see cref="T:System.DateTimeOffset"/>.</returns>
+        </member>
+        <member name="M:Inv.Support.DateTimeOffsetHelper.StartOfWeek(System.DateTimeOffset,System.DayOfWeek)">
+            <summary>
+            Get a <see cref="T:System.DateTimeOffset"/> object representing the start of the week for this <see cref="T:System.DateTimeOffset"/>.
+            </summary>
+            <param name="Source">This <see cref="T:System.DateTimeOffset"/>.</param>
+            <param name="StartOfWeek">The day considered to be the start of the week.</param>
+            <returns>A <see cref="T:System.DateTimeOffset"/> representing the start of the week of this <see cref="T:System.DateTimeOffset"/>.</returns>
+        </member>
+        <member name="M:Inv.Support.DateTimeOffsetHelper.StartOfWeek(System.DateTimeOffset)">
+            <summary>
+            Get a <see cref="T:System.DateTimeOffset"/> object representing the start of the week for this <see cref="T:System.DateTimeOffset"/>.
+            </summary>
+        </member>
+        <member name="M:Inv.Support.DateTimeOffsetHelper.EndOfWeek(System.DateTimeOffset,System.DayOfWeek)">
+            <summary>
+            Get a <see cref="T:System.DateTimeOffset"/> object representing the end of the week for this <see cref="T:System.DateTimeOffset"/>.
+            </summary>
+            <param name="Source">This <see cref="T:System.DateTimeOffset"/>.</param>
+            <param name="EndOfWeek">The day considered to be the end of the week.</param>
+            <returns>A <see cref="T:System.DateTimeOffset"/> representing the end of the week of this <see cref="T:System.DateTimeOffset"/>.</returns>
+        </member>
+        <member name="M:Inv.Support.DateTimeOffsetHelper.EndOfWeek(System.DateTimeOffset)">
+            <summary>
+            Get a <see cref="T:System.DateTimeOffset"/> object representing the end of the week for this <see cref="T:System.DateTimeOffset"/>.
+            </summary>
+        </member>
+        <member name="M:Inv.Support.DateTimeOffsetHelper.ToRelativeString(System.DateTimeOffset)">
+            <summary>
+            Converts the value of the current <see cref="T:System.DateTimeOffset"/> object to its equivalent string representation relative to the current date.
+            </summary>
+            <param name="Source">This <see cref="T:System.DateTimeOffset"/>.</param>
+            <returns>A <see cref="T:System.String"/> representing this <see cref="T:System.DateTimeOffset"/> relative to the current date.</returns>
+        </member>
+        <member name="M:Inv.Support.DateTimeOffsetHelper.ToRelativeString(System.DateTimeOffset,System.DateTimeOffset)">
+            <summary>
+            Converts the value of the current <see cref="T:System.DateTimeOffset"/> object to its equivalent string representation relative to some specified date.
+            </summary>
+            <param name="Source">This <see cref="T:System.DateTimeOffset"/>.</param>
+            <param name="RelativeDate">The <see cref="T:System.DateTimeOffset"/> to treat as the base date.</param>
+            <returns>A <see cref="T:System.String"/> representing this <see cref="T:System.DateTimeOffset"/> relative to the specified date.</returns>
+        </member>
+        <member name="M:Inv.Support.DateTimeOffsetHelper.FormatDateRange(System.DateTimeOffset,System.DateTimeOffset,System.Boolean)">
+            <summary>
+            Formats a range formed by two <see cref="T:System.DateTimeOffset"/> instances for display.
+            </summary>
+            <param name="From">The starting <see cref="T:System.DateTimeOffset"/>.</param>
+            <param name="Until">The ending <see cref="T:System.DateTimeOffset"/>.</param>
+            <param name="VerboseSameDay">Whether output should be verbose when both range parameters represent the same day.</param>
+            <returns>A <see cref="T:System.String"/> representing the date range.</returns>
+        </member>
+        <member name="M:Inv.Support.DateTimeOffsetHelper.IsBetween(System.DateTimeOffset,System.DateTimeOffset,System.DateTimeOffset)">
+            <summary>
+            Determines if this <see cref="T:System.DateTimeOffset"/> is between the range of two <see cref="T:System.DateTimeOffset"/>.
+            </summary>
+            <param name="Source">This <see cref="T:System.DateTimeOffset"/>.</param>
+            <param name="From">The starting <see cref="T:System.DateTimeOffset"/>.</param>
+            <param name="Until">The ending <see cref="T:System.DateTimeOffset"/>.</param>
+            <returns>True if this <see cref="T:System.DateTimeOffset"/> is between the calculated range.</returns>
+        </member>
+        <member name="T:Inv.Support.EnumHelper">
+            <summary>
+            Enum extension methods.
+            </summary>
+        </member>
+        <member name="T:Inv.Support.ExceptionHelper">
+            <summary>
+            <see cref="T:System.Exception"/> extension methods.
+            </summary>
+        </member>
+        <member name="M:Inv.Support.ExceptionHelper.Aggregate(System.Collections.Generic.IEnumerable{System.Exception},System.String)">
+            <summary>
+            Compile the input exceptions into a new <see cref="T:System.AggregateException"/>.
+            </summary>
+            <param name="Exceptions"></param>
+            <param name="Message"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Inv.Support.ExceptionHelper.Preserve``1(``0)">
+            <summary>
+            Preserve the stack trace when catching first level exceptions.
+            This is a workaround for a flaw in the .NET framework.
+            </summary>
+            <typeparam name="T"></typeparam>
+            <param name="Exception"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Inv.Support.ExceptionHelper.Describe(System.Exception)">
+            <summary>
+            Create a combined message of the exception including inner exception messages.
+            </summary>
+            <param name="DescribeException"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Inv.Support.ExceptionHelper.AsReport(System.Exception)">
+            <summary>
+            Create a text report of the exception including inner exceptions and full stack traces.
+            </summary>
+            <param name="ReportException"></param>
+            <returns></returns>
+        </member>
+        <member name="T:Inv.Support.TimeSpanHelper">
+            <summary>
+            <see cref="T:System.TimeSpan"/> extension methods.
+            </summary>
+        </member>
+        <member name="M:Inv.Support.TimeSpanHelper.TruncateMilliseconds(System.TimeSpan)">
+            <summary>
+            Truncates the millisecond field from this <see cref="T:System.TimeSpan"/>.
+            </summary>
+            <param name="Source">This <see cref="T:System.TimeSpan"/>.</param>
+            <returns>A <see cref="T:System.TimeSpan"/> object equivalent to this <see cref="T:System.TimeSpan"/> with the millisecond field zeroed out.</returns>
+        </member>
+        <member name="M:Inv.Support.TimeSpanHelper.TruncateSeconds(System.TimeSpan)">
+            <summary>
+            Truncates the second field from this <see cref="T:System.TimeSpan"/>.
+            </summary>
+            <param name="Source">This <see cref="T:System.TimeSpan"/>.</param>
+            <returns>A <see cref="T:System.TimeSpan"/> object equivalent to this <see cref="T:System.TimeSpan"/> with the second field zeroed out.</returns>
+        </member>
+        <member name="M:Inv.Support.TimeSpanHelper.FormatTimeSpan(System.TimeSpan)">
+            <summary>
+            Format this <see cref="T:System.TimeSpan"/> into a human-readable string.
+            </summary>
+            <param name="Source">This <see cref="T:System.TimeSpan"/>.</param>
+            <returns>A human-readable string representing this <see cref="T:System.TimeSpan"/>.</returns>
+        </member>
+        <member name="M:Inv.Support.TimeSpanHelper.BetweenExclusive(System.TimeSpan,System.TimeSpan,System.TimeSpan)">
+            <summary>
+            Returns true if <paramref name="Source"/> is greater than <paramref name="Lower"/> and less than <paramref name="Upper"/>.
+            </summary>
+            <returns>Returns true if <paramref name="Source"/> is between <paramref name="Lower"/> and <paramref name="Upper"/>, otherwise returns false</returns>
+        </member>
+        <member name="T:Inv.Support.CharHelper">
+            <summary>
+            Extension helpers for <see cref="T:System.Char"/>.
+            </summary>
+        </member>
+        <member name="M:Inv.Support.CharHelper.IsNumeric(System.Char)">
+            <summary>
+            Ask if the character is a numeric digit (0-9).
+            </summary>
+            <param name="Source"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Inv.Support.CharHelper.IsAlphabetic(System.Char)">
+            <summary>
+            Ask if the character is in the 26-letter alphabet (a-zA-Z).
+            </summary>
+            <param name="Source"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Inv.Support.CharHelper.IsVowel(System.Char)">
+            <summary>
+            Ask if the character is a vowel (a, e, i, o, u).
+            </summary>
+            <param name="Source"></param>
+            <returns></returns>
+        </member>
+        <member name="T:Inv.Support.DictionaryHelper">
+            <summary>
+            Extension helpers for <see cref="T:System.Collections.Generic.Dictionary`2"/>
+            </summary>
+        </member>
+        <member name="T:Inv.Support.IEnumerableHelper">
+            <summary>
+            Static class with extension methods for <see cref="T:System.Collections.Generic.IEnumerable`1"/>.
+            </summary>
+        </member>
+        <member name="M:Inv.Support.IEnumerableHelper.ToHashSet``2(System.Collections.Generic.IEnumerable{``0},System.Func{``0,``1})">
+            <summary>
+            Map the elements of this <see cref="T:System.Collections.Generic.IEnumerable`1"/> into a <see cref="T:System.Collections.Generic.HashSet`1"/>using the specified delegate to derive values.
+            </summary>
+            <typeparam name="TKey">The type of the elements of <see cref="T:System.Collections.Generic.IEnumerable`1"/>.</typeparam>
+            <typeparam name="TValue">The type of derived values.</typeparam>
+            <param name="Source">This <see cref="T:System.Collections.Generic.IEnumerable`1"/>.</param>
+            <param name="Function">A delegate that will generate values to store for each element in the <see cref="T:System.Collections.Generic.IEnumerable`1"/>.</param>
+            <returns>The generated <see cref="T:System.Collections.Generic.HashSet`1"/>.</returns>
+        </member>
+        <member name="M:Inv.Support.IEnumerableHelper.ToHashSet``2(System.Collections.Generic.IEnumerable{``0},System.Func{``0,``1},System.Collections.Generic.IEqualityComparer{``1})">
+            <summary>
+            Map the elements of this <see cref="T:System.Collections.Generic.IEnumerable`1"/> into a <see cref="T:System.Collections.Generic.HashSet`1"/>using the specified delegate to derive values.
+            </summary>
+            <typeparam name="TKey">The type of the elements of <see cref="T:System.Collections.Generic.IEnumerable`1"/>.</typeparam>
+            <typeparam name="TValue">The type of derived values.</typeparam>
+            <param name="Source">This <see cref="T:System.Collections.Generic.IEnumerable`1"/>.</param>
+            <param name="Function">A delegate that will generate values to store for each element in the <see cref="T:System.Collections.Generic.IEnumerable`1"/>.</param>
+            <param name="Comparer">IEqualityComparer to use.</param>
+            <returns>The generated <see cref="T:System.Collections.Generic.HashSet`1"/>.</returns>
+        </member>
+        <member name="M:Inv.Support.IEnumerableHelper.ToHashSetX``1(System.Collections.Generic.IEnumerable{``0})">
+            <summary>
+            Convert the elements of this <see cref="T:System.Collections.Generic.IEnumerable`1"/> into a <see cref="T:System.Collections.Generic.HashSet`1"/>.
+            NOTE: This method is named ToHashSetX to avoid collisions with the System.Linq.Enumerable extension method 'ToHashSet' which was introduced after .NET 4.5.0.
+            </summary>
+            <typeparam name="TValue">The type of the elements of this <see cref="T:System.Collections.Generic.IEnumerable`1"/>.</typeparam>
+            <param name="Source">This <see cref="T:System.Collections.Generic.IEnumerable`1"/>.</param>
+            <returns>The generated <see cref="T:System.Collections.Generic.HashSet`1"/>.</returns>
+        </member>
+        <member name="M:Inv.Support.IEnumerableHelper.ToHashSetX``1(System.Collections.Generic.IEnumerable{``0},System.Collections.Generic.IEqualityComparer{``0})">
+            <summary>
+            Convert the elements of this <see cref="T:System.Collections.Generic.IEnumerable`1"/> into a <see cref="T:System.Collections.Generic.HashSet`1"/>.
+            NOTE: This method is named 'ToHashSetX' to avoid collisions with the System.Linq.Enumerable extension method 'ToHashSet' which was introduced after .NET 4.5.0.
+            </summary>
+            <typeparam name="TValue">The type of the elements of this <see cref="T:System.Collections.Generic.IEnumerable`1"/>.</typeparam>
+            <param name="Source">This <see cref="T:System.Collections.Generic.IEnumerable`1"/>.</param>
+            <param name="Comparer">Comparer <see cref="T:System.Collections.Generic.IEnumerable`1"/>.</param>
+            <returns>The generated <see cref="T:System.Collections.Generic.HashSet`1"/>.</returns>
+        </member>
+        <member name="M:Inv.Support.IEnumerableHelper.Trim``1(System.Collections.Generic.IEnumerable{``0},System.Func{``0,System.Boolean})">
+            <summary>
+            Trim from the start and the end of this <see cref="T:System.Collections.Generic.IEnumerable`1"/> according to the specified function.
+            </summary>
+            <typeparam name="T">The type of elements in the <see cref="T:System.Collections.Generic.IEnumerable`1"/>.</typeparam>
+            <param name="Source">This <see cref="T:System.Collections.Generic.IEnumerable`1"/>.</param>
+            <param name="Function">The function determining where to start and stop trimming.</param>
+            <returns>The elements of this <see cref="T:System.Collections.Generic.IEnumerable`1"/> from the first element for which <paramref name="Function"/> returns false to the last element for which
+            <paramref name="Function"/> returns false.</returns>
+        </member>
+        <member name="M:Inv.Support.IEnumerableHelper.TrimStart``1(System.Collections.Generic.IEnumerable{``0},System.Func{``0,System.Boolean})">
+            <summary>
+            Trim elements from the start of this <see cref="T:System.Collections.Generic.IEnumerable`1"/>.
+            </summary>
+            <typeparam name="T">The type of elements in this <see cref="T:System.Collections.Generic.IEnumerable`1"/>.</typeparam>
+            <param name="Source">This <see cref="T:System.Collections.Generic.IEnumerable`1"/>.</param>
+            <param name="Function">The function determining which element to stop trimming at.</param>
+            <returns>The elements of this <see cref="T:System.Collections.Generic.IEnumerable`1"/> from the first element for which <paramref name="Function"/> returns false until the 
+            end of this <see cref="T:System.Collections.Generic.IEnumerable`1"/></returns>
+        </member>
+        <member name="M:Inv.Support.IEnumerableHelper.TrimEnd``1(System.Collections.Generic.IEnumerable{``0},System.Func{``0,System.Boolean})">
+            <summary>
+            Trim elements from the end of this <see cref="T:System.Collections.Generic.IEnumerable`1"/>.
+            </summary>
+            <typeparam name="T">The type of elements in this <see cref="T:System.Collections.Generic.IEnumerable`1"/>.</typeparam>
+            <param name="Source">This <see cref="T:System.Collections.Generic.IEnumerable`1"/>.</param>
+            <param name="Function">The function determining which element to start trimming at.</param>
+            <returns>The elements of this <see cref="T:System.Collections.Generic.IEnumerable`1"/> from the first element until the last element for which <paramref name="Function"/> returns false.</returns>
+        </member>
+        <member name="M:Inv.Support.IEnumerableHelper.Find``1(System.Collections.Generic.IEnumerable{``0},System.Func{``0,System.Boolean})">
+            <summary>
+            Find the first element of this <see cref="T:System.Collections.Generic.IEnumerable`1"/> which satisfies the matching function <paramref name="Function"/>.
+            </summary>
+            <typeparam name="T">The type of elements in this <see cref="T:System.Collections.Generic.IEnumerable`1"/>.</typeparam>
+            <param name="Source">This <see cref="T:System.Collections.Generic.IEnumerable`1"/>.</param>
+            <param name="Function">The matching delegate which will return true if an element matches.</param>
+            <returns>The first element of this <see cref="T:System.Collections.Generic.IEnumerable`1"/> for which <paramref name="Function"/> returns true, or the default value if no match is found.</returns>
+        </member>
+        <member name="M:Inv.Support.IEnumerableHelper.NextOrLast``1(System.Collections.Generic.IEnumerable{``0},``0)">
+            <summary>
+            Get the next element in this <see cref="T:System.Collections.Generic.IEnumerable`1"/> after <paramref name="Key"/>, if it exists, otherwise the previous element, or the default value if <paramref name="Key"/>
+            is not found in this <see cref="T:System.Collections.Generic.IEnumerable`1"/>.
+            </summary>
+            <typeparam name="T">The type of elements in this <see cref="T:System.Collections.Generic.IEnumerable`1"/>.</typeparam>
+            <param name="Source">This <see cref="T:System.Collections.Generic.IEnumerable`1"/>.</param>
+            <param name="Key">The element to look for.</param>
+            <returns>If <paramref name="Key"/> is found in the list, the next element after <paramref name="Key"/> (if it exists; the previous element otherwise).
+            If <paramref name="Key"/> is not found, the default value of T.</returns>
+        </member>
+        <member name="M:Inv.Support.IEnumerableHelper.ToDistinctList``1(System.Collections.Generic.IEnumerable{``0})">
+            <summary>
+            Convert this <see cref="T:System.Collections.Generic.IEnumerable`1"/> to an <see cref="T:Inv.DistinctList`1"/>.
+            </summary>
+            <typeparam name="T">The type of elements in this <see cref="T:System.Collections.Generic.IEnumerable`1"/>.</typeparam>
+            <param name="Source">This <see cref="T:System.Collections.Generic.IEnumerable`1"/>.</param>
+            <returns>A new <see cref="T:Inv.DistinctList`1"/> containing the elements of this <see cref="T:System.Collections.Generic.IEnumerable`1"/>.</returns>
+        </member>
+        <member name="M:Inv.Support.IEnumerableHelper.SingleToDistinctList``1(``0)">
+            <summary>
+            Create an <see cref="T:Inv.DistinctList`1"/> containing this object.
+            </summary>
+            <typeparam name="TSource">The type of this object.</typeparam>
+            <param name="Source">This object.</param>
+            <returns>A new <see cref="T:Inv.DistinctList`1"/> containing this object as its only element.</returns>
+        </member>
+        <member name="M:Inv.Support.IEnumerableHelper.Union``1(System.Collections.Generic.IEnumerable{``0},``0)">
+            <summary>
+            Produces the set union of a sequence and the specified item using the default equality comparer.
+            </summary>
+            <typeparam name="TSource">The type of elements in this <see cref="T:System.Collections.Generic.IEnumerable`1"/>.</typeparam>
+            <param name="Left">This <see cref="T:System.Collections.Generic.IEnumerable`1"/>.</param>
+            <param name="Right">The element to union into this <see cref="T:System.Collections.Generic.IEnumerable`1"/>.</param>
+            <returns>The result of the union.</returns>
+        </member>
+        <member name="M:Inv.Support.IEnumerableHelper.Union``1(System.Collections.Generic.IEnumerable{``0},``0,System.Collections.Generic.IEqualityComparer{``0})">
+            <summary>
+            Produces the set union of a sequence and the specified item using the specified equality comparer.
+            </summary>
+            <typeparam name="TSource">The type of elements in this <see cref="T:System.Collections.Generic.IEnumerable`1"/>.</typeparam>
+            <param name="Left">This <see cref="T:System.Collections.Generic.IEnumerable`1"/>.</param>
+            <param name="Right">The element to union into this <see cref="T:System.Collections.Generic.IEnumerable`1"/>.</param>
+            <param name="Comparer">The equality comparer to use.</param>
+            <returns>The result of the union.</returns>
+        </member>
+        <member name="M:Inv.Support.IEnumerableHelper.ToEnumerable``1(``0)">
+            <summary>
+            Get an <see cref="T:System.Collections.Generic.IEnumerable`1"/> for this object.
+            </summary>
+            <typeparam name="TSource">The type of this object.</typeparam>
+            <param name="Source">This object.</param>
+            <returns>An <see cref="T:System.Collections.Generic.IEnumerable`1"/> containing this object.</returns>
+        </member>
+        <member name="M:Inv.Support.IEnumerableHelper.ForEach``1(System.Collections.Generic.IEnumerable{``0},System.Action{``0})">
+            <summary>
+            Perform an action on every element of this <see cref="T:System.Collections.Generic.IEnumerable`1"/>.
+            </summary>
+            <typeparam name="TSource">The type of elements in this <see cref="T:System.Collections.Generic.IEnumerable`1"/>.</typeparam>
+            <param name="Source">This <see cref="T:System.Collections.Generic.IEnumerable`1"/>.</param>
+            <param name="Action">The action to perform on each element.</param>
+        </member>
+        <member name="M:Inv.Support.IEnumerableHelper.Frequency``1(System.Collections.Generic.IEnumerable{``0},System.Collections.Generic.IEqualityComparer{``0})">
+            <summary>
+            Build a frequency histogram from this <see cref="T:System.Collections.Generic.IEnumerable`1"/> and the specified equality comparer.
+            </summary>
+            <typeparam name="TSource">The type of elements in this <see cref="T:System.Collections.Generic.IEnumerable`1"/>.</typeparam>
+            <param name="Source">This <see cref="T:System.Collections.Generic.IEnumerable`1"/>.</param>
+            <param name="Comparer">The <see cref="T:System.Collections.Generic.IEqualityComparer`1"/> to use, or null to use the default.</param>
+            <returns>A list of <see cref="T:Inv.Support.IEnumerableHelper.FrequencyRecord`1"/> elements representing the frequencies with which each element in this <see cref="T:System.Collections.Generic.IEnumerable`1"/> occur.</returns>
+        </member>
+        <member name="M:Inv.Support.IEnumerableHelper.OrderBy``1(System.Collections.Generic.IEnumerable{``0})">
+            <summary>
+            Sort this <see cref="T:System.Collections.Generic.IEnumerable`1"/>.
+            </summary>
+            <typeparam name="TSource">The type of elements in this <see cref="T:System.Collections.Generic.IEnumerable`1"/>.</typeparam>
+            <param name="Source">This <see cref="T:System.Collections.Generic.IEnumerable`1"/>.</param>
+            <returns>A sorted version of this <see cref="T:System.Collections.Generic.IEnumerable`1"/>.</returns>
+        </member>
+        <member name="M:Inv.Support.IEnumerableHelper.Partition``1(System.Collections.Generic.IEnumerable{``0},System.Int32)">
+            <summary>
+            Split this <see cref="T:System.Collections.Generic.IEnumerable`1"/> into partitions of <paramref name="Size"/> elements.
+            </summary>
+            <typeparam name="T">The type of elements in this <see cref="T:System.Collections.Generic.IEnumerable`1"/>.</typeparam>
+            <param name="Source">This <see cref="T:System.Collections.Generic.IEnumerable`1"/>.</param>
+            <param name="Size">The number of elements to place in each partition.</param>
+            <returns>Multiple <see cref="T:System.Collections.Generic.IEnumerable`1"/>, each containing a partition of elements from this <see cref="T:System.Collections.Generic.IEnumerable`1"/> of up to <paramref name="Size"/> elements.</returns>
+        </member>
+        <member name="T:Inv.Support.IEnumerableHelper.FrequencyRecord`1">
+            <summary>
+            Represents a bucket in a frequency histogram.
+            </summary>
+            <typeparam name="T">The type of element being counted.</typeparam>
+        </member>
+        <member name="P:Inv.Support.IEnumerableHelper.FrequencyRecord`1.Key">
+            <summary>
+            The key value of this bucket.
+            </summary>
+        </member>
+        <member name="P:Inv.Support.IEnumerableHelper.FrequencyRecord`1.Count">
+            <summary>
+            The number of records in this bucket.
+            </summary>
+        </member>
+        <member name="T:Inv.Support.IListHelper">
+            <summary>
+            <see cref="T:System.Collections.Generic.IList`1"/> extension methods.
+            </summary>
+        </member>
+        <member name="M:Inv.Support.IListHelper.Truncate``1(System.Collections.Generic.IList{``0},System.Int32)">
+            <summary>
+            Truncate the list to the number of items specified.
+            </summary>
+            <param name="List"></param>
+            <param name="Limit"></param>
+        </member>
+        <member name="M:Inv.Support.IListHelper.ShallowEqualTo``1(System.Collections.Generic.IList{``0},System.Collections.Generic.IList{``0})">
+            <summary>
+            Determine whether or not this <see cref="T:System.Collections.Generic.IList`1"/> is equivalent to another <see cref="T:System.Collections.Generic.IList`1"/>.
+            </summary>
+            <typeparam name="T">The type of elements in this <see cref="T:System.Collections.Generic.IList`1"/>.</typeparam>
+            <param name="Left">This <see cref="T:System.Collections.Generic.IList`1"/>.</param>
+            <param name="Right">The <see cref="T:System.Collections.Generic.IList`1"/> to compare to.</param>
+            <returns>True if this <see cref="T:System.Collections.Generic.IList`1"/> is equivalent to <paramref name="Right"/>; false otherwise.</returns>
+        </member>
+        <member name="M:Inv.Support.IListHelper.ShallowEqualTo(System.Byte[],System.Byte[])">
+            <summary>
+            Determine whether or not this byte array is equivalent to another byte array.
+            </summary>
+            <param name="Left"></param>
+            <param name="Right"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Inv.Support.IListHelper.IsDistinct``1(System.Collections.Generic.IEnumerable{``0})">
+            <summary>
+            Determine whether or not a list contains only distinct elements.
+            </summary>
+            <typeparam name="T">The type of elements in this <see cref="T:System.Collections.Generic.IEnumerable`1"/>.</typeparam>
+            <param name="Source">This <see cref="T:System.Collections.Generic.IEnumerable`1"/>.</param>
+            <returns></returns>
+        </member>
+        <member name="M:Inv.Support.IListHelper.IsContiguous(System.Collections.Generic.IList{System.Int64})">
+            <summary>
+            Determine whether or not this <see cref="T:System.Collections.Generic.IList`1"/> is contiguous in nature.
+            </summary>
+            <param name="Source">This <see cref="T:System.Collections.Generic.IList`1"/>.</param>
+            <returns>True if the list contains a contiguous incrementing set of integers; false otherwise.</returns>
+        </member>
+        <member name="M:Inv.Support.IListHelper.IsContiguous(System.Collections.Generic.IList{System.Int32})">
+            <summary>
+            Determine whether or not this <see cref="T:System.Collections.Generic.IList`1"/> is contiguous in nature.
+            </summary>
+            <param name="Source">This <see cref="T:System.Collections.Generic.IList`1"/>.</param>
+            <returns>True if the list contains a contiguous incrementing set of integers; false otherwise.</returns>
+        </member>
+        <member name="M:Inv.Support.IListHelper.EnumerateRange``1(System.Collections.Generic.IList{``0},System.Int32)">
+            <summary>
+            Enumerate the elements of this <see cref="T:System.Collections.Generic.IList`1"/> from the zero-based index <paramref name="Low"/> to the end of the <see cref="T:System.Collections.Generic.IList`1"/>.
+            </summary>
+            <remarks>
+            This should probably be deprecated in favour of Skip().
+            </remarks>
+            <typeparam name="T">The type of elements in this <see cref="T:System.Collections.Generic.IList`1"/>.</typeparam>
+            <param name="Source">This <see cref="T:System.Collections.Generic.IList`1"/>.</param>
+            <param name="Low">The zero-based index of the first element to enumerate.</param>
+            <returns>The set of elements of this <see cref="T:System.Collections.Generic.IList`1"/> from <paramref name="Low"/> to the end of the <see cref="T:System.Collections.Generic.IList`1"/>.</returns>
+        </member>
+        <member name="M:Inv.Support.IListHelper.EnumerateRange``1(System.Collections.Generic.IList{``0},System.Int32,System.Int32)">
+            <summary>
+            Enumerate the elements of this <see cref="T:System.Collections.Generic.IList`1"/> from the zero-based index <paramref name="Low"/> to the zero-based index <paramref name="High"/>.
+            </summary>
+            <remarks>
+            This should probably be deprecated in favour of Skip().Take().
+            </remarks>
+            <typeparam name="T">The type of elements in this <see cref="T:System.Collections.Generic.IList`1"/>.</typeparam>
+            <param name="Source">This <see cref="T:System.Collections.Generic.IList`1"/>.</param>
+            <param name="Low">The zero-based index of the first element to enumerate.</param>
+            <param name="High">The zero-based index of the last element to enumerate.</param>
+            <returns>The set of elements of this <see cref="T:System.Collections.Generic.IList`1"/> from <paramref name="Low"/> to <paramref name="High"/>.</returns>
+        </member>
+        <member name="M:Inv.Support.IListHelper.AsReadOnly``1(System.Collections.Generic.IList{``0})">
+            <summary>
+            Create a new <see cref="T:System.Collections.ObjectModel.ReadOnlyCollection`1"/> based on this <see cref="T:System.Collections.Generic.IList`1"/>.
+            </summary>
+            <typeparam name="T">The type of elements in this <see cref="T:System.Collections.Generic.IList`1"/>.</typeparam>
+            <param name="Source">This <see cref="T:System.Collections.Generic.IList`1"/>.</param>
+            <returns>The new <see cref="T:System.Collections.ObjectModel.ReadOnlyCollection`1"/>.</returns>
+        </member>
+        <member name="M:Inv.Support.IListHelper.RemoveLastOrDefault``1(System.Collections.Generic.IList{``0},``0)">
+            <summary>
+            Pop the last element from this <see cref="T:System.Collections.Generic.IList`1"/> and return it; if the list has no elements, return the specified default value.
+            </summary>
+            <typeparam name="T">The type of elements in this <see cref="T:System.Collections.Generic.IList`1"/>.</typeparam>
+            <param name="Source">This <see cref="T:System.Collections.Generic.IList`1"/>.</param>
+            <param name="Default">The optional default value to return.</param>
+            <returns>The element removed from the list, or the value of <paramref name="Default"/> if the list has no elements.</returns>
+        </member>
+        <member name="M:Inv.Support.IListHelper.RemoveFirstOrDefault``1(System.Collections.Generic.IList{``0},``0)">
+            <summary>
+            Pop the first element from this <see cref="T:System.Collections.Generic.IList`1"/> and return it; if the list has no elements, return the specified default value.
+            </summary>
+            <typeparam name="T">The type of elements in this <see cref="T:System.Collections.Generic.IList`1"/>.</typeparam>
+            <param name="Source">This <see cref="T:System.Collections.Generic.IList`1"/>.</param>
+            <param name="Default">The optional default value to return.</param>
+            <returns>The element removed from the list, or the value of <paramref name="Default"/> if the list has no elements.</returns>
+        </member>
+        <member name="T:Inv.Support.HashSetHelper">
+            <summary>
+            <see cref="T:System.Collections.Generic.HashSet`1"/> extension methods.
+            </summary>
+        </member>
+        <member name="T:Inv.Support.StackHelper">
+            <summary>
+            <see cref="T:System.Collections.Generic.Stack`1"/> extension methods.
+            </summary>
+        </member>
+        <member name="T:Inv.Support.QueueHelper">
+            <summary>
+            <see cref="T:System.Collections.Generic.Queue`1"/> extension methods.
+            </summary>
+        </member>
+        <member name="M:Inv.Support.MemoryHelper.Slice(System.Byte[],System.Int32)">
+            <summary>
+            Extract a slice from the beginning of a byte array.
+            </summary>
+            <param name="ByteArray">The source data.</param>
+            <param name="Length">The number of bytes to copy.</param>
+            <returns><paramref name="Length"/> bytes from the start of <paramref name="ByteArray"/>.</returns>
+        </member>
+        <member name="M:Inv.Support.MemoryHelper.EqualTo(System.Byte[],System.Byte[])">
+            <summary>
+            Compare this byte array to another byte array.
+            </summary>
+            <param name="LeftByteArray">This byte array.</param>
+            <param name="RightByteArray">The byte array to compare to.</param>
+            <returns>True if this byte array contains the same data as <paramref name="RightByteArray"/>; false otherwise.</returns>
+        </member>
+        <member name="M:Inv.Support.MemoryHelper.CompareTo(System.Byte[],System.Byte[])">
+            <summary>
+            Compare this byte array to another byte array.
+            </summary>
+            <param name="LeftByteArray">This byte array.</param>
+            <param name="RightByteArray">The byte array to compare to.</param>
+            <returns><para>Zero if the two arrays are the same length and contain the same data.</para>
+            <para>- otherwise -</para>
+            <para>If the two arrays are of differing length: the result of this.Length.CompareTo(<paramref name="RightByteArray"/>.Length)</para>
+            <para>- otherwise -</para>
+            <para>If the two arrays of the same length, the result of CompareTo() on the bytes of each array at the first index where the two arrays differ in content.</para>
+            </returns>
+        </member>
+        <member name="M:Inv.Support.MemoryHelper.ToHexadecimal(System.Byte[],System.String)">
+            <summary>
+            Convert this byte array to a hexadecimal string.
+            </summary>
+            <param name="ByteArray">This byte array.</param>
+            <param name="Prefix">A string prefix to place before the generated hexadecimal characters.</param>
+            <returns>A string representing this byte array in hexadecimal digits plus the prefix string if specified.</returns>
+        </member>
+        <member name="T:Inv.Support.NumberHelper">
+            <summary>
+            Static class with extension methods for number value types.
+            </summary>
+        </member>
+        <member name="M:Inv.Support.NumberHelper.RoundUp(System.Decimal,System.Decimal)">
+            <summary>
+            Round this decimal value up to a certain level of accuracy.
+            </summary>
+            <param name="Source">This decimal value.</param>
+            <param name="AccuracyValue">The level of accuracy required.</param>
+            <returns>This decimal value, rounded up to the specified level of accuracy.</returns>
+        </member>
+        <member name="M:Inv.Support.NumberHelper.RoundDown(System.Decimal,System.Decimal)">
+            <summary>
+            Round this decimal value down to a certain level of accuracy.
+            </summary>
+            <param name="Source">This decimal value.</param>
+            <param name="AccuracyValue">The level of accuracy required.</param>
+            <returns>This decimal value, rounded down to the specified level of accuracy.</returns>
+        </member>
+        <member name="M:Inv.Support.NumberHelper.RoundNearest(System.Decimal,System.Decimal)">
+            <summary>
+            Round this decimal value to a certain level of accuracy.
+            </summary>
+            <param name="Source">This decimal value.</param>
+            <param name="AccuracyValue">The level of accuracy required.</param>
+            <returns>This decimal value, rounded to the specified level of accuracy.</returns>
+        </member>
+        <member name="M:Inv.Support.NumberHelper.RoundBankers(System.Nullable{Inv.Money})">
+            <summary>
+            Round this nearest decimal value using bankers logic
+            </summary>
+        </member>
+        <member name="T:Inv.Support.ReflectionHelper">
+            <summary>
+            Extension methods for reflection.
+            </summary>
+        </member>
+        <member name="T:Inv.Support.Int32Helper">
+            <summary>
+            <see cref="T:System.Int32"/> extension methods.
+            </summary>
+        </member>
+        <member name="T:Inv.Support.BooleanHelper">
+            <summary>
+            Static class with extension methods for Boolean.
+            </summary>
+        </member>
+        <member name="M:Inv.Support.BooleanHelper.ConvertToCSharpKeyword(System.Boolean)">
+            <summary>
+            Return 'true' or 'false' to reflect the C# keywords.
+            </summary>
+            <param name="Source"></param>
+            <returns></returns>
+        </member>
+        <member name="T:Inv.Support.StringHelper">
+            <summary>
+            Static class with extension methods for <see cref="T:System.String"/>.
+            </summary>
+        </member>
+        <member name="M:Inv.Support.StringHelper.FirstLine(System.String)">
+            <summary>
+            Returns first line in a string or entire string if no linebreaks are included
+            </summary>
+            <param name="str">String value</param>
+            <returns>Returns first line in the string</returns>
+        </member>
+        <member name="M:Inv.Support.StringHelper.Singular(System.String,System.Int64)">
+            <summary>
+            Singularise this <see cref="T:System.String"/> for the given number of instances.
+            Note: Value is expected to be a plural form. As such, if Count is supplied and != 1, Value will be returned unchanged.
+            </summary>
+            <param name="Source">This <see cref="T:System.String"/>.</param>
+            <param name="Count">The number to pluralise for.</param>
+            <returns>A singular version of this <see cref="T:System.String"/>.</returns>
+        </member>
+        <member name="M:Inv.Support.StringHelper.Plural(System.String,System.Int64)">
+            <summary>
+            Pluralise this <see cref="T:System.String"/> for the given number of instances.
+            Note: Value is expected to be a singular form.
+            </summary>
+            <param name="Source">This <see cref="T:System.String"/>.</param>
+            <param name="Count">The number to pluralise for.</param>
+            <returns>A plural version of this <see cref="T:System.String"/>.</returns>
+        </member>
+        <member name="M:Inv.Support.StringHelper.EmptyAsNull(System.String)">
+            <summary>
+            Return this <see cref="T:System.String"/>, or null if this <see cref="T:System.String"/> is empty.
+            </summary>
+            <param name="Source">This <see cref="T:System.String"/>.</param>
+            <returns>This <see cref="T:System.String"/>, or null if this <see cref="T:System.String"/> is empty.</returns>
+        </member>
+        <member name="M:Inv.Support.StringHelper.NullAsEmpty(System.String)">
+            <summary>
+            Return this <see cref="T:System.String"/>, or an empty string if this <see cref="T:System.String"/> is null.
+            </summary>
+            <param name="Source">This <see cref="T:System.String"/>.</param>
+            <returns>This <see cref="T:System.String"/>, or an empty string if this <see cref="T:System.String"/> is null.</returns>
+        </member>
+        <member name="M:Inv.Support.StringHelper.Reduce(System.String,System.Char)">
+            <summary>
+            'Reduce' a string by removing every second occurrence of <paramref name="Character"/> from the string.
+            </summary>
+            <param name="Source">This <see cref="T:System.String"/>.</param>
+            <param name="Character">The character to remove.</param>
+            <returns>A reduced string where every second occurrence of <paramref name="Character"/> has been removed.</returns>
+        </member>
+        <member name="M:Inv.Support.StringHelper.Count(System.String,System.Char)">
+            <summary>
+            Count the number of occurrences of <paramref name="Character"/> in this <see cref="T:System.String"/>.
+            </summary>
+            <param name="Source">This <see cref="T:System.String"/>.</param>
+            <param name="Character">The character to count.</param>
+            <returns>The number of occurrences of <paramref name="Character"/> in this <see cref="T:System.String"/>.</returns>
+        </member>
+        <member name="M:Inv.Support.StringHelper.KeepNumeric(System.String,System.Char[])">
+            <summary>
+            Keep only numeric or specifically specified characters of <see cref="T:System.String"/>.
+            </summary>
+            <param name="Source">This <see cref="T:System.String"/>.</param>
+            <param name="Keep">The character other than digits to keep.</param>
+            <returns>A copy of this <see cref="T:System.String"/> where any characters that aren't digits or specified in <paramref name="Keep"/> have been removed.</returns>
+        </member>
+        <member name="M:Inv.Support.StringHelper.KeepAlphabetic(System.String,System.Char[])">
+            <summary>
+            Keep only alphabetic or specifically specified characters of <see cref="T:System.String"/>.
+            </summary>
+            <param name="Source">This <see cref="T:System.String"/>.</param>
+            <param name="Keep">The character other than alpha character to keep.</param>
+            <returns>A copy of this <see cref="T:System.String"/> where any characters that aren't alphabet characters or specified in <paramref name="Keep"/> have been removed.</returns>
+        </member>
+        <member name="M:Inv.Support.StringHelper.KeepOnly(System.String,System.Func{System.Char,System.Boolean},System.Char[])">
+            <summary>
+            Keep only characters that are validated by the Validate parameter or specifically allowed characters.
+            </summary>
+            <param name="Source">This <see cref="T:System.String"/>.</param>
+            <param name="Validate">The predicate that tests each character. Return true for allowed characters and false otherwise.</param>
+            <param name="Keep">The character other than digits to keep.</param>
+            <returns>A copy of this <see cref="T:System.String"/> where any characters that aren't allowed by <paramref name="Validate"/> or specified in <paramref name="Keep"/> have been removed.</returns>
+        </member>
+        <member name="M:Inv.Support.StringHelper.Strip(System.String,System.Char[])">
+            <summary>
+            Strip every occurrence of any character in <paramref name="StripArray"/> from this <see cref="T:System.String"/>.
+            </summary>
+            <param name="Source">This <see cref="T:System.String"/>.</param>
+            <param name="StripArray">The characters to strip from this <see cref="T:System.String"/>.</param>
+            <returns>A copy of this <see cref="T:System.String"/> where any characters in <paramref name="StripArray"/> have been removed.</returns>
+        </member>
+        <member name="M:Inv.Support.StringHelper.PascalCaseToSentenceCase(System.String)">
+            <summary>
+            Transform a Pascal case string to sentence case on the specified <see cref="T:System.String"/>.
+            </summary>
+            <param name="Source">This <see cref="T:System.String"/>.</param>
+            <returns>Sentence case version of this <see cref="T:System.String"/>.</returns>
+        </member>
+        <member name="M:Inv.Support.StringHelper.PascalCaseToTitleCase(System.String)">
+            <summary>
+            Transform a Pascal case string to title case on the specified <see cref="T:System.String"/>.
+            </summary>
+            <param name="Source">This <see cref="T:System.String"/>.</param>
+            <returns>Title case version of this <see cref="T:System.String"/>.</returns>
+        </member>
+        <member name="M:Inv.Support.StringHelper.StartsWithMatchLength(System.String,System.String)">
+            <summary>
+            Count the number of matching characters between this <see cref="T:System.String"/> and the specified <see cref="T:System.String"/>.
+            </summary>
+            <param name="Left">This <see cref="T:System.String"/>.</param>
+            <param name="Right">The <see cref="T:System.String"/> to compare to.</param>
+            <returns>The zero-based index of the first mismatch between this <see cref="T:System.String"/> and <paramref name="Right"/>.</returns>
+        </member>
+        <member name="M:Inv.Support.StringHelper.LevenshteinDistance(System.String,System.String)">
+            <summary>
+            Calculate the Levenshtein distance between this <see cref="T:System.String"/> and another <see cref="T:System.String"/>.
+            </summary>
+            <param name="Source">This <see cref="T:System.String"/>.</param>
+            <param name="Target">The <see cref="T:System.String"/> to calculate the Levenshtein distance to.</param>
+            <returns>The Levenshtein distance between this <see cref="T:System.String"/> and <paramref name="Target"/>.</returns>
+        </member>
+        <member name="M:Inv.Support.StringHelper.Split(System.String,System.String[])">
+            <summary>
+            Returns a string array that contains the substrings in this string that are delimited by elements of a specified string array. A parameter specifies whether to return empty array elements.
+            </summary>
+            <param name="Source">This <see cref="T:System.String"/>.</param>
+            <param name="Separator">The strings to split the <see cref="T:System.String"/> with.</param>
+            <returns> An array whose elements contain the substrings in this string that are delimited by one or more strings in separator. For more information, see the Remarks section. </returns>
+        </member>
+        <member name="M:Inv.Support.StringHelper.ConvertToCSharpIdentifier(System.String)">
+            <summary>
+            Convert this <see cref="T:System.String"/> into a format valid for use as a C# identifier.
+            </summary>
+            <param name="Source">This <see cref="T:System.String"/>.</param>
+            <returns>This <see cref="T:System.String"/>, converted into a format valid for use as a C# identifier.</returns>
+        </member>
+        <member name="T:Inv.Support.StringListHelper">
+            <summary>
+            Static class with extension methods for lists of strings.
+            </summary>
+        </member>
+        <member name="M:Inv.Support.StringListHelper.PrependString(System.Collections.Generic.IList{System.String},System.String)">
+            <summary>
+            Prepend a string value to every element in this list.
+            </summary>
+            <param name="Source">This list.</param>
+            <param name="PrefixValue">The value to prepend.</param>
+            <returns>A new <see cref="T:System.Collections.Generic.List`1"/> containing every element in this list with <paramref name="PrefixValue"/> prepended to each element.</returns>
+        </member>
+        <member name="M:Inv.Support.StringListHelper.PrependFormat(System.Collections.Generic.IList{System.String},System.String,System.Object[])">
+            <summary>
+            Prepend a formatted string to every element in this list.
+            </summary>
+            <param name="Source">This list.</param>
+            <param name="PrefixFormat">The format string to prepend</param>
+            <param name="PrefixArguments">The arguments to insert into <paramref name="PrefixFormat"/>.</param>
+            <returns>A new <see cref="T:System.Collections.Generic.List`1"/> containing every element in this list with the formatted string prepended.</returns>
+        </member>
+        <member name="M:Inv.Support.StringListHelper.AsSeparatedText(System.Collections.Generic.IEnumerable{System.String},System.String,System.String)">
+            <summary>
+            Join the elements of the list together with the value of <paramref name="Separator"/>. Roughly equivalent to Perl's join().
+            </summary>
+            <param name="Source">This list.</param>
+            <param name="Separator">The string to join the elements with.</param>
+            <param name="FinalSeparator">The string to use as the separator between the final two elements (if necessary).</param>
+            <returns>A string containing each element of this list interspersed with <paramref name="Separator"/>.</returns>
+        </member>
+        <member name="T:Inv.Support.TypeHelper">
+            <summary>
+            <see cref="T:System.Type"/> extension methods.
+            </summary>
+        </member>
+        <member name="T:Inv.Support.HttpHelper">
+            <summary>
+            Http extension methods.
+            </summary>
+        </member>
+        <member name="T:Inv.Support.BitArrayHelper">
+            <summary>
+            <see cref="T:System.Collections.BitArray"/> extension methods.
+            </summary>
+        </member>
+        <member name="T:Inv.Support.TaskHelper">
+            <summary>
+            <see cref="T:System.Threading.Tasks.Task"/> extension methods.
+            </summary>
+        </member>
+        <member name="T:Inv.Support.CsvHelper">
+            <summary>
+            Csv helper methods.
+            </summary>
+        </member>
+        <member name="T:Inv.Support.ArrayHelper">
+            <summary>
+            Static class with extension methods for arrays.
+            </summary>
+        </member>
+        <member name="M:Inv.Support.ArrayHelper.Fill``1(``0[],``0)">
+            <summary>
+            Fill this array with a specified value.
+            </summary>
+            <typeparam name="T">The type of elements in this array.</typeparam>
+            <param name="Array">This array.</param>
+            <param name="Value">The value to fill the array with.</param>
+        </member>
+        <member name="M:Inv.Support.ArrayHelper.GeneratePermutations``1(``0[])">
+            <summary>
+            Generate all permutations of a given array.
+            The number of distinct permutations is equal to the factorial of given array's length.
+            The array new [] { 1, 2, 3, 4} will have 4! permutations = 24.
+            </summary>
+            <typeparam name="T"></typeparam>
+            <param name="Input"></param>
+            <returns></returns>
+        </member>
+        <member name="T:Inv.Support.StopwatchHelper">
+            <summary>
+            <see cref="T:System.Diagnostics.Stopwatch"/> extension methods.
+            </summary>
+        </member>
+        <member name="T:Inv.Support.ParallelHelper">
+            <summary>
+            Parallel helper methods.
+            </summary>
+        </member>
+        <member name="T:Inv.Support.XorCryptographer">
+            <summary>
+            Xor crytography extension methods.
+            </summary>
+        </member>
+        <member name="T:Inv.Support.EmailInvalid">
+            <summary>
+            Result of checking an email address.
+            </summary>
+        </member>
+        <member name="T:Inv.Support.EmailHelper">
+            <summary>
+            Email extension methods.
+            </summary>
+        </member>
+        <member name="T:Inv.Support.PhoneInvalid">
+            <summary>
+            Result of checking a phone number.
+            </summary>
+        </member>
+        <member name="T:Inv.Support.RandomHelper">
+            <summary>
+            <see cref="T:System.Random"/> extension methods.
+            </summary>
+        </member>
+        <member name="T:Inv.TransportQueue">
+            <summary>
+            Thread-safe abstraction for sending and receiving packets on a single transport flow (usually a TCP/IP socket).
+            Packets are sent and received in background tasks.
+            </summary>
+        </member>
+        <member name="P:Inv.TransportQueue.SentBytes">
+            <summary>
+            Tracks the total number of bytes sent.
+            </summary>
+        </member>
+        <member name="P:Inv.TransportQueue.ReceivedBytes">
+            <summary>
+            Tracks the total number of bytes received.
+            </summary>
+        </member>
+        <member name="M:Inv.TransportQueue.Start">
+            <summary>
+            Start the background tasks for sending and receiving packets.
+            </summary>
+        </member>
+        <member name="M:Inv.TransportQueue.Stop">
+            <summary>
+            Stop the background tasks for sending and receiving packets.
+            </summary>
+        </member>
+        <member name="M:Inv.TransportQueue.SendPacket(Inv.TransportPacket)">
+            <summary>
+            Add the packet to the send queue.
+            </summary>
+            <param name="Packet"></param>
+        </member>
+        <member name="M:Inv.TransportQueue.ReceivePacket">
+            <summary>
+            Waits until there is a packet to remove from the receive queue.
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Inv.TransportQueue.TryReceivePacket">
+            <summary>
+            Immediately takes the next packet from the receive queue or return null if there are no available packets.
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Inv.TransportQueue.TryReceivePacket(System.TimeSpan)">
+            <summary>
+            Takes the next packet from the receive queue and will Wait up to the specified time span for one to be received.
+            Returns null if there are no available packets within the specified time span.
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="T:Inv.Resource.Foundation">
+            <summary>
+            Used for loading files from embedded resources.
+            </summary>
+        </member>
+        <member name="M:Inv.Resource.Foundation.Import(System.Type,System.String)">
+            <summary>
+            Import the resource crate from the embedded resource.
+            </summary>
+            <param name="PackageType"></param>
+            <param name="PackagePath"></param>
+        </member>
+        <member name="M:Inv.Resource.TextReference.ToString">
+            <summary>
+            In case of implicit use where an object is expected (such as string.Format and $"").
+            </summary>
+            <returns></returns>
+        </member>
+    </members>
+</doc>
