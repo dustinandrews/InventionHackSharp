@@ -19,10 +19,10 @@ namespace MegaDungeon
 		public static Point CENTER = new Point(0,0);
 
 		public const int FLOOR = 848;
-		public const int VERTICALWALL = 830;
-		public const int HORIZWALL = 834;
-		public const int CORNERWALL = 832;
-		public const int CORRIDOR = 849;
+		public const int VERTICALWALL = 1058;
+		public const int HORIZWALL = 1058;
+		public const int CORNERWALL = 1058;
+		public const int CORRIDOR = 848;
 		public const int DARK = 829;
 		public const int DOOR = 844;
 		public const int PLAYER = 4;

@@ -6,6 +6,7 @@ using SixLabors.Primitives;
 using Newtonsoft.Json;
 using System.Collections.Generic;
 using MegaDungeon.Contracts;
+using SixLabors.ImageSharp.PixelFormats;
 
 namespace Portable
 {
@@ -64,7 +65,7 @@ namespace Portable
 			return GetBytesFromImage(tile);
 		}
 
-		private Image GetTileAsSLImage(int index)
+		public Image GetTileAsSLImage(int index)
 		{
 			var x = (index * _tileSize) % _tileset.Width;
 			var y = _tileSize * (int)((index * _tileSize) / _tileset.Width);
@@ -85,6 +86,18 @@ namespace Portable
 				memstream.Read(imgBytes, 0, imgBytes.Length);
 			}
 			return imgBytes;
+		}
+
+		Image DrawImageOnImageExample(Image tile)
+		{
+			var borderSize = 8;
+			var borderRect = new Rectangle(borderSize, 0, tile.Width - (borderSize * 2), borderSize);
+			var borderImage = tile.Clone(c => c.Crop(borderRect));
+			var point = new Point(borderSize, 0);
+			var newTile = new Image<Rgba32>(tile.Width, tile.Height);
+			newTile.Mutate( i => i.DrawImage(borderImage,point, 1.0F));
+			
+			return newTile;
 		}
 	}
 }
