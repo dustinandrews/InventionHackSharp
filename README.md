@@ -42,5 +42,9 @@ I am happy to recieve any pull requests and consider them. As the point of this 
  - Add unit tests that will either help downstream authors, be explanatory code, or both
  - Anything else that makes this a better starting point without making it too complex.
 
+## TODO:
+
+ - Consider changing the MegaDungeon namespaces. (MegaDungeon is my own fork where I will develop my unique game.)
+
 ## Backstory
 After stumbling on [Pathos](https://pathos.azurewebsites.net/) the Nethack Reboot I learned that the author, Callan Hodgskin, built it on top of a code-first API capable of building for Windows, iOS, Android and Linux. I checked out the API and found it to be excellent. It re-ignited my desire to create a roguelike. I also want to promote Invention as a platform, so I created this repository as a basic starting point for roguelike developers who want to program in C#.
