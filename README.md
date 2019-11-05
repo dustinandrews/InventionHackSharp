@@ -18,6 +18,50 @@ Use the Invention API to create a basic roguelike with all the features of the [
  - Not too buggy!
  - Invention is a very good UI engine and the starter game only scratches the surface of whats possible with it.
 
+## Cloning, Building and running in Windows 10
+There may be other valid ways to build this.
+#### Pre-Reqs
+
+ - Visual Studio 2017/2019 community edition
+ - Git
+ - [Dotnet 4.6 developer pack](https://www.microsoft.com/en-us/download/details.aspx?id=53321)
+ - Optional: [Visual Studio Code](https://code.visualstudio.com/)
+
+#### Clone
+
+Change to a directory where you like to clone stuff.
+
+    C:\local> git clone https://github.com/dustinandrews/InventionHackSharp.git
+    C:\local> cd InventionHackSharp
+    
+    
+#### Build and test
+    C:\local\InventionHackSharp>dotnet build
+    ...
+    C:\local\InventionHackSharp\bin\Debug\EntityComponentSystemCSharp\net4.6.1\EntityComponentSystemCSharp.dll
+    Engine -> C:\local\InventionHackSharp\bin\Debug\Engine\net461\Engine.dll
+    Portable -> C:\local\InventionHackSharp\bin\Debug\Portable\net461\Portable.dll
+    InventionUiWpf -> C:\local\InventionHackSharp\bin\Debug\InventionUiWpf\net461\InventionUiWpf.exe
+    
+    Build succeeded.
+        0 Warning(s)
+        0 Error(s)
+        
+    C:\local\InventionHackSharp>dotnet test
+    ...
+        Test Run Successful.
+    Total tests: 20
+         Passed: 20
+     Total time: 1.5644 Seconds
+    
+    Test Run Successful.
+    Total tests: 4
+         Passed: 4
+     Total time: 4.6779 Seconds
+     
+#### Run the game
+    C:\local\InventionHackSharp\bin\Debug\InventionUiWpf\net461\InventionUiWpf.exe
+
 ## Tour
 If you think this is cool and want to fork the repo to create your own roguelike please help yourself! Here is a brief description of the projects inside.
 #### Engine
