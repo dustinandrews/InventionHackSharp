@@ -75,12 +75,12 @@ namespace FeatureDetector
 		/// <returns>Matrix of multiplied values</returns>
 		public static int[] MultiplyFilter(int[] sample, int[] filter)
 		{
-			if(sample.Length != filter.Length)
+			if (sample.Length != filter.Length)
 			{
 				throw new ArgumentException("sample and filter must be the same size.");
 			}
 			var outArray = new int[filter.Length];
-			for(int i = 0; i < filter.Length; i++)
+			for (int i = 0; i < filter.Length; i++)
 			{
 				outArray[i] = sample[i] * filter[i];
 			}
@@ -148,22 +148,66 @@ namespace FeatureDetector
 			{
 				for (int j = 0; j < array.GetLength(1); j++)
 				{
-					total += array[i,j];
+					total += array[i, j];
 				}
 			}
 			return total;
 		}
 
-		public static int[] Flatten(this int[,] sample)
+		public static int Min(this int[,] array)
+		{
+			var min = int.MaxValue;
+			for (int i = 0; i < array.GetLength(0); i++)
+			{
+				for (int j = 0; j < array.GetLength(1); j++)
+				{
+					min = Math.Min(array[i, j], min);
+				}
+			}
+			return min;
+		}
+
+		public static int Max(this int[,] array)
+		{
+			var max = int.MinValue;
+			for (int i = 0; i < array.GetLength(0); i++)
+			{
+				for (int j = 0; j < array.GetLength(1); j++)
+				{
+					max = Math.Max(array[i, j], max);
+				}
+			}
+			return max;
+		}
+
+		public static byte[] FlattenToByteArray(this int[,] sample)
 		{
 			var width = sample.GetLength(0);
 			var height = sample.GetLength(1);
-			int[] flat = new int[ width * height];
+			byte[] flat = new byte[width * height];
 			for (int i = 0; i < width; i++)
 			{
 				for (int j = 0; j < height; j++)
 				{
-					flat[i + (j * width)] = sample[i,j];
+					if(sample[i,j] > byte.MaxValue || sample[i,j] < byte.MinValue)
+					{
+						throw new IndexOutOfRangeException($"[{i},{j}] == '{sample[i,j]}' out of range for byte conversion");
+					}
+					flat[i + (j * width)] = (byte)sample[i, j];
+				}
+			}
+			return flat;
+		}
+		public static int[] Flatten(this int[,] sample)
+		{
+			var width = sample.GetLength(0);
+			var height = sample.GetLength(1);
+			int[] flat = new int[width * height];
+			for (int i = 0; i < width; i++)
+			{
+				for (int j = 0; j < height; j++)
+				{
+					flat[i + (j * width)] = sample[i, j];
 				}
 			}
 			return flat;
@@ -186,20 +230,20 @@ namespace FeatureDetector
 		{
 			var sb = new StringBuilder();
 			var perRow = sample.Length / numRows;
-			for(int i = 0; i < sample.Length; i++)
+			for (int i = 0; i < sample.Length; i++)
 			{
 				var output = sample[i].ToString();
-				if(asMap)
+				if (asMap)
 				{
 					output = sample[i] == 0 ? "." : "#";
 				}
-				
+
 				sb.Append(output);
-				if(i < sample.Length -1 && ! asMap)
+				if (i < sample.Length - 1 && !asMap)
 				{
 					sb.Append(", ");
 				}
-				if((i + 1) % perRow == 0)
+				if ((i + 1) % perRow == 0)
 				{
 					sb.AppendLine();
 				}

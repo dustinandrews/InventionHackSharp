@@ -1,10 +1,9 @@
 using System.Diagnostics;
 using NUnit.Framework;
 
-
 namespace FeatureDetector
 {
-	[TestFixture]
+    [TestFixture]
 	public class DetectorTests
 	{
 		[Test]
@@ -50,29 +49,18 @@ namespace FeatureDetector
 		public void Temp()
 		{
 			var detector = new MapFeatureDetector(mapIntArray);
-			// var conv = detector.ConvolveFilter(FeatureFilters.Neighbors);
-			// var padded = detector.PaddedArrayFromSource(conv, 1);
-			// var conv2 = detector.ConvolveFilter(FeatureFilters.Neighbors, padded);
-			// Debug.WriteLine(detector.ToMapString(conv2));
-
-			IterateMaps(detector, FeatureFilters.Vertical);
-		}
-
-		private static void IterateMaps(MapFeatureDetector detector, int[,] matrix)
-		{
-			var conv = detector.ConvolveFilter(matrix, 1);
+			var conv = MapFeatureDetector.ConvolveFilter(mapIntArray, FeatureFilters.NeighborCount);
 			IterateMaps(detector, conv);
 		}
 
-		private static void IterateMaps(MapFeatureDetector detector, NumSharp.NDArray conv)
+		private static void IterateMaps(MapFeatureDetector detector, int[,] conv)
 		{
-			var min = (int)conv.min().Data<int>()[0];
-			var max = (int)conv.max().Data<int>()[0];
-			var arr = (int[,])conv.ToMuliDimArray<int>();
+			var min = conv.Min();
+			var max = conv.Max();
 			for (int i = min; i <= max; i++)
 			{
 				var splats = detector.FilterArray(conv, i);
-				if(splats.sum().Data<int>()[0] > 0)
+				if(splats.Total() > 0)
 				{
 					Debug.WriteLine(i);
 					Debug.WriteLine(detector.ToMapString(splats));
