@@ -60,7 +60,7 @@ namespace FeatureDetector
 
 		private static void IterateMaps(MapFeatureDetector detector, int[,] matrix)
 		{
-			var conv = detector.ConvolveFilter(matrix);
+			var conv = detector.ConvolveFilter(matrix, 1);
 			IterateMaps(detector, conv);
 		}
 

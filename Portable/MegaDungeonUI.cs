@@ -45,7 +45,7 @@ namespace Portable
 			_verticalCellCount = verticalCellCount;
 
 			_tileManager = new TileManager("absurd64.bmp", System.IO.File.ReadAllText("tiledata.json"));
-			_engine = new MegaDungeon.Engine(horizontalCellCount, verticalCellCount, _tileManager);
+			
 
 			_surface = surface;
 			_cloth = CreateCloth();
@@ -80,6 +80,8 @@ namespace Portable
 			_gameOver.Justify.Center();
 
 			InitUiCommands();
+
+			_engine = new MegaDungeon.Engine(horizontalCellCount, verticalCellCount, _tileManager);
 		}
 
 		/// <summary>
@@ -179,7 +181,15 @@ namespace Portable
 		void Cloth_DrawEvent(DrawContract dc, Patch patch)
 		{
 			var point = new RogueSharp.Point(patch.X, patch.Y);
-			int glyph = _engine.Floor[patch.X, patch.Y];
+			int glyph;
+			if(_showDebugInfo)
+			{
+				glyph = _engine.RevealedFloor[patch.X, patch.Y];
+			}
+			else
+			{
+				glyph = _engine.Floor[patch.X, patch.Y];
+			}
 
 			Inv.Image image;
 			if(_engine.Viewable.Contains(point))

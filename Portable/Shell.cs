@@ -16,7 +16,7 @@ namespace Portable
 			var h = application.Window.Height;
 			var w = application.Window.Width;
 			var start = DateTime.UtcNow;
-			var ui = new MegaDungeonUI(surface, 60, 40);
+			var ui = new MegaDungeonUI(surface, 200, 100);
 			var end = DateTime.UtcNow;
 			var ms = (end - start).TotalMilliseconds;
 			Console.WriteLine($"Initialized in {ms} milliseconds");

@@ -29,7 +29,7 @@ namespace EntityComponentSystemCSharp.Systems
 			var allComponents = entity.GetComponents();
 			var current = entity.GetComponent<Location>();
 			var desired = entity.GetComponent<Destination>();
-			if(_map != null && desired != null)
+			if(_map != null && desired != null && desired.X >= 0 && desired.X < _map.Width && desired.Y >= 0 && desired.Y < _map.Height)
 			{
 				var start = _map.GetCell(current.X, current.Y);
 				var dest = _map.GetCell(desired.X, desired.Y);
