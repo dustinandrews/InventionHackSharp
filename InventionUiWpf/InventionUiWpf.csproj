@@ -10,6 +10,15 @@
 	</PropertyGroup>
 
 	<ItemGroup>
+	  <Content Include="..\absurd64.bmp" Link="Assets\absurd64.bmp">
+	    <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+	  </Content>
+	  <Content Include="..\tiledata.json" Link="Assets\tiledata.json">
+	    <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+	  </Content>
+	</ItemGroup>
+
+	<ItemGroup>
 		<Reference Include="Inv.Library">
 		  <HintPath>..\lib\Inv.Library.dll</HintPath>
 		</Reference>
@@ -30,6 +39,10 @@
 	<ItemGroup>
 		<ProjectReference Include="..\Portable\Portable.csproj" />
 		<ProjectReference Include="..\Engine\Engine.csproj" />
+	</ItemGroup>
+
+	<ItemGroup>
+	  <Folder Include="Assets\" />
 	</ItemGroup>
 
 </Project>
