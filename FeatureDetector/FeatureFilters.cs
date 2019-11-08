@@ -1,4 +1,5 @@
 using System;
+using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 
@@ -180,6 +181,38 @@ namespace FeatureDetector
 			return max;
 		}
 
+		public static int[] UniqueValues (this int[,] array)
+		{
+			var flat = array.Flatten();
+			var hashSet = new HashSet<int>();
+			foreach(var v in flat)
+			{
+				hashSet.Add(v);
+			}
+			return hashSet.ToArray();
+		}
+
+		/// <summary>
+		/// Pointwise multiply two int[,] arrays
+		/// </summary>
+		/// <param name="a"></param>
+		/// <param name="b"></param>
+		/// <returns></returns>
+		public static int[,] Multiply(this int[,] a, int[,] b)
+		{
+			// TODO: Check arrays are same shape.
+			var outArr = (int[,]) a.Clone();
+			for (int x = 0; x < a.GetLength(0); x++)
+			{
+				for (int y = 0; y < a.GetLength(1); y++)
+				{
+					outArr[x,y] = a[x,y] * b[x,y];
+				}
+				
+			}
+			return outArr;
+		}
+
 		public static byte[] FlattenToByteArray(this int[,] sample)
 		{
 			var width = sample.GetLength(0);
@@ -236,6 +269,10 @@ namespace FeatureDetector
 				if (asMap)
 				{
 					output = sample[i] == 0 ? "." : "#";
+					if (sample[i] > 1)
+					{
+						output = sample[i].ToString();
+					}
 				}
 
 				sb.Append(output);

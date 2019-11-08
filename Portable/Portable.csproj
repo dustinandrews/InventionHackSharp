@@ -1,6 +1,6 @@
 <Project Sdk="Microsoft.NET.Sdk">
 	<PropertyGroup>
-		<TargetFrameworks>net461</TargetFrameworks>
+		<TargetFramework>net461</TargetFramework>
 		<OutputPath>$(SolutionDir)\bin\$(Configuration)\$(AssemblyName)\</OutputPath>
 	</PropertyGroup>
 	<ItemGroup>

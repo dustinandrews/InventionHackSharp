@@ -10,12 +10,10 @@ using FeatureDetector;
 using MegaDungeon.Contracts;
 using static MegaDungeon.EngineConstants;
 using static EntityComponentSystemCSharp.EntityManager;
-using RogueSharp.MapCreation;
-using Engine;
 
-namespace MegaDungeon 
+namespace MegaDungeon
 {
-	public class Engine : IEngine
+    public class Engine : IEngine
 	{
 		int _doorPercentChance = 50; // Percentage of possible doors that will actually spawn.
 		int _messageLimit = 5;
@@ -326,68 +324,8 @@ namespace MegaDungeon
 
 		private void RandomizeCave()
 		{
-			var randomCaves = new CaveMapCreationStrategy<RogueSharp.Map>(_width, _height);
+			var randomCaves = new CaveMapCreationStrategy<RogueSharp.Map>(_width, _height, 0.65);
 			_map = randomCaves.CreateMap();
-		}
-	}
-
-	public class CaveMapCreationStrategy<T> : IMapCreationStrategy<T> where T : IMap, new()
-	{
-		int _width;
-		int _height;
-		double _density;
-		public CaveMapCreationStrategy(int width, int height, double density = 0.45)
-		{
-			_width = width;
-			_height = height;
-			_density = density;
-		}
-
-		public T CreateMap()
-		{
-			var cave = CellularAutomata.GenerateCaves(_width, _height, _density);
-
-			var bigroom = new RogueSharp.MapCreation.BorderOnlyMapCreationStrategy<RogueSharp.Map>(_width, _height);
-			var map = bigroom.CreateMap();
-			var pathfinder = new RoyT.AStar.Grid(_width, _height);
-			for (int x = 0; x < _width; x++)
-			{
-				for (int y = 0; y < _height; y++)
-				{
-					pathfinder.SetCellCost(new RoyT.AStar.Position(x,y), (cave[x,y] + 1) * 10);
-				}
-			}
-
-			var midW = _width / 2;
-			var midH = _height / 2;
-			var midCell = new RoyT.AStar.Position(midW, midH);
-			// Debug.WriteLine(cave.ToRowString(true));
-			// for (int x = 0; x < _width; x++)
-			// {
-			// 	for (int y = 0; y < _height; y++)
-			// 	{
-			// 		if(cave[x,y] == 0)
-			// 		{
-			// 			var path = pathfinder.GetPath(midCell, new RoyT.AStar.Position(x,y), RoyT.AStar.MovementPatterns.LateralOnly);
-			// 			foreach(var pos in path)
-			// 			{
-			// 				cave[pos.X, pos.Y] = 0;
-			// 			}
-			// 		}
-			// 	}
-			// }
-
-			Debug.WriteLine(cave.ToRowString(true));
-			for (int x = 0; x < _width; x++)
-			{
-				for (int y = 0; y < _height; y++)
-				{
-					var open = cave[x,y] == 0;
-					map.SetCellProperties(x, y, open, open, false);
-				}
-			}
-
-			return (T)(object)map;
 		}
 	}
 

@@ -53,6 +53,13 @@ namespace FeatureDetector
 			IterateMaps(detector, conv);
 		}
 
+		[Test]
+		public void GetApproximateRoomCenter()
+		{
+			var regions = MapFeatureDetector.GetRegions(mapIntArray);
+			var approxCenter = MapFeatureDetector.GetApproximateRoomCenter(regions, 2);
+		}
+
 		private static void IterateMaps(MapFeatureDetector detector, int[,] conv)
 		{
 			var min = conv.Min();
@@ -67,6 +74,26 @@ namespace FeatureDetector
 				}
 			}
 		}
+
+
+		[Test]
+		public void FloodFillTest()
+		{
+			var testArray = (int[,]) mapIntArray.Clone();
+			MapFeatureDetector.AdamMilFill(testArray, 10, 9);
+			Assert.AreEqual(1, testArray[10, 9]);
+		}
+
+		[Test]
+		public void RegionTest()
+		{
+			var regionArray = MapFeatureDetector.GetRegions(mapIntArray);
+			Debug.WriteLine(regionArray.ToRowString(asMap: true));
+			Assert.AreEqual(3, regionArray[9,12]);
+			Assert.AreEqual(4, regionArray[14,27]);
+			Assert.AreEqual(2, regionArray[56,23]);
+		}
+
 
 		int[,] mapIntArray = new int[,]{
 {1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,0,0,0,0,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1},
