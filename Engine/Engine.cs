@@ -208,7 +208,7 @@ namespace MegaDungeon
 			{
 				for(int y = 0; y < _height; y++)
 				{
-					_floor[x,y] = DARK;
+					_floor[x,y] = DIRT;
 					if(mapArray[x,y] == 0) 
 					{
 						_floor[x,y] = FLOOR;

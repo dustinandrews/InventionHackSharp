@@ -21,6 +21,7 @@ namespace MegaDungeon
 		public const int FLOOR = 848;
 		public const int TILEABLEWALL = 1058;
 		public const int DARK = 829;
+		public const int DIRT = 1013;
 		public const int DOOR = 844;
 		public const int PLAYER = 348;
 

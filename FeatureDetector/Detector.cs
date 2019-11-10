@@ -25,7 +25,7 @@ namespace FeatureDetector
 			{
 				for (int j = 0; j < neighbors.GetLength(1); j++)
 				{
-					if (neighbors[i, j] < 8 || _mapArray[i, j] == 1)
+					if (neighbors[i, j] < 8 && _mapArray[i, j] == 1)
 					{
 						outputArray[i, j] = 1;
 					}

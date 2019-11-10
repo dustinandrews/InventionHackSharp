@@ -195,7 +195,7 @@ namespace Portable
 			}
 
 			Inv.Image image;
-			if(_engine.Viewable.Contains(point))
+			if(_engine.Viewable.Contains(point) || _showDebugInfo)
 			{
 				if(_actorLocationMap.ContainsKey(patch.X + (patch.Y * _horizontalCellCount)))
 				{	
