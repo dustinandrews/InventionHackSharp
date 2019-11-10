@@ -1,5 +1,6 @@
 using System.Collections.Generic;
 using EntityComponentSystemCSharp.Systems;
+using MegaDungeon.Contracts;
 using RogueSharp;
 
 namespace EntityComponentSystemCSharp
@@ -36,6 +37,11 @@ namespace EntityComponentSystemCSharp
 		}
 
 		public HashSet<Point> GetPlayerViewable()
+		{
+			throw new System.NotImplementedException();
+		}
+
+		public ITileManager GetTileManager()
 		{
 			throw new System.NotImplementedException();
 		}

@@ -1,5 +1,6 @@
 using System.Collections.Generic;
 using EntityComponentSystemCSharp.Systems;
+using MegaDungeon.Contracts;
 using RogueSharp;
 
 namespace EntityComponentSystemCSharp
@@ -11,5 +12,6 @@ namespace EntityComponentSystemCSharp
 		ISystemLogger GetLogger();
 		HashSet<Point> GetPlayerViewable();
 		Point GetPlayerLocation();
+		ITileManager GetTileManager();
 	}
 }

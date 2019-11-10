@@ -12,10 +12,10 @@ namespace MegaDungeon
 			_entityManager = entityManager;
 		}
 
-		public EntityManager.Entity GetPlayerActor()
+		public EntityManager.Entity GetPlayerActor(int playerGlyph)
 		{
 			var actor = CreateActor(
-				PLAYER,
+				playerGlyph,
 				name: "Valkerie",
 				maxHealth: 10,
 				defense: 10,

@@ -10,9 +10,13 @@ namespace EntityComponentSystemCSharp.Systems
 	{
 		bool _isClear = true;
 		RogueSharp.PathFinder _pathfinder;
+		int _nsOpenDoorGlyph, _ewOpenDoorGlyph;
 		public MovementSystem(IEngine engine) : base(engine)
 		{
 			_pathfinder = new RogueSharp.PathFinder(_map, 1);
+			var tm = _engine.GetTileManager();
+			_nsOpenDoorGlyph = tm.GetGlyphNumByName("open door NS");
+			_ewOpenDoorGlyph = tm.GetGlyphNumByName("open door EW");
 		}
 
 		public override void Run(Entity entity)
@@ -76,14 +80,13 @@ namespace EntityComponentSystemCSharp.Systems
 				door.IsOpen = true;
 				if(door.Orientation == Orientation.N || door.Orientation == Orientation.S)
 				{
-					glyph.glyph = 842;
+					glyph.glyph = _nsOpenDoorGlyph;
 				}
 				else
 				{
-					glyph.glyph = 843;
+					glyph.glyph = _ewOpenDoorGlyph;
 				}
 				_map.SetCellProperties(othersLocation.X, othersLocation.Y, isTransparent: true, isWalkable: true);
-				// 842 hopen, 843 vopen, 844
 				handled = true;
 			}
 			return handled;

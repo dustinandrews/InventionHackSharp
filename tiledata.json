@@ -63,7 +63,7 @@
             "type": "monster"
         },
         "15": {
-            "name": "werejackal",
+            "name": "jackalwere",
             "type": "monster"
         },
         "16": {
@@ -87,7 +87,7 @@
             "type": "monster"
         },
         "21": {
-            "name": "werewolf",
+            "name": "wolfwere",
             "type": "monster"
         },
         "22": {
@@ -111,7 +111,7 @@
             "type": "monster"
         },
         "27": {
-            "name": "unused",
+            "name": "unused12",
             "type": "monster"
         },
         "28": {
@@ -135,7 +135,7 @@
             "type": "monster"
         },
         "33": {
-            "name": "unused",
+            "name": "unused1",
             "type": "monster"
         },
         "34": {
@@ -371,7 +371,7 @@
             "type": "monster"
         },
         "92": {
-            "name": "wererat",
+            "name": "ratwere",
             "type": "monster"
         },
         "93": {
@@ -547,7 +547,7 @@
             "type": "monster"
         },
         "136": {
-            "name": "unused",
+            "name": "unused2",
             "type": "monster"
         },
         "137": {
@@ -587,7 +587,7 @@
             "type": "monster"
         },
         "146": {
-            "name": "unused",
+            "name": "unused4",
             "type": "monster"
         },
         "147": {
@@ -723,7 +723,7 @@
             "type": "monster"
         },
         "180": {
-            "name": "unused",
+            "name": "jabberwock2",
             "type": "monster"
         },
         "181": {
@@ -919,7 +919,7 @@
             "type": "monster"
         },
         "229": {
-            "name": "unused",
+            "name": "unused5",
             "type": "monster"
         },
         "230": {
@@ -1159,7 +1159,7 @@
             "type": "monster"
         },
         "289": {
-            "name": "unused",
+            "name": "unused7",
             "type": "monster"
         },
         "290": {
@@ -1415,11 +1415,11 @@
             "type": "monster"
         },
         "353": {
-            "name": "unused",
+            "name": "unused8",
             "type": "monster"
         },
         "354": {
-            "name": "unused",
+            "name": "unused9",
             "type": "monster"
         },
         "355": {
@@ -1475,7 +1475,7 @@
             "type": "monster"
         },
         "368": {
-            "name": "unused",
+            "name": "unused10",
             "type": "monster"
         },
         "369": {
@@ -1527,7 +1527,7 @@
             "type": "monster"
         },
         "381": {
-            "name": "unused",
+            "name": "11",
             "type": "monster"
         },
         "382": {
@@ -2179,116 +2179,116 @@
             "type": "object"
         },
         "546": {
-            "name": "adornment",
-            "type": "object"
+            "name": "ring of adornment",
+            "type": "ring"
         },
         "547": {
-            "name": "gain strength",
-            "type": "object"
+            "name": "ring of gain strength",
+            "type": "ring"
         },
         "548": {
-            "name": "gain constitution",
-            "type": "object"
+            "name": "ring of gain constitution",
+            "type": "ring"
         },
         "549": {
-            "name": "increase accuracy",
-            "type": "object"
+            "name": "ring of increase accuracy",
+            "type": "ring"
         },
         "550": {
-            "name": "increase damage",
-            "type": "object"
+            "name": "ring of increase damage",
+            "type": "ring"
         },
         "551": {
-            "name": "protection",
-            "type": "object"
+            "name": "ring of protection",
+            "type": "ring"
         },
         "552": {
-            "name": "regeneration",
-            "type": "object"
+            "name": "ring of regeneration",
+            "type": "ring"
         },
         "553": {
-            "name": "searching",
-            "type": "object"
+            "name": "ring of searching",
+            "type": "ring"
         },
         "554": {
-            "name": "stealth",
-            "type": "object"
+            "name": "ring of stealth",
+            "type": "ring"
         },
         "555": {
-            "name": "sustain ability",
-            "type": "object"
+            "name": "ring of sustain ability",
+            "type": "ring"
         },
         "556": {
-            "name": "levitation",
-            "type": "object"
+            "name": "ring of levitation",
+            "type": "ring"
         },
         "557": {
-            "name": "hunger",
-            "type": "object"
+            "name": "ring of hunger",
+            "type": "ring"
         },
         "558": {
-            "name": "aggravate monster",
-            "type": "object"
+            "name": "ring of aggravate monster",
+            "type": "ring"
         },
         "559": {
-            "name": "conflict",
-            "type": "object"
+            "name": "ring of conflict",
+            "type": "ring"
         },
         "560": {
-            "name": "warning",
-            "type": "object"
+            "name": "ring of warning",
+            "type": "ring"
         },
         "561": {
-            "name": "poison resistance",
-            "type": "object"
+            "name": "ring of poison resistance",
+            "type": "ring"
         },
         "562": {
-            "name": "fire resistance",
-            "type": "object"
+            "name": "ring of fire resistance",
+            "type": "ring"
         },
         "563": {
-            "name": "cold resistance",
-            "type": "object"
+            "name": "ring of cold resistance",
+            "type": "ring"
         },
         "564": {
-            "name": "shock resistance",
-            "type": "object"
+            "name": "ring of shock resistance",
+            "type": "ring"
         },
         "565": {
-            "name": "free action",
-            "type": "object"
+            "name": "ring of free action",
+            "type": "ring"
         },
         "566": {
-            "name": "slow digestion",
-            "type": "object"
+            "name": "ring of slow digestion",
+            "type": "ring"
         },
         "567": {
-            "name": "teleportation",
-            "type": "object"
+            "name": "ring of teleportation",
+            "type": "ring"
         },
         "568": {
-            "name": "teleport control",
-            "type": "object"
+            "name": "ring of teleport control",
+            "type": "ring"
         },
         "569": {
-            "name": "polymorph",
-            "type": "object"
+            "name": "ring of polymorph",
+            "type": "ring"
         },
         "570": {
-            "name": "polymorph control",
-            "type": "object"
+            "name": "ring of polymorph control",
+            "type": "ring"
         },
         "571": {
-            "name": "invisibility",
-            "type": "object"
+            "name": "ring of invisibility",
+            "type": "ring"
         },
         "572": {
-            "name": "see invisible",
+            "name": "ring of see invisible",
             "type": "object"
         },
         "573": {
-            "name": "protection from shape changers",
-            "type": "object"
+            "name": "ring of protection from shape changers",
+            "type": "ring"
         },
         "574": {
             "name": "amulet of ESP",
@@ -2451,11 +2451,11 @@
             "type": "object"
         },
         "614": {
-            "name": "land mine",
+            "name": "disarmed land mine",
             "type": "object"
         },
         "615": {
-            "name": "beartrap",
+            "name": "disarmed bear trap",
             "type": "object"
         },
         "616": {
@@ -2651,379 +2651,379 @@
             "type": "object"
         },
         "664": {
-            "name": "gain ability",
+            "name": "potion of gain ability",
             "type": "object"
         },
         "665": {
-            "name": "restore ability",
+            "name": "potion of restore ability",
             "type": "object"
         },
         "666": {
-            "name": "confusion",
+            "name": "potion of confusion",
             "type": "object"
         },
         "667": {
-            "name": "blindness",
+            "name": "potion of blindness",
             "type": "object"
         },
         "668": {
-            "name": "paralysis",
+            "name": "potion of paralysis",
             "type": "object"
         },
         "669": {
-            "name": "speed",
+            "name": "potion of speed",
             "type": "object"
         },
         "670": {
-            "name": "levitation",
+            "name": "potion of levitation",
             "type": "object"
         },
         "671": {
-            "name": "hallucination",
+            "name": "potion of hallucination",
             "type": "object"
         },
         "672": {
-            "name": "invisibility",
+            "name": "potion of invisibility",
             "type": "object"
         },
         "673": {
-            "name": "see invisible",
+            "name": "potion of see invisible",
             "type": "object"
         },
         "674": {
-            "name": "healing",
+            "name": "potion of healing",
             "type": "object"
         },
         "675": {
-            "name": "extra healing",
+            "name": "potion of extra healing",
             "type": "object"
         },
         "676": {
-            "name": "gain level",
+            "name": "potion of gain level",
             "type": "object"
         },
         "677": {
-            "name": "enlightenment",
+            "name": "potion of enlightenment",
             "type": "object"
         },
         "678": {
-            "name": "monster detection",
+            "name": "potion of monster detection",
             "type": "object"
         },
         "679": {
-            "name": "object detection",
+            "name": "potion of object detection",
             "type": "object"
         },
         "680": {
-            "name": "gain energy",
+            "name": "potion of gain energy",
             "type": "object"
         },
         "681": {
-            "name": "sleeping",
+            "name": "potion of sleeping",
             "type": "object"
         },
         "682": {
-            "name": "full healing",
+            "name": "potion of full healing",
             "type": "object"
         },
         "683": {
-            "name": "polymorph",
+            "name": "potion of polymorph",
             "type": "object"
         },
         "684": {
-            "name": "booze",
+            "name": "potion of booze",
             "type": "object"
         },
         "685": {
-            "name": "sickness",
+            "name": "potion of sickness",
             "type": "object"
         },
         "686": {
-            "name": "fruit juice",
+            "name": "potion of fruit juice",
             "type": "object"
         },
         "687": {
-            "name": "acid",
+            "name": "potion of acid",
             "type": "object"
         },
         "688": {
-            "name": "oil",
+            "name": "potion of oil",
             "type": "object"
         },
         "689": {
-            "name": "water",
+            "name": "potion of water",
             "type": "object"
         },
         "690": {
-            "name": "enchant armor",
+            "name": "scroll of enchant armor",
             "type": "object"
         },
         "691": {
-            "name": "destroy armor",
+            "name": "scroll of destroy armor",
             "type": "object"
         },
         "692": {
-            "name": "confuse monster",
+            "name": "scroll of confuse monster",
             "type": "object"
         },
         "693": {
-            "name": "scare monster",
+            "name": "scroll of scare monster",
             "type": "object"
         },
         "694": {
-            "name": "remove curse",
+            "name": "scroll of remove curse",
             "type": "object"
         },
         "695": {
-            "name": "enchant weapon",
+            "name": "scroll of enchant weapon",
             "type": "object"
         },
         "696": {
-            "name": "create monster",
+            "name": "scroll of create monster",
             "type": "object"
         },
         "697": {
-            "name": "taming",
+            "name": "scroll of taming",
             "type": "object"
         },
         "698": {
-            "name": "genocide",
+            "name": "scroll of genocide",
             "type": "object"
         },
         "699": {
-            "name": "light",
+            "name": "scroll of light",
             "type": "object"
         },
         "700": {
-            "name": "teleportation",
+            "name": "scroll of teleportation",
             "type": "object"
         },
         "701": {
-            "name": "gold detection",
+            "name": "scroll of gold detection",
             "type": "object"
         },
         "702": {
-            "name": "food detection",
+            "name": "scroll of food detection",
             "type": "object"
         },
         "703": {
-            "name": "identify",
+            "name": "scroll of identify",
             "type": "object"
         },
         "704": {
-            "name": "magic mapping",
+            "name": "scroll of magic mapping",
             "type": "object"
         },
         "705": {
-            "name": "amnesia",
+            "name": "scroll of amnesia",
             "type": "object"
         },
         "706": {
-            "name": "fire",
+            "name": "scroll of fire",
             "type": "object"
         },
         "707": {
-            "name": "earth",
+            "name": "scroll of earth",
             "type": "object"
         },
         "708": {
-            "name": "punishment",
+            "name": "scroll of punishment",
             "type": "object"
         },
         "709": {
-            "name": "charging",
+            "name": "scroll of charging",
             "type": "object"
         },
         "710": {
-            "name": "stinking cloud",
+            "name": "scroll of stinking cloud",
             "type": "object"
         },
         "711": {
-            "name": "FOOBIE BLETCH",
+            "name": "scroll of FOOBIE BLETCH",
             "type": "object"
         },
         "712": {
-            "name": "TEMOV",
+            "name": "scroll of TEMOV",
             "type": "object"
         },
         "713": {
-            "name": "GARVEN DEH",
+            "name": "scroll of GARVEN DEH",
             "type": "object"
         },
         "714": {
-            "name": "READ ME",
+            "name": "scroll of READ ME",
             "type": "object"
         },
         "715": {
-            "name": "mail",
+            "name": "scroll of mail",
             "type": "object"
         },
         "716": {
-            "name": "blank paper",
+            "name": "scroll of blank paper",
             "type": "object"
         },
         "717": {
-            "name": "dig",
+            "name": "dig spellbook",
             "type": "object"
         },
         "718": {
-            "name": "magic missile",
+            "name": "magic missile spellbook",
             "type": "object"
         },
         "719": {
-            "name": "fireball",
+            "name": "fireball spellbook",
             "type": "object"
         },
         "720": {
-            "name": "cone of cold",
+            "name": "cone of cold spellbook",
             "type": "object"
         },
         "721": {
-            "name": "sleep",
+            "name": "sleep spellbook",
             "type": "object"
         },
         "722": {
-            "name": "finger of death",
+            "name": "finger of death spellbook",
             "type": "object"
         },
         "723": {
-            "name": "light",
+            "name": "light spellbook",
             "type": "object"
         },
         "724": {
-            "name": "detect monsters",
+            "name": "detect monsters spellbook",
             "type": "object"
         },
         "725": {
-            "name": "healing",
+            "name": "healing spellbook",
             "type": "object"
         },
         "726": {
-            "name": "knock",
+            "name": "knock spellbook",
             "type": "object"
         },
         "727": {
-            "name": "force bolt",
+            "name": "force bolt spellbook",
             "type": "object"
         },
         "728": {
-            "name": "confuse monster",
+            "name": "confuse monster spellbook",
             "type": "object"
         },
         "729": {
-            "name": "cure blindness",
+            "name": "cure blindness spellbook",
             "type": "object"
         },
         "730": {
-            "name": "drain life",
+            "name": "drain life spellbook",
             "type": "object"
         },
         "731": {
-            "name": "slow monster",
+            "name": "slow monster spellbook",
             "type": "object"
         },
         "732": {
-            "name": "wizard lock",
+            "name": "wizard lock spellbook",
             "type": "object"
         },
         "733": {
-            "name": "create monster",
+            "name": "create monster spellbook",
             "type": "object"
         },
         "734": {
-            "name": "detect food",
+            "name": "detect food spellbook",
             "type": "object"
         },
         "735": {
-            "name": "cause fear",
+            "name": "cause fear spellbook",
             "type": "object"
         },
         "736": {
-            "name": "clairvoyance",
+            "name": "clairvoyance spellbook",
             "type": "object"
         },
         "737": {
-            "name": "cure sickness",
+            "name": "cure sickness spellbook",
             "type": "object"
         },
         "738": {
-            "name": "charm monster",
+            "name": "charm monster spellbook",
             "type": "object"
         },
         "739": {
-            "name": "haste self",
+            "name": "haste self spellbook",
             "type": "object"
         },
         "740": {
-            "name": "detect unseen",
+            "name": "detect unseen spellbook",
             "type": "object"
         },
         "741": {
-            "name": "levitation",
+            "name": "levitation spellbook",
             "type": "object"
         },
         "742": {
-            "name": "extra healing",
+            "name": "extra healing spellbook",
             "type": "object"
         },
         "743": {
-            "name": "restore ability",
+            "name": "restore ability spellbook",
             "type": "object"
         },
         "744": {
-            "name": "invisibility",
+            "name": "invisibility spellbook",
             "type": "object"
         },
         "745": {
-            "name": "detect treasure",
+            "name": "detect treasure spellbook",
             "type": "object"
         },
         "746": {
-            "name": "remove curse",
+            "name": "remove curse spellbook",
             "type": "object"
         },
         "747": {
-            "name": "magic mapping",
+            "name": "magic mapping spellbook",
             "type": "object"
         },
         "748": {
-            "name": "identify",
+            "name": "identify spellbook",
             "type": "object"
         },
         "749": {
-            "name": "turn undead",
+            "name": "turn undead spellbook",
             "type": "object"
         },
         "750": {
-            "name": "polymorph",
+            "name": "polymorph spellbook",
             "type": "object"
         },
         "751": {
-            "name": "teleport away",
+            "name": "teleport away spellbook",
             "type": "object"
         },
         "752": {
-            "name": "create familiar",
+            "name": "create familiar spellbook",
             "type": "object"
         },
         "753": {
-            "name": "cancellation",
+            "name": "cancellation spellbook",
             "type": "object"
         },
         "754": {
-            "name": "protection",
+            "name": "protection spellbook",
             "type": "object"
         },
         "755": {
-            "name": "jumping",
+            "name": "jumping spellbook",
             "type": "object"
         },
         "756": {
-            "name": "stone to flesh",
+            "name": "stone to flesh spellbook",
             "type": "object"
         },
         "757": {
-            "name": "blank paper",
+            "name": "blank paper book",
             "type": "object"
         },
         "758": {
@@ -3031,111 +3031,111 @@
             "type": "object"
         },
         "759": {
-            "name": "light",
+            "name": "wand of light",
             "type": "object"
         },
         "760": {
-            "name": "secret door detection",
+            "name": "wand of secret door detection",
             "type": "object"
         },
         "761": {
-            "name": "enlightenment",
+            "name": "wand of enlightenment",
             "type": "object"
         },
         "762": {
-            "name": "create monster",
+            "name": "wand of create monster",
             "type": "object"
         },
         "763": {
-            "name": "wishing",
+            "name": "wand of wishing",
             "type": "object"
         },
         "764": {
-            "name": "nothing",
+            "name": "wand of nothing",
             "type": "object"
         },
         "765": {
-            "name": "striking",
+            "name": "wand of striking",
             "type": "object"
         },
         "766": {
-            "name": "make invisible",
+            "name": "wand of make invisible",
             "type": "object"
         },
         "767": {
-            "name": "slow monster",
+            "name": "wand of slow monster",
             "type": "object"
         },
         "768": {
-            "name": "speed monster",
+            "name": "wand of speed monster",
             "type": "object"
         },
         "769": {
-            "name": "undead turning",
+            "name": "wand of undead turning",
             "type": "object"
         },
         "770": {
-            "name": "polymorph",
+            "name": "wand of polymorph",
             "type": "object"
         },
         "771": {
-            "name": "cancellation",
+            "name": "wand of cancellation",
             "type": "object"
         },
         "772": {
-            "name": "teleportation",
+            "name": "wand of teleportation",
             "type": "object"
         },
         "773": {
-            "name": "opening",
+            "name": "wand of opening",
             "type": "object"
         },
         "774": {
-            "name": "locking",
+            "name": "wand of locking",
             "type": "object"
         },
         "775": {
-            "name": "probing",
+            "name": "wand of probing",
             "type": "object"
         },
         "776": {
-            "name": "digging",
+            "name": "wand of digging",
             "type": "object"
         },
         "777": {
-            "name": "magic missile",
+            "name": "wand of magic missile",
             "type": "object"
         },
         "778": {
-            "name": "fire",
+            "name": "wand of fire",
             "type": "object"
         },
         "779": {
-            "name": "cold",
+            "name": "wand of cold",
             "type": "object"
         },
         "780": {
-            "name": "sleep",
+            "name": "wand of sleep",
             "type": "object"
         },
         "781": {
-            "name": "death",
+            "name": "wand of death",
             "type": "object"
         },
         "782": {
-            "name": "lightning",
+            "name": "wand of lightning",
             "type": "object"
         },
         "783": {
-            "name": "forked",
+            "name": "wand of forked",
             "type": "object"
         },
         "784": {
-            "name": "spiked",
+            "name": "wand of spiked",
             "type": "object"
         },
         "785": {
-            "name": "jeweled",
+            "name": "wand of jeweled",
             "type": "object"
         },
         "786": {
@@ -3315,47 +3315,47 @@
             "type": "room"
         },
         "830": {
-            "name": "wall",
+            "name": "wall 0",
             "type": "room"
         },
         "831": {
-            "name": "wall",
+            "name": "wall 1",
             "type": "room"
         },
         "832": {
-            "name": "wall",
+            "name": "wall 2",
             "type": "room"
         },
         "833": {
-            "name": "wall",
+            "name": "wall 3",
             "type": "room"
         },
         "834": {
-            "name": "wall",
+            "name": "wall 4",
             "type": "room"
         },
         "835": {
-            "name": "wall",
+            "name": "wall 5",
             "type": "room"
         },
         "836": {
-            "name": "wall",
+            "name": "wall 6",
             "type": "room"
         },
         "837": {
-            "name": "wall",
+            "name": "wall 7",
             "type": "room"
         },
         "838": {
-            "name": "wall",
+            "name": "wall 8",
             "type": "room"
         },
         "839": {
-            "name": "wall",
+            "name": "wall 9",
             "type": "room"
         },
         "840": {
-            "name": "wall",
+            "name": "wall 10",
             "type": "room"
         },
         "841": {
@@ -3363,19 +3363,19 @@
             "type": "room"
         },
         "842": {
-            "name": "open door",
+            "name": "open door NS",
             "type": "room"
         },
         "843": {
-            "name": "open door",
+            "name": "open door EW",
             "type": "room"
         },
         "844": {
-            "name": "closed door",
+            "name": "closed door 1",
             "type": "room"
         },
         "845": {
-            "name": "closed door",
+            "name": "closed door 2",
             "type": "room"
         },
         "846": {
@@ -3447,19 +3447,19 @@
             "type": "room"
         },
         "863": {
-            "name": "lowered drawbridge",
+            "name": "lowered drawbridge 1",
             "type": "room"
         },
         "864": {
-            "name": "lowered drawbridge",
+            "name": "lowered drawbridge 2",
             "type": "room"
         },
         "865": {
-            "name": "raised drawbridge",
+            "name": "raised drawbridge 3",
             "type": "room"
         },
         "866": {
-            "name": "raised drawbridge",
+            "name": "raised drawbridge 4",
             "type": "room"
         },
         "867": {
@@ -3471,7 +3471,7 @@
             "type": "room"
         },
         "869": {
-            "name": "water",
+            "name": "wet floor",
             "type": "room"
         },
         "870": {
@@ -4220,6 +4220,10 @@
         },
         "1056": {
             "name": "sub sokoban walls 10",
+            "type": "other"
+        },
+        "1058": {
+            "name": "tileable wall",
             "type": "other"
         }
     }

@@ -20,6 +20,7 @@ namespace Portable
 
 		Dictionary<int, Inv.Image> _tileCache = new Dictionary<int, Inv.Image>();
 		Dictionary<int, Inv.Image> _darkTileCache = new Dictionary<int, Inv.Image>();
+		Dictionary<string, int> _glyphsByName = new Dictionary<string, int>();
 
 		public TileManager(Inv.Asset tileImageFile, Inv.Asset tileDataJson)
 		{
@@ -30,6 +31,17 @@ namespace Portable
 
 			_tileData = JsonConvert.DeserializeObject<TileData>(tileDataJson.AsText().ReadAll());
 			_tileSize = _tileData.tile_size;
+
+			foreach(var tile in _tileData.data)
+			{
+				_glyphsByName.Add(tile.Value.name, int.Parse(tile.Key));
+			}
+
+		}
+
+		public int GetGlyphNumByName(string name)
+		{
+			return _glyphsByName[name];
 		}
 
 		public Inv.Image GetInvImage(int index)
@@ -57,10 +69,6 @@ namespace Portable
 				_darkTileCache[index] = invImage;
 			}
 			return invImage;
-		}
-		public string GetTileName(int index)
-		{
-			return _tileData.data[index.ToString()].name;
 		}
 
 		public byte[] GetTileBmpBytes(int index)

@@ -6,7 +6,7 @@ using System.Collections.Generic;
 
 namespace MegaDungeon.Contracts
 {
-    public class TileData
+	public class TileData
 	{
 		public int tile_size;
 		public Dictionary<string,TileDataData> data;
@@ -21,7 +21,7 @@ namespace MegaDungeon.Contracts
 
 	public interface ITileManager
 	{
-		string GetTileName(int index);
 		byte[] GetTileBmpBytes(int index);
+		int GetGlyphNumByName(string name);
 	}
 }

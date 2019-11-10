@@ -13,7 +13,7 @@ using static EntityComponentSystemCSharp.EntityManager;
 
 namespace MegaDungeon
 {
-    public class Engine : IEngine
+	public class Engine : IEngine
 	{
 		int _doorPercentChance = 50; // Percentage of possible doors that will actually spawn.
 		int _messageLimit = 5;
@@ -38,9 +38,11 @@ namespace MegaDungeon
 		List<Point> _doors = new List<Point>();
 		public ISystemLogger GetLogger() {return _logger;}
 		public RogueSharp.IMap GetMap() {return _map;}
+		public ITileManager GetTileManager() {return _tileManager;}
 		public EntityManager GetEntityManager() {return _entityManager;}
 		public HashSet<Point> GetPlayerViewable() {return _viewable;}
 		public Point GetPlayerLocation() {return new Point(){X = _playerLocation.X, Y = _playerLocation.Y};}
+		int DIRT, FLOOR, TILEABLEWALL, DARK, DOOR, PLAYER;
 
 		public HashSet<Point> Viewable
 		{
@@ -88,6 +90,7 @@ namespace MegaDungeon
 			_height = height;
 			_floor = new int[width, height];
 			_tileManager = tileManager;
+			SetCommonTileGlyphs();
 
 			// RandomizeCave();
 			RandomizeFloor();
@@ -97,6 +100,7 @@ namespace MegaDungeon
 			InitializePlayer();
 			PlaceMonsters();
 			UpdateViews();
+
 			// Add systems that should run every turn here.
 			_logger = new EngineLogger(this);
 
@@ -106,6 +110,17 @@ namespace MegaDungeon
 			_turnSystems.Add(new EnergySystem(this));
 			_turnSystems.Add(new WanderingMonsterSystem(this));
 			_turnSystems.Add(new MovementSystem(this));
+		}
+
+		private void SetCommonTileGlyphs()
+		{
+			DARK = _tileManager.GetGlyphNumByName("dark part of a room");
+			DIRT = _tileManager.GetGlyphNumByName("sub mine walls 0");
+			FLOOR = _tileManager.GetGlyphNumByName("floor of a room");
+			TILEABLEWALL = _tileManager.GetGlyphNumByName("tileable wall");
+			DARK = _tileManager.GetGlyphNumByName("dark part of a room");
+			DOOR = _tileManager.GetGlyphNumByName("closed door 1");
+			PLAYER = _tileManager.GetGlyphNumByName("valkyrie");
 		}
 
 		/// <summary>
@@ -150,7 +165,7 @@ namespace MegaDungeon
 
 		void InitializePlayer()
 		{
-			_player = _actorManager.GetPlayerActor();
+			_player = _actorManager.GetPlayerActor(PLAYER);
 			ICell cell = GetWalkableCell();
 			_playerSiteDistance = _player.GetComponent<SightStat>();
 			_playerLocation = new Location() { X = cell.X, Y = cell.Y };
@@ -202,7 +217,6 @@ namespace MegaDungeon
 			var detector = new MapFeatureDetector(mapArray);
 			var walls = detector.FindWalls();
 			var doorways = detector.FindDoorways();
-			Debug.WriteLine(detector.ToMapString(doorways));
 
 			for(int x = 0; x < _width; x++)
 			{
