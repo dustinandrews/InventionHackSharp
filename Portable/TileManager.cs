@@ -21,10 +21,11 @@ namespace Portable
 		Dictionary<int, Inv.Image> _tileCache = new Dictionary<int, Inv.Image>();
 		Dictionary<int, Inv.Image> _darkTileCache = new Dictionary<int, Inv.Image>();
 
-		public TileManager(string tileImageFile, string tileDataJson)
+		public TileManager(Inv.Asset tileImageFile, Inv.Asset tileDataJson)
 		{
-			_tileset = Image.Load(tileImageFile);
-			_tileData = JsonConvert.DeserializeObject<TileData>(tileDataJson);
+			using (var tileStream = tileImageFile.Open())
+			_tileset = Image.Load(tileStream);
+			_tileData = JsonConvert.DeserializeObject<TileData>(tileDataJson.AsText().ReadAll());
 			_tileSize = _tileData.tile_size;
 		}
 

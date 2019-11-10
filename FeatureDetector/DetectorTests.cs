@@ -89,9 +89,9 @@ namespace FeatureDetector
 		{
 			var regionArray = MapFeatureDetector.GetRegions(mapIntArray);
 			Debug.WriteLine(regionArray.ToRowString(asMap: true));
-			Assert.AreEqual(3, regionArray[9,12]);
-			Assert.AreEqual(4, regionArray[14,27]);
-			Assert.AreEqual(2, regionArray[56,23]);
+			Assert.AreEqual(3, regionArray[12,9]);
+			Assert.AreEqual(4, regionArray[27,14]);
+			Assert.AreEqual(2, regionArray[23,56]);
 		}
 
 

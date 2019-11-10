@@ -44,9 +44,10 @@ namespace Portable
 			_horizontalCellCount = horizontalCellCount;
 			_verticalCellCount = verticalCellCount;
 
-			_tileManager = new TileManager("absurd64.bmp", System.IO.File.ReadAllText("tiledata.json"));
-			
+			var directory = surface.Window.Application.Directory;
 
+			_tileManager = new TileManager(directory.NewAsset("absurd64.bmp"), directory.NewAsset("tiledata.json"));
+			_engine = new MegaDungeon.Engine(horizontalCellCount, verticalCellCount, _tileManager);
 			_surface = surface;
 			_cloth = CreateCloth();
 			_outerDock = _surface.NewDock(Inv.Orientation.Vertical);
