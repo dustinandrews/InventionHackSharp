@@ -1,10 +1,9 @@
 using System.Diagnostics;
 using NUnit.Framework;
 
-
 namespace FeatureDetector
 {
-	[TestFixture]
+    [TestFixture]
 	public class DetectorTests
 	{
 		[Test]
@@ -50,35 +49,51 @@ namespace FeatureDetector
 		public void Temp()
 		{
 			var detector = new MapFeatureDetector(mapIntArray);
-			// var conv = detector.ConvolveFilter(FeatureFilters.Neighbors);
-			// var padded = detector.PaddedArrayFromSource(conv, 1);
-			// var conv2 = detector.ConvolveFilter(FeatureFilters.Neighbors, padded);
-			// Debug.WriteLine(detector.ToMapString(conv2));
-
-			IterateMaps(detector, FeatureFilters.Vertical);
-		}
-
-		private static void IterateMaps(MapFeatureDetector detector, int[,] matrix)
-		{
-			var conv = detector.ConvolveFilter(matrix);
+			var conv = MapFeatureDetector.ConvolveFilter(mapIntArray, FeatureFilters.NeighborCount);
 			IterateMaps(detector, conv);
 		}
 
-		private static void IterateMaps(MapFeatureDetector detector, NumSharp.NDArray conv)
+		[Test]
+		public void GetApproximateRoomCenter()
 		{
-			var min = (int)conv.min().Data<int>()[0];
-			var max = (int)conv.max().Data<int>()[0];
-			var arr = (int[,])conv.ToMuliDimArray<int>();
+			var regions = MapFeatureDetector.GetRegions(mapIntArray);
+			var approxCenter = MapFeatureDetector.GetApproximateRoomCenter(regions, 2);
+		}
+
+		private static void IterateMaps(MapFeatureDetector detector, int[,] conv)
+		{
+			var min = conv.Min();
+			var max = conv.Max();
 			for (int i = min; i <= max; i++)
 			{
 				var splats = detector.FilterArray(conv, i);
-				if(splats.sum().Data<int>()[0] > 0)
+				if(splats.Total() > 0)
 				{
 					Debug.WriteLine(i);
 					Debug.WriteLine(detector.ToMapString(splats));
 				}
 			}
 		}
+
+
+		[Test]
+		public void FloodFillTest()
+		{
+			var testArray = (int[,]) mapIntArray.Clone();
+			MapFeatureDetector.AdamMilFill(testArray, 10, 9);
+			Assert.AreEqual(1, testArray[10, 9]);
+		}
+
+		[Test]
+		public void RegionTest()
+		{
+			var regionArray = MapFeatureDetector.GetRegions(mapIntArray);
+			Debug.WriteLine(regionArray.ToRowString(asMap: true));
+			Assert.AreEqual(3, regionArray[12,9]);
+			Assert.AreEqual(4, regionArray[27,14]);
+			Assert.AreEqual(2, regionArray[23,56]);
+		}
+
 
 		int[,] mapIntArray = new int[,]{
 {1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,0,0,0,0,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1},

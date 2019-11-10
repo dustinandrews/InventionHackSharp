@@ -11,9 +11,9 @@ using MegaDungeon.Contracts;
 using static MegaDungeon.EngineConstants;
 using static EntityComponentSystemCSharp.EntityManager;
 
-namespace MegaDungeon 
+namespace MegaDungeon
 {
-	public class Engine : IEngine
+    public class Engine : IEngine
 	{
 		int _doorPercentChance = 50; // Percentage of possible doors that will actually spawn.
 		int _messageLimit = 5;
@@ -71,6 +71,11 @@ namespace MegaDungeon
 			get{ return _floor_view;}
 		}
 
+		public int[,] RevealedFloor
+		{
+			get{ return (int[,])_floor;}
+		}
+
 		/// <summary>
 		/// Dungeon floor engine, seperate from any UI.
 		/// </summary>
@@ -84,6 +89,7 @@ namespace MegaDungeon
 			_floor = new int[width, height];
 			_tileManager = tileManager;
 
+			// RandomizeCave();
 			RandomizeFloor();
 			// BigRoom();
 			InitCellGlyphs();
@@ -311,9 +317,16 @@ namespace MegaDungeon
 
 		private void RandomizeFloor()
 		{
-			var randomRooms = new RogueSharp.MapCreation.RandomRoomsMapCreationStrategy<RogueSharp.Map>(_width, _height, 20, 10, 5);
+			var maxRooms = (int) Math.Sqrt(_height * _width) * 2;
+			var randomRooms = new RogueSharp.MapCreation.RandomRoomsMapCreationStrategy<RogueSharp.Map>(_width, _height, maxRooms, 10, 5);
 			_map = randomRooms.CreateMap();
-			Debug.WriteLine(_map);
+		}
+
+		private void RandomizeCave()
+		{
+			var randomCaves = new CaveMapCreationStrategy<RogueSharp.Map>(_width, _height);
+			_map = randomCaves.CreateMap();
 		}
 	}
+
 }

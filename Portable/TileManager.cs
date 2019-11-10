@@ -24,7 +24,10 @@ namespace Portable
 		public TileManager(Inv.Asset tileImageFile, Inv.Asset tileDataJson)
 		{
 			using (var tileStream = tileImageFile.Open())
+			{
 				_tileset = Image.Load(tileStream);
+			}
+
 			_tileData = JsonConvert.DeserializeObject<TileData>(tileDataJson.AsText().ReadAll());
 			_tileSize = _tileData.tile_size;
 		}

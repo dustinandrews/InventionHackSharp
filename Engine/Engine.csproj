@@ -3,10 +3,17 @@
 	<PropertyGroup>
 			<TargetFramework>net461</TargetFramework>
 			<OutputPath>$(SolutionDir)\bin\$(Configuration)\$(AssemblyName)\</OutputPath>
+			<IsTestProject>true</IsTestProject>
 	</PropertyGroup>
 
 	<ItemGroup>
 		<PackageReference Include="rogueSharp" Version="4.2.0" />
+		<PackageReference Include="nunit" Version="3.12.0" />
+		<PackageReference Include="Microsoft.NET.Test.Sdk" Version="16.3.0" />
+		<PackageReference Include="nunit" Version="3.12.0" />
+		<PackageReference Include="NUnit.ConsoleRunner" Version="3.10.0" />
+		<PackageReference Include="Nunit3TestAdapter" Version="3.15.1" />
+		<PackageReference Include="RoyT.Astar" Version="2.1.0" />
 	</ItemGroup>
 
 	<ItemGroup>
@@ -14,5 +21,4 @@
 		<ProjectReference Include="..\Contracts\Contracts.csproj" />
 		<ProjectReference Include="..\FeatureDetector\FeatureDetector.csproj" />
 	</ItemGroup>
-
 </Project>
