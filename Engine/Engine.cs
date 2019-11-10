@@ -324,7 +324,7 @@ namespace MegaDungeon
 
 		private void RandomizeCave()
 		{
-			var randomCaves = new CaveMapCreationStrategy<RogueSharp.Map>(_width, _height, 0.65);
+			var randomCaves = new CaveMapCreationStrategy<RogueSharp.Map>(_width, _height);
 			_map = randomCaves.CreateMap();
 		}
 	}

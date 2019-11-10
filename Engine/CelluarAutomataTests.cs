@@ -60,8 +60,10 @@ namespace Engine
 		public void CaveTest()
 		{
 			var strat = new CaveMapCreationStrategy<RogueSharp.Map>(100, 120, 0.65);
-			strat.CreateMap();
+			var map = strat.CreateMap();
+			Debug.WriteLine(map.ToString());
 		}
+
 	}
 
 }

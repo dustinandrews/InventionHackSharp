@@ -85,21 +85,50 @@ namespace FeatureDetector
 		/// <param name="regions"></param>
 		/// <param name="roomNum"></param>
 		/// <returns></returns>
-		public static DetectorPoint GetApproximateRoomCenter(int[,] array, int roomNum)
+		public static DetectorPoint GetApproximateRoomCenter(int[,] array, int roomNum, int[,] roomDensity = null)
 		{
-			var a = (int[,]) array.Clone();
-			a.UpDate(i => (i == roomNum)? 1 : 0);
-			GetWidthAndHeight(array, out var width,  out var height);
-			int[,] heatmap = (int[,]) a.Clone();
-			for(int i = 0; i < 4; i++)
+			if (!array.UniqueValues().Contains(roomNum))
 			{
-				heatmap = ConvolveFilter(heatmap, FeatureFilters.NeighborCount);
-				heatmap = heatmap.Multiply(a); // Cull non-room cells
+				throw new ArgumentException($"Room {roomNum} not on the map.", nameof(roomNum));
 			}
-			var point = MaxPoint(heatmap);
-			heatmap[point.X, point.Y] = -1;
-			Debug.WriteLine(heatmap.ToRowString());
+
+			var a = (int[,])array.Clone();
+			if(roomDensity == null)
+			{
+				roomDensity = GetRoomDensityMap(a);
+			}
+			a.UpDate(i => (i == roomNum) ? 1 : 0);
+			roomDensity = roomDensity.Multiply(a);
+
+			var point = MaxPoint(roomDensity);
+
 			return point;
+		}
+
+		private static int[,] GetRoomDensityMap(int[,] a)
+		{
+			int[,] roomDensity = (int[,]) a.Clone();
+			var mask = (int[,]) a.Clone();
+			mask.UpDate(i => (i == 0) ? 0 : 1);
+			for (int i = 0; i < 3; i++)
+			{
+				roomDensity = ConvolveFilter(roomDensity, FeatureFilters.NeighborCount);
+				roomDensity = roomDensity.Multiply(mask); // Cull non-room cells
+			}
+			return roomDensity;
+		}
+
+		public static DetectorPoint[] GetRoomCenters(int[,] array)
+		{
+			var roomDensity = GetRoomDensityMap(array);
+			var maxRoom = array.Max();
+			var points = new List<DetectorPoint>();
+			for (int i = array.Min(); i <= maxRoom; i++)
+			{
+				var point = GetApproximateRoomCenter(array, i, roomDensity);
+				points.Add(point);
+			}
+			return points.ToArray();
 		}
 
 		static DetectorPoint MaxPoint(int[,] array)
