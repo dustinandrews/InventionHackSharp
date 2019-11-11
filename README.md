@@ -99,7 +99,7 @@ The primary help channel is [r/roguelikedev](https://www.reddit.com/r/rogueliked
 ## TODO:
 
  - Consider changing the MegaDungeon namespaces. (MegaDungeon is my own fork where I will develop my unique game.)
- - Remove NumSharp since it's incomplete and much slower for this use than plain C#.
+ - ~~Remove NumSharp since it's incomplete and much slower for this use than plain C#.~~ Done!
 
 ## Backstory
 After stumbling on [Pathos](https://pathos.azurewebsites.net/) the Nethack Reboot I learned that the author, Callan Hodgskin, built it on top of a code-first API capable of building for Windows, iOS, Android and Linux. I checked out the API and found it to be excellent. It re-ignited my desire to create a roguelike. I also want to promote Invention as a platform, so I created this repository as a basic starting point for roguelike developers who want to program in C#.
