@@ -1,0 +1,86 @@
+{
+  "Giant Ant": {
+    "Actor": {
+      "Speed": 9.5,
+      "Gold": 0,
+      "Energy": 0.0
+    },
+    "AttackStat": {
+      "Power": 2,
+      "Accuracy": 50
+    },
+    "DefenseStat": {
+      "Chance": 5
+    },
+    "Life": {
+      "Health": 10,
+      "MaxHealth": 10
+    },
+    "Name": {
+      "NameString": "Giant Ant"
+    },
+    "Glyph": {
+      "glyph": 0
+    },
+    "Faction": {
+      "Type": 2
+    },
+    "WanderingMonster": {}
+  },
+  "Goblin": {
+    "Actor": {
+      "Speed": 8.0,
+      "Gold": 0,
+      "Energy": 0.0
+    },
+    "AttackStat": {
+      "Power": 2,
+      "Accuracy": 50
+    },
+    "DefenseStat": {
+      "Chance": 1
+    },
+    "Life": {
+      "Health": 5,
+      "MaxHealth": 5
+    },
+    "Name": {
+      "NameString": "Goblin"
+    },
+    "Glyph": {
+      "glyph": 71
+    },
+    "Faction": {
+      "Type": 2
+    },
+    "WanderingMonster": {}
+  },
+  "Kobold": {
+    "Actor": {
+      "Speed": 8.0,
+      "Gold": 0,
+      "Energy": 0.0
+    },
+    "AttackStat": {
+      "Power": 1,
+      "Accuracy": 70
+    },
+    "DefenseStat": {
+      "Chance": 1
+    },
+    "Life": {
+      "Health": 1,
+      "MaxHealth": 1
+    },
+    "Name": {
+      "NameString": "Kobold"
+    },
+    "Glyph": {
+      "glyph": 60
+    },
+    "Faction": {
+      "Type": 2
+    },
+    "WanderingMonster": {}
+  }
+}

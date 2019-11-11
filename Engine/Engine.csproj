@@ -16,6 +16,7 @@
 		<PackageReference Include="RoyT.Astar" Version="2.1.0" />
 	</ItemGroup>
 
+
 	<ItemGroup>
 		<ProjectReference Include="..\EntityComponentSystemCSharp\EntityComponentSystemCSharp.csproj" />
 		<ProjectReference Include="..\Contracts\Contracts.csproj" />

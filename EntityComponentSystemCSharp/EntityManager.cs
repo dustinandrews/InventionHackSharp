@@ -1,8 +1,9 @@
 using System;
 using System.Linq;
+using System.Text;
 using System.Collections.Generic;
 using EntityComponentSystemCSharp.Components;
-using System.Text;
+using Newtonsoft.Json;
 
 namespace EntityComponentSystemCSharp
 {
@@ -33,6 +34,8 @@ namespace EntityComponentSystemCSharp
 				return $"Id = {_id}";
 			}
 		}
+
+		JsonSerializerSettings _serializerSettings = new JsonSerializerSettings { TypeNameHandling = TypeNameHandling.All };
 
 		public IEnumerable<Entity> Entities => _entities.ToArray(); // Read Only version of current entities
 		HashSet<Entity> _entities = new HashSet<Entity>();
@@ -240,6 +243,37 @@ namespace EntityComponentSystemCSharp
 				sb.AppendLine(item.Key);
 			}
 			return sb.ToString();
+		}
+
+		/// <summary>
+		/// Returns a string template for creating more entities with the same parameters.
+		/// </summary>
+		/// <param name="entity"></param>
+		/// <returns></returns>
+		public Dictionary<string,IComponent> GetEntityPrototype(Entity entity)
+		{
+			var components = entity.GetComponents();
+			var dict = new Dictionary<string,IComponent>();
+			foreach(var c in components)
+			{
+				dict.Add(c.GetType().Name, c);
+			}
+			return dict;
+		}
+
+		public Entity NewEntityFromPrototype(string prototype)
+		{
+			var components = JsonConvert.DeserializeObject<Dictionary<string, Object>>(prototype);
+			var entity = CreateEntity();
+			foreach(var component in components)
+			{
+				var compStr = JsonConvert.SerializeObject(component.Value);
+				compStr = compStr.Replace("{","{" + " \"$type\": " + $"\"EntityComponentSystemCSharp.Components.{component.Key}, EntityComponentSystemCSharp\",\n");
+				var actualComp = JsonConvert.DeserializeObject<IComponent>(compStr, _serializerSettings);
+				entity.AddComponent(actualComp);
+			}
+
+			return entity;
 		}
 
 		string GetMapKey(int entity, Type componentType)
