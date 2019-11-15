@@ -1,24 +1,14 @@
-<Project Sdk="Microsoft.NET.Sdk">
+﻿<Project Sdk="Microsoft.NET.Sdk">
 	<PropertyGroup>
-		<TargetFramework>net461</TargetFramework>
+		<TargetFramework>netstandard20</TargetFramework>
 		<OutputPath>$(SolutionDir)\bin\$(Configuration)\$(AssemblyName)\</OutputPath>
 	</PropertyGroup>
-	<ItemGroup>
-		<Reference Include="Inv.Library">
-			<HintPath>..\lib\Inv.Library.dll</HintPath>
-		</Reference>
-		<Reference Include="Inv.Platform">
-			<HintPath>..\lib\Inv.Platform.dll</HintPath>
-		</Reference>
-		<Reference Include="Newtonsoft.Json">
-			<HintPath>..\lib\Newtonsoft.Json.dll</HintPath>
-		</Reference>
-	</ItemGroup>
 	<ItemGroup>
 		<ProjectReference Include="..\Engine\Engine.csproj" />
 		<ProjectReference Include="..\Contracts\Contracts.csproj" />
 	</ItemGroup>
 	<ItemGroup>
+		<PackageReference Include="Invention.Platform" Version="1.0.50" />
 		<PackageReference Include="SixLabors.ImageSharp" Version="1.0.0-beta0007" />
 		<PackageReference Include="SixLabors.ImageSharp.Drawing" Version="1.0.0-beta0007" />
 	</ItemGroup>

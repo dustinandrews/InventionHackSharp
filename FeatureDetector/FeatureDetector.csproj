@@ -1,7 +1,7 @@
-<Project Sdk="Microsoft.NET.Sdk">
+﻿<Project Sdk="Microsoft.NET.Sdk">
 
 	<PropertyGroup>
-		<TargetFramework>net461</TargetFramework>
+		<TargetFramework>netstandard20</TargetFramework>
 		<IsTestProject>true</IsTestProject>
 		<OutputPath>$(SolutionDir)\bin\$(Configuration)\$(AssemblyName)\</OutputPath>
 	</PropertyGroup>
@@ -11,7 +11,6 @@
 		<PackageReference Include="Microsoft.NET.Test.Sdk" Version="16.3.0" />
 		<PackageReference Include="nunit" Version="3.12.0" />
 		<PackageReference Include="NUnit.ConsoleRunner" Version="3.10.0" />
-		<PackageReference Include="Nunit3TestAdapter" Version="3.15.1" />
 		<PackageReference Include="SixLabors.ImageSharp" Version="1.0.0-beta0007" />
 		<PackageReference Include="SixLabors.ImageSharp.Drawing" Version="1.0.0-beta0007" />
 	</ItemGroup>
