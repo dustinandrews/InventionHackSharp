@@ -1,6 +1,6 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 	<PropertyGroup>
-		<TargetFramework>netstandard20</TargetFramework>
+		<TargetFrameworks>netstandard20;net461</TargetFrameworks>
 		<IsTestProject>true</IsTestProject>
 		<ApplicationIcon />
 		<OutputType>Library</OutputType>

@@ -1,6 +1,6 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 	<PropertyGroup>
-		<TargetFramework>netstandard20</TargetFramework>
+		<TargetFrameworks>netstandard20</TargetFrameworks>
 		<OutputPath>$(SolutionDir)\bin\$(Configuration)\$(AssemblyName)\</OutputPath>
 	</PropertyGroup>
 	<ItemGroup>

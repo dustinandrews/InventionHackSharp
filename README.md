@@ -36,6 +36,8 @@ Change to a directory where you like to clone stuff.
     
     
 #### Build and test
+If you are building from the command line in Windows these commands should work. If you wish to build for Android, swap in the MegaDungeon.sln.Android file for the MegaDungeon.sln and build from Visual Studio. You will need Xamarin correctly installed. You can also build for iOS.
+
     C:\local\InventionHackSharp>dotnet build
     ...
     C:\local\InventionHackSharp\bin\Debug\EntityComponentSystemCSharp\net4.6.1\EntityComponentSystemCSharp.dll
@@ -47,18 +49,30 @@ Change to a directory where you like to clone stuff.
         0 Warning(s)
         0 Error(s)
         
-    C:\local\InventionHackSharp>dotnet test
-    ...
-        Test Run Successful.
-    Total tests: 20
-         Passed: 20
-     Total time: 1.5644 Seconds
-    
-    Test Run Successful.
-    Total tests: 4
-         Passed: 4
-     Total time: 4.6779 Seconds
-     
+    PS C:\local\InventionHackSharp> .\runtests.ps1
+      NUnit Console Runner 3.10.0 (.NET 2.0)
+      Copyright (c) 2019 Charlie Poole, Rob Prouse
+      Sunday, November 17, 2019 6:47:32 PM
+
+      Runtime Environment
+         OS Version: Microsoft Windows NT 10.0.17763.0
+        CLR Version: 4.0.30319.42000
+
+      Test Files
+          bin\Debug\Engine\net461\Engine.dll
+          bin\Debug\EntityComponentSystemCSharp\net461\EntityComponentSystemCSharp.dll
+          bin\Debug\FeatureDetector\net461\FeatureDetector.dll
+
+
+
+      Test Run Summary
+        Overall result: Passed
+        Test Count: 34, Passed: 34, Failed: 0, Warnings: 0, Inconclusive: 0, Skipped: 0
+        Start time: 2019-11-18 02:47:32Z
+          End time: 2019-11-18 02:47:35Z
+          Duration: 2.463 seconds
+
+
 #### Run the game
     C:\local\InventionHackSharp\bin\Debug\InventionUiWpf\net461\InventionUiWpf.exe
 
@@ -100,6 +114,9 @@ The primary help channel is [r/roguelikedev](https://www.reddit.com/r/rogueliked
 
  - Consider changing the MegaDungeon namespaces. (MegaDungeon is my own fork where I will develop my unique game.)
  - ~~Remove NumSharp since it's incomplete and much slower for this use than plain C#.~~ Done!
+
+## Change-log:
+    11/17/2019 - Callanh has upgraded the Invention nuget to support this project! Accepted pull request and added some multi-targeting to keep Nunit tests working since it doesn't support netstandard yet.
 
 ## Backstory
 After stumbling on [Pathos](https://pathos.azurewebsites.net/) the Nethack Reboot I learned that the author, Callan Hodgskin, built it on top of a code-first API capable of building for Windows, iOS, Android and Linux. I checked out the API and found it to be excellent. It re-ignited my desire to create a roguelike. I also want to promote Invention as a platform, so I created this repository as a basic starting point for roguelike developers who want to program in C#.
