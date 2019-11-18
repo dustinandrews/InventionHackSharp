@@ -95,7 +95,7 @@ This is a custom build of the Invention API for x64 since the current nuget pack
 This is the platform agnostic UI code that displays the game and ties the user to the engine.
 
 ## Pull requests
-I am happy to recieve any pull requests and consider them. As the point of this repository is to be a clean starting point, new features are (probably) not going to be added. Any pull requests should:
+I am happy to receive any pull requests and consider them. As the point of this repository is to be a clean starting point, new features are (probably) not going to be added. Any pull requests should:
 
  - Fix a bug
  - Make the code cleaner and easier to understand
